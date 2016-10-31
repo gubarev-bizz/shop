@@ -1,0 +1,70 @@
+services:
+    app_admin.admin.users:
+        class: App\Bundle\AdminBundle\Admin\UserAdmin
+        arguments: [ ~, App\Bundle\CoreBundle\Entity\User, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Users, label: List }
+
+    app_admin.admin.products:
+        class: App\Bundle\AdminBundle\Admin\ProductAdmin
+        arguments: [ ~, App\Bundle\CoreBundle\Entity\Product, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Shop, label: Products }
+
+    app_admin.admin.reviews:
+        class: App\Bundle\AdminBundle\Admin\ReviewAdmin
+        arguments: [ ~, App\Bundle\CoreBundle\Entity\Review, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Reviews, label: List }
+
+    app_admin.admin.categories:
+        class: App\Bundle\AdminBundle\Admin\CategoryAdmin
+        arguments: [ ~, App\Bundle\CoreBundle\Entity\Category, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Shop, label: Category }
+
+    app_admin.admin.order:
+        class: App\Bundle\AdminBundle\Admin\OrderAdmin
+        arguments: [ ~, App\Bundle\ShopBundle\Entity\Order, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Shop, label: Order }
+
+    app_admin.admin.country:
+        class: App\Bundle\AdminBundle\Admin\CountryAdmin
+        arguments: [ ~, App\Bundle\CoreBundle\Entity\Country, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Shop, label: Country }
+
+    app_admin.admin.manufacturer:
+        class: App\Bundle\AdminBundle\Admin\ManufacturerAdmin
+        arguments: [ ~, App\Bundle\CoreBundle\Entity\Manufacturer, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Shop, label: Manufacturer }
+
+    app_admin.admin.content:
+        class: App\Bundle\AdminBundle\Admin\ArticleAdmin
+        arguments: [ ~, App\Bundle\CoreBundle\Entity\Article, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Content, label: List }
+
+    app_admin.menu_listener:
+        class: App\Bundle\AdminBundle\EventListener\MenuBuilderListener
+        tags:
+            - { name: kernel.event_listener, event: sonata.admin.event.configure.menu.sidebar, method: addMenuItems }
+
+    app_admin.parser:
+        class: App\Bundle\AdminBundle\Parser\ParserProcess
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@phpexcel'
+            - '@security.token_storage'
+
+    app_admin.parser.file:
+        class: App\Bundle\AdminBundle\Parser\File
+        arguments: [ '%report_upload_dir%' ]
+
+    app_admin.form.multi_currency:
+        class: App\Bundle\AdminBundle\Form\MultiCurrencyType
+        arguments: [ '@app_shop_bundle.multi_currency' ]
+        tags:
+            - { name: form.type }

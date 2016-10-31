@@ -1,0 +1,11 @@
+App\Bundle\CoreBundle\Entity\Product:
+    ProductTest (template):
+        title: <company()>
+        code: <numberBetween(1000, 9000)>
+        content: <sentence($nbWords = 30, $variableNbWords = true)>
+        price: <numberBetween(10, 1000)>
+        currency: 'UAH'
+        user: '@UserTest*'
+        category: '@CategoryTest*'
+    ProductTest{1..20} (extends ProductTest):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>

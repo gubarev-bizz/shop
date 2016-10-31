@@ -1,0 +1,23 @@
+{% macro recursiveCategory(category) %}
+    <li>
+        <a href="" title="">{{ category.title }}</a>
+        {% if category.children|length %}
+            <ul>
+                {% for child in category.children %}
+                    {{ _self.recursiveCategory(child) }}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endmacro %}
+
+{% if categories %}
+    <div id="sidebar">
+        <h2 class="block-title">Продукция</h2>
+        <ul>
+            {% for category in categories %}
+                {{ _self.recursiveCategory(category) }}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

@@ -1,0 +1,24 @@
+<h2 class="title">Корзина</h2>
+
+{% if cart.elements|length %}
+    <table class="ajax-shopping-cart-table">
+        <thead>
+            <tr>
+                <th class="quantity-label">Кол-во</th>
+                <th class="item-label">Элементы</th>
+                <th class="price-label">Цена</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for element in cart.elements %}
+                <tr class="ajax-cart-row">
+                    <td class="quantity">{{ element.count }}</td>
+                    <td class="name">{{ element.product.title }}</td>
+                    <td class="price">{{ element.amount }}</td>
+                    <td class="remove-from-cart"><a href="/remove-product/nojs/104" class="use-ajax ajax-processed">Удалить </a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

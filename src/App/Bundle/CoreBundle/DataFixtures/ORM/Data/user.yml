@@ -1,0 +1,21 @@
+App\Bundle\CoreBundle\Entity\User:
+    UserTest (template):
+        email: <email()>
+        firstname: <firstName()>
+        lastname: <lastName()>
+        password: "$2a$12$SLpQvqEINehy5ST8So6JJOFNdKca6y82rKVX97Gr5ofRFbxCbhnl2"
+        roles: [ROLE_MANAGER]
+        salt: ""
+    UserTest{1..3} (extends UserTest):
+        email: <email()>
+
+    AdminTest (template):
+        email: <email()>
+        firstname: <firstName()>
+        lastname: <lastName()>
+        password: "$2a$12$SLpQvqEINehy5ST8So6JJOFNdKca6y82rKVX97Gr5ofRFbxCbhnl2"
+        roles: [ROLE_SUPER_ADMIN]
+        salt: ""
+    AdminTest{1..1} (extends AdminTest):
+        email: 'admin@example.com'
+

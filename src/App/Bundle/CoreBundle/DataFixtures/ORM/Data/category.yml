@@ -1,0 +1,7 @@
+App\Bundle\CoreBundle\Entity\Category:
+    CategoryTest (template):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>
+        children: ['@CategoryTest*']
+        active: true
+    CategoryTest{1..20} (extends CategoryTest):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>

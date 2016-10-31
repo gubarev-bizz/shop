@@ -1,0 +1,14 @@
+services:
+
+    app_core_bundle.menu_builder:
+        class: App\Bundle\CoreBundle\Menu\MenuBuilder
+        arguments: [ "@knp_menu.factory" ]
+
+    app_core_bundle.menu.breadcrumb_cart:
+        class: Knp\Menu\MenuItem
+        factory: [ "@app_core_bundle.menu_builder", createBreadcrumbCartMenu ]
+        arguments: [ "@request_stack" ]
+        tags:
+            - { name: knp_menu.menu, alias: breadcrumbCart }
+
+

@@ -1,0 +1,57 @@
+security:
+
+    encoders:
+        App\Bundle\CoreBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 12
+
+    role_hierarchy:
+        ROLE_MANAGER:
+            - ROLE_SONATA_ADMIN
+            - ROLE_SONATA_STUFF
+            - ROLE_APP_ADMIN_ADMIN_PRODUCTS_CREATE
+            - ROLE_APP_ADMIN_ADMIN_PRODUCTS_LIST
+            - ROLE_APP_ADMIN_ADMIN_PRODUCTS_EDIT
+            - ROLE_APP_ADMIN_ADMIN_PRODUCTS_VIEW
+
+        ROLE_SUPER_ADMIN:
+            - ROLE_SUPER_ADMIN
+            - ROLE_SONATA_ADMIN
+            - ROLE_MANAGER
+            - ROLE_APP_ADMIN_ADMIN_USERS_CREATE
+            - ROLE_APP_ADMIN_ADMIN_USERS_LIST
+            - ROLE_APP_ADMIN_ADMIN_USERS_EDIT
+            - ROLE_APP_ADMIN_ADMIN_USERS_VIEW
+
+    providers:
+        users:
+            entity: { class: AppCoreBundle:User, property: email }
+
+    firewalls:
+
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            anonymous:
+            provider: users
+            security: true
+            form_login:
+                login_path: login
+                check_path: login_check
+                username_parameter: login[email]
+                password_parameter: login[password]
+                default_target_path: /
+                always_use_default_target_path: true
+            logout:
+                path: logout
+            remember_me:
+                secret: '%secret%'
+                lifetime: 604800
+                path: /
+
+    access_control:
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: [ROLE_SONATA_ADMIN, ROLE_MANAGER] }

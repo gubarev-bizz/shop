@@ -1,0 +1,13 @@
+{% extends '@AppCore/Layouts/layout.html.twig' %}
+
+{% block content %}
+
+    <div class="group-left">
+
+    </div>
+    <div class="group-right">
+        <div class="commerce-product-title">{{ product.title }}</div>
+        {{ form(addProductToCartForm) }}
+    </div>
+
+{% endblock %}

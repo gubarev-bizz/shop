@@ -1,0 +1,15 @@
+{% extends 'AppAdminBundle:Admin:layout.html.twig' %}
+
+{% block sonata_admin_content %}
+
+    <div class="row">
+        <div class="col-xs-12 col-md-12 sonata-filters-box">
+            <div class="box box-primary">
+                <div class="box-body">
+                    {{ form(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends '@AppCore/Layouts/layout.html.twig' %}
+
+{% block content %}
+
+    {#{{ knp_menu_render('breadcrumbCart', {'currentAsLink' : false} ) }}#}
+
+    {% if cart.elements|length %}
+        <form name="cart" id="cart" method="post">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Товар</th>
+                        <th>Цена</th>
+                        <th>Кол-во</th>
+                        <th>Итого</th>
+                        <th>Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for element in cart.elements %}
+                        <tr>
+                            <td>{{ element.product.title }}</td>
+                            <td>{{ element.product.price }}</td>
+                            <td><input data-product="{{ element.product.id }}" type="number" name="count[{{ element.product.id }}]" class="form-control form-text" value="{{ element.count }}" /></td>
+                            <td>{{ element.amount }}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger cart-remove">Delete</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+        <div style="text-align: right;" class="line-item-summary">
+            <div class="line-item-total">
+                <span>Всего: {{ cart.total }}</span>
+            </div>
+        </div>
+
+        <div style="text-align: right;" class="form-actions commerce-line-item-actions form-wrapper form-group" id="edit-actions">
+            <button type="submit" id="edit-submit" value="Пересчитать" class="btn btn-default refresh-cart">Пересчитать</button>
+            <a href="{{ path('app_shop_bundle_checkout') }}" class="btn btn-default form-submit">Оформление заказа</a>
+        </div>
+    {% else %}
+        Cart is empty
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,5 @@
+include:
+    - Data/user.yml
+    - Data/category.yml
+    - Data/product.yml
+    - Data/article.yml

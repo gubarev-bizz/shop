@@ -1,0 +1,31 @@
+app_shop_bundle_cart_add_item:
+    path: /cart/add
+    methods: POST
+    defaults: { _controller: AppShopBundle:Cart:addProduct }
+
+app_shop_bundle_cart_remove_item:
+    path: /cart/remove
+    methods: POST
+    defaults: { _controller: AppShopBundle:Cart:removeProduct }
+
+app_shop_bundle_cart_refresh:
+    path: /cart/refresh
+    methods: POST
+    defaults: { _controller: AppShopBundle:Cart:refreshCart }
+
+app_shop_bundle_cart:
+    path: /cart
+#    methods: POST
+    defaults: { _controller: AppShopBundle:Cart:cart }
+
+app_shop_bundle_checkout:
+    path: /checkout
+    defaults: { _controller: AppShopBundle:Checkout:checkout }
+
+app_show_bundle_checkout_show:
+    path: /checkout/{id}
+    defaults: { _controller: AppShopBundle:Checkout:checkoutShow }
+
+app_show_bundle_product_item:
+    path: /product/{id}
+    defaults: { _controller: AppShopBundle:Product:productItem }

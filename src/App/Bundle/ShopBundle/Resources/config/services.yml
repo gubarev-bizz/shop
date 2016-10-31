@@ -1,0 +1,9 @@
+services:
+
+    app_shop_bundle.cart:
+        class: App\Bundle\ShopBundle\Service\Cart
+        arguments: [ "@request_stack", "@doctrine.orm.default_entity_manager" ]
+
+    app_shop_bundle.multi_currency:
+        class: App\Bundle\ShopBundle\Service\MultiCurrency
+        arguments: [ "@doctrine.orm.default_entity_manager" ]

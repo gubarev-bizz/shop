@@ -1,0 +1,7 @@
+login:
+    path: /login
+    defaults: { _controller: AppCoreBundle:Security:login }
+
+app_core_bundle_page_main:
+    path: /
+    defaults: { _controller: AppCoreBundle:Default:index }

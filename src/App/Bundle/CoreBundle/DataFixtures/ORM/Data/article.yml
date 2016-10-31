@@ -1,0 +1,21 @@
+App\Bundle\CoreBundle\Entity\Article:
+    ArticleTest (template):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>
+        content: <sentence($nbWords = 30, $variableNbWords = true)>
+        type: 'article'
+    ArticleTest{1..20} (extends ArticleTest):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>
+
+    NewsTest (template):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>
+        content: <sentence($nbWords = 30, $variableNbWords = true)>
+        type: 'news'
+    NewsTest{1..20} (extends NewsTest):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>
+
+    StockTest (template):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>
+        content: <sentence($nbWords = 30, $variableNbWords = true)>
+        type: 'stock'
+    StockTest{1..20} (extends StockTest):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>

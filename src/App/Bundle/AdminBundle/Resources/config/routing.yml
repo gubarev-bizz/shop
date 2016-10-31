@@ -1,0 +1,7 @@
+app_admin_bundle_parser:
+    path: /parser
+    defaults: { _controller: AppAdminBundle:Parser:parser }
+
+app_admin_bundle_multicurrency:
+    path: /multi-currency
+    defaults: { _controller: AppAdminBundle:MultiCurrency:multiCurrency }
