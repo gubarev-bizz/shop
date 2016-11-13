@@ -19,3 +19,4 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     report_upload_dir: "%kernel.root_dir%/../var/reports"
+    upload_dir: '%kernel.root_dir%/../web/uploads'

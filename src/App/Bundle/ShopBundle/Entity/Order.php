@@ -17,6 +17,11 @@ class Order
     use TimestampableEntityTrait;
 
     const STATUS_INITIAL = 'initial';
+    const TAKEN_PROCESSING = 'TAKEN_PROCESSING';
+    const AWAITING_PAYMENT = 'AWAITING_PAYMENT';
+    const AWAITING_SHIPMENT = 'AWAITING_SHIPMENT';
+    const EXECUTED = 'EXECUTED';
+    const CANCELED = 'CANCELED';
 
     /**
      * @var string

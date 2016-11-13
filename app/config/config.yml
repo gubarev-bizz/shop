@@ -51,12 +51,8 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
+        types:
+            json: Sonata\Doctrine\Types\JsonType
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -77,6 +73,13 @@ stof_doctrine_extensions:
         default:
             timestampable: true
             softdeleteable: true
+
+visual_craft_upload_file:
+    upload_base_dir: "%kernel.root_dir%/../web"
+    mappings:
+        content:
+            upload_path: /uploads/staff
+
 
 sonata_admin:
     templates:

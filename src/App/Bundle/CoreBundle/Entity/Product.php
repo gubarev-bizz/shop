@@ -97,6 +97,7 @@ class Product
      */
     protected $country;
 
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();

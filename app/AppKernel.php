@@ -18,6 +18,8 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new VisualCraft\Bundle\UploadFileBundle\VisualCraftUploadFileBundle(),
+            new VisualCraft\Bundle\MailerBundle\VisualCraftMailerBundle(),
 
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
@@ -26,6 +28,7 @@ class AppKernel extends Kernel
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\FormatterBundle\SonataFormatterBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
 
             new App\Bundle\CoreBundle\AppCoreBundle(),
             new App\Bundle\AdminBundle\AppAdminBundle(),

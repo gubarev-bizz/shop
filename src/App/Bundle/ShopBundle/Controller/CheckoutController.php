@@ -34,7 +34,7 @@ class CheckoutController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $order->setProducts($shopCart->getCartElements());
             $order->setAmount($shopCart->getAmountCheckout());
-            $order->setStatus(Order::STATUS_INITIAL);
+            $order->setStatus(Order::TAKEN_PROCESSING);
             $em->persist($order);
             $em->flush();
             $shopCart->setCartEmpty();

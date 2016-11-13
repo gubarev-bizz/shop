@@ -11,4 +11,19 @@ services:
         tags:
             - { name: knp_menu.menu, alias: breadcrumbCart }
 
+    app_core_bundle.helper.file_upload:
+        class: App\Bundle\CoreBundle\Utils\FileHelper
+        arguments: [ '%upload_dir%' ]
 
+    app_core_bundle.manager.file:
+        class: App\Bundle\CoreBundle\Utils\FileManager
+        arguments:
+            - '@app_core_bundle.helper.file_upload'
+            - '@doctrine.orm.default_entity_manager'
+
+    app_core_bundle.twig_extension.get_product_extension:
+        class: App\Bundle\CoreBundle\Twig\GetProductExtension
+        public: false
+        arguments: [ '@doctrine.orm.default_entity_manager' ]
+        tags:
+            - { name: twig.extension }

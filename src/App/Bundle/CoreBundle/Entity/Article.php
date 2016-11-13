@@ -4,10 +4,7 @@ namespace App\Bundle\CoreBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
-use Application\Sonata\MediaBundle\Entity\Media;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 
 /**
@@ -49,13 +46,9 @@ class Article
     private $type;
 
     /**
-     * @var Media
+     * @var string
      *
-     * @ORM\ManyToOne(
-     *     targetEntity="Application\Sonata\MediaBundle\Entity\Media",
-     *     cascade={"persist"},
-     *     fetch="LAZY"
-     * )
+     * @ORM\Column(type="json_array", nullable=true)
      */
     private $image;
 
@@ -108,7 +101,7 @@ class Article
     }
 
     /**
-     * @return MediaInterface
+     * @return string
      */
     public function getImage()
     {
@@ -116,9 +109,9 @@ class Article
     }
 
     /**
-     * @param MediaInterface $image
+     * @param string $image
      */
-    public function setImage(MediaInterface $image)
+    public function setImage($image)
     {
         $this->image = $image;
     }

@@ -1,0 +1,34 @@
+{% extends '@SonataAdmin/CRUD/base_show_field.html.twig' %}
+
+{% block field %}
+
+    <div class="col-md-12">
+        <div>
+            {% set totalAmount = 0 %}
+
+            <table class="table table-striped">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Product</th>
+                        <th>Count</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                {% for key, product in admin.subject.products %}
+                    <tr>
+                        <td>{{ getProduct(key) }}</td>
+                        <td>{{ product['count'] }}</td>
+                        <td>{{ product['price'] }}</td>
+                    </tr>
+                    {% set totalAmount = totalAmount + product['price'] %}
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td style="text-align: right"><b>Total:</b></td>
+                    <td><b>{{ totalAmount }}</b></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

@@ -25,7 +25,10 @@
         "sonata-project/admin-bundle": "^3.9",
         "stof/doctrine-extensions-bundle": "^1.2",
         "liuggio/excelbundle": "^2.1",
-        "sonata-project/formatter-bundle": "^3.0"
+        "sonata-project/formatter-bundle": "^3.0",
+        "sonata-project/doctrine-extensions": "^1.0",
+        "visual-craft/upload-file-bundle": "^2.2",
+        "visual-craft/mailer-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
@@ -34,6 +37,12 @@
         "doctrine/data-fixtures": "^1.1",
         "doctrine/doctrine-fixtures-bundle": "^2.3"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.visual-craft.com"
+        }
+    ],
     "scripts": {
         "symfony-scripts": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",

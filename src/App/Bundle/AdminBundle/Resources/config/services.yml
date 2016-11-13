@@ -68,3 +68,8 @@ services:
         arguments: [ '@app_shop_bundle.multi_currency' ]
         tags:
             - { name: form.type }
+
+    app_admin.form.type.product_order:
+        class: App\Bundle\AdminBundle\Form\Sonata\ProductOrderFieldType
+        tags:
+            - { name: form.type, alias: productOrder }
