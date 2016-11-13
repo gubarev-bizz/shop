@@ -42,6 +42,10 @@ class ArticleAdmin extends AbstractAdmin
         $formMapper
             ->with('Basic information')
                 ->add('title', 'text', ['label' => 'Title'])
+                ->add('image', 'sonata_media_type', [
+                    'provider' => 'sonata.media.provider.image',
+                    'context' => 'sonata_collection',
+                ])
                 ->add('content', 'sonata_simple_formatter_type', [
                     'format' => 'markdown',
                     'ckeditor_context' => 'default',
