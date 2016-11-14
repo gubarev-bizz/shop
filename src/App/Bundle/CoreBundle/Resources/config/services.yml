@@ -27,3 +27,19 @@ services:
         arguments: [ '@doctrine.orm.default_entity_manager' ]
         tags:
             - { name: twig.extension }
+
+    app_core_bundle.mail_handler.callback:
+        class: App\Bundle\CoreBundle\MailHandler\CallbackMailHandler
+        arguments: [ '%general_email%' ]
+        calls:
+            - [ setTemplatingEngine, [ '@templating' ] ]
+        tags:
+            - { name: 'visual_craft_mailer.mail_handler', alias: 'callback' }
+
+    app_core_bundle.mail_handler.change_status_order:
+        class: App\Bundle\CoreBundle\MailHandler\ChangeStatusOrderHandler
+        arguments: [ '%general_email%' ]
+        calls:
+            - [ setTemplatingEngine, [ '@templating' ] ]
+        tags:
+            - { name: 'visual_craft_mailer.mail_handler', alias: 'change_status_order' }

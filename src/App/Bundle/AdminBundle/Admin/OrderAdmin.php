@@ -2,15 +2,28 @@
 
 namespace App\Bundle\AdminBundle\Admin;
 
-use App\Bundle\AdminBundle\Form\Sonata\ProductOrderFieldType;
 use App\Bundle\ShopBundle\Entity\Order;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use VisualCraft\Bundle\MailerBundle\Mailer;
 
 class OrderAdmin extends AbstractAdmin
 {
+    /**
+     * @var Mailer
+     */
+    private $mailer;
+
+    /**
+     * @param Mailer $mailer
+     */
+    public function setMailer(Mailer $mailer)
+    {
+        $this->mailer = $mailer;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -22,13 +35,16 @@ class OrderAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id', 'text', ['label' => 'Order Id #'])
+            ->add('id', 'text', ['label' => 'Order Id #'])
             ->add('firstName')
             ->add('lastName')
             ->add('phone')
             ->add('email')
             ->add('amount')
-            ->add('status')
+            ->add('createdAt', 'date', [
+                'label' => 'Created',
+                'format' => 'd-m-Y H:j',
+            ])
             ->add('_action', 'actions', [
                 'actions' => [
                     'edit' => [],
@@ -64,8 +80,6 @@ class OrderAdmin extends AbstractAdmin
         ;
     }
 
-
-
     /**
      * @param ShowMapper $show
      */
@@ -83,5 +97,16 @@ class OrderAdmin extends AbstractAdmin
                 ])
             ->end()
         ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($object)
+    {
+        $order = $this->getSubject();
+        $this->mailer->send('change_status_order', [
+            'order' => $object,
+        ]);
     }
 }

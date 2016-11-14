@@ -6,7 +6,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use VisualCraft\Bundle\MailerBundle\MailHandler\TemplatingAwareMailHandlerTrait;
 use VisualCraft\Bundle\MailerBundle\MailHandlerInterface;
 
-class CallbackMailHandler implements MailHandlerInterface
+class ChangeStatusOrderHandler implements MailHandlerInterface
 {
     use TemplatingAwareMailHandlerTrait;
 
@@ -29,7 +29,7 @@ class CallbackMailHandler implements MailHandlerInterface
     public function configureOptions(OptionsResolver $optionsResolver)
     {
         $optionsResolver
-            ->setRequired(['fullName', 'phone'])
+            ->setRequired(['order'])
         ;
     }
 
@@ -40,12 +40,11 @@ class CallbackMailHandler implements MailHandlerInterface
     public function buildMessage(\Swift_Message $message, array $options)
     {
         $message
-            ->setSubject($this->renderSubject('AppCoreBundle:Mail:callback-subject.html.twig'))
+            ->setSubject($this->renderSubject('AppCoreBundle:Mail:ChangeStatusOrder-subject.html.twig'))
             ->setTo($this->email)
             ->setFrom($this->email)
-            ->setBody($this->renderBody('AppCoreBundle:Mail:callback.html.twig', [
-                'fullName' => $options['fullName'],
-                'phone' => $options['phone'],
+            ->setBody($this->renderBody('AppCoreBundle:Mail:ChangeStatusOrder.html.twig', [
+                'order' => $options['order']
             ]))
         ;
     }

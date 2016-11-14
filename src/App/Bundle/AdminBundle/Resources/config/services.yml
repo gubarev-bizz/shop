@@ -28,6 +28,8 @@ services:
         arguments: [ ~, App\Bundle\ShopBundle\Entity\Order, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Shop, label: Order }
+        calls:
+            - [ setMailer, [ '@visual_craft_mailer.mailer' ] ]
 
     app_admin.admin.country:
         class: App\Bundle\AdminBundle\Admin\CountryAdmin
