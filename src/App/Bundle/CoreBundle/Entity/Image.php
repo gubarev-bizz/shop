@@ -2,9 +2,6 @@
 
 namespace App\Bundle\CoreBundle\Entity;
 
-use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
-use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 use Symfony\Component\HttpFoundation\File\File;
@@ -14,40 +11,15 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity()
  * @Vich\Uploadable
  */
-class Article
+class Image
 {
-    use IdentifiableEntityTrait;
-    use TimestampableEntityTrait;
-
-    const TYPE_ARTICLE = 'article';
-    const TYPE_NEWS = 'news';
-    const TYPE_STOCK = 'stock';
-
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     * @SymfonyConstraints\NotBlank()
-     * @SymfonyConstraints\Length(max="255")
+     * @var int
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $title;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="text")
-     * @SymfonyConstraints\NotBlank()
-     */
-    private $content;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     * @SymfonyConstraints\NotBlank()
-     * @SymfonyConstraints\Length(max="255")
-     */
-    private $type;
+    private $id;
 
     /**
      * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
@@ -63,57 +35,17 @@ class Article
      */
     private $imageName;
 
-    public function __construct()
-    {
-        $this->images = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="images")
+     */
+    protected $product;
 
     /**
-     * @return string
+     * @return int
      */
-    public function getTitle()
+    public function getId()
     {
-        return $this->title;
-    }
-
-    /**
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * @param string $content
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
+        return $this->id;
     }
 
     /**
@@ -125,7 +57,7 @@ class Article
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      *
-     * @return Article
+     * @return Image
      */
     public function setImageFile(File $image = null)
     {
@@ -151,7 +83,7 @@ class Article
     /**
      * @param string $imageName
      *
-     * @return Article
+     * @return Image
      */
     public function setImageName($imageName)
     {
@@ -168,4 +100,23 @@ class Article
         return $this->imageName;
     }
 
+    /**
+     * @return Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param Product $product
+     * @return $this
+     */
+    public function setProduct(Product $product)
+    {
+        $this->product = $product;
+        $product->addImage($this);
+
+        return $this;
+    }
 }

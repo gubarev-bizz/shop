@@ -47,7 +47,13 @@ services:
         class: App\Bundle\AdminBundle\Admin\ArticleAdmin
         arguments: [ ~, App\Bundle\CoreBundle\Entity\Article, ~ ]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Content, label: List }
+            - { name: sonata.admin, manager_type: orm, group: Content, label: Articles }
+
+    app_admin.admin.image:
+        class: App\Bundle\AdminBundle\Admin\ImageAdmin
+        arguments: [ ~, App\Bundle\CoreBundle\Entity\Image, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Content, label: Images }
 
     app_admin.menu_listener:
         class: App\Bundle\AdminBundle\EventListener\MenuBuilderListener

@@ -97,10 +97,16 @@ class Product
      */
     protected $country;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="product", cascade={"persist"} , orphanRemoval=true)
+     */
+    protected $images;
+
 
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function __toString()
@@ -176,48 +182,6 @@ class Product
     {
         $this->category = $category;
         $category->addProduct($this);
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReviews()
-    {
-        return $this->reviews;
-    }
-
-    /**
-     * @param Review[] $reviews
-     * @return $this
-     */
-    public function setReviews($reviews)
-    {
-        $this->reviews = $reviews;
-
-        return $this;
-    }
-
-    /**
-     * @param Review $review
-     * @return $this
-     */
-    public function addReview($review)
-    {
-        $this->reviews[] = $review;
-
-        return $this;
-    }
-
-    /**
-     * @param Review $review
-     * @return $this
-     */
-    public function removeReviews($review)
-    {
-        $this->reviews->remove($review);
-        $review->setProduct(null);
 
         return $this;
     }
@@ -333,5 +297,89 @@ class Product
     public function setContent($content)
     {
         $this->content = $content;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * @param Review[] $reviews
+     * @return $this
+     */
+    public function setReviews($reviews)
+    {
+        $this->reviews = $reviews;
+
+        return $this;
+    }
+
+    /**
+     * @param Review $review
+     * @return $this
+     */
+    public function addReview($review)
+    {
+        $this->reviews[] = $review;
+
+        return $this;
+    }
+
+    /**
+     * @param Review $review
+     * @return $this
+     */
+    public function removeReviews($review)
+    {
+        $this->reviews->remove($review);
+        $review->setProduct(null);
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param Image[] $images
+     * @return $this
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * @param Image $image
+     * @return $this
+     */
+    public function addImage($image)
+    {
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * @param Image $image
+     * @return $this
+     */
+    public function removeImages($image)
+    {
+        $this->images->remove($image);
+        $image->setProduct(null);
+
+        return $this;
     }
 }

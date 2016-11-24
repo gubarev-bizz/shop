@@ -7,6 +7,7 @@ use App\Bundle\CoreBundle\Entity\User;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProductAdmin extends AbstractAdmin
 {
@@ -54,6 +55,19 @@ class ProductAdmin extends AbstractAdmin
             ->with('Basic information')
                 ->add('code', 'text', ['label' => 'SKU'])
                 ->add('title', 'text', ['label' => 'Title'])
+                ->add('images', 'sonata_type_collection', array(
+                    'type_options' => [
+                        'allow_add' => true,
+                        'allow_delete' => true,
+                        'by_reference' => false,
+                    ]
+                ),[
+                    'data_class' => null
+                ], array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable' => 'position',
+                ))
                 ->add('content', 'sonata_simple_formatter_type', [
                     'format' => 'markdown',
                     'ckeditor_context' => 'default',

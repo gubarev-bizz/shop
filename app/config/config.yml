@@ -40,6 +40,7 @@ twig:
     form_themes:
         - 'bootstrap_3_layout.html.twig'
         - 'SonataFormatterBundle:Form:formatter.html.twig'
+        - 'VichUploaderBundle:Form:fields.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -80,6 +81,18 @@ visual_craft_upload_file:
         content:
             upload_path: /uploads/staff
 
+iphp_file_store:
+    mappings:
+       photo:
+           upload_dir:  "%kernel.root_dir%/../web/uploads/image"
+           upload_path: /image
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        product_image:
+            uri_prefix:         /images/products
+            upload_destination: '%kernel.root_dir%/../web/images/products'
 
 sonata_admin:
     templates:

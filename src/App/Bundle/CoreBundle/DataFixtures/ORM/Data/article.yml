@@ -2,6 +2,7 @@ App\Bundle\CoreBundle\Entity\Article:
     ArticleTest (template):
         title: <sentence($nbWords = 3, $variableNbWords = true)>
         content: <sentence($nbWords = 30, $variableNbWords = true)>
+        image_name: 'dasdsa'
         type: 'article'
     ArticleTest{1..20} (extends ArticleTest):
         title: <sentence($nbWords = 3, $variableNbWords = true)>
@@ -9,6 +10,7 @@ App\Bundle\CoreBundle\Entity\Article:
     NewsTest (template):
         title: <sentence($nbWords = 3, $variableNbWords = true)>
         content: <sentence($nbWords = 30, $variableNbWords = true)>
+        image_name: 'dasdsa'
         type: 'news'
     NewsTest{1..20} (extends NewsTest):
         title: <sentence($nbWords = 3, $variableNbWords = true)>
@@ -16,6 +18,7 @@ App\Bundle\CoreBundle\Entity\Article:
     StockTest (template):
         title: <sentence($nbWords = 3, $variableNbWords = true)>
         content: <sentence($nbWords = 30, $variableNbWords = true)>
+        image_name: 'dasdsa'
         type: 'stock'
     StockTest{1..20} (extends StockTest):
         title: <sentence($nbWords = 3, $variableNbWords = true)>

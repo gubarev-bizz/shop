@@ -18,6 +18,9 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Iphp\FileStoreBundle\IphpFileStoreBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
+
             new VisualCraft\Bundle\UploadFileBundle\VisualCraftUploadFileBundle(),
             new VisualCraft\Bundle\MailerBundle\VisualCraftMailerBundle(),
 
