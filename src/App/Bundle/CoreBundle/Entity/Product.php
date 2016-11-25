@@ -367,6 +367,10 @@ class Product
     public function addImage($image)
     {
         $this->images[] = $image;
+//
+//        if ($image->getProduct() != $this) {
+//            $image->setProduct($this);
+//        }
 
         return $this;
     }

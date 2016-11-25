@@ -2,8 +2,10 @@
 
 namespace App\Bundle\AdminBundle\Admin;
 
+use App\Bundle\CoreBundle\Entity\Image;
 use App\Bundle\CoreBundle\Entity\Product;
 use App\Bundle\CoreBundle\Entity\User;
+use Doctrine\ORM\EntityManager;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -28,7 +30,7 @@ class ProductAdmin extends AbstractAdmin
             ->add('manufacturer')
             ->add('country')
             ->add('price', null, [
-                'template' => 'AppAdminBundle:Admin/List:list_price.html.twig'
+                'template' => 'AppAdminBundle:Admin/List:list_price.html.twig',
             ])
             ->add('currency')
             ->add('priceUah', null, ['label' => 'Price UAH'])
@@ -38,7 +40,7 @@ class ProductAdmin extends AbstractAdmin
                     'edit' => [],
                     'show' => [],
                     'delete' => [],
-                ]
+                ],
             ])
         ;
     }
@@ -55,33 +57,29 @@ class ProductAdmin extends AbstractAdmin
             ->with('Basic information')
                 ->add('code', 'text', ['label' => 'SKU'])
                 ->add('title', 'text', ['label' => 'Title'])
-                ->add('images', 'sonata_type_collection', array(
-                    'type_options' => [
-                        'allow_add' => true,
-                        'allow_delete' => true,
-                        'by_reference' => false,
-                    ]
-                ),[
-                    'data_class' => null
-                ], array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'sortable' => 'position',
-                ))
+                ->add('images','sonata_type_collection', array(
+                    'required' => false,
+                    'by_reference' => false,
+                    'label' => 'Media items',
+                ), array(
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                    )
+                )
                 ->add('content', 'sonata_simple_formatter_type', [
                     'format' => 'markdown',
                     'ckeditor_context' => 'default',
                 ])
                 ->add('category')
                 ->add('price', 'number', [
-                    'data' => ($object->getRealPrice()) ? $object->getRealPrice() : 1
+                    'data' => ($object->getRealPrice()) ? $object->getRealPrice() : 1,
                 ])
                 ->add('currency', 'choice', [
                     'choices' => [
                         'USD' => 'USD',
                         'EUR' => 'EUR',
                         'UAH' => 'UAH',
-                    ]
+                    ],
                 ])
             ->end()
         ;
@@ -105,6 +103,24 @@ class ProductAdmin extends AbstractAdmin
             $price = $multiCurrency->get('EUR') * $object->getRealPrice();
             $object->setPriceUah($price);
         }
+    }
+
+    public function postUpdate($object)
+    {
+        parent::postUpdate($object);
+
+        $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.default_entity_manager');
+        /** @var Image $image */
+        foreach ($object->getImages() as $image) {
+            if ($image->getProduct() != $object) {
+                $image->setProduct($object);
+                $em->persist($image);
+                $em->flush();
+            }
+        }
+
+        $em->persist($object);
+        $em->flush();
     }
 
     /**
