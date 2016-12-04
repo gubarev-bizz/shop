@@ -2,6 +2,7 @@
 
 namespace App\Bundle\CoreBundle\Controller;
 
+use App\Bundle\CoreBundle\Entity\Article;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,16 @@ class DefaultController extends Controller
         ]);
     }
 
+    public function aboutAction()
+    {
+        return $this->render('AppCoreBundle:Pages:about.html.twig');
+    }
+
+    public function contactAction()
+    {
+        return $this->render('AppCoreBundle:Pages:contact.html.twig');
+    }
+
     public function getSidebarAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -25,6 +36,20 @@ class DefaultController extends Controller
 
         return $this->render('AppCoreBundle:Layouts:sidebar.html.twig', [
             'categories' => $categories,
+        ]);
+    }
+
+    public function getLastNewsBlockAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $news = $em->getRepository('AppCoreBundle:Article')->findBy([
+            'type' => Article::TYPE_NEWS
+        ], [
+            'createdAt' => 'DESC'
+        ], 1);
+
+        return $this->render('AppCoreBundle:Block:lastNewsBlock.html.twig', [
+            'news' => $news,
         ]);
     }
 }

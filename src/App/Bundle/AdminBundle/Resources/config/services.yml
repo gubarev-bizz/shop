@@ -49,6 +49,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Content, label: Articles }
 
+    app_admin.admin.slider:
+        class: App\Bundle\AdminBundle\Admin\SliderAdmin
+        arguments: [ ~, App\Bundle\CoreBundle\Entity\Slider, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Content, label: Sliders }
+
     app_admin.admin.image:
         class: App\Bundle\AdminBundle\Admin\ImageAdmin
         arguments: [ ~, App\Bundle\CoreBundle\Entity\Image, ~ ]

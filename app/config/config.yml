@@ -100,6 +100,11 @@ vich_uploader:
             upload_destination: '%kernel.root_dir%/../web/images/article'
             delete_on_update:   true
             delete_on_remove:   true
+        category_image:
+            uri_prefix:         /images/category
+            upload_destination: '%kernel.root_dir%/../web/images/category'
+            delete_on_update:   true
+            delete_on_remove:   true
 
 sonata_admin:
     templates:

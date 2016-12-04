@@ -5,3 +5,35 @@ login:
 app_core_bundle_page_main:
     path: /
     defaults: { _controller: AppCoreBundle:Default:index }
+
+app_core_bundle_article_news_list:
+    path: /news
+    defaults: { _controller: AppCoreBundle:Article:newsList }
+
+app_core_bundle_article_stock_list:
+    path: /stock
+    defaults: { _controller: AppCoreBundle:Article:stockList }
+
+app_core_bundle_article_article_list:
+    path: /article
+    defaults: { _controller: AppCoreBundle:Article:articleList }
+
+app_core_bundle_article_news_item:
+    path: /news/{id}
+    defaults: { _controller: AppCoreBundle:Article:newsItem }
+
+app_core_bundle_article_stock_item:
+    path: /stock/{id}
+    defaults: { _controller: AppCoreBundle:Article:stockItem }
+
+app_core_bundle_article_article_item:
+    path: /article/{id}
+    defaults: { _controller: AppCoreBundle:Article:articleItem }
+
+app_core_bundle_page_about:
+    path: /about
+    defaults: { _controller: AppCoreBundle:Default:about }
+
+app_core_bundle_page_contact:
+    path: /contact
+    defaults: { _controller: AppCoreBundle:Default:contact }

@@ -102,11 +102,17 @@ class Product
      */
     protected $images;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Slider", mappedBy="product")
+     */
+    protected $sliders;
+
 
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->sliders = new ArrayCollection();
     }
 
     public function __toString()
@@ -367,10 +373,6 @@ class Product
     public function addImage($image)
     {
         $this->images[] = $image;
-//
-//        if ($image->getProduct() != $this) {
-//            $image->setProduct($this);
-//        }
 
         return $this;
     }
@@ -383,6 +385,48 @@ class Product
     {
         $this->images->remove($image);
         $image->setProduct(null);
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSliders()
+    {
+        return $this->sliders;
+    }
+
+    /**
+     * @param Slider[] $sliders
+     * @return $this
+     */
+    public function setSliders($sliders)
+    {
+        $this->sliders = $sliders;
+
+        return $this;
+    }
+
+    /**
+     * @param Slider $slider
+     * @return $this
+     */
+    public function addSlider($slider)
+    {
+        $this->sliders[] = $slider;
+
+        return $this;
+    }
+
+    /**
+     * @param Slider $slider
+     * @return $this
+     */
+    public function removeSliders($slider)
+    {
+        $this->sliders->remove($slider);
+        $slider->setProduct(null);
 
         return $this;
     }

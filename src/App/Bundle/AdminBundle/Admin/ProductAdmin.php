@@ -7,6 +7,7 @@ use App\Bundle\CoreBundle\Entity\Product;
 use App\Bundle\CoreBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -71,6 +72,12 @@ class ProductAdmin extends AbstractAdmin
                     'ckeditor_context' => 'default',
                 ])
                 ->add('category')
+                ->add('manufacturer', null, [
+                    'required' => true,
+                ])
+                ->add('country', null, [
+                    'required' => true,
+                ])
                 ->add('price', 'number', [
                     'data' => ($object->getRealPrice()) ? $object->getRealPrice() : 1,
                 ])
@@ -82,6 +89,27 @@ class ProductAdmin extends AbstractAdmin
                     ],
                 ])
             ->end()
+        ;
+    }
+
+    /**
+     * @param DatagridMapper $filter
+     */
+    protected function configureDatagridFilters(DatagridMapper $filter)
+    {
+        $filter
+            ->add('title', null, [
+                'show_filter' => true,
+            ])
+            ->add('category', null, [
+                'show_filter' => true,
+            ])
+            ->add('manufacturer', null, [
+                'show_filter' => true,
+            ])
+            ->add('country', null, [
+                'show_filter' => true,
+            ])
         ;
     }
 
