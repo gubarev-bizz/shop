@@ -4,11 +4,14 @@ namespace App\Bundle\AdminBundle\Parser;
 
 use App\Bundle\CoreBundle\Entity\Category;
 use App\Bundle\CoreBundle\Entity\Country;
+use App\Bundle\CoreBundle\Entity\Image;
 use App\Bundle\CoreBundle\Entity\Manufacturer;
 use App\Bundle\CoreBundle\Entity\Product;
 use Doctrine\ORM\EntityManager;
 use Liuggio\ExcelBundle\Factory;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Vich\UploaderBundle\Handler\DownloadHandler;
 
 class ParserProcess
 {
@@ -18,21 +21,26 @@ class ParserProcess
 
     private $token;
 
+    private $uploadDir;
+
     /**
      * @param EntityManager $entityManager
      * @param Factory $factoryExcel
      * @param TokenStorageInterface $tokenStorage
+     * @param string $uploadDir
      */
     public function __construct
     (
         EntityManager $entityManager,
         Factory $factoryExcel,
-        TokenStorageInterface $tokenStorage
+        TokenStorageInterface $tokenStorage,
+        $uploadDir
     )
     {
         $this->em = $entityManager;
         $this->PHPExcel = $factoryExcel;
         $this->token = $tokenStorage;
+        $this->uploadDir = $uploadDir;
     }
 
     /**
@@ -73,6 +81,10 @@ class ParserProcess
 
                             if ($cell->getColumn() == 'E' && $cell->getValue() !== '' && $cell->getValue() !== null) {
                                 $dataParse['products'][$rowIndex]['price'] = $cell->getValue();
+                            }
+
+                            if ($cell->getColumn() == 'L' && $cell->getValue() !== '' && $cell->getValue() !== null) {
+                                $dataParse['products'][$rowIndex]['images'] = $cell->getValue();
                             }
 
                             if ($cell->getColumn() == 'F' && $cell->getValue() !== '' && $cell->getValue() !== null) {
@@ -147,6 +159,7 @@ class ParserProcess
             ]);
 
             if (!$product) {
+
                 $category = $this->em->getRepository('AppCoreBundle:Category')->findOneBy([
                     'importId' => $item['categoryId']
                 ]);
@@ -178,10 +191,58 @@ class ParserProcess
 
                 $product->setUser($this->token->getToken()->getUser());
                 $this->em->persist($product);
+                $this->em->flush();
+
+                if (isset($item['images'])) {
+                    $images = $this->processSetImage($item['images']);
+
+                    if ($images !== false) {
+                        foreach ($images as $image) {
+                            $image->setProduct($product);
+                        }
+
+                        $this->em->flush();
+//                        $image = $this->em->getRepository('AppCoreBundle:Image')->find(14);
+                    }
+                }
             }
         }
 
-        $this->em->flush();
+    }
+
+    /**
+     * @param string $images
+     * @return array|bool
+     */
+    private function processSetImage($images)
+    {
+        if (trim($images) != '') {
+            $imagesData = explode(',', $images);
+            $imagesEntity = [];
+
+            foreach ($imagesData as $image) {
+                preg_match_all("/\.gif|jpg|jpeg|png/", $image, $extension);
+                $fileName = md5(uniqid()) . '.' . $extension[0][0];
+                $path = $this->uploadDir . '/' . $fileName;
+                $ch = curl_init($image);
+                $fp = fopen($path, "wb");
+                curl_setopt($ch, CURLOPT_FILE, $fp);
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_exec($ch);
+                curl_close($ch);
+                fclose($fp);
+
+                $image = new Image();
+                $image->setImageName($fileName);
+                $this->em->persist($image);
+                $this->em->flush();
+                $imagesEntity[] = $image;
+            }
+
+            return $imagesEntity;
+        }
+
+        return false;
     }
 
     /**

@@ -92,7 +92,14 @@ vich_uploader:
     mappings:
         product_image:
             uri_prefix:         /images/products
-            upload_destination: '%kernel.root_dir%/../web/images/products'
+            upload_destination: "%product_image_dir%"
+            delete_on_update:   true
+            delete_on_remove:   true
+        article_image:
+            uri_prefix:         /images/article
+            upload_destination: '%kernel.root_dir%/../web/images/article'
+            delete_on_update:   true
+            delete_on_remove:   true
 
 sonata_admin:
     templates:

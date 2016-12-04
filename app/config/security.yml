@@ -1,4 +1,6 @@
 security:
+    access_decision_manager:
+        strategy: unanimous
 
     encoders:
         App\Bundle\CoreBundle\Entity\User:
@@ -15,8 +17,8 @@ security:
             - ROLE_APP_ADMIN_ADMIN_PRODUCTS_VIEW
 
         ROLE_SUPER_ADMIN:
-            - ROLE_SUPER_ADMIN
             - ROLE_SONATA_ADMIN
+            - ROLE_SONATA_STUFF
             - ROLE_MANAGER
             - ROLE_APP_ADMIN_ADMIN_USERS_CREATE
             - ROLE_APP_ADMIN_ADMIN_USERS_LIST
@@ -53,5 +55,5 @@ security:
                 path: /
 
     access_control:
+        - { path: ^/admin, role: ROLE_SONATA_ADMIN }
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin, roles: [ROLE_SONATA_ADMIN, ROLE_MANAGER] }

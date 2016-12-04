@@ -50,7 +50,7 @@ class Article
     private $type;
 
     /**
-     * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="article_image", fileNameProperty="imageName")
      *
      * @var File
      */
@@ -62,11 +62,6 @@ class Article
      * @var string
      */
     private $imageName;
-
-    public function __construct()
-    {
-        $this->images = new ArrayCollection();
-    }
 
     /**
      * @return string

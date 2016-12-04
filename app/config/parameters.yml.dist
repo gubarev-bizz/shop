@@ -21,3 +21,4 @@ parameters:
     report_upload_dir: "%kernel.root_dir%/../var/reports"
     upload_dir: '%kernel.root_dir%/../web/uploads'
     general_email: 'admin@example.com'
+    product_image_dir: '%kernel.root_dir%/../web/images/products'
