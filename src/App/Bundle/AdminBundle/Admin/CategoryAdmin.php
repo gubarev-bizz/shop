@@ -25,6 +25,7 @@ class CategoryAdmin extends AbstractAdmin
             ->addIdentifier('id')
             ->add('title')
             ->add('parent')
+            ->add('mainPage')
             ->add('active')
             ->add('_action', 'actions', [
                 'actions' => [
@@ -60,6 +61,7 @@ class CategoryAdmin extends AbstractAdmin
                     'inline' => 'table',
                     'sortable' => 'position',
                 ))
+                ->add('mainPage')
                 ->add('active')
             ->end()
         ;

@@ -24,6 +24,7 @@ class SliderAdmin extends AbstractAdmin
         $listMapper
             ->add('title')
             ->add('product')
+            ->add('mainPage')
             ->add('_action', 'actions', [
                 'actions' => [
                     'edit' => [],
@@ -53,6 +54,7 @@ class SliderAdmin extends AbstractAdmin
                 'allow_delete'  => true,
                 'download_link' => false,
             ))
+            ->add('mainPage')
         ;
     }
 }

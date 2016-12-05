@@ -36,6 +36,7 @@ class ProductAdmin extends AbstractAdmin
             ->add('currency')
             ->add('priceUah', null, ['label' => 'Price UAH'])
             ->add('user')
+            ->add('top')
             ->add('_action', 'actions', [
                 'actions' => [
                     'edit' => [],
@@ -88,6 +89,7 @@ class ProductAdmin extends AbstractAdmin
                         'UAH' => 'UAH',
                     ],
                 ])
+                ->add('top')
             ->end()
         ;
     }

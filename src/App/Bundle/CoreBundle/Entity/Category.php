@@ -72,11 +72,19 @@ class Category
      */
     private $active;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $mainPage;
+
     public function __construct()
     {
         $this->active = true;
         $this->products = new ArrayCollection();
         $this->children = new ArrayCollection();
+        $this->mainPage = false;
     }
 
     public function __toString()
@@ -247,5 +255,21 @@ class Category
     public function getImageName()
     {
         return $this->imageName;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isMainPage()
+    {
+        return $this->mainPage;
+    }
+
+    /**
+     * @param boolean $mainPage
+     */
+    public function setMainPage($mainPage)
+    {
+        $this->mainPage = $mainPage;
     }
 }

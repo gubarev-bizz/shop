@@ -118,12 +118,20 @@ class Product
      */
     protected $items;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $top;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->sliders = new ArrayCollection();
         $this->items = new ArrayCollection();
+        $this->top = false;
     }
 
     public function __toString()
@@ -467,5 +475,21 @@ class Product
         $slider->setProduct(null);
 
         return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isTop()
+    {
+        return $this->top;
+    }
+
+    /**
+     * @param boolean $top
+     */
+    public function setTop($top)
+    {
+        $this->top = $top;
     }
 }

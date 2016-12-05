@@ -43,10 +43,22 @@ class Slider
     private $imageName;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $mainPage;
+
+    /**
      * @SymfonyConstraints\NotBlank()
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="sliders")
      */
     protected $product;
+
+    public function __construct()
+    {
+        $this->mainPage = false;
+    }
 
     /**
      * @return string
@@ -134,5 +146,21 @@ class Slider
         $product->addSlider($this);
 
         return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isMainPage()
+    {
+        return $this->mainPage;
+    }
+
+    /**
+     * @param boolean $mainPage
+     */
+    public function setMainPage($mainPage)
+    {
+        $this->mainPage = $mainPage;
     }
 }

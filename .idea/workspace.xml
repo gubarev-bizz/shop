@@ -6,11 +6,12 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/web/images/products/PDmUJ0UQg8k.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/web/images/products/YBTOlMKSEho.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/web/images/products/images.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Layouts/layout.html.twig" afterPath="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Layouts/layout.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Pages/main.html.twig" afterPath="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Pages/main.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Bundle/ShopBundle/Resources/views/Cart/cartBlock.html.twig" afterPath="$PROJECT_DIR$/src/App/Bundle/ShopBundle/Resources/views/Cart/cartBlock.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/config.php" afterPath="$PROJECT_DIR$/web/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/CategoryAdmin.php" afterPath="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/CategoryAdmin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/ProductAdmin.php" afterPath="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/ProductAdmin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/SliderAdmin.php" afterPath="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/SliderAdmin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Category.php" afterPath="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Category.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Product.php" afterPath="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Slider.php" afterPath="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Slider.php" />
     </list>
     <ignored path="shop.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,45 +32,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cartBlock.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/Bundle/ShopBundle/Resources/views/Cart/cartBlock.html.twig">
+      <file leaf-file-name="ProductAdmin.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/ProductAdmin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="229">
+              <caret line="38" column="24" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/Bundle/ShopBundle/Controller/ProductController.php">
+      <file leaf-file-name="SliderAdmin.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/SliderAdmin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-              <folding>
-                <element signature="e#52#102#0#PHP" expanded="false" />
-                <element signature="e#519#542#1#PHP" expanded="false" />
-                <element signature="e#912#957#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/config/routing.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="33" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Layouts/layout.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1404">
-              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="76" />
+            <state relative-caret-position="427">
+              <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -93,18 +70,27 @@
             <state relative-caret-position="252">
               <caret line="14" column="20" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="20" />
               <folding>
-                <element signature="e#291#313#1#PHP" expanded="true" />
                 <element signature="e#357#400#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sliderBlock.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sliderBlock.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Block/sliderBlock.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="25" column="140" selection-start-line="25" selection-start-column="140" selection-end-line="25" selection-end-column="140" />
+            <state relative-caret-position="738">
+              <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Product.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Product.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="331">
+              <caret line="133" column="27" selection-start-line="133" selection-start-column="27" selection-end-line="133" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -122,26 +108,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArticleController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Controller/ArticleController.php">
+      <file leaf-file-name="Slider.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Slider.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="42" />
-              <folding>
-                <element signature="e#52#93#0#PHP" expanded="false" />
-                <element signature="e#396#419#1#PHP" expanded="false" />
-                <element signature="e#561#599#0#PHP" expanded="false" />
-                <element signature="e#791#814#1#PHP" expanded="false" />
-                <element signature="e#957#995#0#PHP" expanded="false" />
-                <element signature="e#1189#1212#1#PHP" expanded="false" />
-                <element signature="e#1357#1395#0#PHP" expanded="false" />
-                <element signature="e#1587#1610#1#PHP" expanded="false" />
-                <element signature="e#1842#1880#0#PHP" expanded="false" />
-                <element signature="e#2069#2092#1#PHP" expanded="false" />
-                <element signature="e#2325#2363#0#PHP" expanded="false" />
-                <element signature="e#2554#2577#1#PHP" expanded="false" />
-                <element signature="e#2812#2850#0#PHP" expanded="false" />
-              </folding>
+            <state relative-caret-position="247">
+              <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="49" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Category.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Category.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="431">
+              <caret line="264" column="30" selection-start-line="264" selection-start-column="22" selection-end-line="264" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryAdmin.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/CategoryAdmin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -178,23 +170,17 @@
         <option value="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Controller/ParserController.php" />
         <option value="$PROJECT_DIR$/web/config.php" />
         <option value="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Parser/ParserProcess.php" />
-        <option value="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/CategoryAdmin.php" />
         <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Article/list.html.twig" />
         <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Article/item.html.twig" />
         <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Controller/ArticleController.php" />
         <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Block/lastNewsBlock.html.twig" />
         <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Controller/DefaultController.php" />
-        <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Category.php" />
         <option value="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Resources/config/services.yml" />
         <option value="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/ImageAdmin.php" />
-        <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Slider.php" />
-        <option value="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/SliderAdmin.php" />
-        <option value="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/ProductAdmin.php" />
         <option value="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Form/MultiCurrencyType.php" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Review.php" />
-        <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Product.php" />
         <option value="$PROJECT_DIR$/src/App/Bundle/ShopBundle/Entity/ItemOrder.php" />
         <option value="$PROJECT_DIR$/src/App/Bundle/ShopBundle/Entity/Order.php" />
         <option value="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/OrderAdmin.php" />
@@ -205,6 +191,12 @@
         <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Controller/SliderController.php" />
         <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Pages/main.html.twig" />
         <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Block/sliderBlock.html.twig" />
+        <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Slider.php" />
+        <option value="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/SliderAdmin.php" />
+        <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Product.php" />
+        <option value="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/ProductAdmin.php" />
+        <option value="$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Category.php" />
+        <option value="$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/CategoryAdmin.php" />
       </list>
     </option>
   </component>
@@ -951,12 +943,12 @@
       <workItem from="1480856873600" duration="6218000" />
       <workItem from="1480871627022" duration="8943000" />
       <workItem from="1480886410811" duration="4784000" />
-      <workItem from="1480963220245" duration="13352000" />
+      <workItem from="1480963220245" duration="13826000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154538000" />
+    <option name="totallyTimeSpent" value="155012000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
@@ -1082,14 +1074,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/CategoryAdmin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="34" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/sonata-project/admin-bundle/Admin/AbstractAdmin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -1153,14 +1137,6 @@
           <folding>
             <element signature="e#48#91#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/SliderAdmin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="43" column="26" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1246,14 +1222,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Country.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-432">
@@ -1301,22 +1269,6 @@
           <folding>
             <element signature="e#48#112#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/ProductAdmin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="68" column="17" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Product.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="76" column="7" selection-start-line="76" selection-start-column="7" selection-end-line="76" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1372,7 +1324,7 @@
         <state relative-caret-position="967">
           <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
           <folding>
-            <element signature="e#4824#4864#0#PHP" expanded="true" />
+            <element signature="e#4824#4864#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1466,7 +1418,6 @@
         <state relative-caret-position="252">
           <caret line="14" column="20" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="20" />
           <folding>
-            <element signature="e#291#313#1#PHP" expanded="true" />
             <element signature="e#357#400#0#PHP" expanded="true" />
           </folding>
         </state>
@@ -1482,18 +1433,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Slider.php">
+    <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Block/sliderBlock.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="31" column="51" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="51" />
+        <state relative-caret-position="738">
+          <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Resources/views/Block/sliderBlock.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/SliderAdmin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="25" column="140" selection-start-line="25" selection-start-column="140" selection-end-line="25" selection-end-column="140" />
+        <state relative-caret-position="427">
+          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="133" column="27" selection-start-line="133" selection-start-column="27" selection-end-line="133" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/ProductAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="38" column="24" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Slider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="49" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/Bundle/CoreBundle/Entity/Category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="264" column="30" selection-start-line="264" selection-start-column="22" selection-end-line="264" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/Bundle/AdminBundle/Admin/CategoryAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
           <folding />
         </state>
       </provider>
