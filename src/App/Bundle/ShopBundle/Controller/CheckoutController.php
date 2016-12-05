@@ -37,6 +37,9 @@ class CheckoutController extends Controller
             $order->setStatus(Order::TAKEN_PROCESSING);
             $em->persist($order);
             $em->flush();
+            $this->get('visual_craft_mailer.mailer')->send('change_status_order', [
+                'order' => $order
+            ]);
             $shopCart->setCartEmpty();
 
             return $this->redirectToRoute('app_show_bundle_checkout_show', ['id' => $order->getId()]);

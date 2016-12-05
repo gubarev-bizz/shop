@@ -29,7 +29,7 @@ class MultiCurrencyType extends AbstractType
             ->add('eur', NumberType::class, [
                 'data' => $this->multiCurrency->get('eur'),
             ])
-            ->add('save', SubmitType::class, [
+            ->add('refresh', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-success'
                 ]

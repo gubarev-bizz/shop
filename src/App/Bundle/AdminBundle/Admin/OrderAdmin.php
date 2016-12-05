@@ -100,13 +100,18 @@ class OrderAdmin extends AbstractAdmin
     }
 
     /**
-     * {@inheritdoc}
+     * @param Order $object
      */
     public function preUpdate($object)
     {
-        $order = $this->getSubject();
-        $this->mailer->send('change_status_order', [
-            'order' => $object,
-        ]);
+        $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.default_entity_manager');
+//        $em = $this->getModelManager()->getEntityManager($this->getClass());
+        $original = $em->getUnitOfWork()->getOriginalDocumentData($object);
+
+//        if ($status != $order->getStatus()) {
+//            $this->mailer->send('change_status_order', [
+//                'order' => $object,
+//            ]);
+//        }
     }
 }
