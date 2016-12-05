@@ -1,0 +1,42 @@
+{% if sliders|length %}
+    <div class="carousel slide " id="carousel-example-captions" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for key, slider in sliders %}
+                {% if loop.index == 1 %}
+                    <li data-target="#carousel-example-captions" data-slide-to="{{ key }}" class="active"></li>
+                {% else %}
+                    <li data-target="#carousel-example-captions" data-slide-to="{{ key }}" class=""></li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            {% for key, slider in sliders %}
+                {% if loop.index == 1 %}
+                    <div class="item active">
+                        <img alt="900x500" data-src="holder.js/900x500/auto/#777:#777" src="{{ getImage(slider.imageName, 'article') }}" data-holder-rendered="true">
+                        <div class="carousel-caption">
+                            <h3><a href="{{ path('app_show_bundle_product_item', {id: slider.product.id}) }}">{{ slider.product.title }}</a></h3>
+                            {#<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>#}
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="item left">
+                        <img alt="900x500" data-src="holder.js/900x500/auto/#666:#666" src="{{ getImage(slider.imageName, 'article') }}" data-holder-rendered="true">
+                        <div class="carousel-caption">
+                            <h3><a href="{{ path('app_show_bundle_product_item', {id: slider.product.id}) }}">{{ slider.product.title }}</a></h3>
+                            {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>#}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <a href="#carousel-example-captions" class="left carousel-control" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a href="#carousel-example-captions" class="right carousel-control" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+{% endif %}

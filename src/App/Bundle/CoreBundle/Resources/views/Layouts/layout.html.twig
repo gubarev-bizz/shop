@@ -13,54 +13,7 @@
                     </ul>
                 </div>
                 <div class="col-md-6 col-md-offset-2">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">КОРЗИНА</div>
-                        <div class="panel-body">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Кол-во</th>
-                                    <th>Элементы</th>
-                                    <th>Цена</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Hendrerit Ludus Probo</td>
-                                    <td>4703.74 грн</td>
-                                    <td><a href="#">Удалить</a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Hendrerit Ludus Probo</td>
-                                    <td>4703.74 грн</td>
-                                    <td><a href="#">Удалить</a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Hendrerit Ludus Probo</td>
-                                    <td>4703.74 грн</td>
-                                    <td><a href="#">Удалить</a></td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-
-                            <hr>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p>Всего: 4703.74 грн.</p>
-                                </div>
-                                <div class="col-md-6 text-right">
-                                    <a href="#">Оформление заказа</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                    {{ render(controller('AppShopBundle:Cart:cartBlock')) }}
                 </div>
             </div>
 
@@ -106,19 +59,19 @@
                                 </ul>
                             </li>
                             <li class="">
-                                <a href="#">Главная</a>
+                                <a href="{{ path('app_core_bundle_page_main') }}" title="Главная">Главная</a>
                             </li>
                             <li>
                                 <a href="#">Доставка и оплата</a>
                             </li>
                             <li>
-                                <a href="#">Новости</a>
+                                <a href="{{ path('app_core_bundle_article_news_list') }}" title="Новости">Новости</a>
                             </li>
                             <li>
-                                <a href="#">Статьи</a>
+                                <a href="{{ path('app_core_bundle_article_article_list') }}" title="Статьи">Статьи</a>
                             </li>
                             <li>
-                                <a href="#">Акции</a>
+                                <a href="{{ path('app_core_bundle_article_stock_list') }}" title="Акции">Акции</a>
                             </li>
                             <li>
                                 <a href="#">Контакты</a>

@@ -1,24 +1,42 @@
-<h2 class="title">Корзина</h2>
-
-{% if cart.elements|length %}
-    <table class="ajax-shopping-cart-table">
-        <thead>
-            <tr>
-                <th class="quantity-label">Кол-во</th>
-                <th class="item-label">Элементы</th>
-                <th class="price-label">Цена</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for element in cart.elements %}
-                <tr class="ajax-cart-row">
-                    <td class="quantity">{{ element.count }}</td>
-                    <td class="name">{{ element.product.title }}</td>
-                    <td class="price">{{ element.amount }}</td>
-                    <td class="remove-from-cart"><a href="/remove-product/nojs/104" class="use-ajax ajax-processed">Удалить </a></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endif %}
+<div class="panel panel-default">
+    <div class="panel-heading">КОРЗИНА</div>
+    <div class="panel-body">
+        {% if cart.elements|length %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Кол-во</th>
+                        <th>Элементы</th>
+                        <th>Цена</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set totalAmount = 0 %}
+                    {% for element in cart.elements %}
+                        <tr class="ajax-cart-row">
+                            <th scope="row">{{ element.count }}</th>
+                            <td class="name">
+                                <a href="{{ path('app_show_bundle_product_item', {id: element.product.id}) }}" title="{{ element.product.title }}">
+                                    {{ element.product.title }}
+                                </a>
+                            </td>
+                            <td class="price">{{ element.amount }} грн.</td>
+                            <td><a href="/remove-product/nojs/104" class="use-ajax ajax-processed">Удалить </a></td>
+                        </tr>
+                        {% set totalAmount = totalAmount + element.amount %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Всего: {{ totalAmount }} грн.</p>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="{{ path('app_shop_bundle_cart') }}">Оформление заказа</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
