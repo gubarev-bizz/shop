@@ -105,13 +105,12 @@ class OrderAdmin extends AbstractAdmin
     public function preUpdate($object)
     {
         $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.default_entity_manager');
-//        $em = $this->getModelManager()->getEntityManager($this->getClass());
-        $original = $em->getUnitOfWork()->getOriginalDocumentData($object);
+        $original = $em->getUnitOfWork()->getOriginalEntityData($object);
 
-//        if ($status != $order->getStatus()) {
-//            $this->mailer->send('change_status_order', [
-//                'order' => $object,
-//            ]);
-//        }
+        if ($original['status'] != $this->getSubject()->getStatus()) {
+            $this->mailer->send('change_status_order', [
+                'order' => $object,
+            ]);
+        }
     }
 }

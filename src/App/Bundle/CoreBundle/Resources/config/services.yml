@@ -43,3 +43,10 @@ services:
             - [ setTemplatingEngine, [ '@templating' ] ]
         tags:
             - { name: 'visual_craft_mailer.mail_handler', alias: 'change_status_order' }
+
+    app.twig_extension:
+        class: App\Bundle\CoreBundle\Twig\GetImageExtension
+        public: false
+        arguments: [ '%base_web_dir%' ]
+        tags:
+            - { name: twig.extension }

@@ -1,1 +1,46 @@
-{{ dump(entities) }}
+{% extends '@AppCore/Layouts/layout.html.twig' %}
+
+{% block content %}
+
+    {% for entity in entities %}
+        <div class="article-list row">
+            {% if entity.imageName is defined %}
+                <div class="col-md-3">
+                    <a href="#">
+                        {% set image = getImage(entity.imageName, 'article') %}
+
+                        {% if image is not null %}
+                            <img style="width:100%" src="{{ getImage(entity.imageName, 'article') }}" data-holder-rendered="true" />
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="col-md-8">
+            {% else %}
+                <div class="col-md-12">
+            {% endif %}
+                <p>{{ entity.createdAt|date('d.m.Y') }}</p>
+                <h3><a href="#">{{ entity.title }}</a></h3>
+                <div>
+                    {{ entity.content|raw[:220] }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+{% endblock %}

@@ -37,6 +37,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        web_dir: "%kernel.root_dir%/../web"
     form_themes:
         - 'bootstrap_3_layout.html.twig'
         - 'SonataFormatterBundle:Form:formatter.html.twig'

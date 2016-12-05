@@ -1,1 +1,20 @@
-{{ dump(entity) }}
+{% extends '@AppCore/Layouts/layout.html.twig' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-5 img-article">
+            {% if entity.imageName is defined %}
+                {% set image = getImage(entity.imageName, 'article') %}
+
+                {% if image is not null %}
+                    <img src="{{ getImage(entity.imageName, 'article') }}" data-holder-rendered="true" />
+                {% endif %}
+            {% endif %}
+        </div>
+        <div>
+            {{ entity.content }}
+        </div>
+    </div>
+
+{% endblock %}
