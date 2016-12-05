@@ -2,6 +2,7 @@
 
 namespace App\Bundle\ShopBundle\Controller;
 
+use App\Bundle\ShopBundle\Entity\ItemOrder;
 use App\Bundle\ShopBundle\Entity\Order;
 use App\Bundle\ShopBundle\Form\CheckoutType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -32,10 +33,23 @@ class CheckoutController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $order->setProducts($shopCart->getCartElements());
             $order->setAmount($shopCart->getAmountCheckout());
             $order->setStatus(Order::TAKEN_PROCESSING);
             $em->persist($order);
+            $em->flush();
+            $products = [];
+            $productRepository = $em->getRepository('AppCoreBundle:Product');
+
+            foreach ($shopCart->getCartElements() as $productId => $item) {
+                $products = $productRepository->find($productId);
+                $itemOrder = new ItemOrder();
+                $itemOrder->setOrder($order);
+                $itemOrder->setAmount((float) $item['price']);
+                $itemOrder->setQuantity((int) $item['count']);
+                $itemOrder->setProducts([$products]);
+                $em->persist($itemOrder);
+            }
+
             $em->flush();
             $this->get('visual_craft_mailer.mailer')->send('change_status_order', [
                 'order' => $order

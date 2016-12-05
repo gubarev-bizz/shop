@@ -4,6 +4,7 @@ namespace App\Bundle\ShopBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 
@@ -60,13 +61,6 @@ class Order
     private $email;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="json_array", nullable=false)
-     */
-    private $products;
-
-    /**
      * @var float
      *
      * @ORM\Column(type="float", nullable=false)
@@ -79,6 +73,16 @@ class Order
      * @ORM\Column(type="string", nullable=false)
      */
     private $status;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ItemOrder", mappedBy="order")
+     */
+    protected $items;
+
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
 
     /**
      * @return string
@@ -145,22 +149,6 @@ class Order
     }
 
     /**
-     * @return string
-     */
-    public function getProducts()
-    {
-        return $this->products;
-    }
-
-    /**
-     * @param string $products
-     */
-    public function setProducts($products)
-    {
-        $this->products = $products;
-    }
-
-    /**
      * @return float
      */
     public function getAmount()
@@ -190,5 +178,47 @@ class Order
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    /**
+     * @param ItemOrder[] $items
+     * @return $this
+     */
+    public function setItems($items)
+    {
+        $this->items = $items;
+
+        return $this;
+    }
+
+    /**
+     * @param ItemOrder $item
+     * @return $this
+     */
+    public function addItem($item)
+    {
+        $this->items[] = $item;
+
+        return $this;
+    }
+
+    /**
+     * @param ItemOrder $item
+     * @return $this
+     */
+    public function removeItems($item)
+    {
+        $this->items->remove($item);
+        $item->setOrder(null);
+
+        return $this;
     }
 }

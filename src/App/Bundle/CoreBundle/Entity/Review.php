@@ -49,16 +49,16 @@ class Review
      */
     private $approve;
 
-    public function __construct()
-    {
-        $this->approve = false;
-    }
-
     /**
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="reviews")
      * @SymfonyConstraints\NotBlank()
      */
     protected $product;
+
+    public function __construct()
+    {
+        $this->approve = false;
+    }
 
     /**
      * @return Product

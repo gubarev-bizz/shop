@@ -10,23 +10,35 @@
                 <thead class="thead-inverse">
                     <tr>
                         <th>Product</th>
-                        <th>Count</th>
+                        <th>Quantity</th>
                         <th>Amount</th>
                     </tr>
                 </thead>
-                {% for key, product in admin.subject.products %}
+                <tbody>
+                    {% for key, item in admin.subject.items %}
+                        <tr>
+                            {% for product in item.products %}
+                                <td>
+                                    <a href="{{ path('admin_app_core_product_show', {
+                                        '_sonata_admin': 'app_admin.admin.products',
+                                        '_sonata_name': 'admin_app_core_product_show',
+                                        'id': product.id
+                                    }) }}">
+                                        {{ product.title }}
+                                    </a>
+                                </td>
+                            {% endfor %}
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.amount }}</td>
+                        </tr>
+                        {% set totalAmount = totalAmount + item.amount %}
+                    {% endfor %}
                     <tr>
-                        <td>{{ getProduct(key) }}</td>
-                        <td>{{ product['count'] }}</td>
-                        <td>{{ product['price'] }}</td>
+                        <td></td>
+                        <td style="text-align: right"><b>Total:</b></td>
+                        <td><b>{{ totalAmount }}</b></td>
                     </tr>
-                    {% set totalAmount = totalAmount + product['price'] %}
-                {% endfor %}
-                <tr>
-                    <td></td>
-                    <td style="text-align: right"><b>Total:</b></td>
-                    <td><b>{{ totalAmount }}</b></td>
-                </tr>
+                </tbody>
             </table>
         </div>
     </div>

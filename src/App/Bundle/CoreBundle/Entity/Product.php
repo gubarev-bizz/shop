@@ -4,7 +4,9 @@ namespace App\Bundle\CoreBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
+use App\Bundle\ShopBundle\Entity\ItemOrder;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 
@@ -107,17 +109,53 @@ class Product
      */
     protected $sliders;
 
+    /**
+     * @ORM\ManyToMany(
+     *     targetEntity="App\Bundle\ShopBundle\Entity\ItemOrder",
+     *     mappedBy="products",
+     *     cascade={"persist"}
+     * )
+     */
+    protected $items;
 
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->sliders = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     public function __toString()
     {
         return (string) $this->getTitle();
+    }
+
+    /**
+     * @param ItemOrder $item
+     * @return $this
+     */
+    public function addItem(ItemOrder $item)
+    {
+        $this->items[] = $item;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    /**
+     * @param ItemOrder $items
+     */
+    public function setItems($items)
+    {
+        $items->addProduct($this);
     }
 
     /**
