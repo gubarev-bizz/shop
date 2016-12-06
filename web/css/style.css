@@ -187,3 +187,12 @@ p.price{
 .img-article img{
     width: 100%;
 }
+
+
+.lightbox-gallary-list .col-md-12{
+    margin-bottom: 15px;
+}
+
+.lightbox-gallary-list img{
+    width: 100%;
+}
