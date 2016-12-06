@@ -34,6 +34,10 @@ app_core_bundle_page_about:
     path: /about
     defaults: { _controller: AppCoreBundle:Default:about }
 
+app_core_bundle_callback_call_us:
+    path: /call-us
+    defaults: { _controller: AppCoreBundle:Default:processCallUs }
+
 app_core_bundle_page_contact:
     path: /contact
     defaults: { _controller: AppCoreBundle:Default:contact }

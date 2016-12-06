@@ -41,9 +41,10 @@ class OrderAdmin extends AbstractAdmin
             ->add('phone')
             ->add('email')
             ->add('amount')
+            ->add('status')
             ->add('createdAt', 'date', [
                 'label' => 'Created',
-                'format' => 'd-m-Y H:j',
+                'format' => 'd-m-Y H:i',
             ])
             ->add('_action', 'actions', [
                 'actions' => [
