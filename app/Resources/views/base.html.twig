@@ -5,6 +5,7 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('lightbox2/css/lightbox.min.css') }}">
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
@@ -25,6 +26,7 @@
 <script type="text/javascript" src="{{ asset('bundles/sonataadmin/vendor/jquery/dist/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/frontend.js') }}"></script>
+<script src="{{ asset('lightbox2/js/lightbox-plus-jquery.min.js') }}"></script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>

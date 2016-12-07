@@ -99,7 +99,7 @@
                 </div>
 
                 <div class="page-title">
-                    <h2>Доставка и оплата</h2>
+                    <h2>{% block page_title %}{% endblock %}</h2>
                 </div>
             </div>
 
@@ -114,7 +114,7 @@
 
 
     <a class="tel-show btn-success" href="#" data-toggle="modal" data-target="#myModal" >
-        <img src="phone.png">
+        <img src="{{ asset('images/article/guash.jpg') }}">
     </a>
 
     {{ render(controller('AppCoreBundle:Default:getCallUs')) }}
