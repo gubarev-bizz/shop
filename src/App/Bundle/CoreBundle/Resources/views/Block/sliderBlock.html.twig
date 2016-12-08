@@ -1,4 +1,4 @@
-{% if sliders|length %}
+{% if sliders %}
     <div class="carousel slide " id="carousel-example-captions" data-ride="carousel">
         <ol class="carousel-indicators">
             {% for key, slider in sliders %}
@@ -13,7 +13,13 @@
             {% for key, slider in sliders %}
                 {% if loop.index == 1 %}
                     <div class="item active">
-                        <img alt="900x500" data-src="holder.js/900x500/auto/#777:#777" src="{{ getImage(slider.imageName, 'article') }}" data-holder-rendered="true">
+                        <img
+                            alt="900x500"
+                            style="height: 500px; width: 100%; display: block;"
+                            data-src="holder.js/900x500"
+                            src="{{ getImage(slider.imageName, 'article') }}"
+                            data-holder-rendered="true"
+                        >
                         <div class="carousel-caption">
                             <h3><a href="{{ path('app_show_bundle_product_item', {id: slider.product.id}) }}">{{ slider.product.title }}</a></h3>
                             {#<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>#}

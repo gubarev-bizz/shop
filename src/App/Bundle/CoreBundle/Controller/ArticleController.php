@@ -4,11 +4,12 @@ namespace App\Bundle\CoreBundle\Controller;
 
 use App\Bundle\CoreBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ArticleController extends Controller
 {
-    public function newsListAction()
+    public function newsListAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('AppCoreBundle:Article')->findBy([
@@ -16,13 +17,15 @@ class ArticleController extends Controller
         ], [
             'createdAt' => 'DESC'
         ]);
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($entities, $request->query->get('page', 1), $this->getParameter('paginator'));
 
         return $this->render('AppCoreBundle:Article:list.html.twig', [
-            'entities' => $entities
+            'entities' => $pagination
         ]);
     }
 
-    public function stockListAction()
+    public function stockListAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('AppCoreBundle:Article')->findBy([
@@ -30,13 +33,15 @@ class ArticleController extends Controller
         ], [
             'createdAt' => 'DESC'
         ]);
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($entities, $request->query->get('page', 1), $this->getParameter('paginator'));
 
         return $this->render('AppCoreBundle:Article:list.html.twig', [
-            'entities' => $entities
+            'entities' => $pagination
         ]);
     }
 
-    public function articleListAction()
+    public function articleListAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('AppCoreBundle:Article')->findBy([
@@ -44,9 +49,11 @@ class ArticleController extends Controller
         ], [
             'createdAt' => 'DESC'
         ]);
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($entities, $request->query->get('page', 1), $this->getParameter('paginator'));
 
         return $this->render('AppCoreBundle:Article:list.html.twig', [
-            'entities' => $entities
+            'entities' => $pagination
         ]);
     }
 

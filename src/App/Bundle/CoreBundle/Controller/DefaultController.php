@@ -76,7 +76,22 @@ class DefaultController extends Controller
         ], 1);
 
         return $this->render('AppCoreBundle:Block:lastNewsBlock.html.twig', [
-            'news' => $news,
+            'news' => $news[0],
+        ]);
+    }
+
+    public function getMainCategoryBlockAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository('AppCoreBundle:Category')->findBy([
+            'active' => true,
+            'mainPage' => true,
+        ], [
+            'title' => 'ASC'
+        ]);
+
+        return $this->render('AppCoreBundle:Block:mainCategoryBlock.html.twig', [
+            'categories' => $categories,
         ]);
     }
 }

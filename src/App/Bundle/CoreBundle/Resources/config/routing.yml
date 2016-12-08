@@ -6,6 +6,10 @@ app_core_bundle_page_main:
     path: /
     defaults: { _controller: AppCoreBundle:Default:index }
 
+app_core_bundle_page_search:
+    path: /search
+    defaults: { _controller: AppCoreBundle:Search:search }
+
 app_core_bundle_article_news_list:
     path: /news
     defaults: { _controller: AppCoreBundle:Article:newsList }
@@ -21,6 +25,10 @@ app_core_bundle_article_article_list:
 app_core_bundle_article_news_item:
     path: /news/{id}
     defaults: { _controller: AppCoreBundle:Article:newsItem }
+
+app_core_bundle_category_item:
+    path: /category/{categoryId}
+    defaults: { _controller: AppCoreBundle:Category:categoryItem }
 
 app_core_bundle_article_stock_item:
     path: /stock/{id}
