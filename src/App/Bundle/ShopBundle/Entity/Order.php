@@ -75,13 +75,21 @@ class Order
     private $status;
 
     /**
-     * @ORM\OneToMany(targetEntity="ItemOrder", mappedBy="order")
+     * @var bool
+     *
+     * @ORM\Column(name="`lock`", type="boolean", nullable=false)
+     */
+    private $lock;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ItemOrder", mappedBy="order", cascade={"all"}, orphanRemoval=true)
      */
     protected $items;
 
     public function __construct()
     {
         $this->items = new ArrayCollection();
+        $this->lock = false;
     }
 
     /**
@@ -216,9 +224,25 @@ class Order
      */
     public function removeItems($item)
     {
-        $this->items->remove($item);
         $item->setOrder(null);
+        $this->items->removeElement($item);
 
         return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isLock()
+    {
+        return $this->lock;
+    }
+
+    /**
+     * @param boolean $lock
+     */
+    public function setLock($lock)
+    {
+        $this->lock = $lock;
     }
 }

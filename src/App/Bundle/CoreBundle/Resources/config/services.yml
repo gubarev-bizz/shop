@@ -50,3 +50,13 @@ services:
         arguments: [ '%base_web_dir%' ]
         tags:
             - { name: twig.extension }
+
+    app_core_bundle.event_listener.product:
+        class: App\Bundle\CoreBundle\EventListener\ProductListener
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate }
+
+    app_core_bundle.event_listener.change_amount:
+        class: App\Bundle\CoreBundle\EventListener\ItemOrderListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }

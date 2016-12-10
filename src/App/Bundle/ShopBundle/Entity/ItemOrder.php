@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Bundle\ShopBundle\Entity\Repository\ItemOrderRepository")
  * @ORM\Table(name="item_order")
  */
 class ItemOrder
@@ -25,6 +25,13 @@ class ItemOrder
      * @ORM\Column(type="float", nullable=false)
      */
     private $amount;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(type="float", nullable=false)
+     */
+    private $originalAmount;
 
     /**
      * @var int
@@ -128,6 +135,22 @@ class ItemOrder
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+    }
+
+    /**
+     * @return float
+     */
+    public function getOriginalAmount()
+    {
+        return $this->originalAmount;
+    }
+
+    /**
+     * @param float $originalAmount
+     */
+    public function setOriginalAmount($originalAmount)
+    {
+        $this->originalAmount = $originalAmount;
     }
 
 }

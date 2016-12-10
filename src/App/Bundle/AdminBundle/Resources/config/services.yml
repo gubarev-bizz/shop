@@ -31,6 +31,12 @@ services:
         calls:
             - [ setMailer, [ '@visual_craft_mailer.mailer' ] ]
 
+    app_admin.admin.item_order:
+        class: App\Bundle\AdminBundle\Admin\ItemOrderAdmin
+        arguments: [ ~, App\Bundle\ShopBundle\Entity\ItemOrder, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Shop, label: ItemOrder, show_in_dashboard: false }
+
     app_admin.admin.country:
         class: App\Bundle\AdminBundle\Admin\CountryAdmin
         arguments: [ ~, App\Bundle\CoreBundle\Entity\Country, ~ ]
@@ -59,7 +65,7 @@ services:
         class: App\Bundle\AdminBundle\Admin\ImageAdmin
         arguments: [ ~, App\Bundle\CoreBundle\Entity\Image, ~ ]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Content, label: Images }
+            - { name: sonata.admin, manager_type: orm, group: Content, label: Images, show_in_dashboard: false }
 
     app_admin.menu_listener:
         class: App\Bundle\AdminBundle\EventListener\MenuBuilderListener

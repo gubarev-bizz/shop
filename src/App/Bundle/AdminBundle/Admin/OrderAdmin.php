@@ -2,6 +2,8 @@
 
 namespace App\Bundle\AdminBundle\Admin;
 
+use App\Bundle\CoreBundle\Entity\Product;
+use App\Bundle\ShopBundle\Entity\ItemOrder;
 use App\Bundle\ShopBundle\Entity\Order;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -67,6 +69,16 @@ class OrderAdmin extends AbstractAdmin
                 ->add('lastName', 'text', ['label' => 'Last name'])
                 ->add('phone', 'text', ['label' => 'Phone'])
                 ->add('email', 'text', ['label' => 'Email'])
+//                ->add('amount')
+                ->add('items','sonata_type_collection', [
+                    'required' => true,
+                    'by_reference' => true,
+                    'label' => 'Items Order',
+                ], [
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                    ]
+                )
                 ->add('status', 'choice', [
                     'label' => 'Status',
                     'choices' => [
@@ -76,6 +88,9 @@ class OrderAdmin extends AbstractAdmin
                         'CANCELED' => Order::CANCELED,
                         'EXECUTED' => Order::EXECUTED,
                     ],
+                ])
+                ->add('lock', null, [
+                    'label' => 'Lock order'
                 ])
             ->end()
         ;
@@ -92,6 +107,7 @@ class OrderAdmin extends AbstractAdmin
                 ->add('lastName')
                 ->add('phone')
                 ->add('email')
+                ->add('amount')
                 ->add('status')
                 ->add('items', null, [
                     'template' => 'AppAdminBundle:Admin/Field:productOrder.html.twig'
@@ -105,6 +121,7 @@ class OrderAdmin extends AbstractAdmin
      */
     public function preUpdate($object)
     {
+        parent::preUpdate($object);
         $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.default_entity_manager');
         $original = $em->getUnitOfWork()->getOriginalEntityData($object);
 
@@ -112,6 +129,78 @@ class OrderAdmin extends AbstractAdmin
             $this->mailer->send('change_status_order', [
                 'order' => $object,
             ]);
+        }
+
+        $this->processAmountOrder($object);
+    }
+
+    /**
+     * @param Order $object
+     */
+    public function postUpdate($object)
+    {
+        parent::postUpdate($object);
+        $this->processAmountOrder($object);
+    }
+
+    /**
+     * @param Order $object
+     */
+    public function postPersist($object)
+    {
+        parent::postPersist($object);
+        $this->processAmountOrder($object);
+    }
+
+    /**
+     * @param Order $object
+     */
+    public function prePersist($object)
+    {
+        parent::prePersist($object);
+        $this->processAmountOrder($object);
+    }
+
+    /**
+     * @param Order $object
+     */
+    public function processAmountOrder($object)
+    {
+        if (!$object->isLock()) {
+            $orderAmount = 0;
+
+            /** @var ItemOrder $item */
+            foreach ($object->getItems() as $item) {
+                /** @var Product[] $product */
+                $product = $item->getProducts()->toArray();
+                $item->setAmount($product[0]->getPriceUah() * $item->getQuantity());
+                $orderAmount += $item->getAmount();
+                $item->setOrder($object);
+            }
+
+            $object->setAmount($orderAmount);
+        } else {
+            $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.default_entity_manager');
+            $orderAmount = 0;
+
+            /** @var ItemOrder $item */
+            foreach ($object->getItems() as $item) {
+                if ($item->getAmount() > 0) {
+                    $item->setAmount($item->getOriginalAmount() * $item->getQuantity());
+                } else {
+                    /** @var Product[] $product */
+                    $product = $item->getProducts();
+                    $item->setAmount($product[0]->getPriceUah() * $item->getQuantity());
+                }
+
+                $orderAmount += $item->getAmount();
+
+                if ($object->getId() !== null) {
+                    $item->setOrder($object);
+                }
+            }
+
+            $object->setAmount($orderAmount);
         }
     }
 }
