@@ -43,6 +43,7 @@ twig:
         - 'bootstrap_3_layout.html.twig'
         - 'SonataFormatterBundle:Form:formatter.html.twig'
         - 'VichUploaderBundle:Form:fields.html.twig'
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -170,3 +171,27 @@ sonata_formatter:
         twig:
             service: sonata.formatter.text.twigengine
             extensions: [] # Twig formatter cannot have extensions
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+    filter_sets:
+        cache: ~
+        news_sidebar:
+            quality: 100
+            filters:
+                thumbnail: { size: [262, 200], mode: outbound }
+                background: { size: [262, 200], position: center, color: '#fff' }
+        slider_main:
+            quality: 100
+            filters:
+                thumbnail: { size: [900, 500], mode: outbound }
+                background: { size: [900, 500], position: center, color: '#fff' }
+                crop: { size: [900, 500] }
+        category_main:
+            quality: 100
+            filters:
+                thumbnail: { size: [408, 180], mode: outbound }
+                background: { size: [408, 180], position: center, color: '#fff' }
+                crop: { size: [408, 180] }

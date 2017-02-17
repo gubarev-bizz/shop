@@ -36,7 +36,7 @@ class Category
     private $importId;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent", fetch="EAGER", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent", fetch="EAGER", cascade={"all"}, orphanRemoval=true)
      */
     protected $children;
 

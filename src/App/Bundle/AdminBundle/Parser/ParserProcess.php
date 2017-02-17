@@ -193,18 +193,18 @@ class ParserProcess
                 $this->em->persist($product);
                 $this->em->flush();
 
-                if (isset($item['images'])) {
-                    $images = $this->processSetImage($item['images']);
-
-                    if ($images !== false) {
-                        foreach ($images as $image) {
-                            $image->setProduct($product);
-                        }
-
-                        $this->em->flush();
-//                        $image = $this->em->getRepository('AppCoreBundle:Image')->find(14);
-                    }
-                }
+//                if (isset($item['images'])) {
+//                    $images = $this->processSetImage($item['images']);
+//
+//                    if ($images !== false) {
+//                        foreach ($images as $image) {
+//                            $image->setProduct($product);
+//                        }
+//
+//                        $this->em->flush();
+////                        $image = $this->em->getRepository('AppCoreBundle:Image')->find(14);
+//                    }
+//                }
             }
         }
 
@@ -224,13 +224,18 @@ class ParserProcess
                 preg_match_all("/\.gif|jpg|jpeg|png/", $image, $extension);
                 $fileName = md5(uniqid()) . '.' . $extension[0][0];
                 $path = $this->uploadDir . '/' . $fileName;
-                $ch = curl_init($image);
-                $fp = fopen($path, "wb");
-                curl_setopt($ch, CURLOPT_FILE, $fp);
-                curl_setopt($ch, CURLOPT_HEADER, 0);
-                curl_exec($ch);
-                curl_close($ch);
-                fclose($fp);
+
+                $this->downloadFile($image, $path);
+
+//                file_put_contents($path, fopen($image, 'r'));
+
+//                $ch = curl_init($image);
+//                $fp = fopen($path, "wb");
+//                curl_setopt($ch, CURLOPT_FILE, $fp);
+//                curl_setopt($ch, CURLOPT_HEADER, 0);
+//                curl_exec($ch);
+//                curl_close($ch);
+//                fclose($fp);
 
                 $image = new Image();
                 $image->setImageName($fileName);
@@ -243,6 +248,26 @@ class ParserProcess
         }
 
         return false;
+    }
+
+    private function downloadFile($url, $path)
+    {
+        $newfname = $path;
+        $file = fopen ($url, 'rb');
+        if ($file) {
+            $newf = fopen ($newfname, 'wb');
+            if ($newf) {
+                while(!feof($file)) {
+                    fwrite($newf, fread($file, 1024 * 8), 1024 * 8);
+                }
+            }
+        }
+        if ($file) {
+            fclose($file);
+        }
+        if ($newf) {
+            fclose($newf);
+        }
     }
 
     /**

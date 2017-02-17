@@ -29,9 +29,9 @@ class Slider
     private $title;
 
     /**
-     * @Vich\UploadableField(mapping="article_image", fileNameProperty="imageName")
-     *
      * @var File
+     *
+     * @Vich\UploadableField(mapping="article_image", fileNameProperty="imageName")
      */
     private $imageFile;
 
@@ -50,7 +50,15 @@ class Slider
     private $mainPage;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @SymfonyConstraints\NotBlank()
+     * @SymfonyConstraints\Length(max="255")
+     */
+    private $link;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="sliders")
      */
     protected $product;
@@ -162,5 +170,21 @@ class Slider
     public function setMainPage($mainPage)
     {
         $this->mainPage = $mainPage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param string $link
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
     }
 }

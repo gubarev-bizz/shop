@@ -14,23 +14,23 @@
                 {% if loop.index == 1 %}
                     <div class="item active">
                         <img
-                            alt="900x500"
-                            style="height: 500px; width: 100%; display: block;"
-                            data-src="holder.js/900x500"
-                            src="{{ getImage(slider.imageName, 'article') }}"
-                            data-holder-rendered="true"
+                            alt=""
+                            src="{{ getImage(slider.imageName, 'article') | imagine_filter('slider_main') }}"
                         >
                         <div class="carousel-caption">
-                            <h3><a href="{{ path('app_show_bundle_product_item', {id: slider.product.id}) }}">{{ slider.product.title }}</a></h3>
+                            <h3>
+                                <a href="{{ path('app_show_bundle_product_item', {id: slider.product.id}) }}">
+                                    {{ slider.product.title }}
+                                </a>
+                            </h3>
                             {#<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>#}
                         </div>
                     </div>
                 {% else %}
                     <div class="item left">
-                        <img alt="900x500" data-src="holder.js/900x500/auto/#666:#666" src="{{ getImage(slider.imageName, 'article') }}" data-holder-rendered="true">
+                        <img alt="" src="{{ getImage(slider.imageName, 'article') | imagine_filter('slider_main') }}" >
                         <div class="carousel-caption">
-                            <h3><a href="{{ path('app_show_bundle_product_item', {id: slider.product.id}) }}">{{ slider.product.title }}</a></h3>
-                            {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>#}
+                            <h3><a href="{{ slider.link }}">{{ slider.title }}</a></h3>
                         </div>
                     </div>
                 {% endif %}

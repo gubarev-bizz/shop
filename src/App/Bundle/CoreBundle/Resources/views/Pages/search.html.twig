@@ -4,12 +4,11 @@
 
 {% block content %}
 
-    {{ form(form) }}
-
     {% if results|length %}
         {% for result in results %}
             <div class="row">
                 <div class="col-md-12">
+                    {{ dump(result) }}
                     {{ result.title }}
                 </div>
             </div>

@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Iphp\FileStoreBundle\IphpFileStoreBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
 
             new VisualCraft\Bundle\UploadFileBundle\VisualCraftUploadFileBundle(),
             new VisualCraft\Bundle\MailerBundle\VisualCraftMailerBundle(),

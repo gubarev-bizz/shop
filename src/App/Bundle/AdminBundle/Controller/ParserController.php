@@ -15,7 +15,8 @@ class ParserController extends Controller
         $form->handleRequest($request);
 
         $path = $this->getParameter('upload_dir') . '/../parser';
-        $file = 'http://image.etov.ua/storage/640x640/c/0/e/2/c0e2e007a33913c0c5163f0ab46fba2d.jpg';
+        $file = 'http://image.etov.ua/storage/640x640/1/3/f/0/13f0a98a97337227e42c5f4765d6ca8b.jpg';
+//        file_put_contents($path . "/3223.jpg", fopen($file, 'r'));
 //        file_put_contents($path . '/dasas.jpg', file_get_contents($file));
 //        preg_match_all("/\.gif|jpg|jpeg|png/", $file, $extension);
 

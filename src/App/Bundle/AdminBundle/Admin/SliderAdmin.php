@@ -23,7 +23,7 @@ class SliderAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('title')
-            ->add('product')
+            ->add('link')
             ->add('mainPage')
             ->add('_action', 'actions', [
                 'actions' => [
@@ -42,13 +42,7 @@ class SliderAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('title')
-            ->add('product', 'sonata_type_model', [
-                'required' => true,
-                'multiple' => false,
-                'btn_add' => false,
-                'property' => 'title',
-                'label' => 'Product link',
-            ])
+            ->add('link')
             ->add('imageFile', VichImageType::class, array(
                 'required'      => false,
                 'allow_delete'  => true,

@@ -29,7 +29,7 @@ class CheckoutController extends Controller
         $em = $this->getDoctrine()->getManager();
         $order = new Order();
         $form = $this->createForm(CheckoutType::class, $order);
-        $form->add('submit', SubmitType::class);
+        $form->add('Оформить', SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

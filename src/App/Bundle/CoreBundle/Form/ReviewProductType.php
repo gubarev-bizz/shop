@@ -2,43 +2,35 @@
 
 namespace App\Bundle\CoreBundle\Form;
 
+use App\Bundle\CoreBundle\Entity\Review;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SearchType extends AbstractType
+class ReviewProductType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, [
-                'label' => false,
-            ])
+            ->add('name')
+            ->add('email', EmailType::class)
+            ->add('content', TextareaType::class)
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
             ->setDefaults([
-                'method' => 'GET',
-                'title' => null,
+                'data_class' => Review::class,
             ])
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
-        return 'app_core_bundle_search_type';
+        return 'app_core_bundle_review_product_type';
     }
 }

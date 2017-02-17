@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Bundle\CoreBundle\Entity\Repository\ProductRepository")
  */
 class Product
 {
@@ -124,6 +124,102 @@ class Product
      * @ORM\Column(type="boolean", nullable=false)
      */
     private $top;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $ballType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $verticalBurdenBall;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $pullingBurdenBall;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $installationCoordinationModule;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $systemVoltage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $permissibleCurrentValues;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $tractionLoad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $removingBumper;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $bumperCropping;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $needHarmonizeModule;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $powerSocket;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $verticalLoad;
 
     public function __construct()
     {
@@ -491,5 +587,197 @@ class Product
     public function setTop($top)
     {
         $this->top = $top;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBallType()
+    {
+        return $this->ballType;
+    }
+
+    /**
+     * @param string $ballType
+     */
+    public function setBallType($ballType)
+    {
+        $this->ballType = $ballType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVerticalBurdenBall()
+    {
+        return $this->verticalBurdenBall;
+    }
+
+    /**
+     * @param string $verticalBurdenBall
+     */
+    public function setVerticalBurdenBall($verticalBurdenBall)
+    {
+        $this->verticalBurdenBall = $verticalBurdenBall;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPullingBurdenBall()
+    {
+        return $this->pullingBurdenBall;
+    }
+
+    /**
+     * @param string $pullingBurdenBall
+     */
+    public function setPullingBurdenBall($pullingBurdenBall)
+    {
+        $this->pullingBurdenBall = $pullingBurdenBall;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInstallationCoordinationModule()
+    {
+        return $this->installationCoordinationModule;
+    }
+
+    /**
+     * @param string $installationCoordinationModule
+     */
+    public function setInstallationCoordinationModule($installationCoordinationModule)
+    {
+        $this->installationCoordinationModule = $installationCoordinationModule;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSystemVoltage()
+    {
+        return $this->systemVoltage;
+    }
+
+    /**
+     * @param string $systemVoltage
+     */
+    public function setSystemVoltage($systemVoltage)
+    {
+        $this->systemVoltage = $systemVoltage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPermissibleCurrentValues()
+    {
+        return $this->permissibleCurrentValues;
+    }
+
+    /**
+     * @param string $permissibleCurrentValues
+     */
+    public function setPermissibleCurrentValues($permissibleCurrentValues)
+    {
+        $this->permissibleCurrentValues = $permissibleCurrentValues;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTractionLoad()
+    {
+        return $this->tractionLoad;
+    }
+
+    /**
+     * @param string $tractionLoad
+     */
+    public function setTractionLoad($tractionLoad)
+    {
+        $this->tractionLoad = $tractionLoad;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRemovingBumper()
+    {
+        return $this->removingBumper;
+    }
+
+    /**
+     * @param string $removingBumper
+     */
+    public function setRemovingBumper($removingBumper)
+    {
+        $this->removingBumper = $removingBumper;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBumperCropping()
+    {
+        return $this->bumperCropping;
+    }
+
+    /**
+     * @param string $bumperCropping
+     */
+    public function setBumperCropping($bumperCropping)
+    {
+        $this->bumperCropping = $bumperCropping;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNeedHarmonizeModule()
+    {
+        return $this->needHarmonizeModule;
+    }
+
+    /**
+     * @param string $needHarmonizeModule
+     */
+    public function setNeedHarmonizeModule($needHarmonizeModule)
+    {
+        $this->needHarmonizeModule = $needHarmonizeModule;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPowerSocket()
+    {
+        return $this->powerSocket;
+    }
+
+    /**
+     * @param string $powerSocket
+     */
+    public function setPowerSocket($powerSocket)
+    {
+        $this->powerSocket = $powerSocket;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVerticalLoad()
+    {
+        return $this->verticalLoad;
+    }
+
+    /**
+     * @param string $verticalLoad
+     */
+    public function setVerticalLoad($verticalLoad)
+    {
+        $this->verticalLoad = $verticalLoad;
     }
 }

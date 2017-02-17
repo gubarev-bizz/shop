@@ -19,6 +19,9 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
 login_check:
     path: /login_check
 

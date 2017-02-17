@@ -29,7 +29,7 @@
                                 </td>
                             {% endfor %}
                             <td>{{ item.quantity }}</td>
-                            <td>{{ item.amount }}</td>
+                            <td>{{ item.originalAmount }}</td>
                         </tr>
                         {% set totalAmount = totalAmount + item.amount %}
                     {% endfor %}

@@ -6,6 +6,7 @@ use App\Bundle\CoreBundle\Entity\Product;
 use App\Bundle\ShopBundle\Entity\ItemOrder;
 use App\Bundle\ShopBundle\Entity\Order;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
@@ -37,15 +38,24 @@ class OrderAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id', 'text', ['label' => 'Order Id #'])
-            ->add('firstName')
-            ->add('lastName')
-            ->add('phone')
-            ->add('email')
-            ->add('amount')
-            ->add('status')
+            ->add('id', 'text', ['label' => '№ Заказа'])
+            ->add('firstName', 'text', ['label' => 'Имя'])
+            ->add('lastName', 'text', ['label' => 'Фамилия'])
+            ->add('phone', 'text', ['label' => 'Телефон'])
+            ->add('email', 'text', ['label' => 'Email'])
+            ->add('amount', 'text', ['label' => 'Сумма'])
+            ->add('status', 'choice', [
+                'label' => 'Статус',
+                'choices' => [
+                    Order::AWAITING_PAYMENT => 'Ожидает оплаты',
+                    Order::AWAITING_SHIPMENT => 'Ожидает отправки' ,
+                    Order::TAKEN_PROCESSING => 'Принят в обработку',
+                    Order::CANCELED => 'Отменен',
+                    Order::EXECUTED => 'Выполнен',
+                ]
+            ])
             ->add('createdAt', 'date', [
-                'label' => 'Created',
+                'label' => 'Дата создания',
                 'format' => 'd-m-Y H:i',
             ])
             ->add('_action', 'actions', [
@@ -65,15 +75,15 @@ class OrderAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Basic information')
-                ->add('firstName', 'text', ['label' => 'First name'])
-                ->add('lastName', 'text', ['label' => 'Last name'])
-                ->add('phone', 'text', ['label' => 'Phone'])
+                ->add('firstName', 'text', ['label' => 'Имя'])
+                ->add('lastName', 'text', ['label' => 'Фамилия'])
+                ->add('phone', 'text', ['label' => 'Телефон'])
                 ->add('email', 'text', ['label' => 'Email'])
-//                ->add('amount')
                 ->add('items','sonata_type_collection', [
                     'required' => true,
                     'by_reference' => true,
-                    'label' => 'Items Order',
+                    'label' => 'Позиции заказа',
+                    'btn_add' => 'Добавить',
                 ], [
                         'edit' => 'inline',
                         'inline' => 'table',
@@ -82,15 +92,44 @@ class OrderAdmin extends AbstractAdmin
                 ->add('status', 'choice', [
                     'label' => 'Status',
                     'choices' => [
-                        'AWAITING PAYMENT' => Order::AWAITING_PAYMENT,
-                        'AWAITING SHIPMENT' => Order::AWAITING_SHIPMENT,
-                        'TAKEN PROCESSING' => Order::TAKEN_PROCESSING,
-                        'CANCELED' => Order::CANCELED,
-                        'EXECUTED' => Order::EXECUTED,
+                        'Ожидает оплаты' => Order::AWAITING_PAYMENT,
+                        'Ожидает отправки' => Order::AWAITING_SHIPMENT,
+                        'Принят в обработку' => Order::TAKEN_PROCESSING,
+                        'Отменен' => Order::CANCELED,
+                        'Выполнен' => Order::EXECUTED,
+                    ],
+                ])
+                ->add('delivery', 'choice', [
+                    'label' => 'Delivery',
+                    'choices' => [
+                        'Автолюкс' => Order::DELIVERY_AUTOLUX,
+                        'Деливери' => Order::DELIVERY_DELIVERY,
+                        'Гюнсел' => Order::DELIVERY_GUNSEL,
+                        'Интайм' => Order::DELIVERY_INTIME,
+                        'Ночной экспресс' => Order::DELIVERY_NIGHT_EXPRESS,
+                        'Новая Почта' => Order::DELIVERY_NOVA_POSHTA,
+                    ],
+                ])
+                ->add('delivery', 'choice', [
+                    'label' => 'Delivery',
+                    'choices' => [
+                        'Автолюкс' => Order::DELIVERY_AUTOLUX,
+                        'Деливери' => Order::DELIVERY_DELIVERY,
+                        'Гюнсел' => Order::DELIVERY_GUNSEL,
+                        'Интайм' => Order::DELIVERY_INTIME,
+                        'Ночной экспресс' => Order::DELIVERY_NIGHT_EXPRESS,
+                        'Новая Почта' => Order::DELIVERY_NOVA_POSHTA,
+                    ],
+                ])
+                ->add('paymentType', 'choice', [
+                    'label' => 'Payment type',
+                    'choices' => [
+                        'Наложенный платеж' => Order::PAYMENT_TYPE_CASH_DELIVERY,
+                        'Безналичный расчет' => Order::PAYMENT_TYPE_CASHLESS_PAYMENTS,
                     ],
                 ])
                 ->add('lock', null, [
-                    'label' => 'Lock order'
+                    'label' => 'Заблокировать'
                 ])
             ->end()
         ;
@@ -102,17 +141,79 @@ class OrderAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $show)
     {
         $show
-            ->with('Basic information')
-                ->add('firstName')
-                ->add('lastName')
-                ->add('phone')
-                ->add('email')
-                ->add('amount')
-                ->add('status')
-                ->add('items', null, [
+            ->with('Основная информация')
+                ->add('firstName', null, [
+                    'label' => 'Имя',
+                ])
+                ->add('lastName', null, [
+                    'label' => 'Фамилия',
+                ])
+                ->add('phone', null, [
+                    'label' => 'Телефон',
+                ])
+                ->add('email', null, [
+                    'label' => 'Email',
+                ])
+                ->add('amount', null, [
+                    'label' => 'Сумма',
+                ])
+                ->add('status', null, [
+                    'label' => 'Статус',
+                ])
+                ->add('Позиции заказа', null, [
                     'template' => 'AppAdminBundle:Admin/Field:productOrder.html.twig'
                 ])
             ->end()
+        ;
+    }
+
+    /**
+     * @param DatagridMapper $filter
+     */
+    protected function configureDatagridFilters(DatagridMapper $filter)
+    {
+        $filter
+            ->add('items.products', null, [
+                'show_filter' => true,
+                'label' => 'Продукты',
+            ])
+            ->add('status', null, [
+                'show_filter' => true,
+                'label' => 'Статус',
+            ], 'choice', [
+                'choices' => [
+                    'Ожидает оплаты' => Order::AWAITING_PAYMENT,
+                    'Ожидает отправки' => Order::AWAITING_SHIPMENT,
+                    'Принят в обработку' => Order::TAKEN_PROCESSING,
+                    'Отменен' => Order::CANCELED,
+                    'Выполнен' => Order::EXECUTED,
+                ],
+            ])
+            ->add('email', null, [
+                'show_filter' => true,
+                'label' => 'Email',
+            ])
+            ->add('createdAt', 'doctrine_orm_date_range', [
+                'label' => 'Дата создания',
+                'show_filter' => true,
+                'field_type' => 'sonata_type_date_range_picker',
+                'field_options' => array(
+                    'field_options_start' => array(
+                        'format' => 'dd-MM-y',
+                        'label' => 'Начиная с',
+                        'dp_default_date' => new \DateTime('now'),
+                        'data' => new \DateTime('now'),
+                    ),
+                    'field_options_end' => array(
+                        'label' => 'До',
+                        'format' => 'dd-MM-y',
+                        'dp_use_current' => true,
+                        'dp_show_today' => true,
+                        'dp_default_date' => new \DateTime('now'),
+                        'data' => new \DateTime('now'),
+                    )
+                )
+            ])
         ;
     }
 
@@ -174,6 +275,7 @@ class OrderAdmin extends AbstractAdmin
                 /** @var Product[] $product */
                 $product = $item->getProducts()->toArray();
                 $item->setAmount($product[0]->getPriceUah() * $item->getQuantity());
+                $item->setOriginalAmount($product[0]->getPriceUah());
                 $orderAmount += $item->getAmount();
                 $item->setOrder($object);
             }

@@ -13,14 +13,28 @@ class AddProductCartType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        if ($options['count'] === null) {
+            $builder
+                ->add('count', NumberType::class, [
+                    'label' => 'Кол-во',
+                    'data' => 1
+                ])
+            ;
+        } else {
+            $builder
+                ->add('count', HiddenType::class, [
+                    'label' => 'Кол-во',
+                    'data' => 1
+                ])
+            ;
+        }
+
         $builder
-            ->add('count', NumberType::class, [
-                'data' => 1
-            ])
             ->add('productId', HiddenType::class, [
                 'data' => $options['productId']
             ])
             ->add('Add to Cart', SubmitType::class, [
+                'label' => 'Добавить в корзину',
                 'attr' => [
                     'class' => 'btn-success'
                 ]
@@ -33,6 +47,7 @@ class AddProductCartType extends AbstractType
         $resolver->setDefaults([
             'action' => null,
             'productId' => null,
+            'count' => null,
         ]);
     }
 }

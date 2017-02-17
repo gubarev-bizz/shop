@@ -14,6 +14,7 @@
                 </div>
                 <div class="col-md-6 col-md-offset-2">
                     {{ render(controller('AppShopBundle:Cart:cartBlock')) }}
+                    {{ render(controller('AppCoreBundle:Search:searchForm', {'request': app.request})) }}
                 </div>
             </div>
 
@@ -58,26 +59,29 @@
                                     <li><a href="#">Электроприборы</a></li>
                                 </ul>
                             </li>
-                            <li class="">
+                            <li class="{{ 'app_core_bundle_page_main' in app.request.attributes.get('_route') ? 'active' }}">
                                 <a href="{{ path('app_core_bundle_page_main') }}" title="Главная">Главная</a>
+                            </li>
+                            <li class="{{ 'app_core_bundle_page_search' in app.request.attributes.get('_route') ? 'active' }}">
+                                <a href="{{ path('app_core_bundle_page_search') }}" title="Поиск">Поиск</a>
                             </li>
                             <li>
                                 <a href="#">Доставка и оплата</a>
                             </li>
-                            <li>
+                            <li class="{{ 'app_core_bundle_article_news' in app.request.attributes.get('_route') ? 'active' }}">
                                 <a href="{{ path('app_core_bundle_article_news_list') }}" title="Новости">Новости</a>
                             </li>
-                            <li>
+                            <li class="{{ 'app_core_bundle_article_article' in app.request.attributes.get('_route') ? 'active' }}">
                                 <a href="{{ path('app_core_bundle_article_article_list') }}" title="Статьи">Статьи</a>
                             </li>
-                            <li>
+                            <li class="{{ 'app_core_bundle_article_stock' in app.request.attributes.get('_route') ? 'active' }}">
                                 <a href="{{ path('app_core_bundle_article_stock_list') }}" title="Акции">Акции</a>
                             </li>
-                            <li>
-                                <a href="#">Контакты</a>
+                            <li class="{{ 'app_core_bundle_page_contact' in app.request.attributes.get('_route') ? 'active' }}">
+                                <a href="{{ path('app_core_bundle_page_contact') }}">Контакты</a>
                             </li>
-                            <li>
-                                <a href="#">О нас</a>
+                            <li class="{{ 'app_core_bundle_page_about' in app.request.attributes.get('_route') ? 'active' }}">
+                                <a href="{{ path('app_core_bundle_page_about') }}">О нас</a>
                             </li>
                         </ul>
                     </div>
@@ -98,6 +102,16 @@
                     </ol>
                 </div>
 
+                {% for flashType in app.session.flashbag.keys %}
+                    {% for flash in app.session.flashbag.get(flashType) %}
+                        <br>
+                        <div class="alert margin-bottom-15 alert-{{ flashType }}">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ flash }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
                 <div class="page-title">
                     <h2>{% block page_title %}{% endblock %}</h2>
                 </div>
@@ -115,8 +129,7 @@
 
     <a class="tel-show btn-success" href="#" data-toggle="modal" data-target="#myModal" >
         <i class="glyphicon glyphicon-earphone" style="font-size: 32px;line-height: 74px;"></i>
-        {#<img src="{{ asset('images/article/guash.jpg') }}">#}
     </a>
 
-    {{ render(controller('AppCoreBundle:Default:getCallUs')) }}
+    {{ render(controller('AppCoreBundle:Default:getCallUs', {'request': app.request})) }}
 {% endblock %}

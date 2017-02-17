@@ -25,18 +25,31 @@ class ProductAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('code')
-            ->add('title')
-            ->add('category')
-            ->add('manufacturer')
-            ->add('country')
+            ->add('code', null, [
+                'label' => 'SKU',
+            ])
+            ->add('title', null, [
+                'label' => 'Наименование',
+            ])
+            ->add('category', null, [
+                'label' => 'Категория',
+            ])
+            ->add('manufacturer', null, [
+                'label' => 'Производитель',
+            ])
+            ->add('country', null, [
+                'label' => 'Страна',
+            ])
             ->add('price', null, [
+                'label' => 'Цена',
                 'template' => 'AppAdminBundle:Admin/List:list_price.html.twig',
             ])
-            ->add('currency')
-            ->add('priceUah', null, ['label' => 'Price UAH'])
-            ->add('user')
-            ->add('top')
+            ->add('currency', null, [
+                'label' => 'Валюта',
+            ])
+            ->add('priceUah', null, ['label' => 'Цена UAH'])
+            ->add('user', null, ['label' => 'Пользователь'])
+            ->add('top', null, ['label' => 'В топе'])
             ->add('_action', 'actions', [
                 'actions' => [
                     'edit' => [],
@@ -56,40 +69,106 @@ class ProductAdmin extends AbstractAdmin
         $object = $this->getSubject();
 
         $formMapper
-            ->with('Basic information')
-                ->add('code', 'text', ['label' => 'SKU'])
-                ->add('title', 'text', ['label' => 'Title'])
-                ->add('images','sonata_type_collection', array(
-                    'required' => false,
-                    'by_reference' => false,
-                    'label' => 'Media items',
-                ), array(
-                        'edit' => 'inline',
-                        'inline' => 'table',
+            ->tab('Основная информация')
+                ->with('Основная информация')
+                    ->add('code', 'text', ['label' => 'SKU'])
+                    ->add('title', 'text', ['label' => 'Наименование'])
+                    ->add('images','sonata_type_collection', [
+                        'required' => false,
+                        'by_reference' => false,
+                        'label' => 'Изображения',
+                    ], [
+                            'edit' => 'inline',
+                            'inline' => 'table',
+                        ]
                     )
-                )
-                ->add('content', 'sonata_simple_formatter_type', [
-                    'format' => 'markdown',
-                    'ckeditor_context' => 'default',
-                ])
-                ->add('category')
-                ->add('manufacturer', null, [
-                    'required' => true,
-                ])
-                ->add('country', null, [
-                    'required' => true,
-                ])
-                ->add('price', 'number', [
-                    'data' => ($object->getRealPrice()) ? $object->getRealPrice() : 1,
-                ])
-                ->add('currency', 'choice', [
-                    'choices' => [
-                        'USD' => 'USD',
-                        'EUR' => 'EUR',
-                        'UAH' => 'UAH',
-                    ],
-                ])
-                ->add('top')
+                    ->add('content', 'sonata_simple_formatter_type', [
+                        'label' => 'Содержимое',
+                        'format' => 'markdown',
+                        'ckeditor_context' => 'default',
+                    ])
+                    ->add('category', null, [
+                        'label' => 'Категория',
+                        'required' => true,
+                    ])
+                    ->add('manufacturer', null, [
+                        'required' => true,
+                        'label' => 'Производитель',
+                    ])
+                    ->add('country', null, [
+                        'required' => true,
+                        'label' => 'Страна',
+                    ])
+                    ->add('price', 'number', [
+                        'required' => true,
+                        'label' => 'Цена',
+                        'data' => ($object->getRealPrice()) ? $object->getRealPrice() : 1,
+                    ])
+                    ->add('currency', 'choice', [
+                        'required' => true,
+                        'label' => 'Валюта',
+                        'choices' => [
+                            'UAH' => 'UAH',
+                            'USD' => 'USD',
+                            'EUR' => 'EUR',
+                        ],
+                    ])
+                    ->add('top', null, [
+                        'label' => 'В топе',
+                    ])
+                ->end()
+            ->end()
+            ->tab('Атрибуты')
+                ->with('Атрибуты')
+                    ->add('ballType', 'text', [
+                        'label' => 'Тип шара',
+                        'required' => false,
+                    ])
+                    ->add('verticalBurdenBall', 'text', [
+                        'label' => 'Вертикальная нагрузка на шар',
+                        'required' => false,
+                    ])
+                    ->add('pullingBurdenBall', 'text', [
+                        'label' => 'Тяговая нагрузка на шар',
+                        'required' => false,
+                    ])
+                    ->add('installationCoordinationModule', 'text', [
+                        'label' => 'Необходимость установки модуля согласования',
+                        'required' => false,
+                    ])
+                    ->add('systemVoltage', 'text', [
+                        'label' => 'Напряжение бортовой сети',
+                        'required' => false,
+                    ])
+                    ->add('permissibleCurrentValues', 'text', [
+                        'label' => 'Допустимое значения тока',
+                        'required' => false,
+                    ])
+                    ->add('tractionLoad', 'text', [
+                        'label' => 'Тяговая нагрузка',
+                        'required' => false,
+                    ])
+                    ->add('removingBumper', 'text', [
+                        'label' => 'Снятие бампера',
+                        'required' => false,
+                    ])
+                    ->add('bumperCropping', 'text', [
+                        'label' => 'Подрезка бампера',
+                        'required' => false,
+                    ])
+                    ->add('needHarmonizeModule', 'text', [
+                        'label' => 'Необходимость модуля согласования',
+                        'required' => false,
+                    ])
+                    ->add('powerSocket', 'text', [
+                        'label' => 'Розетка',
+                        'required' => false,
+                    ])
+                    ->add('verticalLoad', 'text', [
+                        'label' => 'Вертикальная нагрузка',
+                        'required' => false,
+                    ])
+                ->end()
             ->end()
         ;
     }
@@ -101,15 +180,19 @@ class ProductAdmin extends AbstractAdmin
     {
         $filter
             ->add('title', null, [
+                'label' => 'Наименование товара',
                 'show_filter' => true,
             ])
             ->add('category', null, [
+                'label' => 'Категория',
                 'show_filter' => true,
             ])
             ->add('manufacturer', null, [
+                'label' => 'Производитель',
                 'show_filter' => true,
             ])
             ->add('country', null, [
+                'label' => 'Страна',
                 'show_filter' => true,
             ])
         ;

@@ -1,16 +1,35 @@
 {% extends '@AppCore/Layouts/layout.html.twig' %}
 
 {% block page_title %}
-    Заголовок
+    {% set type = '' %}
+    {% if entities.items[0].type == 'article' %}
+        {% set type = 'Статьи' %}
+    {% elseif entities.items[0].type == 'news' %}
+        {% set type = 'Новости' %}
+    {% elseif entities.items[0].type == 'stock' %}
+        {% set type = 'Акции' %}
+    {% endif %}
+        {{ type }}
 {% endblock %}
 
 {% block content %}
 
     {% for entity in entities %}
+
+        {% set urlEntity = '' %}
+
+        {% if entities.items[0].type == 'article' %}
+            {% set urlEntity = path('app_core_bundle_article_article_item', {id: entity.id}) %}
+        {% elseif entities.items[0].type == 'news' %}
+            {% set urlEntity = path('app_core_bundle_article_news_item', {id: entity.id}) %}
+        {% elseif entities.items[0].type == 'stock' %}
+            {% set urlEntity = path('app_core_bundle_article_stock_item', {id: entity.id}) %}
+        {% endif %}
+
         <div class="article-list row">
             {% if entity.imageName is not null %}
                 <div class="col-md-3">
-                    <a href="#">
+                    <a href="{{ urlEntity }}">
                         {% set image = getImage(entity.imageName, 'article') %}
 
                         {% if image is not null %}
@@ -23,7 +42,7 @@
                 <div class="col-md-12">
             {% endif %}
                 <p>{{ entity.createdAt|date('d.m.Y') }}</p>
-                <h3><a href="{{ path('app_core_bundle_article_article_item', {id: entity.id}) }}">{{ entity.title }}</a></h3>
+                <h3><a href="{{ urlEntity }}">{{ entity.title }}</a></h3>
                 <div>
                     {{ entity.content|raw[:220] }}
                 </div>

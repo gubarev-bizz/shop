@@ -1,19 +1,25 @@
-{#{% macro recursiveCategory(category) %}
+{% macro recursiveCategory(category) %}
     <li role="presentation" >
-        <a href="" title="">{{ category.title }}</a>
-        {% if category.children|length %}
-            <ul>
-                {% for child in category.children %}
-                    {{ _self.recursiveCategory(child) }}
-                {% endfor %}
-            </ul>
-        {% endif %}
+         {% if category.children|length %}
+            <div class="panel-heading" role="tab" id="collapseListGroupHeading{{ category.id }}">
+                <a href="#collapseListGroup{{ category.id }}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup{{ category.id }}"><i class="glyphicon glyphicon-plus"></i> {{ category.title }}</a>
+            </div>
+             <div class="panel-collapse collapse" role="tabpanel" id="collapseListGroup{{ category.id }}" aria-labelledby="collapseListGroupHeading{{ category.id }}" aria-expanded="false" style="height: 0px;">
+                 <ul class="list-group">
+                     {% for child in category.children %}
+                        {{ _self.recursiveCategory(child) }}
+                     {% endfor %}
+                 </ul>
+             </div>
+        {% else %}
+            <a href="{{ path('app_core_bundle_category_item', {categoryId: category.id}) }}" title="">{{ category.title }}</a>
+         {% endif %}
     </li>
 {% endmacro %}
 
 {% if categories %}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 sidebar-category-list">
             <h2 class="block-title">Продукция</h2>
             <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
                 {% for category in categories %}
@@ -22,50 +28,7 @@
             </ul>
         </div>
     </div>
-{% endif %}#}
-
-<div class="row">
-    <div class="col-md-12">
-        <h2 class="block-title">ПРОДУКЦИЯ</h2>
-        <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-            <li role="presentation" ><a href="#">Акссесуары</a></li>
-            <li role="presentation" ><a href="#">Защита</a></li>
-            <li role="presentation">
-                <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
-                    <a href="#collapseListGroup1" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup1"><i class="glyphicon glyphicon-plus"></i> Фаркопы</a>
-                </div>
-                <div class="panel-collapse collapse" role="tabpanel" id="collapseListGroup1" aria-labelledby="collapseListGroupHeading1" aria-expanded="false" style="height: 0px;">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="panel-heading" role="tab" id="collapseListGroupHeading2">
-                                <a href="#collapseListGroup2" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup2"><i class="glyphicon glyphicon-plus"></i> Audi</a>
-                            </div>
-                            <div class="panel-collapse collapse" role="tabpanel" id="collapseListGroup2" aria-labelledby="collapseListGroupHeading2" aria-expanded="false" style="height: 0px;">
-                                <ul class="list-group">
-                                    <li class="list-group-item"><i class="glyphicon glyphicon-chevron-right"></i> Audi 100</li>
-                                    <li class="list-group-item"><i class="glyphicon glyphicon-chevron-right"></i> Audi 700</li>
-                                    <li class="list-group-item"><i class="glyphicon glyphicon-chevron-right"></i> Audi 1500</li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="panel-heading" role="tab" id="collapseListGroupHeading3">
-                                <a href="#collapseListGroup3" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup3"><i class="glyphicon glyphicon-plus"></i> BMW</a>
-                            </div>
-                            <div class="panel-collapse collapse" role="tabpanel" id="collapseListGroup3" aria-labelledby="collapseListGroupHeading3" aria-expanded="false" style="height: 0px;">
-                                <ul class="list-group">
-                                    <li class="list-group-item"><i class="glyphicon glyphicon-chevron-right"></i> BMW x5</li>
-                                    <li class="list-group-item"><i class="glyphicon glyphicon-chevron-right"></i> BMW x3</li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li role="presentation"><a href="#">Электроприборы</a></li>
-        </ul>
-    </div>
-</div>
+{% endif %}
 
 <div class="row">
     <div class="col-md-12">

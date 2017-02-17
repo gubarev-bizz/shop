@@ -34,9 +34,8 @@ class ItemOrderAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Basic information')
-//                ->add('amount', 'number', ['label' => 'Amount'])
-                ->add('quantity', 'number', ['label' => 'Quantity'])
-                ->add('products', null, ['label' => 'Product'])
+                ->add('quantity', 'number', ['label' => 'Количество'])
+                ->add('products', null, ['label' => 'Продукт'])
             ->end()
         ;
     }

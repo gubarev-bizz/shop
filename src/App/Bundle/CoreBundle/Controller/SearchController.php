@@ -4,29 +4,58 @@ namespace App\Bundle\CoreBundle\Controller;
 
 use App\Bundle\CoreBundle\Form\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class SearchController extends Controller
 {
-    public function searchAction(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function searchFormAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(SearchType::class, null, [
-            'search' => ($request->query->get('search')) ? $request->query->get('search') : null,
+            'action' => $this->generateUrl('app_core_bundle_page_search')
+        ]);
+        $form->add('submit', SubmitType::class, [
+            'label' => 'Поиск',
+            'attr' => [
+                'class' => 'btn-success',
+            ]
         ]);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        return $this->render('AppCoreBundle:Block:searchBlock.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $resultArticle = $resultProducts = [];
+        $data = $request->query->get('search');
+
+        if (!empty($data) && $data['title'] !== null) {
+            $resultArticle = $em->getRepository('AppCoreBundle:Article')
+                ->searchByTitle($data['title'])
+            ;
+            $resultProducts = $em->getRepository('AppCoreBundle:Product')
+                ->searchByTitle($data['title'])
+            ;
         }
 
-        $resultArticle = $em->getRepository('AppCoreBundle:Article')->findAll();
-        $resultProducts = $em->getRepository('AppCoreBundle:Product')->findAll();
         $result = $resultArticle + $resultProducts;
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate($result, $request->query->get('page', 1), $this->getParameter('paginator'));
 
         return $this->render('AppCoreBundle:Pages:search.html.twig', [
-            'form' => $form->createView(),
             'results' => $pagination,
         ]);
     }

@@ -29,6 +29,18 @@
             });
         });
 
+        $('.sidebar-category-list ul a').click(function () {
+            var icon = $(this).find('i');
+
+            if ($(this).attr('aria-expanded') == 'false') {
+                icon.removeClass('glyphicon-plus');
+                icon.addClass('glyphicon-minus');
+            } else {
+                icon.removeClass('glyphicon-minus');
+                icon.addClass('glyphicon-plus');
+            }
+        });
+
     });
 
 })(jQuery);

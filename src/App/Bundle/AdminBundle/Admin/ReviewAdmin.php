@@ -3,7 +3,9 @@
 namespace App\Bundle\AdminBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
 
 class ReviewAdmin extends AbstractAdmin
 {
@@ -20,6 +22,7 @@ class ReviewAdmin extends AbstractAdmin
         $listMapper
             ->add('name')
             ->add('email')
+            ->add('approve')
             ->add('createdAt')
             ->add('_action', 'actions', [
                 'actions' => [
@@ -27,6 +30,34 @@ class ReviewAdmin extends AbstractAdmin
                     'show' => [],
                     'delete' => [],
                 ]
+            ])
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper
+            ->with('Basic information')
+                ->add('name')
+                ->add('email')
+                ->add('content')
+                ->add('product')
+                ->add('approve')
+            ->end()
+        ;
+    }
+
+    /**
+     * @param DatagridMapper $filter
+     */
+    protected function configureDatagridFilters(DatagridMapper $filter)
+    {
+        $filter
+            ->add('product', null, [
+                'show_filter' => true,
             ])
         ;
     }

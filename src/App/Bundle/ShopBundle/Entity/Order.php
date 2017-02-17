@@ -24,6 +24,16 @@ class Order
     const EXECUTED = 'EXECUTED';
     const CANCELED = 'CANCELED';
 
+    const DELIVERY_INTIME = 'INTIME';
+    const DELIVERY_NOVA_POSHTA = 'NOVA_POSHTA';
+    const DELIVERY_GUNSEL = 'GUNSEL';
+    const DELIVERY_DELIVERY = 'DELIVERY';
+    const DELIVERY_AUTOLUX = 'AUTOLUX';
+    const DELIVERY_NIGHT_EXPRESS = 'NIGHT_EXPRESS';
+
+    const PAYMENT_TYPE_CASHLESS_PAYMENTS = 'CASHLESS_PAYMENTS';
+    const PAYMENT_TYPE_CASH_DELIVERY = 'CASH_DELIVERY';
+
     /**
      * @var string
      *
@@ -73,6 +83,22 @@ class Order
      * @ORM\Column(type="string", nullable=false)
      */
     private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="delivery", type="string", nullable=false)
+     * @SymfonyConstraints\NotBlank()
+     */
+    private $delivery;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="payment_type", type="string", nullable=false)
+     * @SymfonyConstraints\NotBlank()
+     */
+    private $paymentType;
 
     /**
      * @var bool
@@ -244,5 +270,37 @@ class Order
     public function setLock($lock)
     {
         $this->lock = $lock;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDelivery()
+    {
+        return $this->delivery;
+    }
+
+    /**
+     * @param mixed $delivery
+     */
+    public function setDelivery($delivery)
+    {
+        $this->delivery = $delivery;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentType()
+    {
+        return $this->paymentType;
+    }
+
+    /**
+     * @param string $paymentType
+     */
+    public function setPaymentType($paymentType)
+    {
+        $this->paymentType = $paymentType;
     }
 }
