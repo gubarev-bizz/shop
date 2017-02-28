@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e; set -u
+. "$(dirname $0)/common"
+
+unsafe_bin
+
+set +e
+write_title "Dropping database"
+exec_console doctrine:database:drop --force --quiet "$@"
+set -e
+
+write_title "Creating database"
+exec_console doctrine:database:create "$@"
+
+write_title "Updating database schema"
+exec_console doctrine:schema:update --force "$@"
+
+write_title "Loading fixtures"
+exec_console hautelook_alice:doctrine:fixtures:load --env=dev --no-interaction "$@"
+
+write_title "Clear cache"
+exec_console ca:cl "$@"
