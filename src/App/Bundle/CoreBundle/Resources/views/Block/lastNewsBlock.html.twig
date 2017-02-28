@@ -1,17 +1,19 @@
-<h2 class="block-title">НОВОСТИ</h2>
-<div class="">
-    <img
+{% if news is not null %}
+    <h2 class="block-title">НОВОСТИ</h2>
+    <div class="">
+        <img
             class="img-responsive"
             src="{{ getImage(news.imageName, 'article') | imagine_filter('news_sidebar') }}"
-    />
-    <div class="caption">
-        <h3><a href="{{ path('app_core_bundle_article_news_item', {id: news.id}) }}">{{ news.title }}</a></h3>
-        <div>
-            {{ news.content|length > 150 ? news.content|slice(0, 150) ~ ' ...' : news.content }}
+        />
+        <div class="caption">
+            <h3><a href="{{ path('app_core_bundle_article_news_item', {id: news.id}) }}">{{ news.title }}</a></h3>
+            <div>
+                {{ news.content|length > 150 ? news.content|slice(0, 150) ~ ' ...' : news.content }}
+            </div>
+            <br />
+            <p>
+                <a href="{{ path('app_core_bundle_article_news_item', {id: news.id}) }}" class="btn btn-primary" role="button">Подробней</a>
+            </p>
         </div>
-        <br />
-        <p>
-            <a href="{{ path('app_core_bundle_article_news_item', {id: news.id}) }}" class="btn btn-primary" role="button">Подробней</a>
-        </p>
     </div>
-</div>
+{% endif %}
