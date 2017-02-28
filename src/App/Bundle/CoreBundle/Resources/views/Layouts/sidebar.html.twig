@@ -17,18 +17,18 @@
     </li>
 {% endmacro %}
 
-{% if categories %}
-    <div class="row">
-        <div class="col-md-12 sidebar-category-list">
-            <h2 class="block-title">Продукция</h2>
-            <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-                {% for category in categories %}
-                    {{ _self.recursiveCategory(category) }}
-                {% endfor %}
-            </ul>
-        </div>
+<div class="row">
+    <div class="col-md-12 sidebar-category-list">
+        <h2 class="block-title">Продукция</h2>
+        {% if categories %}
+        <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
+            {% for category in categories %}
+                {{ _self.recursiveCategory(category) }}
+            {% endfor %}
+        </ul>
+        {% endif %}
     </div>
-{% endif %}
+</div>
 
 <div class="row">
     <div class="col-md-12">
