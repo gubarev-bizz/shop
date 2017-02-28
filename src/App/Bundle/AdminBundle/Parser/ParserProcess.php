@@ -53,6 +53,7 @@ class ParserProcess
         $dataParse = [];
         $dataParse['production'] = [];
         $dataParse['country'] = [];
+        $dataParse['categories'] = [];
 
         foreach ($phpExcelObject->getWorksheetIterator() as $worksheet) {
             if ($worksheet->getCodeName() === 'Worksheet') {
