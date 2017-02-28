@@ -7,17 +7,17 @@
 {% block content %}
 
     <div class="row">
+        {% if entity.imageName is not null %}
         <div class="col-md-5 img-article">
-            {% if entity.imageName is defined %}
-                {% set image = getImage(entity.imageName, 'article') %}
+            {% set image = getImage(entity.imageName, 'article') %}
 
-                {% if image is not null %}
-                    <img src="{{ getImage(entity.imageName, 'article') }}" data-holder-rendered="true" />
-                {% endif %}
+            {% if image is not null %}
+                <img src="{{ getImage(entity.imageName, 'article') }}" data-holder-rendered="true" />
             {% endif %}
         </div>
+        {% endif %}
         <div>
-            {{ entity.content }}
+            {{ entity.content|raw }}
         </div>
     </div>
 

@@ -576,3 +576,18 @@ form[name="search"] .form-group button {
 form[name="search"] .form-group button {
     width: 100%;
 }
+
+.search-item {
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+}
+
+.item-image {
+    float: left;
+    margin-right: 10px;
+}
+
+.item-title {
+    font-size: 18px;
+    margin-bottom: 3px;
+}

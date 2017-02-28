@@ -183,6 +183,11 @@ liip_imagine:
             filters:
                 thumbnail: { size: [262, 200], mode: outbound }
                 background: { size: [262, 200], position: center, color: '#fff' }
+        search_item:
+            quality: 100
+            filters:
+                thumbnail: { size: [100, 80], mode: outbound }
+                background: { size: [100, 80], position: center, color: '#fff' }
         slider_main:
             quality: 100
             filters:
