@@ -4,7 +4,6 @@ namespace App\Bundle\AdminBundle\Controller;
 
 use App\Bundle\AdminBundle\Form\UploadProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 
 class ParserController extends Controller
