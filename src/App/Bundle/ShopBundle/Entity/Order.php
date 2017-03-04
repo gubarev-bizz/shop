@@ -17,7 +17,8 @@ class Order
     use IdentifiableEntityTrait;
     use TimestampableEntityTrait;
 
-    const STATUS_INITIAL = 'initial';
+    const STATUS_INITIAL = 'INITIAL';
+    const STATUS_NEW = 'NEW';
     const TAKEN_PROCESSING = 'TAKEN_PROCESSING';
     const AWAITING_PAYMENT = 'AWAITING_PAYMENT';
     const AWAITING_SHIPMENT = 'AWAITING_SHIPMENT';

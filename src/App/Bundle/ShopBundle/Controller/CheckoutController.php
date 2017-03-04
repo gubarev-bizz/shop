@@ -34,7 +34,7 @@ class CheckoutController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $order->setAmount($shopCart->getAmountCheckout());
-            $order->setStatus(Order::TAKEN_PROCESSING);
+            $order->setStatus(Order::STATUS_NEW);
             $order->setLock(true);
             $em->persist($order);
             $em->flush();
