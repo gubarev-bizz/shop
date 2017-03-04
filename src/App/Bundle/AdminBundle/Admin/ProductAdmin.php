@@ -26,7 +26,7 @@ class ProductAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('code', null, [
-                'label' => 'SKU',
+                'label' => 'ART',
             ])
             ->add('title', null, [
                 'label' => 'Наименование',
@@ -71,7 +71,7 @@ class ProductAdmin extends AbstractAdmin
         $formMapper
             ->tab('Основная информация')
                 ->with('Основная информация')
-                    ->add('code', 'text', ['label' => 'SKU'])
+                    ->add('code', 'text', ['label' => 'ART'])
                     ->add('title', 'text', ['label' => 'Наименование'])
                     ->add('images','sonata_type_collection', [
                         'required' => false,
