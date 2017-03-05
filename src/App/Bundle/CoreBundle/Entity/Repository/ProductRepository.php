@@ -27,21 +27,25 @@ class ProductRepository extends EntityRepository
     /**
      * @param Product $product
      * @param Category $category
-     * @return array
+     * @return array|null
      */
-    public function findSimilarProductsByCategory(Product $product, Category $category)
+    public function findSimilarProductsByCategory(Product $product, Category $category = null)
     {
-        return $this->createQueryBuilder('p')
-            ->leftJoin('p.category', 'c')
-            ->andWhere('c.id = :category')
-            ->andWhere('p.id != :product')
-            ->setParameters([
-                'category' => $category->getId(),
-                'product' => $product->getId(),
-            ])
-            ->setMaxResults(3)
-            ->getQuery()
-            ->getResult()
-            ;
+        if ($category !== null) {
+            return $this->createQueryBuilder('p')
+                ->leftJoin('p.category', 'c')
+                ->andWhere('c.id = :category')
+                ->andWhere('p.id != :product')
+                ->setParameters([
+                    'category' => $category->getId(),
+                    'product' => $product->getId(),
+                ])
+                ->setMaxResults(3)
+                ->getQuery()
+                ->getResult()
+                ;
+        }
+
+        return null;
     }
 }

@@ -36,12 +36,14 @@ class ProductController extends Controller
         ;
         $addProductToCartFormSimilar = [];
 
-        foreach ($similarProducts as $entity) {
-            $addProductToCartFormSimilar[$entity->getId()] = $this->createForm(AddProductCartType::class, null, [
-                'action' => $this->generateUrl('app_shop_bundle_cart_add_item'),
-                'productId' => $entity->getId(),
-                'count' => 1,
-            ])->createView();
+        if ($similarProducts !== null) {
+            foreach ($similarProducts as $entity) {
+                $addProductToCartFormSimilar[$entity->getId()] = $this->createForm(AddProductCartType::class, null, [
+                    'action' => $this->generateUrl('app_shop_bundle_cart_add_item'),
+                    'productId' => $entity->getId(),
+                    'count' => 1,
+                ])->createView();
+            }
         }
 
         $review = new Review();

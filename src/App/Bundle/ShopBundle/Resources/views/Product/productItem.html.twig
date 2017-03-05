@@ -36,10 +36,12 @@
                     <th>Артикул</th>
                     <th>{{ product.code }}</th>
                 </tr>
+                {% if product.category.title is defined %}
                 <tr>
                     <th>Бренд</th>
                     <th>{{ product.category.title }}</th>
                 </tr>
+                {% endif %}
                 <tr>
                     <th>Страна производитель</th>
                     <th>{{ product.country.title }}</th>
