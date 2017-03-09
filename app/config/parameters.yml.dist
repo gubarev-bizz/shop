@@ -18,6 +18,7 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
+    locale: ru
     report_upload_dir: "%kernel.root_dir%/../var/reports"
     upload_dir: '%kernel.root_dir%/../web/uploads'
     general_email: 'admin@example.com'
