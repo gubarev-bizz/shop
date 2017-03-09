@@ -9,9 +9,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Bundle\CoreBundle\Entity\Repository\ProductRepository")
+ * @Serializer\ExclusionPolicy("all")
  */
 class Product
 {
@@ -28,6 +30,7 @@ class Product
      * @ORM\Column(type="string", length=255)
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Length(max="255")
+     * @Serializer\Expose
      */
     private $title;
 
@@ -37,6 +40,7 @@ class Product
      * @ORM\Column(type="string", length=255)
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Length(max="255")
+     * @Serializer\Expose
      */
     private $code;
 
@@ -45,6 +49,7 @@ class Product
      *
      * @ORM\Column(type="text")
      * @SymfonyConstraints\NotBlank()
+     * @Serializer\Expose
      */
     private $content;
 
@@ -54,6 +59,7 @@ class Product
      * @ORM\Column(type="float")
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Type(type="numeric")
+     * @Serializer\Expose
      */
     private $price;
 
@@ -61,6 +67,7 @@ class Product
      * @var float
      *
      * @ORM\Column(type="float", nullable=true)
+     * @Serializer\Expose
      */
     private $priceUah;
 
@@ -69,6 +76,7 @@ class Product
      *
      * @ORM\Column(type="string")
      * @SymfonyConstraints\NotBlank()
+     * @Serializer\Expose
      */
     private $currency;
 
