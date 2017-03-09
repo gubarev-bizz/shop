@@ -53,7 +53,11 @@
                 </tbody>
             </table>
 
-            {{ form(addProductToCartForm) }}
+            {{ form_start(addProductToCartForm) }}
+                {{ form_widget(addProductToCartForm.count) }}
+                {{ form_rest(addProductToCartForm) }}
+                <add-to-cart></add-to-cart>
+            {{ form_end(addProductToCartForm) }}
 
         </div>
 

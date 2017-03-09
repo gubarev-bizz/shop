@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Iphp\FileStoreBundle\IphpFileStoreBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
             new VisualCraft\Bundle\UploadFileBundle\VisualCraftUploadFileBundle(),
             new VisualCraft\Bundle\MailerBundle\VisualCraftMailerBundle(),

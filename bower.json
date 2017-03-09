@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "vue": "^2.2.2"
+    "vue": "^2.2.2",
+    "vue-resource": "^1.2.1"
   }
 }

@@ -11,12 +11,25 @@
 </head>
 <body>
 
-    {% block body %}{% endblock %}
+    <script type="text/vue-template" id="add-to-cart-template">
+        <button v-on:click="addToCart($event)" class="btn-success btn">Добавить в корзину!!!</button>
+    </script>
+
+    <div id="app">
+        {% block body %}{% endblock %}
+    </div>
 
     <script type="text/javascript" src="{{ asset('bundles/sonataadmin/vendor/jquery/dist/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     <script type="text/javascript" src="{{ asset('js/frontend.js') }}"></script>
     <script type="text/javascript" src="{{ asset('lightbox2/js/lightbox-plus-jquery.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('assets/vue/dist/vue.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vue-resource/dist/vue-resource.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/shop.js') }}"></script>
+
     {% block javascripts %}{% endblock %}
 </body>
 </html>

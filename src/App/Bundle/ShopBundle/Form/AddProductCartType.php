@@ -33,12 +33,6 @@ class AddProductCartType extends AbstractType
             ->add('productId', HiddenType::class, [
                 'data' => $options['productId']
             ])
-            ->add('Add to Cart', SubmitType::class, [
-                'label' => 'Add to Cart',
-                'attr' => [
-                    'class' => 'btn-success'
-                ]
-            ])
         ;
     }
 

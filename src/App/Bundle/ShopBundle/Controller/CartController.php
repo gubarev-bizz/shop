@@ -21,7 +21,7 @@ class CartController extends Controller
         $productCartForm = $this->createForm(AddProductCartType::class, null);
         $productCartForm->handleRequest($request);
 
-        if ($productCartForm->isSubmitted() && $productCartForm->isValid()) {
+        if ($productCartForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $formData = $productCartForm->getData();
             $product = $em->getRepository('AppCoreBundle:Product')->find($formData['productId']);
@@ -58,12 +58,12 @@ class CartController extends Controller
 
             $this->addFlash('success', 'Product added to cart');
 
-            return $this->redirectToRoute('app_show_bundle_product_item', [
-                'id' => $product->getId()
-            ]);
+//            return $this->redirectToRoute('app_show_bundle_product_item', [
+//                'id' => $product->getId()
+//            ]);
         }
 
-        return $this->redirectToRoute('app_core_bundle_page_main');
+//        return $this->redirectToRoute('app_core_bundle_page_main');
     }
 
     /**

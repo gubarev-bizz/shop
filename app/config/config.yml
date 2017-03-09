@@ -101,6 +101,10 @@ iphp_file_store:
            upload_dir:  "%kernel.root_dir%/../web/uploads/image"
            upload_path: /image
 
+fos_js_routing:
+    routes_to_expose:
+        - app_shop_bundle_cart_add_item
+
 vich_uploader:
     db_driver: orm
     mappings:
