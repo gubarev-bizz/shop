@@ -5,7 +5,7 @@
     <div class="row" style="margin: 0;">
         <div class="col-md-4 col-md-offset-4 col-lg-3 col-lg-offset-5 col-sm-6 col-sm-offset-3">
             <div class="login-form text-center" style="margin-top: 130px;">
-                <h2 style="text-align: left;">Login</h2>
+                <h2 style="text-align: left;">{{ 'Login'|trans }}</h2>
                 {{ form_start(form, { 'attr': {'id': 'login_form'} }) }}
                 {% if error %}
                     <div class="alert alert-danger fade in">
@@ -16,20 +16,19 @@
                 {% endif %}
 
                 <div class="input-group">
-                    {{ form_widget(form.email, {'attr': {'placeholder': 'Email', 'class': 'form-control' } } ) }}
+                    {{ form_widget(form.email, {'attr': {'placeholder': 'Email'|trans, 'class': 'form-control' } } ) }}
                 </div>
                 <div class="input-group">
-                    {{ form_widget(form.password, {'attr': {'placeholder': 'Password', 'class': 'form-control'} } ) }}
+                    {{ form_widget(form.password, {'attr': {'placeholder': 'Password'|trans, 'class': 'form-control'} } ) }}
                 </div>
                 <div class="input-group">
                     <input type="checkbox" id="remember_me" name="_remember_me" checked />
-                    <label for="remember_me">Remember me</label>
+                    <label for="remember_me">{{ 'Remember me'|trans }}</label>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-default" style="float: left;: left;">Sign in</button>
+                <button type="submit" class="btn btn-default" style="float: left;: left;">{{ 'Sign in'|trans }}</button>
                 {{ form_end(form) }}
             </div>
-            {#<a style="display: inline-block; width: 100%;" href="{{ path('visual_craft_dde_core_bundle_user_forgot_password') }}">Forgot password</a>#}
         </div>
     </div>
 

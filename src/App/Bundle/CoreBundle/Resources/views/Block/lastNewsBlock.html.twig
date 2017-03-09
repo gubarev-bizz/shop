@@ -1,5 +1,5 @@
 {% if news is not null %}
-    <h2 class="block-title">НОВОСТИ</h2>
+    <h2 class="block-title">{{ 'News'|trans }}</h2>
     <div>
         {% if news.imageName is not null %}
             <img
@@ -14,7 +14,7 @@
             </div>
             <br />
             <p>
-                <a href="{{ path('app_core_bundle_article_news_item', {id: news.id}) }}" class="btn btn-primary" role="button">Подробней</a>
+                <a href="{{ path('app_core_bundle_article_news_item', {id: news.id}) }}" class="btn btn-primary" role="button">{{ 'More detailed'|trans }}</a>
             </p>
         </div>
     </div>

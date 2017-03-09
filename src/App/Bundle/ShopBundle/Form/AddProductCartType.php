@@ -16,14 +16,14 @@ class AddProductCartType extends AbstractType
         if ($options['count'] === null) {
             $builder
                 ->add('count', NumberType::class, [
-                    'label' => 'Кол-во',
+                    'label' => 'Count',
                     'data' => 1
                 ])
             ;
         } else {
             $builder
                 ->add('count', HiddenType::class, [
-                    'label' => 'Кол-во',
+                    'label' => 'Count',
                     'data' => 1
                 ])
             ;
@@ -34,7 +34,7 @@ class AddProductCartType extends AbstractType
                 'data' => $options['productId']
             ])
             ->add('Add to Cart', SubmitType::class, [
-                'label' => 'Добавить в корзину',
+                'label' => 'Add to Cart',
                 'attr' => [
                     'class' => 'btn-success'
                 ]

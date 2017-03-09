@@ -49,7 +49,7 @@ class ProductController extends Controller
         $review = new Review();
         $review->setProduct($product);
         $reviewForm = $this->createForm(ReviewProductType::class, $review);
-        $reviewForm->add('Добавить', SubmitType::class);
+        $reviewForm->add('Add', SubmitType::class);
         $reviewForm->handleRequest($request);
 
         if ($reviewForm->isSubmitted() && $reviewForm->isValid()) {

@@ -1,13 +1,12 @@
 {% extends 'AppCoreBundle:Layouts:layout.html.twig' %}
 
-{% block page_title %}Поиск{% endblock %}
+{% block page_title %}{{ 'Search'|trans }}{% endblock %}
 
 {% block content %}
 
     {% if results|length %}
         {% for result in results %}
             <div class="row">
-                {#{{ dump(result) }}#}
                 <div class="col-md-12 search-item">
                     {% if result.code is defined %}
                         {% for image in result.images %}
