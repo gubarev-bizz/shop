@@ -32,28 +32,28 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav nav-pills">
                             <li class="{{ 'app_core_bundle_page_main' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_page_main') }}" title="Главная">Главная</a>
+                                <a href="{{ path('app_core_bundle_page_main') }}" title="{{ 'Home'|trans }}">{{ 'Home'|trans }}</a>
                             </li>
                             <li class="{{ 'app_core_bundle_page_search' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_page_search') }}" title="Поиск">Поиск</a>
+                                <a href="{{ path('app_core_bundle_page_search') }}" title="{{ 'Search'|trans }}">{{ 'Search'|trans }}</a>
                             </li>
                             <li>
                                 <a href="#">Доставка и оплата</a>
                             </li>
                             <li class="{{ 'app_core_bundle_article_news' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_article_news_list') }}" title="Новости">Новости</a>
+                                <a href="{{ path('app_core_bundle_article_news_list') }}" title="{{ 'News'|trans }}">{{ 'News'|trans }}</a>
                             </li>
                             <li class="{{ 'app_core_bundle_article_article' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_article_article_list') }}" title="Статьи">Статьи</a>
+                                <a href="{{ path('app_core_bundle_article_article_list') }}" title="{{ 'Articles'|trans }}">{{ 'Articles'|trans }}</a>
                             </li>
                             <li class="{{ 'app_core_bundle_article_stock' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_article_stock_list') }}" title="Акции">Акции</a>
+                                <a href="{{ path('app_core_bundle_article_stock_list') }}" title="{{ 'Promotions'|trans }}">{{ 'Promotions'|trans }}</a>
                             </li>
                             <li class="{{ 'app_core_bundle_page_contact' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_page_contact') }}">Контакты</a>
+                                <a href="{{ path('app_core_bundle_page_contact') }}" title="{{ 'Contacts'|trans }}">{{ 'Contacts'|trans }}</a>
                             </li>
                             <li class="{{ 'app_core_bundle_page_about' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_page_about') }}">О нас</a>
+                                <a href="{{ path('app_core_bundle_page_about') }}" title="{{ 'About us'|trans }}">{{ 'About us'|trans }}</a>
                             </li>
                         </ul>
                     </div>
@@ -69,7 +69,7 @@
                 <div class="breadcrumbs">
                     <i class="fa fa-home fa-fw"></i>
                     <ol class="breadcrumb">
-                        <li><a href="/">Главная</a></li>
+                        <li><a href="/">{{ 'Home'|trans }}</a></li>
                         <li class="active">Доставка и оплата</li>
                     </ol>
                 </div>
