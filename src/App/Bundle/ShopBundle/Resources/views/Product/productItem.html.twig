@@ -53,11 +53,16 @@
                 </tbody>
             </table>
 
-            {{ form_start(addProductToCartForm) }}
+            <add-to-cart>
+                {{ form_start(addProductToCartForm, { 'attr': {'@submit.prevent': ''} }) }}
+                <div class="form-group">
                 {{ form_widget(addProductToCartForm.count) }}
-                {{ form_rest(addProductToCartForm) }}
-                <add-to-cart></add-to-cart>
-            {{ form_end(addProductToCartForm) }}
+                </div>
+                <div class="form-group">
+                    {{ form_rest(addProductToCartForm) }}
+                </div>
+                {{ form_end(addProductToCartForm) }}
+            </add-to-cart>
 
         </div>
 

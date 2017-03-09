@@ -14,7 +14,6 @@ class CartController extends Controller
 {
     /**
      * @param Request $request
-     * @return RedirectResponse
      */
     public function addProductAction(Request $request)
     {
@@ -56,14 +55,36 @@ class CartController extends Controller
                 }
             }
 
-            $this->addFlash('success', 'Product added to cart');
+            $serializer = $this->get('jms_serializer');
+            $translator = $this->get('translator');
+            $response = $serializer->serialize([
+                'code' => 200,
+                'status' => 'OK',
+                'message' => $translator->trans('Product added to cart'),
+                'messageStatus' => 'success',
+            ], 'json');
 
-//            return $this->redirectToRoute('app_show_bundle_product_item', [
-//                'id' => $product->getId()
-//            ]);
+            return new Response($response);
         }
 
-//        return $this->redirectToRoute('app_core_bundle_page_main');
+        return new JsonResponse([
+            'code' => 403,
+            'status' => 'Form invalid',
+        ]);
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function getProductsOfCartAction()
+    {
+        $cart = $this->get('app_shop_bundle.cart')->getCart();
+
+        return new JsonResponse([
+            'code' => 200,
+            'status' => 'OK',
+            'data' => $cart,
+        ]);
     }
 
     /**

@@ -591,3 +591,23 @@ form[name="search"] .form-group button {
     font-size: 18px;
     margin-bottom: 3px;
 }
+
+.bg-process {
+    background: #606362;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999999999;
+    opacity: 0.4;
+}
+
+.bg-spinner {
+    width: 120px;
+    position: absolute;
+    left: 50%;
+    margin-left: -60px;
+    top: 50%;
+    margin-top: -60px;
+}

@@ -104,6 +104,7 @@ iphp_file_store:
 fos_js_routing:
     routes_to_expose:
         - app_shop_bundle_cart_add_item
+        - app_shop_bundle_cart_get_items
 
 vich_uploader:
     db_driver: orm

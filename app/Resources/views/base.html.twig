@@ -10,10 +10,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
-
-    <script type="text/vue-template" id="add-to-cart-template">
-        <button v-on:click="addToCart($event)" class="btn-success btn">Добавить в корзину!!!</button>
-    </script>
+    {% include '::vue-templates.html.twig' %}
 
     <div id="app">
         {% block body %}{% endblock %}

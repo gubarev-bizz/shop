@@ -1,13 +1,23 @@
+var bus = new Vue({});
+
+var processEvent = {
+    delimiters: ['${', '}'],
+    props: ['process'],
+    template: '#process-template',
+};
+
+var getItemsByCart = {
+    delimiters: ['${', '}'],
+    template: '#elements-cart-template',
+    props: ['elements', 'total'],
+};
+
 var addToCart = {
     delimiters: ['${', '}'],
     template: '#add-to-cart-template',
     methods: {
-        addToCart: function (event) {
-            if (event) event.preventDefault();
-
-            var form = $(this.$el).closest('form')[0];
-            console.log(form);
-            this.$http.post(Routing.generate('app_shop_bundle_cart_add_item'), new FormData(form));
+        addToCart: function () {
+            bus.$emit('cart:add', this.$el.querySelector('form'));
         }
     }
 };
@@ -15,7 +25,49 @@ var addToCart = {
 new Vue({
     delimiters: ['${', '}'],
     el: '#app',
+    data: {
+        process: false,
+        elementsCart: [],
+        totalCart: 0,
+        message: '',
+        messageStatus: '',
+    },
+    mounted: function () {
+        bus.$on('cart:add', this.cartAdd.bind(this));
+        this.getItems();
+    },
+    methods: {
+        cartAdd: function (form) {
+            var self = this;
+            this.process = true;
+
+            this.$http.post(Routing.generate('app_shop_bundle_cart_add_item'), new FormData(form)).then(function (response) {
+                response.json().then(function (data) {
+                    self.message = data.message;
+                    self.messageStatus = data.messageStatus;
+
+                    self.getItems().then(function () {
+                        self.process = false;
+                    });
+                });
+            });
+        },
+        getItems: function () {
+            var self = this;
+
+            return this.$http.get(Routing.generate('app_shop_bundle_cart_get_items')).then(function (response) {
+                return response.json().then(function (data) {
+                    if (data.code == 200) {
+                        self.elementsCart = data.data.elements;
+                        self.totalCart = data.data.total;
+                    }
+                });
+            });
+        }
+    },
     components: {
-        'add-to-cart': addToCart
+        'add-to-cart': addToCart,
+        'process-event': processEvent,
+        'items-cart': getItemsByCart,
     }
 });

@@ -13,6 +13,9 @@
                     </ul>
                 </div>
                 <div class="col-md-6 col-md-offset-2">
+
+                    <items-cart :elements="elementsCart" :total="totalCart"></items-cart>
+
                     {{ render(controller('AppShopBundle:Cart:cartBlock')) }}
                     {{ render(controller('AppCoreBundle:Search:searchForm', {'request': app.request})) }}
                 </div>
@@ -74,15 +77,25 @@
                     </ol>
                 </div>
 
-                {% for flashType in app.session.flashbag.keys %}
-                    {% for flash in app.session.flashbag.get(flashType) %}
-                        <br>
-                        <div class="alert margin-bottom-15 alert-{{ flashType }}">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            {{ flash|trans }}
-                        </div>
+                <div v-if="message != ''">
+                    <br>
+                    <div v-bind:class="'alert margin-bottom-15 alert-' + messageStatus">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        ${ message }
+                    </div>
+                </div>
+                <div v-else>
+                    {% for flashType in app.session.flashbag.keys %}
+                        {% for flash in app.session.flashbag.get(flashType) %}
+                            <br>
+                            <div class="alert margin-bottom-15 alert-{{ flashType }}">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ flash|trans }}
+                            </div>
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
+                </div>
+
 
                 <div class="page-title">
                     <h2>{% block page_title %}{% endblock %}</h2>
@@ -104,4 +117,7 @@
     </a>
 
     {{ render(controller('AppCoreBundle:Default:getCallUs', {'request': app.request})) }}
+
+    <process-event :process="process"></process-event>
+
 {% endblock %}

@@ -3,6 +3,11 @@ app_shop_bundle_cart_add_item:
     methods: POST
     defaults: { _controller: AppShopBundle:Cart:addProduct }
 
+app_shop_bundle_cart_get_items:
+    path: /cart/get/items
+    methods: GET
+    defaults: { _controller: AppShopBundle:Cart:getProductsOfCart }
+
 app_shop_bundle_cart_remove_item:
     path: /cart/remove
     methods: POST

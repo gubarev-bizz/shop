@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 
             new VisualCraft\Bundle\UploadFileBundle\VisualCraftUploadFileBundle(),
             new VisualCraft\Bundle\MailerBundle\VisualCraftMailerBundle(),

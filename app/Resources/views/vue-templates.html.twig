@@ -1,0 +1,61 @@
+<script type="text/vue-template" id="add-to-cart-template">
+    <div>
+        <slot></slot>
+        <button @click.prevent="addToCart()" class="btn-success btn">{{ 'Add to Cart'|trans }}</button>
+    </div>
+</script>
+
+<script type="text/vue-template" id="process-template">
+    <div v-if="process" class="bg-process">
+        <div class="bg-spinner" style="width: 120px;">
+            <img src="{{ asset('image/loading.gif') }}" class="img-responsive" alt="loading" />
+        </div>
+    </div>
+</script>
+
+<script type="text/vue-template" id="elements-cart-template">
+    <div class="panel panel-default">
+        <div class="panel-heading">КОРЗИНА</div>
+        <div class="panel-body">
+            <div v-if="elements.length">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Кол-во</th>
+                        <th>Элементы</th>
+                        <th>Цена</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="element in elements" class="ajax-cart-row">
+                            <th scope="row">${ element.count }</th>
+                            {#<td class="name">#}
+                                {#<a href="{{ path('app_show_bundle_product_item', {id: element.product.id}) }}" title="{{ element.product.title }}">#}
+                                    {#{{ element.product.title }}#}
+                                {#</a>#}
+                            {#</td>#}
+                            <td class="name">
+
+                            </td>
+                            <td class="price">${ element.amount } грн.</td>
+                            <td><a href="/remove-product/nojs/104" class="use-ajax ajax-processed">{{ 'Delete'|trans }}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Всего: ${ total } грн.</p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="{{ path('app_shop_bundle_cart') }}">Оформление заказа</a>
+                    </div>
+                </div>
+            </div>
+            <div v-else>
+                {{ 'No items in cart'|trans }}
+            </div>
+        </div>
+    </div>
+</script>
