@@ -38,7 +38,7 @@ class Cart
                 if ($product) {
                     $cart['total'] += $cartElement['price'];
                     $cart['elements'][] = [
-                        'product' => $product,
+                        'product' => $product->jsonSerializer(),
                         'count' => $cartElement['count'],
                         'amount' => $cartElement['price'],
                     ];

@@ -16,7 +16,7 @@
 
                     <items-cart :elements="elementsCart" :total="totalCart"></items-cart>
 
-                    {{ render(controller('AppShopBundle:Cart:cartBlock')) }}
+                    {#{{ render(controller('AppShopBundle:Cart:cartBlock')) }}#}
                     {{ render(controller('AppCoreBundle:Search:searchForm', {'request': app.request})) }}
                 </div>
             </div>

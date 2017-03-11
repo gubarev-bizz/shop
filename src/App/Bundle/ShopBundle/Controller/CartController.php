@@ -5,7 +5,6 @@ namespace App\Bundle\ShopBundle\Controller;
 use App\Bundle\ShopBundle\Form\AddProductCartType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -14,6 +13,7 @@ class CartController extends Controller
 {
     /**
      * @param Request $request
+     * @return JsonResponse|Response
      */
     public function addProductAction(Request $request)
     {
@@ -89,23 +89,41 @@ class CartController extends Controller
 
     /**
      * @param Request $request
-     * @return JsonResponse
+     * @return JsonResponse|Response
      */
     public function removeProductAction(Request $request)
     {
-        $productId = $request->request->get('productId');
-        $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('AppCoreBundle:Product')->find($productId);
+        if ($request->isXmlHttpRequest()) {
+            $productId = (int) $request->request->get('productId');
+            $em = $this->getDoctrine()->getManager();
+            $product = $em->getRepository('AppCoreBundle:Product')->find($productId);
 
-        if ($product) {
-            $cartElements = $request->getSession()->get('cartElements');
-            unset($cartElements[$product->getId()]);
-            $request->getSession()->set('cartElements', $cartElements);
+            if ($product) {
+                $cartElements = $request->getSession()->get('cartElements');
+                unset($cartElements[$product->getId()]);
+                $request->getSession()->set('cartElements', $cartElements);
+                $serializer = $this->get('jms_serializer');
+                $translator = $this->get('translator');
+                $response = $serializer->serialize([
+                    'code' => 200,
+                    'status' => 'OK',
+                    'message' => $translator->trans('Product successfully deleted from cart'),
+                    'messageStatus' => 'success',
+                ], 'json');
 
-            return new JsonResponse(['status' => 'success']);
+                return new Response($response);
+            }
+
+            return new JsonResponse([
+                'code' => 403,
+                'status' => 'Form invalid',
+            ]);
         }
 
-        return new JsonResponse(['status' => 'error']);
+        return new JsonResponse([
+            'code' => 403,
+            'status' => 'Method not allowed',
+        ]);
     }
 
     /**

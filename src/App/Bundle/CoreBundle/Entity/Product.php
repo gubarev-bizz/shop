@@ -788,4 +788,13 @@ class Product
     {
         $this->verticalLoad = $verticalLoad;
     }
+
+    public function jsonSerializer()
+    {
+        return [
+            'id' => $this->getId(),
+            'code' => $this->getCode(),
+            'title' => $this->getTitle(),
+        ];
+    }
 }

@@ -30,16 +30,17 @@
                     <tbody>
                         <tr v-for="element in elements" class="ajax-cart-row">
                             <th scope="row">${ element.count }</th>
-                            {#<td class="name">#}
-                                {#<a href="{{ path('app_show_bundle_product_item', {id: element.product.id}) }}" title="{{ element.product.title }}">#}
-                                    {#{{ element.product.title }}#}
-                                {#</a>#}
-                            {#</td>#}
                             <td class="name">
-
+                                <a href="#" @click.prevent="linkToProduct(element.product.id)" :title="element.title">
+                                    ${ element.product.title }
+                                </a>
                             </td>
                             <td class="price">${ element.amount } грн.</td>
-                            <td><a href="/remove-product/nojs/104" class="use-ajax ajax-processed">{{ 'Delete'|trans }}</a></td>
+                            <td>
+                                <a href="#" @click.prevent="removeToCart(element.product.id)" title="{{ 'Delete'|trans }}" class="use-ajax ajax-processed">
+                                    {{ 'Delete'|trans }}
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -49,7 +50,7 @@
                         <p>Всего: ${ total } грн.</p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <a href="{{ path('app_shop_bundle_cart') }}">Оформление заказа</a>
+                        <a href="{{ path('app_shop_bundle_cart') }}" title="Оформление заказа">Оформление заказа</a>
                     </div>
                 </div>
             </div>
