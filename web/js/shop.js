@@ -75,7 +75,7 @@ new Vue({
                 response.json().then(function (data) {
                     self.message = data.message;
                     self.messageStatus = data.messageStatus;
-                    
+
                     self.getItems().then(function () {
                         self.process = false;
                     });
