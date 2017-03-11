@@ -12,12 +12,15 @@ class MenuBuilderListener
 
         foreach ($menu->getChildren() as $child) {
             if ($child->getName() === 'Shop') {
-                $child->addChild('Import products', [
-                    'route' => 'app_admin_bundle_parser',
-                    'labelAttributes' => ['icon' => 'fa fa-bar-chart'],
-                ]);
                 $child->addChild('Multi currency', [
                     'route' => 'app_admin_bundle_multicurrency',
+                    'labelAttributes' => ['icon' => 'fa fa-bar-chart'],
+                ]);
+            }
+
+            if ($child->getName() === 'Import') {
+                $child->addChild('Import products', [
+                    'route' => 'app_admin_bundle_parser',
                     'labelAttributes' => ['icon' => 'fa fa-bar-chart'],
                 ]);
             }

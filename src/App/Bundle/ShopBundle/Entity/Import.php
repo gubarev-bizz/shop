@@ -4,7 +4,6 @@ namespace App\Bundle\ShopBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 

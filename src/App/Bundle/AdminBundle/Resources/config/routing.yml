@@ -1,5 +1,5 @@
 app_admin_bundle_parser:
-    path: /parser
+    path: /import/parser
     defaults: { _controller: AppAdminBundle:Parser:parser }
 
 app_admin_bundle_multicurrency:

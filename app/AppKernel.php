@@ -26,6 +26,7 @@ class AppKernel extends Kernel
 
             new VisualCraft\Bundle\UploadFileBundle\VisualCraftUploadFileBundle(),
             new VisualCraft\Bundle\MailerBundle\VisualCraftMailerBundle(),
+            new VisualCraft\Bundle\BeanstalkSchedulerBundle\VisualCraftBeanstalkSchedulerBundle(),
 
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),

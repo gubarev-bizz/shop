@@ -67,6 +67,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Content, label: Images, show_in_dashboard: false }
 
+    app_admin.admin.import:
+        class: App\Bundle\AdminBundle\Admin\ImportAdmin
+        arguments: [ ~, App\Bundle\ShopBundle\Entity\Import, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Import, label: List }
+
     app_admin.menu_listener:
         class: App\Bundle\AdminBundle\EventListener\MenuBuilderListener
         tags:

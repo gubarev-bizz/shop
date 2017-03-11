@@ -108,6 +108,18 @@ fos_js_routing:
         - app_shop_bundle_cart_remove_item
         - app_show_bundle_product_item
 
+visual_craft_beanstalk_scheduler:
+    connections:
+        default:
+            host: "%beanstalkd_host%"
+            port: "%beanstalkd_port%"
+    queues:
+        parse_product:
+            connection: default
+            worker: visual_craft_dde_core.workers.parse_report_worker
+
+    queue_prefix: "%beanstalkd_queue_prefix%"
+
 vich_uploader:
     db_driver: orm
     mappings:
