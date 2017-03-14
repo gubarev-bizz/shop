@@ -206,20 +206,7 @@ class ParserProcess
 
                 $product->setUser($this->token->getToken()->getUser());
                 $this->em->persist($product);
-                $this->em->flush();
-
-//                if (isset($item['images'])) {
-//                    $images = $this->processSetImage($item['images']);
-//
-//                    if ($images !== false) {
-//                        foreach ($images as $image) {
-//                            $image->setProduct($product);
-//                        }
-//
-//                        $this->em->flush();
-////                        $image = $this->em->getRepository('AppCoreBundle:Image')->find(14);
-//                    }
-//                }
+                $this->em->flush($product);
             }
         }
 
@@ -303,6 +290,7 @@ class ParserProcess
                     $category->setTitle($item['title']);
                     $category->setImportId($item['categoryId']);
                     $this->em->persist($category);
+                    $this->em->flush($category);
                 }
             } else {
                 $category = $this->em->getRepository('AppCoreBundle:Category')->findOneBy([
@@ -323,10 +311,9 @@ class ParserProcess
                     }
 
                     $this->em->persist($category);
+                    $this->em->flush($category);
                 }
-
             }
-            $this->em->flush();
         }
     }
 
