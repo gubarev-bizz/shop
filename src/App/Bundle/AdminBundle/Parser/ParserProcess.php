@@ -7,6 +7,7 @@ use App\Bundle\CoreBundle\Entity\Country;
 use App\Bundle\CoreBundle\Entity\Image;
 use App\Bundle\CoreBundle\Entity\Manufacturer;
 use App\Bundle\CoreBundle\Entity\Product;
+use App\Bundle\ShopBundle\Entity\Import;
 use Doctrine\ORM\EntityManager;
 use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\HttpFoundation\File\File;
@@ -44,10 +45,20 @@ class ParserProcess
     }
 
     /**
+     * @param int $importId
      * @param string $filePath
      */
-    public function parser($filePath)
+    public function parser($importId, $filePath)
     {
+        $import = $this->em->getRepository('AppShopBundle:Import')->find($importId);
+
+        if (!$import) {
+            return;
+        }
+
+        $import->setStatus(Import::STATUS_READY);
+        $this->em->flush($import);
+
         /** @var \PHPExcel $phpExcelObject */
         $phpExcelObject = $this->PHPExcel->createPHPExcelObject($filePath);
         $dataParse = [];
@@ -145,6 +156,9 @@ class ParserProcess
         $this->setManufacturerImport($dataParse['production']);
         $this->setCountryImport($dataParse['country']);
         $this->setProductsImport($dataParse['products']);
+
+        $import->setStatus(Import::STATUS_INCOMPLETE);
+        $this->em->flush($import);
     }
 
     /**

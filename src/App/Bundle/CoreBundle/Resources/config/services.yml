@@ -61,7 +61,3 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 
-    app_core_bundle.workers.parse_product_worker:
-        class: App\Bundle\CoreBundle\Workers\ParseProductWorker
-        arguments:
-            - '@doctrine.orm.entity_manager'

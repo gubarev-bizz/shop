@@ -1,0 +1,12 @@
+#!/bin/sh
+
+. "$HOME/.profile"
+"$HOME/bin/composer" install --no-interaction --optimize-autoloader
+bin/console cache:clear
+bin/console assets:install --symlink
+bin/console cache:warmup
+bin/fix-permissions > /dev/null 2>&1
+"$HOME/.supervisor/bin/sv-install" -u .supervisor.conf shop
+"$HOME/.supervisor/bin/sv-ctl" update
+"$HOME/.supervisor/bin/sv-ctl" start shop:
+bower install

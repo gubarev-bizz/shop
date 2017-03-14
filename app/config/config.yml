@@ -116,8 +116,7 @@ visual_craft_beanstalk_scheduler:
     queues:
         parse_product:
             connection: default
-            worker: visual_craft_dde_core.workers.parse_report_worker
-
+            worker: app_core_bundle.workers.parse_product_worker
     queue_prefix: "%beanstalkd_queue_prefix%"
 
 vich_uploader:

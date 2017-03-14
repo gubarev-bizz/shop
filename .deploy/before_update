@@ -1,0 +1,3 @@
+#!/bin/sh
+
+"$HOME/.supervisor/bin/sv-ctl" stop shop:

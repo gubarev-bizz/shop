@@ -1,0 +1,7 @@
+services:
+    app_core_bundle.workers.parse_product_worker:
+        class: App\Bundle\CoreBundle\Workers\ParseProductWorker
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@app_admin.parser'
+            - '@app_shop_bundle.multi_currency'

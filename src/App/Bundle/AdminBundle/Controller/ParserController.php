@@ -6,6 +6,7 @@ use App\Bundle\AdminBundle\Form\UploadProductType;
 use App\Bundle\ShopBundle\Entity\Import;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use VisualCraft\BeanstalkScheduler\Job;
 
 class ParserController extends Controller
 {
@@ -28,8 +29,12 @@ class ParserController extends Controller
             $em->persist($import);
             $em->flush($import);
 
-            $this->get('app_admin.parser')->parser($filePath);
-            $this->get('app_shop_bundle.multi_currency')->refreshCurrency();
+            $this->get('visual_craft_beanstalk_scheduler.manager.parse_product')
+                ->submit(new Job([
+                    'importId' => $import->getId(),
+                    'filePath' => $filePath,
+                ]))
+            ;
 
             $this->addFlash('success', 'Products have been successfully added.');
         }
