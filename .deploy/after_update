@@ -2,7 +2,7 @@
 
 . "$HOME/.profile"
 "$HOME/bin/composer" install --no-interaction --optimize-autoloader
-bin/console cache:clear
+bin/console cache:clear --env=prod
 bin/console assets:install --symlink
 bin/console cache:warmup
 bin/fix-permissions > /dev/null 2>&1
