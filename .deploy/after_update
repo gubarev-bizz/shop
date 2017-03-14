@@ -8,5 +8,5 @@ bin/console cache:warmup
 bin/fix-permissions > /dev/null 2>&1
 "$HOME/.supervisor/bin/sv-install" -u .supervisor.conf shop
 "$HOME/.supervisor/bin/sv-ctl" update
-"$HOME/.supervisor/bin/sv-ctl" start shop:
+"$HOME/.supervisor/bin/sv-ctl" -d start shop:
 bower install
