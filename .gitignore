@@ -16,6 +16,6 @@
 /web/bundles/
 /web/images/
 /web/uploads/*
-.idea/
 /web/media/
 web/assets
+var/cache/
