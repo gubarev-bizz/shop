@@ -84,7 +84,6 @@ class Product
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="products")
-     * @SymfonyConstraints\NotBlank()
      * @Serializer\Expose
      * @Serializer\Type("ArrayCollection")
      */

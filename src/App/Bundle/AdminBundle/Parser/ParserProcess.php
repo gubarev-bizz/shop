@@ -213,7 +213,7 @@ class ParserProcess
                     $product->setCategory($category);
                 }
 
-                $product->setUser($this->token->getToken()->getUser());
+//                $product->setUser($this->token->getToken()->getUser());
                 $this->em->persist($product);
                 $this->em->flush($product);
             }
