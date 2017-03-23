@@ -5,3 +5,9 @@ services:
             - '@doctrine.orm.entity_manager'
             - '@app_admin.parser'
             - '@app_shop_bundle.multi_currency'
+
+    app_core_bundle.workers.multi_currency_worker:
+        class: App\Bundle\CoreBundle\Workers\MultiCurrencyWorker
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@app_shop_bundle.multi_currency'

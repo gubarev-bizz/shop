@@ -6,10 +6,15 @@ use App\Bundle\AdminBundle\Form\UploadProductType;
 use App\Bundle\ShopBundle\Entity\Import;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use VisualCraft\BeanstalkScheduler\Job;
 
 class ParserController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function parserAction(Request $request)
     {
         $form = $this->createForm(UploadProductType::class);

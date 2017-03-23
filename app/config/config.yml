@@ -117,6 +117,10 @@ visual_craft_beanstalk_scheduler:
         parse_product:
             connection: default
             worker: app_core_bundle.workers.parse_product_worker
+        multi_currency:
+            connection: default
+            worker: app_core_bundle.workers.multi_currency_worker
+
     queue_prefix: "%beanstalkd_queue_prefix%"
 
 vich_uploader:
