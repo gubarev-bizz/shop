@@ -229,16 +229,6 @@ class ParserProcess
 
                 $this->downloadFile($image, $path);
 
-//                file_put_contents($path, fopen($image, 'r'));
-
-//                $ch = curl_init($image);
-//                $fp = fopen($path, "wb");
-//                curl_setopt($ch, CURLOPT_FILE, $fp);
-//                curl_setopt($ch, CURLOPT_HEADER, 0);
-//                curl_exec($ch);
-//                curl_close($ch);
-//                fclose($fp);
-
                 $image = new Image();
                 $image->setImageName($fileName);
                 $this->em->persist($image);
@@ -273,31 +263,43 @@ class ParserProcess
     }
 
     /**
+     * @return string[]
+     */
+    private function getUniqueCategoriesTitle()
+    {
+        $result = [];
+        $categories = $this->em->getRepository('AppCoreBundle:Category')->findAll();
+
+        foreach ($categories as $category) {
+            if (!in_array($category->getTitle(), $result)) {
+                $result[] = $category->getTitle();
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * @param array $dataParse
      */
     private function setCategoryImport($dataParse)
     {
+        $categories = $this->getUniqueCategoriesTitle();
+
         foreach ($dataParse as $item) {
             if (count($item) < 2) continue;
 
             if (!isset($item['parentId'])) {
-                $category = $this->em->getRepository('AppCoreBundle:Category')->findOneBy([
-                    'title' => $item['title']
-                ]);
-
-                if (!$category) {
+                if (!in_array($item['title'], $categories)) {
                     $category = new Category();
                     $category->setTitle($item['title']);
                     $category->setImportId($item['categoryId']);
                     $this->em->persist($category);
                     $this->em->flush($category);
+                    $categories[] = $item['title'];
                 }
             } else {
-                $category = $this->em->getRepository('AppCoreBundle:Category')->findOneBy([
-                    'title' => $item['title']
-                ]);
-
-                if (!$category) {
+                if (!in_array($item['title'], $categories)) {
                     $category = new Category();
                     $category->setTitle($item['title']);
                     $category->setImportId($item['categoryId']);
@@ -312,22 +314,32 @@ class ParserProcess
 
                     $this->em->persist($category);
                     $this->em->flush($category);
+                    $categories[] = $item['title'];
                 }
             }
         }
     }
 
+    /**
+     * @param array $dataParse
+     */
     private function setManufacturerImport($dataParse)
     {
-        foreach ($dataParse as $item) {
-            $manufacturer = $this->em->getRepository('AppCoreBundle:Manufacturer')->findOneBy([
-                'title' => $item
-            ]);
+        $manufacturies = $this->em->getRepository('AppCoreBundle:Manufacturer')->findAll();
+        $manufacturiesArray = [];
 
-            if (!$manufacturer) {
+        foreach ($manufacturies as $manufactury) {
+            if (!in_array($manufactury->getTitle(), $manufacturiesArray)) {
+                $manufacturiesArray[] = $manufactury->getTitle();
+            }
+        }
+
+        foreach ($dataParse as $item) {
+            if (!in_array($item, $manufacturiesArray)) {
                 $manufacturer = new Manufacturer();
                 $manufacturer->setTitle($item);
                 $this->em->persist($manufacturer);
+                $manufacturiesArray[] = $item;
             }
         }
 
