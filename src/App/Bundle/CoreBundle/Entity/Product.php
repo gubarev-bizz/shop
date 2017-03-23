@@ -81,23 +81,34 @@ class Product
     private $currency;
 
     /**
+     * @var User
+     *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="products")
      * @SymfonyConstraints\NotBlank()
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection")
      */
     protected $user;
 
     /**
+     * @var Category
+     *
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
      * @SymfonyConstraints\NotBlank()
+     * @Serializer\Expose
      */
     protected $category;
 
     /**
+     * @var Review[]|ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Review", mappedBy="product")
      */
     protected $reviews;
 
     /**
+     * @var Manufacturer
+     *
      * @ORM\ManyToOne(targetEntity="Manufacturer", inversedBy="products")
      */
     protected $manufacturer;
