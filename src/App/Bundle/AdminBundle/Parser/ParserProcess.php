@@ -167,18 +167,12 @@ class ParserProcess
      */
     private function setProductsImport(array $dataParse, Import $import)
     {
+        $products = $this->getUniqueProductsTitle();
+
         foreach ($dataParse as $item) {
             if (count($item) < 9) continue;
 
-            $product = $this->em->getRepository('AppCoreBundle:Product')->findOneBy([
-                'title' => $item['title']
-            ]);
-
-            if (!$product) {
-
-                $category = $this->em->getRepository('AppCoreBundle:Category')->findOneBy([
-                    'importId' => $item['categoryId']
-                ]);
+            if (!in_array($item['title'], $products)) {
                 $manufacturer = $this->em->getRepository('AppCoreBundle:Manufacturer')->findOneBy([
                     'title' => $item['production']
                 ]);
@@ -201,66 +195,55 @@ class ParserProcess
                     $product->setCountry($country);
                 }
 
-                if ($category) {
+                if (in_array($item['categoryId'], $this->getUniqueCategoriesImportId())) {
+                    $category = $this->em->getRepository('AppCoreBundle:Category')->findOneBy([
+                        'importId' => $item['categoryId']
+                    ]);
                     $product->setCategory($category);
                 }
 
                 $product->setUser($import->getUser());
                 $this->em->persist($product);
-                $this->em->flush($product);
+
+                $products[] = $item['title'];
             }
         }
 
+        $this->em->flush();
     }
 
     /**
-     * @param string $images
-     * @return array|bool
+     * @return array
      */
-    private function processSetImage($images)
+    private function getUniqueProductsTitle()
     {
-        if (trim($images) != '') {
-            $imagesData = explode(',', $images);
-            $imagesEntity = [];
+        $result = [];
+        $categories = $this->em->getRepository('AppCoreBundle:Product')->findAll();
 
-            foreach ($imagesData as $image) {
-                preg_match_all("/\.gif|jpg|jpeg|png/", $image, $extension);
-                $fileName = md5(uniqid()) . '.' . $extension[0][0];
-                $path = $this->uploadDir . '/' . $fileName;
-
-                $this->downloadFile($image, $path);
-
-                $image = new Image();
-                $image->setImageName($fileName);
-                $this->em->persist($image);
-                $this->em->flush();
-                $imagesEntity[] = $image;
+        foreach ($categories as $category) {
+            if (!in_array($category->getTitle(), $result)) {
+                $result[] = $category->getTitle();
             }
-
-            return $imagesEntity;
         }
 
-        return false;
+        return $result;
     }
 
-    private function downloadFile($url, $path)
+    /**
+     * @return array
+     */
+    private function getUniqueCategoriesImportId()
     {
-        $newfname = $path;
-        $file = fopen ($url, 'rb');
-        if ($file) {
-            $newf = fopen ($newfname, 'wb');
-            if ($newf) {
-                while(!feof($file)) {
-                    fwrite($newf, fread($file, 1024 * 8), 1024 * 8);
-                }
+        $result = [];
+        $categories = $this->em->getRepository('AppCoreBundle:Category')->findAll();
+
+        foreach ($categories as $category) {
+            if (!in_array($category->getImportId(), $result)) {
+                $result[] = $category->getImportId();
             }
         }
-        if ($file) {
-            fclose($file);
-        }
-        if ($newf) {
-            fclose($newf);
-        }
+
+        return $result;
     }
 
     /**
