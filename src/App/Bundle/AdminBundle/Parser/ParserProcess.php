@@ -10,34 +10,43 @@ use App\Bundle\CoreBundle\Entity\Product;
 use App\Bundle\ShopBundle\Entity\Import;
 use Doctrine\ORM\EntityManager;
 use Liuggio\ExcelBundle\Factory;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Vich\UploaderBundle\Handler\DownloadHandler;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class ParserProcess
 {
+    /**
+     * @var EntityManager
+     */
     private $em;
 
+    /**
+     * @var Factory
+     */
     private $PHPExcel;
 
+    /**
+     * @var TokenStorage
+     */
     private $token;
 
+    /**
+     * @var string
+     */
     private $uploadDir;
 
     /**
      * @param EntityManager $entityManager
      * @param Factory $factoryExcel
-     * @param TokenStorageInterface $tokenStorage
+     * @param TokenStorage $tokenStorage
      * @param string $uploadDir
      */
     public function __construct
     (
         EntityManager $entityManager,
         Factory $factoryExcel,
-        TokenStorageInterface $tokenStorage,
+        TokenStorage $tokenStorage,
         $uploadDir
-    )
-    {
+    ) {
         $this->em = $entityManager;
         $this->PHPExcel = $factoryExcel;
         $this->token = $tokenStorage;
