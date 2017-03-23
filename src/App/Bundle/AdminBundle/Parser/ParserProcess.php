@@ -357,15 +357,21 @@ class ParserProcess
 
     private function setCountryImport($dataParse)
     {
-        foreach ($dataParse as $item) {
-            $country = $this->em->getRepository('AppCoreBundle:Country')->findOneBy([
-                'title' => $item
-            ]);
+        $countries = $this->em->getRepository('AppCoreBundle:Country')->findAll();
+        $countriesArray = [];
 
-            if (!$country) {
+        foreach ($countries as $country) {
+            if (!in_array($country->getTitle(), $countriesArray)) {
+                $countriesArray[] = $country->getTitle();
+            }
+        }
+
+        foreach ($dataParse as $item) {
+            if (!in_array($item, $countriesArray)) {
                 $country = new Country();
                 $country->setTitle($item);
                 $this->em->persist($country);
+                $countriesArray[] = $item;
             }
         }
 
