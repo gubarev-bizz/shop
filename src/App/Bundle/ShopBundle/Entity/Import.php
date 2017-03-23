@@ -4,6 +4,7 @@ namespace App\Bundle\ShopBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
+use App\Bundle\CoreBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 
@@ -46,6 +47,33 @@ class Import
      * @SymfonyConstraints\Length(max="255")
      */
     private $status;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="App\Bundle\CoreBundle\Entity\User", inversedBy="imports")
+     */
+    protected $user;
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     * @return $this
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+        $user->addImport($this);
+
+        return $this;
+    }
 
     /**
      * @return string

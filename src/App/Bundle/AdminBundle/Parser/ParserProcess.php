@@ -10,7 +10,6 @@ use App\Bundle\CoreBundle\Entity\Product;
 use App\Bundle\ShopBundle\Entity\Import;
 use Doctrine\ORM\EntityManager;
 use Liuggio\ExcelBundle\Factory;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class ParserProcess
 {
@@ -25,11 +24,6 @@ class ParserProcess
     private $PHPExcel;
 
     /**
-     * @var TokenStorage
-     */
-    private $token;
-
-    /**
      * @var string
      */
     private $uploadDir;
@@ -37,19 +31,16 @@ class ParserProcess
     /**
      * @param EntityManager $entityManager
      * @param Factory $factoryExcel
-     * @param TokenStorage $tokenStorage
      * @param string $uploadDir
      */
     public function __construct
     (
         EntityManager $entityManager,
         Factory $factoryExcel,
-        TokenStorage $tokenStorage,
         $uploadDir
     ) {
         $this->em = $entityManager;
         $this->PHPExcel = $factoryExcel;
-        $this->token = $tokenStorage;
         $this->uploadDir = $uploadDir;
     }
 
@@ -164,7 +155,7 @@ class ParserProcess
         $this->setCategoryImport($dataParse['categories']);
         $this->setManufacturerImport($dataParse['production']);
         $this->setCountryImport($dataParse['country']);
-        $this->setProductsImport($dataParse['products']);
+        $this->setProductsImport($dataParse['products'], $import);
 
         $import->setStatus(Import::STATUS_INCOMPLETE);
         $this->em->flush($import);
@@ -172,8 +163,9 @@ class ParserProcess
 
     /**
      * @param array $dataParse
+     * @param Import $import
      */
-    private function setProductsImport($dataParse)
+    private function setProductsImport(array $dataParse, Import $import)
     {
         foreach ($dataParse as $item) {
             if (count($item) < 9) continue;
@@ -213,7 +205,7 @@ class ParserProcess
                     $product->setCategory($category);
                 }
 
-//                $product->setUser($this->token->getToken()->getUser());
+                $product->setUser($import->getUser());
                 $this->em->persist($product);
                 $this->em->flush($product);
             }

@@ -83,7 +83,6 @@ services:
         arguments:
             - '@doctrine.orm.default_entity_manager'
             - '@phpexcel'
-            - '@security.token_storage'
             - '%product_image_dir%'
 
     app_admin.parser.file:
