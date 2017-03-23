@@ -152,9 +152,9 @@ class ParserProcess
             }
         }
 
-        $this->setCategoryImport($dataParse['categories']);
-        $this->setManufacturerImport($dataParse['production']);
-        $this->setCountryImport($dataParse['country']);
+        $this->setCategoryImport($dataParse['categories'], $import);
+        $this->setManufacturerImport($dataParse['production'], $import);
+        $this->setCountryImport($dataParse['country'], $import);
         $this->setProductsImport($dataParse['products'], $import);
 
         $import->setStatus(Import::STATUS_INCOMPLETE);
@@ -168,6 +168,8 @@ class ParserProcess
     private function setProductsImport(array $dataParse, Import $import)
     {
         $products = $this->getUniqueProductsTitle();
+        $import->setStatus(Import::STATUS_PRODUCT_PROGRESS);
+        $this->em->flush($import);
 
         foreach ($dataParse as $item) {
             if (count($item) < 9) continue;
@@ -265,10 +267,13 @@ class ParserProcess
 
     /**
      * @param array $dataParse
+     * @param Import $import
      */
-    private function setCategoryImport($dataParse)
+    private function setCategoryImport(array $dataParse, Import $import)
     {
         $categories = $this->getUniqueCategoriesTitle();
+        $import->setStatus(Import::STATUS_CATEGORY_PROGRESS);
+        $this->em->flush($import);
 
         foreach ($dataParse as $item) {
             if (count($item) < 2) continue;
@@ -306,11 +311,14 @@ class ParserProcess
 
     /**
      * @param array $dataParse
+     * @param Import $import
      */
-    private function setManufacturerImport($dataParse)
+    private function setManufacturerImport(array $dataParse, Import $import)
     {
         $manufacturies = $this->em->getRepository('AppCoreBundle:Manufacturer')->findAll();
         $manufacturiesArray = [];
+        $import->setStatus(Import::STATUS_MANUFACTURER_PROGRESS);
+        $this->em->flush($import);
 
         foreach ($manufacturies as $manufactury) {
             if (!in_array($manufactury->getTitle(), $manufacturiesArray)) {
@@ -330,10 +338,16 @@ class ParserProcess
         $this->em->flush();
     }
 
-    private function setCountryImport($dataParse)
+    /**
+     * @param array $dataParse
+     * @param Import $import
+     */
+    private function setCountryImport(array $dataParse, Import $import)
     {
         $countries = $this->em->getRepository('AppCoreBundle:Country')->findAll();
         $countriesArray = [];
+        $import->setStatus(Import::STATUS_COUNTRY_PROGRESS);
+        $this->em->flush($import);
 
         foreach ($countries as $country) {
             if (!in_array($country->getTitle(), $countriesArray)) {
