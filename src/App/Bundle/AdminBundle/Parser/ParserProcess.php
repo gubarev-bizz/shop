@@ -174,7 +174,7 @@ class ParserProcess
         foreach ($dataParse as $item) {
             if (count($item) < 9) continue;
 
-            if (!in_array($item['title'], $products)) {
+            if (!in_array($item['title'], $products) && isset($item['sku'])) {
                 $manufacturer = $this->em->getRepository('AppCoreBundle:Manufacturer')->findOneBy([
                     'title' => $item['production']
                 ]);
