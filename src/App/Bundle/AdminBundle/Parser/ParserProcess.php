@@ -217,11 +217,10 @@ class ParserProcess
 
                     $product->setUser($import->getUser());
                     $this->em->persist($product);
+                    $this->em->flush($product);
                 }
             }
         }
-
-        $this->em->flush();
     }
 
     /**
