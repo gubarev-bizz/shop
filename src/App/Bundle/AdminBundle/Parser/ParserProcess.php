@@ -167,7 +167,6 @@ class ParserProcess
      */
     private function setProductsImport(array $dataParse, Import $import)
     {
-        $products = $this->getUniqueProductsTitle();
         $import->setStatus(Import::STATUS_PRODUCT_PROGRESS);
         $this->em->flush($import);
         $productRepository = $this->em->getRepository('AppCoreBundle:Product');
@@ -182,13 +181,6 @@ class ParserProcess
                 ]);
 
                 if (!$product) {
-                    $manufacturer = $this->em->getRepository('AppCoreBundle:Manufacturer')->findOneBy([
-                        'title' => $item['production']
-                    ]);
-                    $country = $this->em->getRepository('AppCoreBundle:Country')->findOneBy([
-                        'title' => $item['country']
-                    ]);
-
                     $product = new Product();
                     $product->setCode($item['sku']);
                     $product->setTitle($item['title']);
@@ -196,12 +188,24 @@ class ParserProcess
                     $product->setCurrency($item['currency']);
                     $product->setPrice($item['price']);
 
-                    if ($manufacturer) {
-                        $product->setManufacturer($manufacturer);
+                    if (isset($item['production'])) {
+                        $manufacturer = $this->em->getRepository('AppCoreBundle:Manufacturer')->findOneBy([
+                            'title' => $item['production']
+                        ]);
+
+                        if ($manufacturer) {
+                            $product->setManufacturer($manufacturer);
+                        }
                     }
 
-                    if ($country) {
-                        $product->setCountry($country);
+                    if (isset($item['country'])) {
+                        $country = $this->em->getRepository('AppCoreBundle:Country')->findOneBy([
+                            'title' => $item['country']
+                        ]);
+
+                        if ($country) {
+                            $product->setCountry($country);
+                        }
                     }
 
                     if (in_array($item['categoryId'], $this->getUniqueCategoriesImportId())) {
@@ -213,8 +217,6 @@ class ParserProcess
 
                     $product->setUser($import->getUser());
                     $this->em->persist($product);
-
-                    $products[$item['sku']][] = $item['title'];
                 }
             }
         }
