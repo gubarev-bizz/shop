@@ -170,44 +170,52 @@ class ParserProcess
         $products = $this->getUniqueProductsTitle();
         $import->setStatus(Import::STATUS_PRODUCT_PROGRESS);
         $this->em->flush($import);
+        $productRepository = $this->em->getRepository('AppCoreBundle:Product');
 
         foreach ($dataParse as $item) {
             if (count($item) < 9) continue;
 
-            if (!in_array($item['title'], $products) && isset($item['sku'])) {
-                $manufacturer = $this->em->getRepository('AppCoreBundle:Manufacturer')->findOneBy([
-                    'title' => $item['production']
-                ]);
-                $country = $this->em->getRepository('AppCoreBundle:Country')->findOneBy([
-                    'title' => $item['country']
+            if (isset($item['sku']) && $item['sku'] != '' && $item['sku'] !== null) {
+                $product = $productRepository->findOneBy([
+                    'code' => $item['sku'],
+                    'title' => $item['title']
                 ]);
 
-                $product = new Product();
-                $product->setCode($item['sku']);
-                $product->setTitle($item['title']);
-                $product->setContent($item['description']);
-                $product->setCurrency($item['currency']);
-                $product->setPrice($item['price']);
-
-                if ($manufacturer) {
-                    $product->setManufacturer($manufacturer);
-                }
-
-                if ($country) {
-                    $product->setCountry($country);
-                }
-
-                if (in_array($item['categoryId'], $this->getUniqueCategoriesImportId())) {
-                    $category = $this->em->getRepository('AppCoreBundle:Category')->findOneBy([
-                        'importId' => $item['categoryId']
+                if (!$product) {
+                    $manufacturer = $this->em->getRepository('AppCoreBundle:Manufacturer')->findOneBy([
+                        'title' => $item['production']
                     ]);
-                    $product->setCategory($category);
+                    $country = $this->em->getRepository('AppCoreBundle:Country')->findOneBy([
+                        'title' => $item['country']
+                    ]);
+
+                    $product = new Product();
+                    $product->setCode($item['sku']);
+                    $product->setTitle($item['title']);
+                    $product->setContent($item['description']);
+                    $product->setCurrency($item['currency']);
+                    $product->setPrice($item['price']);
+
+                    if ($manufacturer) {
+                        $product->setManufacturer($manufacturer);
+                    }
+
+                    if ($country) {
+                        $product->setCountry($country);
+                    }
+
+                    if (in_array($item['categoryId'], $this->getUniqueCategoriesImportId())) {
+                        $category = $this->em->getRepository('AppCoreBundle:Category')->findOneBy([
+                            'importId' => $item['categoryId']
+                        ]);
+                        $product->setCategory($category);
+                    }
+
+                    $product->setUser($import->getUser());
+                    $this->em->persist($product);
+
+                    $products[$item['sku']][] = $item['title'];
                 }
-
-                $product->setUser($import->getUser());
-                $this->em->persist($product);
-
-                $products[] = $item['title'];
             }
         }
 
@@ -220,11 +228,11 @@ class ParserProcess
     private function getUniqueProductsTitle()
     {
         $result = [];
-        $categories = $this->em->getRepository('AppCoreBundle:Product')->findAll();
+        $products = $this->em->getRepository('AppCoreBundle:Product')->findAll();
 
-        foreach ($categories as $category) {
-            if (!in_array($category->getTitle(), $result)) {
-                $result[] = $category->getTitle();
+        foreach ($products as $product) {
+            if (!in_array($product->getTitle(), $result)) {
+                $result[$product->getCode()][] = $product->getTitle();
             }
         }
 
