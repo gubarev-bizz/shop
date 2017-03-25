@@ -19,6 +19,7 @@ class Import
     const STATUS_INITIAL = 'initial';
     const STATUS_READY = 'ready';
     const STATUS_ERROR = 'error';
+    const STATUS_PARSE_PROGRESS = 'parse_progress';
     const STATUS_CATEGORY_PROGRESS = 'category_progress';
     const STATUS_COUNTRY_PROGRESS = 'country_progress';
     const STATUS_PRODUCT_PROGRESS = 'product_progress';

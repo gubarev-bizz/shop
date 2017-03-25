@@ -56,7 +56,7 @@ class ParserProcess
             return;
         }
 
-        $import->setStatus(Import::STATUS_READY);
+        $import->setStatus(Import::STATUS_PARSE_PROGRESS);
         $this->em->flush($import);
 
         /** @var \PHPExcel $phpExcelObject */

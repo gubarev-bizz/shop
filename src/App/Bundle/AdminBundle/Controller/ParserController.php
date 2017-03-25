@@ -31,7 +31,7 @@ class ParserController extends Controller
             $import->setFileName($tmpFile->getClientOriginalName());
             $import->setPath($filePath);
             $import->setUser($this->getUser());
-            $import->setStatus(Import::STATUS_INITIAL);
+            $import->setStatus(Import::STATUS_READY);
             $em->persist($import);
             $em->flush($import);
 
