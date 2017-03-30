@@ -162,6 +162,10 @@ class ParserProcess
                             if ($column == 'Y') {
                                 $dataParse['products'][$rowIndex]['weightTowbar'] = $value;
                             }
+
+                            if ($column == 'Z') {
+                                $dataParse['products'][$rowIndex]['numberContacts'] = $value;
+                            }
                         }
                     }
                 }
@@ -254,6 +258,17 @@ class ParserProcess
                         ]);
                         $product->setCategory($category);
                     }
+
+                    $product->setBallType($item['ballType']);
+                    $product->setSystemVoltage($item['systemVoltage']);
+                    $product->setPermissibleCurrentValues($item['permissibleCurrentValues']);
+                    $product->setVerticalLoad($item['verticalLoad']);
+                    $product->setTractionLoad($item['tractionLoad']);
+                    $product->setRemovingBumper($item['removingBumper']);
+                    $product->setBumperCropping($item['bumperCropping']);
+                    $product->setNeedHarmonizeModule($item['needHarmonizeModule']);
+                    $product->setWeightTowbar($item['weightTowbar']);
+                    $product->setNumberContacts($item['numberContacts']);
 
                     $product->setUser($import->getUser());
                     $this->em->persist($product);
