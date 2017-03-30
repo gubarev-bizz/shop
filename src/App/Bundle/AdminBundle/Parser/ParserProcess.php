@@ -122,6 +122,46 @@ class ParserProcess
                                     $dataParse['production'][$rowIndex] = $cell->getValue();
                                 }
                             }
+
+                            $column = $cell->getColumn();
+                            $value = $cell->getValue();
+
+                            // Attributes
+                            if ($column == 'Q') {
+                                $dataParse['products'][$rowIndex]['ballType'] = $value;
+                            }
+
+                            if ($column == 'R') {
+                                $dataParse['products'][$rowIndex]['systemVoltage'] = $value;
+                            }
+
+                            if ($column == 'S') {
+                                $dataParse['products'][$rowIndex]['permissibleCurrentValues'] = $value;
+                            }
+
+                            if ($column == 'T') {
+                                $dataParse['products'][$rowIndex]['verticalLoad'] = $value;
+                            }
+
+                            if ($column == 'U') {
+                                $dataParse['products'][$rowIndex]['tractionLoad'] = $value;
+                            }
+
+                            if ($column == 'V') {
+                                $dataParse['products'][$rowIndex]['removingBumper'] = $value;
+                            }
+
+                            if ($column == 'W') {
+                                $dataParse['products'][$rowIndex]['bumperCropping'] = $value;
+                            }
+
+                            if ($column == 'X') {
+                                $dataParse['products'][$rowIndex]['needHarmonizeModule'] = $value;
+                            }
+
+                            if ($column == 'Y') {
+                                $dataParse['products'][$rowIndex]['weightTowbar'] = $value;
+                            }
                         }
                     }
                 }

@@ -4,6 +4,7 @@
       <w>nullable</w>
       <w>paginator</w>
       <w>symfony</w>
+      <w>towbar</w>
     </words>
   </dictionary>
 </component>
