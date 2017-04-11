@@ -4,6 +4,10 @@
     {{ category.title }}
 {% endblock %}
 
+{% block seo %}
+    {{ seo_render(category.seoDescription, category.seoTags, category.title, app.request) }}
+{% endblock %}
+
 {% block content %}
 
     {% if entities|length %}

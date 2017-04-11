@@ -1,8 +1,6 @@
 {% extends '@AppCore/Layouts/layout.html.twig' %}
 
-{% block page_title %}
-    {{ entity.title }}
-{% endblock %}
+{% block page_title %}{{ entity.title }}{% endblock %}
 
 {% block content %}
 
@@ -21,4 +19,8 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block seo %}
+    {{ seo_render(entity.seoDescription, entity.seoTags, entity.title, app.request) }}
 {% endblock %}

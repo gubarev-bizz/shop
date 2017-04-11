@@ -3,6 +3,7 @@
 namespace App\Bundle\CoreBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
+use App\Bundle\CoreBundle\Entity\Traits\SEOEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
 use App\Bundle\ShopBundle\Entity\ItemOrder;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,6 +20,7 @@ class Product
 {
     use IdentifiableEntityTrait;
     use TimestampableEntityTrait;
+    use SEOEntityTrait;
 
     const CURRENCY_USD = 'USD';
     const CURRENCY_UAH = 'UAH';

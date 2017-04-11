@@ -3,6 +3,7 @@
 namespace App\Bundle\CoreBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
+use App\Bundle\CoreBundle\Entity\Traits\SEOEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,6 +19,7 @@ class Category
 {
     use IdentifiableEntityTrait;
     use TimestampableEntityTrait;
+    use SEOEntityTrait;
 
     /**
      * @var string

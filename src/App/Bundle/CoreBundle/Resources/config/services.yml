@@ -44,7 +44,7 @@ services:
         tags:
             - { name: 'visual_craft_mailer.mail_handler', alias: 'change_status_order' }
 
-    app.twig_extension:
+    app_core_bundle.twig_extension.get_image_extension:
         class: App\Bundle\CoreBundle\Twig\GetImageExtension
         public: false
         arguments:
@@ -52,6 +52,17 @@ services:
             - '@liip_imagine.cache.manager'
         tags:
             - { name: twig.extension }
+
+    app_core_bundle.twig_extension.seo_extension:
+        class: App\Bundle\CoreBundle\Twig\Extension\SEOExtension
+        public: false
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: twig.extension }
+
+    app_core_bundle.seo.seo_data_provider:
+        class: App\Bundle\CoreBundle\SEO\SEODataProvider
 
     app_core_bundle.event_listener.product:
         class: App\Bundle\CoreBundle\EventListener\ProductListener

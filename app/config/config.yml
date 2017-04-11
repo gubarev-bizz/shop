@@ -2,7 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: ivory/ivory_ckeditor.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -39,7 +38,6 @@ twig:
         web_dir: "%kernel.root_dir%/../web"
     form_themes:
         - 'bootstrap_3_layout.html.twig'
-        - 'SonataFormatterBundle:Form:formatter.html.twig'
         - 'VichUploaderBundle:Form:fields.html.twig'
         - 'SonataCoreBundle:Form:datepicker.html.twig'
 
@@ -142,60 +140,15 @@ vich_uploader:
             delete_on_update:   true
             delete_on_remove:   true
 
-sonata_admin:
-    templates:
-        layout: AppAdminBundle:Admin:layout.html.twig
-    security:
-        handler: sonata.admin.security.handler.role
-
-sonata_block:
-    default_contexts: [cms]
-    blocks:
-        sonata.admin.block.admin_list:
-            contexts: [admin]
-
-sonata_formatter:
-    ckeditor:
-        templates:
-            browser: 'SonataFormatterBundle:Ckeditor:browser.html.twig'
-            upload: 'SonataFormatterBundle:Ckeditor:upload.html.twig'
-    formatters:
-        markdown:
-            service: sonata.formatter.text.markdown
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-        #        - sonata.media.formatter.twig #keep this commented unless you are using media bundle.
-
-        text:
-            service: sonata.formatter.text.text
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-        #        - sonata.media.formatter.twig
-
-        rawhtml:
-            service: sonata.formatter.text.raw
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-        #        - sonata.media.formatter.twig
-
-        richhtml:
-            service: sonata.formatter.text.raw
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-        #        - sonata.media.formatter.twig
-
-        twig:
-            service: sonata.formatter.text.twigengine
-            extensions: [] # Twig formatter cannot have extensions
-
 liip_imagine:
     resolvers:
         default:
             web_path: ~
+    loaders:
+        default:
+            filesystem:
+                data_root:
+                   - "%kernel.root_dir%/../web"
     filter_sets:
         cache: ~
         news_sidebar:
@@ -221,3 +174,41 @@ liip_imagine:
                 thumbnail: { size: [408, 180], mode: outbound }
                 background: { size: [408, 180], position: center, color: '#fff' }
                 crop: { size: [408, 180] }
+
+sonata_admin:
+    templates:
+        layout: AppAdminBundle:Admin:layout.html.twig
+    security:
+        handler: sonata.admin.security.handler.role
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+
+stfalcon_tinymce:
+    tinymce_jquery: true
+    theme:
+        # Simple theme: same as default theme
+        simple: ~
+        # Advanced theme with almost all enabled plugins
+        advanced:
+             plugins:
+                 - "advlist autolink lists link image charmap print preview hr anchor pagebreak"
+                 - "searchreplace wordcount visualblocks visualchars code fullscreen"
+                 - "insertdatetime media nonbreaking save table contextmenu directionality"
+                 - "emoticons template paste textcolor"
+             toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+             toolbar2: "print preview media | forecolor backcolor emoticons | stfalcon | example"
+             image_advtab: true
+             templates:
+                 - {title: 'Test template 1', content: 'Test 1'}
+                 - {title: 'Test template 2', content: 'Test 2'}
+        # BBCode tag compatible theme (see http://www.bbcode.org/reference.php)
+        bbcode:
+             plugins: ["bbcode, code, link, preview"]
+             menubar: false
+             toolbar1: "bold,italic,underline,undo,redo,link,unlink,removeformat,cleanup,code,preview"
+
+white_october_breadcrumbs: ~

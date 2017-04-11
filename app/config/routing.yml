@@ -21,6 +21,7 @@ _sonata_admin:
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
+    options: { i18n: false }
 
 login_check:
     path: /login_check
