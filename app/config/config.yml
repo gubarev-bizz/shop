@@ -2,7 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: ivory/ivory_ckeditor.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -188,41 +187,3 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts: [admin]
-
-sonata_formatter:
-    ckeditor:
-        templates:
-            browser: 'SonataFormatterBundle:Ckeditor:browser.html.twig'
-            upload: 'SonataFormatterBundle:Ckeditor:upload.html.twig'
-    formatters:
-        markdown:
-            service: sonata.formatter.text.markdown
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-        #        - sonata.media.formatter.twig #keep this commented unless you are using media bundle.
-
-        text:
-            service: sonata.formatter.text.text
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-        #        - sonata.media.formatter.twig
-
-        rawhtml:
-            service: sonata.formatter.text.raw
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-        #        - sonata.media.formatter.twig
-
-        richhtml:
-            service: sonata.formatter.text.raw
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-        #        - sonata.media.formatter.twig
-
-        twig:
-            service: sonata.formatter.text.twigengine
-            extensions: [] # Twig formatter cannot have extensions
