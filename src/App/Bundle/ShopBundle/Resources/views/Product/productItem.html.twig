@@ -3,7 +3,7 @@
 {% block page_title %}{{ product.title }}{% endblock %}
 
 {% block seo %}
-    {{ seo_render(product.seoDescription, product.seoTags, product.title, app.request.uri) }}
+    {{ seo_render(product.seoDescription, product.seoTags, product.title, app.request) }}
 {% endblock %}
 
 {% block content %}

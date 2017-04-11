@@ -43,7 +43,7 @@ class CategoryAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Basic information')
+            ->tab('Basic information')
                 ->add('title', 'text', ['label' => 'Title'])
                 ->add('parent', 'sonata_type_model', [
                     'required' => false,
@@ -63,6 +63,15 @@ class CategoryAdmin extends AbstractAdmin
                 ))
                 ->add('mainPage')
                 ->add('active')
+            ->end()
+            ->end()
+            ->tab('SEO')
+                ->add('seoDescription', 'textarea', [
+                    'required' => false,
+                ])
+                ->add('seoTags', 'textarea', [
+                    'required' => false,
+                ])
             ->end()
         ;
     }

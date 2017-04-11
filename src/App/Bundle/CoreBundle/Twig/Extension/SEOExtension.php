@@ -4,6 +4,7 @@ namespace App\Bundle\CoreBundle\Twig\Extension;
 
 use Symfony\Bridge\Twig\TwigEngine;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class SEOExtension extends \Twig_Extension
 {
@@ -56,11 +57,11 @@ class SEOExtension extends \Twig_Extension
      * @param string|null $seoDescription
      * @param string|null $seoTags
      * @param string|null $title
-     * @param string|null $url
+     * @param Request $request
      *
      * @return string
      */
-    public function seoRender($seoDescription = null, $seoTags = null, $title = null, $url = null)
+    public function seoRender($seoDescription = null, $seoTags = null, $title = null, Request $request)
     {
 
         return $this->getTemplating()->render('AppCoreBundle:SEO:index.html.twig', [
@@ -69,7 +70,7 @@ class SEOExtension extends \Twig_Extension
                 'tags' => $seoTags,
                 'siteName' => $this->getParameter('site_name'),
                 'title' => $title,
-                'url' => $url,
+                'request' => $request,
             ],
         ]);
     }

@@ -546,6 +546,11 @@ p.price{
     opacity: 1;
     overflow: visible;
 }
+
+.product-block > .image {
+    min-height: 200px;
+}
+
 .product-block:hover .small-price {
     height: 0px;
     opacity: 0;

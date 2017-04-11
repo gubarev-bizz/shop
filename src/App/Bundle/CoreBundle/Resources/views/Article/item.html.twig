@@ -22,5 +22,5 @@
 {% endblock %}
 
 {% block seo %}
-    {{ seo_render(entity.seoDescription, entity.seoTags, entity.title, app.request.uri) }}
+    {{ seo_render(entity.seoDescription, entity.seoTags, entity.title, app.request) }}
 {% endblock %}
