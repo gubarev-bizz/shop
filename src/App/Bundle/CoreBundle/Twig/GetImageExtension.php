@@ -2,9 +2,15 @@
 
 namespace App\Bundle\CoreBundle\Twig;
 
+use Liip\ImagineBundle\Controller\ImagineController;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use Symfony\Component\HttpFoundation\Request;
 
 class GetImageExtension extends \Twig_Extension
 {
+    /**
+     * @var string
+     */
     private $baseWebDir;
 
     /**
@@ -38,7 +44,7 @@ class GetImageExtension extends \Twig_Extension
             return null;
         }
 
-        return '/images/' . $categoryImage . '/' . $imageName;
+        return $path;
     }
 
     /**

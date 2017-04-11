@@ -11,7 +11,7 @@
                     {% if result.code is defined %}
                         {% for image in result.images %}
                             {% if loop.index == 1 %}
-                                <img src="{{ getImage(result.imageName, 'products') | imagine_filter('search_item') }}" />
+                                <img src="{{ getImage(image.imageName, 'products', 'search_item') }}" />
                             {% endif %}
                         {% endfor %}
                         <div>

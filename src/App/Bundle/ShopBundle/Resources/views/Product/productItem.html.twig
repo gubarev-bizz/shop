@@ -39,7 +39,7 @@
                 {% if product.category.title is defined %}
                 <tr>
                     <th>Бренд</th>
-                    <th>{{ product.category.title }}</th>
+                    <th>{{ product.manufacturer }}</th>
                 </tr>
                 {% endif %}
                 <tr>
@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                     <th>Цена</th>
-                    <th>{{ product.price }}</th>
+                    <th>{{ product.price|currency }}</th>
                 </tr>
                 </tbody>
             </table>

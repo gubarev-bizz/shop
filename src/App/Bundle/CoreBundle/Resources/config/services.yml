@@ -47,7 +47,9 @@ services:
     app.twig_extension:
         class: App\Bundle\CoreBundle\Twig\GetImageExtension
         public: false
-        arguments: [ '%base_web_dir%' ]
+        arguments:
+            - '%base_web_dir%'
+            - '@liip_imagine.cache.manager'
         tags:
             - { name: twig.extension }
 
