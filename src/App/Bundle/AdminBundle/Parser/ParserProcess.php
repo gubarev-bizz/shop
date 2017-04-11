@@ -10,37 +10,37 @@ use App\Bundle\CoreBundle\Entity\Product;
 use App\Bundle\ShopBundle\Entity\Import;
 use Doctrine\ORM\EntityManager;
 use Liuggio\ExcelBundle\Factory;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Vich\UploaderBundle\Handler\DownloadHandler;
 
 class ParserProcess
 {
+    /**
+     * @var EntityManager
+     */
     private $em;
 
+    /**
+     * @var Factory
+     */
     private $PHPExcel;
 
-    private $token;
-
+    /**
+     * @var string
+     */
     private $uploadDir;
 
     /**
      * @param EntityManager $entityManager
      * @param Factory $factoryExcel
-     * @param TokenStorageInterface $tokenStorage
      * @param string $uploadDir
      */
     public function __construct
     (
         EntityManager $entityManager,
         Factory $factoryExcel,
-        TokenStorageInterface $tokenStorage,
         $uploadDir
-    )
-    {
+    ) {
         $this->em = $entityManager;
         $this->PHPExcel = $factoryExcel;
-        $this->token = $tokenStorage;
         $this->uploadDir = $uploadDir;
     }
 
@@ -56,7 +56,7 @@ class ParserProcess
             return;
         }
 
-        $import->setStatus(Import::STATUS_READY);
+        $import->setStatus(Import::STATUS_PARSE_PROGRESS);
         $this->em->flush($import);
 
         /** @var \PHPExcel $phpExcelObject */
@@ -122,6 +122,50 @@ class ParserProcess
                                     $dataParse['production'][$rowIndex] = $cell->getValue();
                                 }
                             }
+
+                            $column = $cell->getColumn();
+                            $value = $cell->getValue();
+
+                            // Attributes
+                            if ($column == 'Q') {
+                                $dataParse['products'][$rowIndex]['ballType'] = $value;
+                            }
+
+                            if ($column == 'R') {
+                                $dataParse['products'][$rowIndex]['systemVoltage'] = $value;
+                            }
+
+                            if ($column == 'S') {
+                                $dataParse['products'][$rowIndex]['permissibleCurrentValues'] = $value;
+                            }
+
+                            if ($column == 'T') {
+                                $dataParse['products'][$rowIndex]['verticalLoad'] = $value;
+                            }
+
+                            if ($column == 'U') {
+                                $dataParse['products'][$rowIndex]['tractionLoad'] = $value;
+                            }
+
+                            if ($column == 'V') {
+                                $dataParse['products'][$rowIndex]['removingBumper'] = $value;
+                            }
+
+                            if ($column == 'W') {
+                                $dataParse['products'][$rowIndex]['bumperCropping'] = $value;
+                            }
+
+                            if ($column == 'X') {
+                                $dataParse['products'][$rowIndex]['needHarmonizeModule'] = $value;
+                            }
+
+                            if ($column == 'Y') {
+                                $dataParse['products'][$rowIndex]['weightTowbar'] = $value;
+                            }
+
+                            if ($column == 'Z') {
+                                $dataParse['products'][$rowIndex]['numberContacts'] = $value;
+                            }
                         }
                     }
                 }
@@ -152,10 +196,10 @@ class ParserProcess
             }
         }
 
-        $this->setCategoryImport($dataParse['categories']);
-        $this->setManufacturerImport($dataParse['production']);
-        $this->setCountryImport($dataParse['country']);
-        $this->setProductsImport($dataParse['products']);
+        $this->setCategoryImport($dataParse['categories'], $import);
+        $this->setManufacturerImport($dataParse['production'], $import);
+        $this->setCountryImport($dataParse['country'], $import);
+        $this->setProductsImport($dataParse['products'], $import);
 
         $import->setStatus(Import::STATUS_INCOMPLETE);
         $this->em->flush($import);
@@ -163,141 +207,152 @@ class ParserProcess
 
     /**
      * @param array $dataParse
+     * @param Import $import
      */
-    private function setProductsImport($dataParse)
+    private function setProductsImport(array $dataParse, Import $import)
     {
+        $import->setStatus(Import::STATUS_PRODUCT_PROGRESS);
+        $this->em->flush($import);
+        $productRepository = $this->em->getRepository('AppCoreBundle:Product');
+
         foreach ($dataParse as $item) {
             if (count($item) < 9) continue;
 
-            $product = $this->em->getRepository('AppCoreBundle:Product')->findOneBy([
-                'title' => $item['title']
-            ]);
-
-            if (!$product) {
-
-                $category = $this->em->getRepository('AppCoreBundle:Category')->findOneBy([
-                    'importId' => $item['categoryId']
-                ]);
-                $manufacturer = $this->em->getRepository('AppCoreBundle:Manufacturer')->findOneBy([
-                    'title' => $item['production']
-                ]);
-                $country = $this->em->getRepository('AppCoreBundle:Country')->findOneBy([
-                    'title' => $item['country']
+            if (isset($item['sku']) && $item['sku'] != '' && $item['sku'] !== null) {
+                $product = $productRepository->findOneBy([
+                    'code' => $item['sku'],
+                    'title' => $item['title']
                 ]);
 
-                $product = new Product();
-                $product->setCode($item['sku']);
-                $product->setTitle($item['title']);
-                $product->setContent($item['description']);
-                $product->setCurrency($item['currency']);
-                $product->setPrice($item['price']);
+                if (!$product) {
+                    $product = new Product();
+                    $product->setCode($item['sku']);
+                    $product->setTitle($item['title']);
+                    $product->setContent($item['description']);
+                    $product->setCurrency($item['currency']);
+                    $product->setPrice($item['price']);
 
-                if ($manufacturer) {
-                    $product->setManufacturer($manufacturer);
+                    if (isset($item['production'])) {
+                        $manufacturer = $this->em->getRepository('AppCoreBundle:Manufacturer')->findOneBy([
+                            'title' => $item['production']
+                        ]);
+
+                        if ($manufacturer) {
+                            $product->setManufacturer($manufacturer);
+                        }
+                    }
+
+                    if (isset($item['country'])) {
+                        $country = $this->em->getRepository('AppCoreBundle:Country')->findOneBy([
+                            'title' => $item['country']
+                        ]);
+
+                        if ($country) {
+                            $product->setCountry($country);
+                        }
+                    }
+
+                    if (in_array($item['categoryId'], $this->getUniqueCategoriesImportId())) {
+                        $category = $this->em->getRepository('AppCoreBundle:Category')->findOneBy([
+                            'importId' => $item['categoryId']
+                        ]);
+                        $product->setCategory($category);
+                    }
+
+                    $product->setBallType($item['ballType']);
+                    $product->setSystemVoltage($item['systemVoltage']);
+                    $product->setPermissibleCurrentValues($item['permissibleCurrentValues']);
+                    $product->setVerticalLoad($item['verticalLoad']);
+                    $product->setTractionLoad($item['tractionLoad']);
+                    $product->setRemovingBumper($item['removingBumper']);
+                    $product->setBumperCropping($item['bumperCropping']);
+                    $product->setNeedHarmonizeModule($item['needHarmonizeModule']);
+                    $product->setWeightTowbar($item['weightTowbar']);
+                    $product->setNumberContacts($item['numberContacts']);
+
+                    $product->setUser($import->getUser());
+                    $this->em->persist($product);
+                    $this->em->flush($product);
                 }
-
-                if ($country) {
-                    $product->setCountry($country);
-                }
-
-                if ($category) {
-                    $product->setCategory($category);
-                }
-
-                $product->setUser($this->token->getToken()->getUser());
-                $this->em->persist($product);
-                $this->em->flush($product);
             }
         }
-
     }
 
     /**
-     * @param string $images
-     * @return array|bool
+     * @return array
      */
-    private function processSetImage($images)
+    private function getUniqueProductsTitle()
     {
-        if (trim($images) != '') {
-            $imagesData = explode(',', $images);
-            $imagesEntity = [];
+        $result = [];
+        $products = $this->em->getRepository('AppCoreBundle:Product')->findAll();
 
-            foreach ($imagesData as $image) {
-                preg_match_all("/\.gif|jpg|jpeg|png/", $image, $extension);
-                $fileName = md5(uniqid()) . '.' . $extension[0][0];
-                $path = $this->uploadDir . '/' . $fileName;
-
-                $this->downloadFile($image, $path);
-
-//                file_put_contents($path, fopen($image, 'r'));
-
-//                $ch = curl_init($image);
-//                $fp = fopen($path, "wb");
-//                curl_setopt($ch, CURLOPT_FILE, $fp);
-//                curl_setopt($ch, CURLOPT_HEADER, 0);
-//                curl_exec($ch);
-//                curl_close($ch);
-//                fclose($fp);
-
-                $image = new Image();
-                $image->setImageName($fileName);
-                $this->em->persist($image);
-                $this->em->flush();
-                $imagesEntity[] = $image;
+        foreach ($products as $product) {
+            if (!in_array($product->getTitle(), $result)) {
+                $result[$product->getCode()][] = $product->getTitle();
             }
-
-            return $imagesEntity;
         }
 
-        return false;
+        return $result;
     }
 
-    private function downloadFile($url, $path)
+    /**
+     * @return array
+     */
+    private function getUniqueCategoriesImportId()
     {
-        $newfname = $path;
-        $file = fopen ($url, 'rb');
-        if ($file) {
-            $newf = fopen ($newfname, 'wb');
-            if ($newf) {
-                while(!feof($file)) {
-                    fwrite($newf, fread($file, 1024 * 8), 1024 * 8);
-                }
+        $result = [];
+        $categories = $this->em->getRepository('AppCoreBundle:Category')->findAll();
+
+        foreach ($categories as $category) {
+            if (!in_array($category->getImportId(), $result)) {
+                $result[] = $category->getImportId();
             }
         }
-        if ($file) {
-            fclose($file);
+
+        return $result;
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getUniqueCategoriesTitle()
+    {
+        $result = [];
+        $categories = $this->em->getRepository('AppCoreBundle:Category')->findAll();
+
+        foreach ($categories as $category) {
+            if (!in_array($category->getTitle(), $result)) {
+                $result[] = $category->getTitle();
+            }
         }
-        if ($newf) {
-            fclose($newf);
-        }
+
+        return $result;
     }
 
     /**
      * @param array $dataParse
+     * @param Import $import
      */
-    private function setCategoryImport($dataParse)
+    private function setCategoryImport(array $dataParse, Import $import)
     {
+        $categories = $this->getUniqueCategoriesTitle();
+        $import->setStatus(Import::STATUS_CATEGORY_PROGRESS);
+        $this->em->flush($import);
+
         foreach ($dataParse as $item) {
             if (count($item) < 2) continue;
 
             if (!isset($item['parentId'])) {
-                $category = $this->em->getRepository('AppCoreBundle:Category')->findOneBy([
-                    'title' => $item['title']
-                ]);
-
-                if (!$category) {
+                if (!in_array($item['title'], $categories)) {
                     $category = new Category();
                     $category->setTitle($item['title']);
                     $category->setImportId($item['categoryId']);
                     $this->em->persist($category);
                     $this->em->flush($category);
+                    $categories[] = $item['title'];
                 }
             } else {
-                $category = $this->em->getRepository('AppCoreBundle:Category')->findOneBy([
-                    'title' => $item['title']
-                ]);
-
-                if (!$category) {
+                if (!in_array($item['title'], $categories)) {
                     $category = new Category();
                     $category->setTitle($item['title']);
                     $category->setImportId($item['categoryId']);
@@ -312,39 +367,64 @@ class ParserProcess
 
                     $this->em->persist($category);
                     $this->em->flush($category);
+                    $categories[] = $item['title'];
                 }
             }
         }
     }
 
-    private function setManufacturerImport($dataParse)
+    /**
+     * @param array $dataParse
+     * @param Import $import
+     */
+    private function setManufacturerImport(array $dataParse, Import $import)
     {
-        foreach ($dataParse as $item) {
-            $manufacturer = $this->em->getRepository('AppCoreBundle:Manufacturer')->findOneBy([
-                'title' => $item
-            ]);
+        $manufacturies = $this->em->getRepository('AppCoreBundle:Manufacturer')->findAll();
+        $manufacturiesArray = [];
+        $import->setStatus(Import::STATUS_MANUFACTURER_PROGRESS);
+        $this->em->flush($import);
 
-            if (!$manufacturer) {
+        foreach ($manufacturies as $manufactury) {
+            if (!in_array($manufactury->getTitle(), $manufacturiesArray)) {
+                $manufacturiesArray[] = $manufactury->getTitle();
+            }
+        }
+
+        foreach ($dataParse as $item) {
+            if (!in_array($item, $manufacturiesArray)) {
                 $manufacturer = new Manufacturer();
                 $manufacturer->setTitle($item);
                 $this->em->persist($manufacturer);
+                $manufacturiesArray[] = $item;
             }
         }
 
         $this->em->flush();
     }
 
-    private function setCountryImport($dataParse)
+    /**
+     * @param array $dataParse
+     * @param Import $import
+     */
+    private function setCountryImport(array $dataParse, Import $import)
     {
-        foreach ($dataParse as $item) {
-            $country = $this->em->getRepository('AppCoreBundle:Country')->findOneBy([
-                'title' => $item
-            ]);
+        $countries = $this->em->getRepository('AppCoreBundle:Country')->findAll();
+        $countriesArray = [];
+        $import->setStatus(Import::STATUS_COUNTRY_PROGRESS);
+        $this->em->flush($import);
 
-            if (!$country) {
+        foreach ($countries as $country) {
+            if (!in_array($country->getTitle(), $countriesArray)) {
+                $countriesArray[] = $country->getTitle();
+            }
+        }
+
+        foreach ($dataParse as $item) {
+            if (!in_array($item, $countriesArray)) {
                 $country = new Country();
                 $country->setTitle($item);
                 $this->em->persist($country);
+                $countriesArray[] = $item;
             }
         }
 

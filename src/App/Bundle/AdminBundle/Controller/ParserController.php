@@ -6,10 +6,15 @@ use App\Bundle\AdminBundle\Form\UploadProductType;
 use App\Bundle\ShopBundle\Entity\Import;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use VisualCraft\BeanstalkScheduler\Job;
 
 class ParserController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function parserAction(Request $request)
     {
         $form = $this->createForm(UploadProductType::class);
@@ -25,7 +30,8 @@ class ParserController extends Controller
             $import = new Import();
             $import->setFileName($tmpFile->getClientOriginalName());
             $import->setPath($filePath);
-            $import->setStatus(Import::STATUS_INITIAL);
+            $import->setUser($this->getUser());
+            $import->setStatus(Import::STATUS_READY);
             $em->persist($import);
             $em->flush($import);
 

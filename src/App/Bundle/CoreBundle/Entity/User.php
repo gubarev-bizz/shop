@@ -2,6 +2,7 @@
 
 namespace App\Bundle\CoreBundle\Entity;
 
+use App\Bundle\ShopBundle\Entity\Import;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -93,6 +94,13 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="Product", mappedBy="user")
      */
     protected $products;
+
+    /**
+     * @var Import[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="App\Bundle\ShopBundle\Entity\Import", mappedBy="user")
+     */
+    protected $imports;
 
     /**
      * BaseUser constructor.
@@ -324,5 +332,47 @@ class User implements UserInterface
     public function getFullName()
     {
         return $this->getFirstname() . ' ' . $this->getLastname();
+    }
+
+    /**
+     * @return Import[]
+     */
+    public function getImports()
+    {
+        return $this->imports;
+    }
+
+    /**
+     * @param Import[] $imports
+     * @return $this
+     */
+    public function setImports($imports)
+    {
+        $this->imports = $imports;
+
+        return $this;
+    }
+
+    /**
+     * @param Import $import
+     * @return $this
+     */
+    public function addImport($import)
+    {
+        $this->imports[] = $import;
+
+        return $this;
+    }
+
+    /**
+     * @param Import $import
+     * @return $this
+     */
+    public function removeImports($import)
+    {
+        $this->imports->remove($import);
+        $import->setUser(null);
+
+        return $this;
     }
 }

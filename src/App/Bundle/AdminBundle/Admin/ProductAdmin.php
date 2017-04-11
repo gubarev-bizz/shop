@@ -124,6 +124,14 @@ class ProductAdmin extends AbstractAdmin
                         'label' => 'Тип шара',
                         'required' => false,
                     ])
+                    ->add('weightTowbar', 'text', [
+                        'label' => 'Вес фаркопа',
+                        'required' => false,
+                    ])
+                    ->add('numberContacts', 'text', [
+                        'label' => 'Количество контактов',
+                        'required' => false,
+                    ])
                     ->add('verticalBurdenBall', 'text', [
                         'label' => 'Вертикальная нагрузка на шар',
                         'required' => false,

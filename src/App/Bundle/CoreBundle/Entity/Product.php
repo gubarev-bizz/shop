@@ -84,7 +84,6 @@ class Product
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="products")
-     * @SymfonyConstraints\NotBlank()
      * @Serializer\Expose
      * @Serializer\Type("ArrayCollection")
      */
@@ -143,6 +142,22 @@ class Product
      * @ORM\Column(type="boolean", nullable=false)
      */
     private $top;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $weightTowbar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @SymfonyConstraints\Length(max="250")
+     */
+    private $numberContacts;
 
     /**
      * @var string
@@ -807,5 +822,37 @@ class Product
             'code' => $this->getCode(),
             'title' => $this->getTitle(),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getWeightTowbar()
+    {
+        return $this->weightTowbar;
+    }
+
+    /**
+     * @param string $weightTowbar
+     */
+    public function setWeightTowbar($weightTowbar)
+    {
+        $this->weightTowbar = $weightTowbar;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNumberContacts()
+    {
+        return $this->numberContacts;
+    }
+
+    /**
+     * @param string $numberContacts
+     */
+    public function setNumberContacts($numberContacts)
+    {
+        $this->numberContacts = $numberContacts;
     }
 }

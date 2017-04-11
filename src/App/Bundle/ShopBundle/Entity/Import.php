@@ -4,6 +4,7 @@ namespace App\Bundle\ShopBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
+use App\Bundle\CoreBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 
@@ -18,6 +19,11 @@ class Import
     const STATUS_INITIAL = 'initial';
     const STATUS_READY = 'ready';
     const STATUS_ERROR = 'error';
+    const STATUS_PARSE_PROGRESS = 'parse_progress';
+    const STATUS_CATEGORY_PROGRESS = 'category_progress';
+    const STATUS_COUNTRY_PROGRESS = 'country_progress';
+    const STATUS_PRODUCT_PROGRESS = 'product_progress';
+    const STATUS_MANUFACTURER_PROGRESS = 'manufacturer_progress';
     const STATUS_INCOMPLETE = 'incomplete';
 
     /**
@@ -46,6 +52,33 @@ class Import
      * @SymfonyConstraints\Length(max="255")
      */
     private $status;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="App\Bundle\CoreBundle\Entity\User", inversedBy="imports")
+     */
+    protected $user;
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     * @return $this
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+        $user->addImport($this);
+
+        return $this;
+    }
 
     /**
      * @return string
