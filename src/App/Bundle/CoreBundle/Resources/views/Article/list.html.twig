@@ -44,7 +44,7 @@
                 <p>{{ entity.createdAt|date('d.m.Y') }}</p>
                 <h3><a href="{{ urlEntity }}">{{ entity.title }}</a></h3>
                 <div>
-                    {{ entity.content|raw[:220] }}
+                    {{ entity.content|striptags|raw[:220] }}
                 </div>
             </div>
         </div>

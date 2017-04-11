@@ -53,9 +53,11 @@ class ArticleAdmin extends AbstractAdmin
                 'inline' => 'table',
                 'sortable' => 'position',
             ))
-            ->add('content', 'sonata_simple_formatter_type', [
-                'format' => 'markdown',
-                'ckeditor_context' => 'default',
+            ->add('content', 'textarea', [
+                'attr' => [
+                    'class' => 'tinymce',
+                    'data-theme' => 'advanced',
+                ],
             ])
             ->add('type', 'choice', [
                 'choices' => [

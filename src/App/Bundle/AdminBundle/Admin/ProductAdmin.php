@@ -82,10 +82,11 @@ class ProductAdmin extends AbstractAdmin
                             'inline' => 'table',
                         ]
                     )
-                    ->add('content', 'sonata_simple_formatter_type', [
-                        'label' => 'Содержимое',
-                        'format' => 'markdown',
-                        'ckeditor_context' => 'default',
+                    ->add('content', 'textarea', [
+                        'attr' => [
+                            'class' => 'tinymce',
+                            'data-theme' => 'advanced',
+                        ],
                     ])
                     ->add('category', null, [
                         'label' => 'Категория',

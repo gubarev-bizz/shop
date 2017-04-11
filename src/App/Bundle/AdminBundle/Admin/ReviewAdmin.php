@@ -43,7 +43,12 @@ class ReviewAdmin extends AbstractAdmin
             ->with('Basic information')
                 ->add('name')
                 ->add('email')
-                ->add('content')
+                ->add('content', 'textarea', [
+                    'attr' => [
+                        'class' => 'tinymce',
+                        'data-theme' => 'advanced',
+                    ],
+                ])
                 ->add('product')
                 ->add('approve')
             ->end()

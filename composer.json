@@ -34,7 +34,8 @@
         "liip/imagine-bundle": "^1.7",
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "jms/serializer-bundle": "^1.2",
-        "visual-craft/beanstalk-scheduler-bundle": "dev-master"
+        "visual-craft/beanstalk-scheduler-bundle": "dev-master",
+        "stfalcon/tinymce-bundle": "^2.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

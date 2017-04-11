@@ -38,7 +38,6 @@ twig:
         web_dir: "%kernel.root_dir%/../web"
     form_themes:
         - 'bootstrap_3_layout.html.twig'
-        - 'SonataFormatterBundle:Form:formatter.html.twig'
         - 'VichUploaderBundle:Form:fields.html.twig'
         - 'SonataCoreBundle:Form:datepicker.html.twig'
 
@@ -175,7 +174,6 @@ liip_imagine:
                 background: { size: [408, 180], position: center, color: '#fff' }
                 crop: { size: [408, 180] }
 
-
 sonata_admin:
     templates:
         layout: AppAdminBundle:Admin:layout.html.twig
@@ -187,3 +185,28 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts: [admin]
+
+stfalcon_tinymce:
+    include_jquery: true
+    tinymce_jquery: true
+    theme:
+        # Simple theme: same as default theme
+        simple: ~
+        # Advanced theme with almost all enabled plugins
+        advanced:
+             plugins:
+                 - "advlist autolink lists link image charmap print preview hr anchor pagebreak"
+                 - "searchreplace wordcount visualblocks visualchars code fullscreen"
+                 - "insertdatetime media nonbreaking save table contextmenu directionality"
+                 - "emoticons template paste textcolor"
+             toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+             toolbar2: "print preview media | forecolor backcolor emoticons | stfalcon | example"
+             image_advtab: true
+             templates:
+                 - {title: 'Test template 1', content: 'Test 1'}
+                 - {title: 'Test template 2', content: 'Test 2'}
+        # BBCode tag compatible theme (see http://www.bbcode.org/reference.php)
+        bbcode:
+             plugins: ["bbcode, code, link, preview"]
+             menubar: false
+             toolbar1: "bold,italic,underline,undo,redo,link,unlink,removeformat,cleanup,code,preview"
