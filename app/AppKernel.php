@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+            new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(),
 
             new VisualCraft\Bundle\UploadFileBundle\VisualCraftUploadFileBundle(),
             new VisualCraft\Bundle\MailerBundle\VisualCraftMailerBundle(),

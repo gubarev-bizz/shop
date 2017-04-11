@@ -209,3 +209,5 @@ stfalcon_tinymce:
              plugins: ["bbcode, code, link, preview"]
              menubar: false
              toolbar1: "bold,italic,underline,undo,redo,link,unlink,removeformat,cleanup,code,preview"
+
+white_october_breadcrumbs: ~

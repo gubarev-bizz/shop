@@ -35,7 +35,8 @@
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "jms/serializer-bundle": "^1.2",
         "visual-craft/beanstalk-scheduler-bundle": "dev-master",
-        "stfalcon/tinymce-bundle": "^2.1"
+        "stfalcon/tinymce-bundle": "^2.1",
+        "whiteoctober/breadcrumbs-bundle": "^1.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

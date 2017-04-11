@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6394b45d2afb9b93fed17c3bf44e91c5",
-    "content-hash": "a5cd3b8a87d76b790b27350fba05e02f",
+    "hash": "cc43a4dfda9f989fabc8740ee22f03b8",
+    "content-hash": "5ed0ba504249faf9fd6ddbe556b5a88e",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -4150,6 +4150,49 @@
                 "upload"
             ],
             "time": "2016-09-29 08:32:04"
+        },
+        {
+            "name": "whiteoctober/breadcrumbs-bundle",
+            "version": "1.2.2",
+            "target-dir": "WhiteOctober/BreadcrumbsBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/whiteoctober/BreadcrumbsBundle.git",
+                "reference": "52b748c0fce0b3500891a0501c4f796085d318de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/whiteoctober/BreadcrumbsBundle/zipball/52b748c0fce0b3500891a0501c4f796085d318de",
+                "reference": "52b748c0fce0b3500891a0501c4f796085d318de",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "~2.0|~3.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "WhiteOctober\\BreadcrumbsBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rich Sage",
+                    "email": "rich.sage@gmail.com"
+                }
+            ],
+            "description": "A small breadcrumbs bundle for Symfony2",
+            "homepage": "https://github.com/whiteoctober/BreadcrumbsBundle",
+            "keywords": [
+                "breadcrumbs",
+                "symfony"
+            ],
+            "time": "2016-02-05 10:46:40"
         },
         {
             "name": "willdurand/jsonp-callback-validator",
