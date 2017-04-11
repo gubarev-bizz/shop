@@ -3,8 +3,8 @@
 namespace App\Bundle\CoreBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
+use App\Bundle\CoreBundle\Entity\Traits\SEOEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 use Symfony\Component\HttpFoundation\File\File;
@@ -18,6 +18,7 @@ class Article
 {
     use IdentifiableEntityTrait;
     use TimestampableEntityTrait;
+    use SEOEntityTrait;
 
     const TYPE_ARTICLE = 'article';
     const TYPE_NEWS = 'news';

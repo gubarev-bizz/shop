@@ -70,7 +70,6 @@ class ProductAdmin extends AbstractAdmin
 
         $formMapper
             ->tab('Основная информация')
-                ->with('Основная информация')
                     ->add('code', 'text', ['label' => 'ART'])
                     ->add('title', 'text', ['label' => 'Наименование'])
                     ->add('images','sonata_type_collection', [
@@ -120,7 +119,6 @@ class ProductAdmin extends AbstractAdmin
                 ->end()
             ->end()
             ->tab('Атрибуты')
-                ->with('Атрибуты')
                     ->add('ballType', 'text', [
                         'label' => 'Тип шара',
                         'required' => false,
@@ -177,7 +175,15 @@ class ProductAdmin extends AbstractAdmin
                         'label' => 'Вертикальная нагрузка',
                         'required' => false,
                     ])
-                ->end()
+            ->end()
+            ->end()
+            ->tab('SEO')
+                ->add('seoDescription', 'textarea', [
+                    'required' => false,
+                ])
+                ->add('seoTags', 'textarea', [
+                    'required' => false,
+                ])
             ->end()
         ;
     }

@@ -1,0 +1,23 @@
+<meta name="Robots" content="NOINDEX,FOLLOW">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="content-type" content="text/htmll; charset=UTF-8">
+
+{% if options['siteName'] is defined and options['siteName'] is not null %}
+    <meta content="{{ options['siteName'] }}" property="og:site_name">
+{% endif %}
+
+{% if options['title'] is defined and options['title'] is not null %}
+    <meta content="{{ options['title'] }}" property="og:title">
+{% endif %}
+
+{% if options['url'] is defined and options['url'] is not null %}
+    <meta content="{{ options['url'] }}" property="og:url">
+{% endif %}
+
+{% if options['description'] is defined and options['description'] is not null %}
+    <meta name="description" content="{{ options['description'] }}" >
+{% endif %}
+
+{% if options['tags'] is defined and options['tags'] is not null %}
+    <meta name="keywords" content="{{ options['tags'] }}" >
+{% endif %}

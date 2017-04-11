@@ -24,6 +24,9 @@ parameters:
     general_email: 'admin@example.com'
     product_image_dir: '%kernel.root_dir%/../web/images/products'
     base_web_dir: '%kernel.root_dir%/../web'
+
+    site_name: 'Farkop-UA'
+
     paginator: 15
     beanstalkd_host: 127.0.0.1
     beanstalkd_port: 11300
