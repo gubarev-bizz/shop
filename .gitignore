@@ -20,3 +20,4 @@
 /web/media/
 web/assets
 var/cache/
+web/config.php
