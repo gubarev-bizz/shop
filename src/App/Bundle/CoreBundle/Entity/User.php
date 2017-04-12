@@ -3,9 +3,9 @@
 namespace App\Bundle\CoreBundle\Entity;
 
 use App\Bundle\ShopBundle\Entity\Import;
+use App\Bundle\ShopBundle\Entity\Product;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
@@ -91,7 +91,7 @@ class User implements UserInterface
     private $active;
 
     /**
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Bundle\ShopBundle\Entity\Product", mappedBy="user")
      */
     protected $products;
 

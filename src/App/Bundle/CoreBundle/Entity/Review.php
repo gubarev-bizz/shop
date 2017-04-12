@@ -4,6 +4,7 @@ namespace App\Bundle\CoreBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
+use App\Bundle\ShopBundle\Entity\Product;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 
@@ -50,7 +51,7 @@ class Review
     private $approve;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="reviews")
+     * @ORM\ManyToOne(targetEntity="App\Bundle\ShopBundle\Entity\Product", inversedBy="reviews")
      * @SymfonyConstraints\NotBlank()
      */
     protected $product;

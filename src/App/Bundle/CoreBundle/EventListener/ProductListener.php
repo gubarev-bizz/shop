@@ -2,8 +2,8 @@
 
 namespace App\Bundle\CoreBundle\EventListener;
 
-use App\Bundle\CoreBundle\Entity\Product;
-use App\Bundle\ShopBundle\Entity\ItemOrder;
+use App\Bundle\ShopBundle\Entity\Product;
+use App\Bundle\ShopBundle\Entity\ProductItem;
 use App\Bundle\ShopBundle\Entity\Order;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
@@ -23,7 +23,7 @@ class ProductListener
         $orderRepository = $em->getRepository('AppShopBundle:Order');
 
         if ($items) {
-            /** @var ItemOrder $item */
+            /** @var ProductItem $item */
             foreach ($items as $item) {
                 $order = $orderRepository->find($item->getOrder()->getId());
 
@@ -32,7 +32,7 @@ class ProductListener
                     $item->setAmount($entity->getPriceUah() * $item->getQuantity());
                     $orderAmount = 0;
 
-                    /** @var ItemOrder $itemOrder */
+                    /** @var ProductItem $itemOrder */
                     foreach ($order->getItems() as $itemOrder) {
                         $orderAmount += $itemOrder->getAmount();
                     }

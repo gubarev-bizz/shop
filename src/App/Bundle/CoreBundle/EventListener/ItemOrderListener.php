@@ -2,7 +2,7 @@
 
 namespace App\Bundle\CoreBundle\EventListener;
 
-use App\Bundle\ShopBundle\Entity\ItemOrder;
+use App\Bundle\ShopBundle\Entity\ProductItem;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
 class ItemOrderListener
@@ -11,7 +11,7 @@ class ItemOrderListener
     {
         $entity = $args->getEntity();
 
-        if (!$entity instanceof ItemOrder) {
+        if (!$entity instanceof ProductItem) {
             return;
         }
 

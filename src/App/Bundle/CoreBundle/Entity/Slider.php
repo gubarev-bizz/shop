@@ -4,7 +4,6 @@ namespace App\Bundle\CoreBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 use Symfony\Component\HttpFoundation\File\File;
@@ -57,11 +56,6 @@ class Slider
      * @SymfonyConstraints\Length(max="255")
      */
     private $link;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="sliders")
-     */
-    protected $product;
 
     public function __construct()
     {
@@ -134,26 +128,6 @@ class Slider
     public function getImageName()
     {
         return $this->imageName;
-    }
-
-    /**
-     * @return Product
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
-
-    /**
-     * @param Product $product
-     * @return $this
-     */
-    public function setProduct(Product $product)
-    {
-        $this->product = $product;
-        $product->addSlider($this);
-
-        return $this;
     }
 
     /**

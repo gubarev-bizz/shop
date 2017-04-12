@@ -3,7 +3,7 @@
 namespace App\Bundle\AdminBundle\Admin;
 
 use App\Bundle\CoreBundle\Entity\Product;
-use App\Bundle\ShopBundle\Entity\ItemOrder;
+use App\Bundle\ShopBundle\Entity\ProductItem;
 use App\Bundle\ShopBundle\Entity\Order;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -270,7 +270,7 @@ class OrderAdmin extends AbstractAdmin
         if (!$object->isLock()) {
             $orderAmount = 0;
 
-            /** @var ItemOrder $item */
+            /** @var ProductItem $item */
             foreach ($object->getItems() as $item) {
                 /** @var Product[] $product */
                 $product = $item->getProducts()->toArray();
@@ -285,7 +285,7 @@ class OrderAdmin extends AbstractAdmin
             $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.default_entity_manager');
             $orderAmount = 0;
 
-            /** @var ItemOrder $item */
+            /** @var ProductItem $item */
             foreach ($object->getItems() as $item) {
                 if ($item->getAmount() > 0) {
                     $item->setAmount($item->getOriginalAmount() * $item->getQuantity());

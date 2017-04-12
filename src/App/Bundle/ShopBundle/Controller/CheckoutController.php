@@ -2,7 +2,7 @@
 
 namespace App\Bundle\ShopBundle\Controller;
 
-use App\Bundle\ShopBundle\Entity\ItemOrder;
+use App\Bundle\ShopBundle\Entity\ProductItem;
 use App\Bundle\ShopBundle\Entity\Order;
 use App\Bundle\ShopBundle\Form\CheckoutType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -43,7 +43,7 @@ class CheckoutController extends Controller
 
             foreach ($shopCart->getCartElements() as $productId => $item) {
                 $products = $productRepository->find($productId);
-                $itemOrder = new ItemOrder();
+                $itemOrder = new ProductItem();
                 $itemOrder->setOrder($order);
                 $itemOrder->setAmount((float) $item['price']);
                 $itemOrder->setQuantity((int) $item['count']);

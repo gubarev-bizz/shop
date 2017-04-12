@@ -5,7 +5,7 @@ namespace App\Bundle\ShopBundle\Entity\Repository;
 use App\Bundle\CoreBundle\Entity\Product;
 use Doctrine\ORM\EntityRepository;
 
-class ItemOrderRepository extends EntityRepository
+class ProductItemRepository extends EntityRepository
 {
     public function findByProduct(Product $product)
     {

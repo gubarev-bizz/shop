@@ -108,14 +108,8 @@ class Order
      */
     private $lock;
 
-    /**
-     * @ORM\OneToMany(targetEntity="ItemOrder", mappedBy="order", cascade={"all"}, orphanRemoval=true)
-     */
-    protected $items;
-
     public function __construct()
     {
-        $this->items = new ArrayCollection();
         $this->lock = false;
     }
 
@@ -215,47 +209,47 @@ class Order
         $this->status = $status;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getItems()
-    {
-        return $this->items;
-    }
-
-    /**
-     * @param ItemOrder[] $items
-     * @return $this
-     */
-    public function setItems($items)
-    {
-        $this->items = $items;
-
-        return $this;
-    }
-
-    /**
-     * @param ItemOrder $item
-     * @return $this
-     */
-    public function addItem($item)
-    {
-        $this->items[] = $item;
-
-        return $this;
-    }
-
-    /**
-     * @param ItemOrder $item
-     * @return $this
-     */
-    public function removeItems($item)
-    {
-        $item->setOrder(null);
-        $this->items->removeElement($item);
-
-        return $this;
-    }
+//    /**
+//     * @return mixed
+//     */
+//    public function getItems()
+//    {
+//        return $this->items;
+//    }
+//
+//    /**
+//     * @param ProductItem[] $items
+//     * @return $this
+//     */
+//    public function setItems($items)
+//    {
+//        $this->items = $items;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * @param ProductItem $item
+//     * @return $this
+//     */
+//    public function addItem($item)
+//    {
+//        $this->items[] = $item;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * @param ProductItem $item
+//     * @return $this
+//     */
+//    public function removeItems($item)
+//    {
+//        $item->setOrder(null);
+//        $this->items->removeElement($item);
+//
+//        return $this;
+//    }
 
     /**
      * @return boolean

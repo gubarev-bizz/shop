@@ -1,4 +1,4 @@
-App\Bundle\CoreBundle\Entity\Product:
+App\Bundle\ShopBundle\Entity\Product:
     ProductTest (template):
         title: <company()>
         code: <numberBetween(1000, 9000)>

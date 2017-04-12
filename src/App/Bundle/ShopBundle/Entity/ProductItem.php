@@ -2,7 +2,6 @@
 
 namespace App\Bundle\ShopBundle\Entity;
 
-use App\Bundle\CoreBundle\Entity\Product;
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -10,11 +9,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 
-/**
- * @ORM\Entity(repositoryClass="App\Bundle\ShopBundle\Entity\Repository\ItemOrderRepository")
- * @ORM\Table(name="item_order")
- */
-class ItemOrder
+///**
+// * @ORM\Entity(repositoryClass="App\Bundle\ShopBundle\Entity\Repository\ProductItemRepository")
+// * @ORM\Table(name="item_order")
+// */
+class ProductItem
 {
     use IdentifiableEntityTrait;
     use TimestampableEntityTrait;

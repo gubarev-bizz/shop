@@ -4,6 +4,7 @@ namespace App\Bundle\CoreBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
+use App\Bundle\ShopBundle\Entity\Product;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
@@ -26,7 +27,7 @@ class Country
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="country")
+     * @ORM\OneToMany(targetEntity="App\Bundle\ShopBundle\Entity\Product", mappedBy="country")
      */
     protected $products;
 

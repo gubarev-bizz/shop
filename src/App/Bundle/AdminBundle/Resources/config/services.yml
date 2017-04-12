@@ -7,7 +7,7 @@ services:
 
     app_admin.admin.products:
         class: App\Bundle\AdminBundle\Admin\ProductAdmin
-        arguments: [ ~, App\Bundle\CoreBundle\Entity\Product, ~ ]
+        arguments: [ ~, App\Bundle\ShopBundle\Entity\Product, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Shop, label: Products }
 

@@ -2,7 +2,7 @@
 
 namespace App\Bundle\AdminBundle\Admin;
 
-use App\Bundle\ShopBundle\Entity\ItemOrder;
+use App\Bundle\ShopBundle\Entity\ProductItem;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;

@@ -2,8 +2,8 @@
 
 namespace App\Bundle\CoreBundle\Entity;
 
+use App\Bundle\ShopBundle\Entity\Product;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -36,7 +36,7 @@ class Image
     private $imageName;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="images")
+     * @ORM\ManyToOne(targetEntity="App\Bundle\ShopBundle\Entity\Product", inversedBy="images")
      */
     protected $product;
 

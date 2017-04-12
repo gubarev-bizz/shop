@@ -1,11 +1,18 @@
 <?php
 
-namespace App\Bundle\CoreBundle\Entity;
+namespace App\Bundle\ShopBundle\Entity;
 
+use App\Bundle\CoreBundle\Entity\Category;
+use App\Bundle\CoreBundle\Entity\Country;
+use App\Bundle\CoreBundle\Entity\Image;
+use App\Bundle\CoreBundle\Entity\Manufacturer;
+use App\Bundle\CoreBundle\Entity\Review;
+use App\Bundle\CoreBundle\Entity\Slider;
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\SEOEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
-use App\Bundle\ShopBundle\Entity\ItemOrder;
+use App\Bundle\CoreBundle\Entity\User;
+use App\Bundle\ShopBundle\Entity\ProductItem;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,7 +20,7 @@ use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * @ORM\Entity(repositoryClass="App\Bundle\CoreBundle\Entity\Repository\ProductRepository")
+ * @ORM\Entity(repositoryClass="App\Bundle\ShopBundle\Entity\Repository\ProductRepository")
  * @Serializer\ExclusionPolicy("all")
  */
 class Product
@@ -85,7 +92,7 @@ class Product
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="App\Bundle\CoreBundle\Entity\User", inversedBy="products")
      * @Serializer\Expose
      * @Serializer\Type("ArrayCollection")
      */
@@ -94,7 +101,7 @@ class Product
     /**
      * @var Category
      *
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="App\Bundle\CoreBundle\Entity\Category", inversedBy="products")
      * @SymfonyConstraints\NotBlank()
      * @Serializer\Expose
      */
@@ -103,40 +110,31 @@ class Product
     /**
      * @var Review[]|ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Review", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Bundle\CoreBundle\Entity\Review", mappedBy="product")
      */
     protected $reviews;
 
     /**
      * @var Manufacturer
      *
-     * @ORM\ManyToOne(targetEntity="Manufacturer", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="App\Bundle\CoreBundle\Entity\Manufacturer", inversedBy="products")
      */
     protected $manufacturer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Country", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="App\Bundle\CoreBundle\Entity\Country", inversedBy="products")
      */
     protected $country;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="product", cascade={"persist"} , orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Bundle\CoreBundle\Entity\Image", mappedBy="product", cascade={"persist"} , orphanRemoval=true)
      */
     protected $images;
 
     /**
-     * @ORM\OneToMany(targetEntity="Slider", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Bundle\CoreBundle\Entity\Slider", mappedBy="product")
      */
     protected $sliders;
-
-    /**
-     * @ORM\ManyToMany(
-     *     targetEntity="App\Bundle\ShopBundle\Entity\ItemOrder",
-     *     mappedBy="products",
-     *     cascade={"persist"}
-     * )
-     */
-    protected $items;
 
     /**
      * @var bool
@@ -262,40 +260,12 @@ class Product
         $this->reviews = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->sliders = new ArrayCollection();
-        $this->items = new ArrayCollection();
         $this->top = false;
     }
 
     public function __toString()
     {
         return (string) $this->getTitle();
-    }
-
-    /**
-     * @param ItemOrder $item
-     * @return $this
-     */
-    public function addItem(ItemOrder $item)
-    {
-        $this->items[] = $item;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getItems()
-    {
-        return $this->items;
-    }
-
-    /**
-     * @param ItemOrder $items
-     */
-    public function setItems($items)
-    {
-        $items->addProduct($this);
     }
 
     /**

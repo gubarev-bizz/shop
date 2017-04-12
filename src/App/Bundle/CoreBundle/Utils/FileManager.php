@@ -3,7 +3,7 @@
 namespace App\Bundle\CoreBundle\Utils;
 
 use App\Bundle\CoreBundle\Entity\Article;
-use App\Bundle\CoreBundle\Entity\Product;
+use App\Bundle\ShopBundle\Entity\Product;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
