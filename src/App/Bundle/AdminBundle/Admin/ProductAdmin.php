@@ -3,14 +3,12 @@
 namespace App\Bundle\AdminBundle\Admin;
 
 use App\Bundle\CoreBundle\Entity\Image;
-use App\Bundle\CoreBundle\Entity\Product;
 use App\Bundle\CoreBundle\Entity\User;
-use Doctrine\ORM\EntityManager;
+use App\Bundle\ShopBundle\Entity\Product;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProductAdmin extends AbstractAdmin
 {
