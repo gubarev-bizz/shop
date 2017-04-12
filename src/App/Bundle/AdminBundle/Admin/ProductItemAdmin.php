@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class ItemOrderAdmin extends AbstractAdmin
+class ProductItemAdmin extends AbstractAdmin
 {
     /**
      * {@inheritdoc}
@@ -34,8 +34,19 @@ class ItemOrderAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Basic information')
+                ->add('code', 'text', [
+                    'label' => 'SKU',
+                    'disabled' => true,
+                ])
+                ->add('title', 'text', [
+                    'label' => 'Title',
+                    'disabled' => true,
+                ])
+                ->add('price', 'text', [
+                    'label' => 'SKU',
+                    'disabled' => true,
+                ])
                 ->add('quantity', 'number', ['label' => 'Количество'])
-                ->add('products', null, ['label' => 'Продукт'])
             ->end()
         ;
     }

@@ -4,6 +4,7 @@ namespace App\Bundle\ShopBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
+use App\Bundle\ShopBundle\Entity\DTO\ProductCountDTO;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
@@ -102,15 +103,23 @@ class Order
     private $paymentType;
 
     /**
-     * @var bool
+     * @var ArrayCollection|ProductItem[]
      *
-     * @ORM\Column(name="`lock`", type="boolean", nullable=false)
+     * @ORM\OneToMany(targetEntity="ProductItem", mappedBy="order", cascade={"persist"}, orphanRemoval=true)
+     * @SymfonyConstraints\NotBlank()
      */
-    private $lock;
+    private $productItems;
+
+    /**
+     * @var ProductCountDTO[]
+     *
+     */
+    protected $products;
 
     public function __construct()
     {
-        $this->lock = false;
+        $this->productItems = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
     /**
@@ -209,64 +218,6 @@ class Order
         $this->status = $status;
     }
 
-//    /**
-//     * @return mixed
-//     */
-//    public function getItems()
-//    {
-//        return $this->items;
-//    }
-//
-//    /**
-//     * @param ProductItem[] $items
-//     * @return $this
-//     */
-//    public function setItems($items)
-//    {
-//        $this->items = $items;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * @param ProductItem $item
-//     * @return $this
-//     */
-//    public function addItem($item)
-//    {
-//        $this->items[] = $item;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * @param ProductItem $item
-//     * @return $this
-//     */
-//    public function removeItems($item)
-//    {
-//        $item->setOrder(null);
-//        $this->items->removeElement($item);
-//
-//        return $this;
-//    }
-
-    /**
-     * @return boolean
-     */
-    public function isLock()
-    {
-        return $this->lock;
-    }
-
-    /**
-     * @param boolean $lock
-     */
-    public function setLock($lock)
-    {
-        $this->lock = $lock;
-    }
-
     /**
      * @return mixed
      */
@@ -297,5 +248,88 @@ class Order
     public function setPaymentType($paymentType)
     {
         $this->paymentType = $paymentType;
+    }
+
+    /**
+     * @return ProductItem[]|ArrayCollection
+     */
+    public function getProductItems()
+    {
+        return $this->productItems;
+    }
+
+    /**
+     * @param ProductItem[]|ArrayCollection $productItems
+     *
+     * @return $this
+     */
+    public function setProductItems($productItems)
+    {
+        $this->productItems = $productItems;
+
+        return $this;
+    }
+
+    /**
+     * @param ProductItem $item
+     *
+     * @return $this
+     */
+    public function addProductItem($item)
+    {
+        $this->productItems[] = $item;
+
+        return $this;
+    }
+
+    /**
+     * @param ProductItem $item
+     * @return $this
+     */
+    public function removeProductItem($item)
+    {
+        $this->productItems->removeElement($item);
+
+        return $this;
+    }
+
+    /**
+     * @return ProductCountDTO[]
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param ProductCountDTO[]|ArrayCollection $products
+     *
+     * @return $this
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+
+        return $this;
+    }
+
+    /**
+     * @param ProductCountDTO $product
+     */
+    public function addProduct(ProductCountDTO $product)
+    {
+        $this->products[] = $product;
+    }
+
+    /**
+     * @param ProductCountDTO $product
+     *
+     * @return $this
+     */
+    public function removeProduct($product)
+    {
+        $this->products->removeElement($product);
+
+        return $this;
     }
 }

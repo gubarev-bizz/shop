@@ -15,6 +15,6 @@ class ItemOrderListener
             return;
         }
 
-        $entity->setOriginalAmount($entity->getAmount());
+//        $entity->setOriginalAmount($entity->getAmount());
     }
 }

@@ -2,14 +2,17 @@
 
 namespace App\Bundle\AdminBundle\Admin;
 
-use App\Bundle\CoreBundle\Entity\Product;
+use App\Bundle\ShopBundle\Entity\DTO\ProductCountDTO;
+use App\Bundle\ShopBundle\Entity\Product;
 use App\Bundle\ShopBundle\Entity\ProductItem;
 use App\Bundle\ShopBundle\Entity\Order;
+use App\Bundle\ShopBundle\Form\ProductCountDTOType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use VisualCraft\Bundle\MailerBundle\Mailer;
 
 class OrderAdmin extends AbstractAdmin
@@ -79,16 +82,22 @@ class OrderAdmin extends AbstractAdmin
                 ->add('lastName', 'text', ['label' => 'Фамилия'])
                 ->add('phone', 'text', ['label' => 'Телефон'])
                 ->add('email', 'text', ['label' => 'Email'])
-                ->add('items','sonata_type_collection', [
-                    'required' => true,
-                    'by_reference' => true,
-                    'label' => 'Позиции заказа',
-                    'btn_add' => 'Добавить',
-                ], [
+                ->add('productItems', 'sonata_type_collection',
+                    [
+                        'required' => true,
+                        'by_reference' => false,
+                        'label' => 'Позиции заказа',
+                        'btn_add' => false,
+                    ], [
                         'edit' => 'inline',
                         'inline' => 'table',
                     ]
                 )
+                ->add('products', CollectionType::class, [
+                    'label' => 'Add product',
+                    'entry_type' => ProductCountDTOType::class,
+                    'allow_add' => true,
+                ])
                 ->add('status', 'choice', [
                     'label' => 'Status',
                     'choices' => [
@@ -127,9 +136,6 @@ class OrderAdmin extends AbstractAdmin
                         'Наложенный платеж' => Order::PAYMENT_TYPE_CASH_DELIVERY,
                         'Безналичный расчет' => Order::PAYMENT_TYPE_CASHLESS_PAYMENTS,
                     ],
-                ])
-                ->add('lock', null, [
-                    'label' => 'Заблокировать'
                 ])
             ->end()
         ;
@@ -173,10 +179,6 @@ class OrderAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $filter)
     {
         $filter
-            ->add('items.products', null, [
-                'show_filter' => true,
-                'label' => 'Продукты',
-            ])
             ->add('status', null, [
                 'show_filter' => true,
                 'label' => 'Статус',
@@ -241,7 +243,7 @@ class OrderAdmin extends AbstractAdmin
     public function postUpdate($object)
     {
         parent::postUpdate($object);
-        $this->processAmountOrder($object);
+//        $this->processAmountOrder($object);
     }
 
     /**
@@ -250,7 +252,7 @@ class OrderAdmin extends AbstractAdmin
     public function postPersist($object)
     {
         parent::postPersist($object);
-        $this->processAmountOrder($object);
+//        $this->processAmountOrder($object);
     }
 
     /**
@@ -259,7 +261,7 @@ class OrderAdmin extends AbstractAdmin
     public function prePersist($object)
     {
         parent::prePersist($object);
-        $this->processAmountOrder($object);
+//        $this->processAmountOrder($object);
     }
 
     /**
@@ -267,42 +269,34 @@ class OrderAdmin extends AbstractAdmin
      */
     public function processAmountOrder($object)
     {
-        if (!$object->isLock()) {
-            $orderAmount = 0;
+        $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.default_entity_manager');
 
-            /** @var ProductItem $item */
-            foreach ($object->getItems() as $item) {
-                /** @var Product[] $product */
-                $product = $item->getProducts()->toArray();
-                $item->setAmount($product[0]->getPriceUah() * $item->getQuantity());
-                $item->setOriginalAmount($product[0]->getPriceUah());
-                $orderAmount += $item->getAmount();
-                $item->setOrder($object);
+        if ($object->getProducts()) {
+            foreach ($object->getProducts() as $productCount) {
+                $product = $productCount->getProduct();
+                $productItem = new ProductItem();
+                $productItem->setOrder($object);
+                $productItem->setCode($product->getCode());
+                $productItem->setContent($product->getContent());
+                $productItem->setCurrency($product->getCurrency());
+                $productItem->setPrice($product->getPrice());
+                $productItem->setPriceUah($product->getPriceUah());
+                $productItem->setTitle($product->getTitle());
+                $productItem->setQuantity((int) $productCount->getQuantity());
+                $em->persist($productItem);
             }
 
-            $object->setAmount($orderAmount);
-        } else {
-            $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.default_entity_manager');
-            $orderAmount = 0;
-
-            /** @var ProductItem $item */
-            foreach ($object->getItems() as $item) {
-                if ($item->getAmount() > 0) {
-                    $item->setAmount($item->getOriginalAmount() * $item->getQuantity());
-                } else {
-                    /** @var Product[] $product */
-                    $product = $item->getProducts();
-                    $item->setAmount($product[0]->getPriceUah() * $item->getQuantity());
-                }
-
-                $orderAmount += $item->getAmount();
-
-                if ($object->getId() !== null) {
-                    $item->setOrder($object);
-                }
-            }
-
-            $object->setAmount($orderAmount);
+            $em->flush();
         }
+
+        $items = $object->getProductItems();
+        $amount = 0.0;
+
+        foreach ($items as $item) {
+            $amount += (int) $item->getQuantity() * $item->getRealPrice();
+        }
+
+        $object->setAmount($amount);
+        $em->flush($object);
     }
 }

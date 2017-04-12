@@ -4,33 +4,20 @@ namespace App\Bundle\ShopBundle\Entity;
 
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Bundle\ShopBundle\Entity\Traits\ProductEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
+use JMS\Serializer\Annotation as Serializer;
 
-///**
-// * @ORM\Entity(repositoryClass="App\Bundle\ShopBundle\Entity\Repository\ProductItemRepository")
-// * @ORM\Table(name="item_order")
-// */
+/**
+ * @ORM\Entity(repositoryClass="App\Bundle\ShopBundle\Entity\Repository\ProductItemRepository")
+ * @Serializer\ExclusionPolicy("all")
+ */
 class ProductItem
 {
     use IdentifiableEntityTrait;
+    use ProductEntityTrait;
     use TimestampableEntityTrait;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(type="float", nullable=false)
-     */
-    private $amount;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(type="float", nullable=false)
-     */
-    private $originalAmount;
 
     /**
      * @var int
@@ -40,48 +27,14 @@ class ProductItem
     private $quantity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Order", inversedBy="items")
+     * @ORM\ManyToOne(targetEntity="Order", inversedBy="productItems")
      * @SymfonyConstraints\NotBlank()
      */
     protected $order;
 
-    /**
-     * @ORM\ManyToMany(
-     *     targetEntity="App\Bundle\CoreBundle\Entity\Product",
-     *     inversedBy="items",
-     *     cascade={"persist"}
-     * )
-     * @ORM\JoinTable(name="products_items")
-     */
-    protected $products;
-
     public function __construct()
     {
-        $this->products = new ArrayCollection();
-    }
 
-    /**
-     * @param Product $products
-     */
-    public function addProduct(Product $products)
-    {
-        $this->products[] = $products;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getProducts()
-    {
-        return $this->products;
-    }
-
-    /**
-     * @param Product[] $products
-     */
-    public function setProducts($products)
-    {
-        $this->products = $products;
     }
 
     /**
@@ -99,25 +52,9 @@ class ProductItem
     public function setOrder(Order $order)
     {
         $this->order = $order;
-        $order->addItem($this);
+        $order->addProductItem($this);
 
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAmount()
-    {
-        return $this->amount;
-    }
-
-    /**
-     * @param mixed $amount
-     */
-    public function setAmount($amount)
-    {
-        $this->amount = $amount;
     }
 
     /**
@@ -135,21 +72,4 @@ class ProductItem
     {
         $this->quantity = $quantity;
     }
-
-    /**
-     * @return float
-     */
-    public function getOriginalAmount()
-    {
-        return $this->originalAmount;
-    }
-
-    /**
-     * @param float $originalAmount
-     */
-    public function setOriginalAmount($originalAmount)
-    {
-        $this->originalAmount = $originalAmount;
-    }
-
 }

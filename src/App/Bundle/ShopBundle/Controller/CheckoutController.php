@@ -16,6 +16,7 @@ class CheckoutController extends Controller
 {
     /**
      * @param Request $request
+     *
      * @return RedirectResponse|Response
      */
     public function checkoutAction(Request $request)
@@ -35,20 +36,25 @@ class CheckoutController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $order->setAmount($shopCart->getAmountCheckout());
             $order->setStatus(Order::STATUS_NEW);
-            $order->setLock(true);
             $em->persist($order);
             $em->flush();
-            $products = [];
             $productRepository = $em->getRepository('AppShopBundle:Product');
 
             foreach ($shopCart->getCartElements() as $productId => $item) {
-                $products = $productRepository->find($productId);
-                $itemOrder = new ProductItem();
-                $itemOrder->setOrder($order);
-                $itemOrder->setAmount((float) $item['price']);
-                $itemOrder->setQuantity((int) $item['count']);
-                $itemOrder->setProducts([$products]);
-                $em->persist($itemOrder);
+                $product = $productRepository->find($productId);
+
+                if ($product) {
+                    $itemOrder = new ProductItem();
+                    $itemOrder->setOrder($order);
+                    $itemOrder->setCode($product->getCode());
+                    $itemOrder->setContent($product->getContent());
+                    $itemOrder->setCurrency($product->getCurrency());
+                    $itemOrder->setPrice($product->getPrice());
+                    $itemOrder->setPriceUah($product->getPriceUah());
+                    $itemOrder->setTitle($product->getTitle());
+                    $itemOrder->setQuantity((int) $item['count']);
+                    $em->persist($itemOrder);
+                }
             }
 
             $em->flush();

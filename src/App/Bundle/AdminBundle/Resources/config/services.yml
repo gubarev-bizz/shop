@@ -31,11 +31,17 @@ services:
         calls:
             - [ setMailer, [ '@visual_craft_mailer.mailer' ] ]
 
-    app_admin.admin.item_order:
-        class: App\Bundle\AdminBundle\Admin\ItemOrderAdmin
-        arguments: [ ~, App\Bundle\ShopBundle\Entity\ItemOrder, ~ ]
+    app_admin.admin.product_item:
+        class: App\Bundle\AdminBundle\Admin\ProductItemAdmin
+        arguments: [ ~, App\Bundle\ShopBundle\Entity\ProductItem, ~ ]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Shop, label: ItemOrder, show_in_dashboard: false }
+            - { name: sonata.admin, manager_type: orm, group: Shop, label: ProductItem, show_in_dashboard: false }
+
+    app_admin.admin.product_count_dto:
+        class: App\Bundle\AdminBundle\Admin\ProductCountDTOAdmin
+        arguments: [ ~, App\Bundle\ShopBundle\Entity\DTO\ProductCountDTO, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Shop, label: ProductCount, show_in_dashboard: false }
 
     app_admin.admin.country:
         class: App\Bundle\AdminBundle\Admin\CountryAdmin
