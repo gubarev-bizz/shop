@@ -4,7 +4,7 @@
             <a href="{{ path('app_core_bundle_category_item', {categoryId: category.id}) }}" class="">
                 <img
                     alt="{{ category.title }}"
-                    src="{{ asset(getImage(category.imageName, 'category') | imagine_filter('category_main'))  }}"
+                    src="{{ getImage(category.imageName, 'category') | imagine_filter('category_main') }}"
                 >
             </a>
             <a title="{{ category.title }}" href="{{ path('app_core_bundle_category_item', {categoryId: category.id}) }}">

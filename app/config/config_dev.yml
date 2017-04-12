@@ -27,10 +27,3 @@ hautelook_alice:
         orm: ~
     locale: en_US
     seed: 3
-
-liip_imagine:
-    loaders:
-        default:
-            filesystem:
-                data_root:
-                   - "%kernel.root_dir%/../web"

@@ -44,7 +44,7 @@ class GetImageExtension extends \Twig_Extension
             return null;
         }
 
-        return $path;
+        return '/images/' . $categoryImage . '/' . $imageName;
     }
 
     /**
