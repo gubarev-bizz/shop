@@ -23,7 +23,7 @@
                         <td>{{ item.quantity }}</td>
                         <td>{{ item.getRealPrice() }}</td>
                     </tr>
-                    {% set totalAmount = totalAmount + item.getRealPrice() %}
+                    {% set totalAmount = totalAmount + (item.getRealPrice() * item.quantity) %}
                 {% endfor %}
                     <tr>
                         <td></td>
