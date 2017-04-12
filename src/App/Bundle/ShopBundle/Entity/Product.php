@@ -7,14 +7,11 @@ use App\Bundle\CoreBundle\Entity\Country;
 use App\Bundle\CoreBundle\Entity\Image;
 use App\Bundle\CoreBundle\Entity\Manufacturer;
 use App\Bundle\CoreBundle\Entity\Review;
-use App\Bundle\CoreBundle\Entity\Slider;
 use App\Bundle\CoreBundle\Entity\Traits\IdentifiableEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\SEOEntityTrait;
 use App\Bundle\CoreBundle\Entity\Traits\TimestampableEntityTrait;
 use App\Bundle\CoreBundle\Entity\User;
-use App\Bundle\ShopBundle\Entity\ProductItem;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 use JMS\Serializer\Annotation as Serializer;
@@ -130,11 +127,6 @@ class Product
      * @ORM\OneToMany(targetEntity="App\Bundle\CoreBundle\Entity\Image", mappedBy="product", cascade={"persist"} , orphanRemoval=true)
      */
     protected $images;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Bundle\CoreBundle\Entity\Slider", mappedBy="product")
-     */
-    protected $sliders;
 
     /**
      * @var bool
@@ -259,7 +251,6 @@ class Product
     {
         $this->reviews = new ArrayCollection();
         $this->images = new ArrayCollection();
-        $this->sliders = new ArrayCollection();
         $this->top = false;
     }
 
@@ -533,48 +524,6 @@ class Product
     {
         $this->images->remove($image);
         $image->setProduct(null);
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSliders()
-    {
-        return $this->sliders;
-    }
-
-    /**
-     * @param Slider[] $sliders
-     * @return $this
-     */
-    public function setSliders($sliders)
-    {
-        $this->sliders = $sliders;
-
-        return $this;
-    }
-
-    /**
-     * @param Slider $slider
-     * @return $this
-     */
-    public function addSlider($slider)
-    {
-        $this->sliders[] = $slider;
-
-        return $this;
-    }
-
-    /**
-     * @param Slider $slider
-     * @return $this
-     */
-    public function removeSliders($slider)
-    {
-        $this->sliders->remove($slider);
-        $slider->setProduct(null);
 
         return $this;
     }

@@ -7,5 +7,7 @@ App\Bundle\ShopBundle\Entity\Product:
         currency: 'UAH'
         user: '@UserTest*'
         category: '@CategoryTest*'
+        manufacturer: '@ManufacturerTest*'
+        country: '@CountryTest*'
     ProductTest{1..20} (extends ProductTest):
         title: <sentence($nbWords = 3, $variableNbWords = true)>

@@ -1,0 +1,5 @@
+App\Bundle\CoreBundle\Entity\Manufacturer:
+    ManufacturerTest (template):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>
+    ManufacturerTest{1..20} (extends ManufacturerTest):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>

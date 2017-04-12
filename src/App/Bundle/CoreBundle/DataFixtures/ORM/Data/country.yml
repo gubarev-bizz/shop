@@ -1,0 +1,5 @@
+App\Bundle\CoreBundle\Entity\Country:
+    CountryTest (template):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>
+    CountryTest{1..20} (extends CountryTest):
+        title: <sentence($nbWords = 3, $variableNbWords = true)>
