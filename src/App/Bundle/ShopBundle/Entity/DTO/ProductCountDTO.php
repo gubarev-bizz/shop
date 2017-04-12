@@ -3,16 +3,24 @@
 namespace App\Bundle\ShopBundle\Entity\DTO;
 
 use App\Bundle\ShopBundle\Entity\Product;
+use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 
 class ProductCountDTO
 {
     /**
      * @var int
+     *
+     * @SymfonyConstraints\NotBlank()
+     * @SymfonyConstraints\NotNull()
+     * @SymfonyConstraints\Type(type="numeric")
      */
     private $quantity;
 
     /**
      * @var Product
+     *
+     * @SymfonyConstraints\NotBlank()
+     * @SymfonyConstraints\NotNull()
      */
     private $product;
 

@@ -22,6 +22,7 @@ class Slider
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     *
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Length(max="255")
      */
@@ -52,6 +53,7 @@ class Slider
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Length(max="255")
      */

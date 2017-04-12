@@ -85,7 +85,7 @@ class OrderAdmin extends AbstractAdmin
                 ->add('productItems', 'sonata_type_collection',
                     [
                         'required' => false,
-                        'by_reference' => false,
+                        'by_reference' => true,
                         'label' => 'Позиции заказа',
                         'btn_add' => false,
                     ], [

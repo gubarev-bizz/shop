@@ -28,6 +28,7 @@ class Article
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     *
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Length(max="255")
      */
@@ -37,6 +38,7 @@ class Article
      * @var string
      *
      * @ORM\Column(type="text")
+     *
      * @SymfonyConstraints\NotBlank()
      */
     private $content;
@@ -44,9 +46,10 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
+     *
      * @SymfonyConstraints\NotBlank()
-     * @SymfonyConstraints\Length(max="255")
+     * @SymfonyConstraints\Length(max="100")
      */
     private $type;
 

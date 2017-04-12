@@ -6,6 +6,9 @@ use App\Bundle\ShopBundle\Entity\ProductItem;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\CoreBundle\Validator\ErrorElement;
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ProductItemAdmin extends AbstractAdmin
 {
@@ -35,18 +38,27 @@ class ProductItemAdmin extends AbstractAdmin
         $formMapper
             ->with('Basic information')
                 ->add('code', 'text', [
+                    'required' => true,
                     'label' => 'SKU',
                     'disabled' => true,
                 ])
                 ->add('title', 'text', [
+                    'required' => true,
                     'label' => 'Title',
                     'disabled' => true,
                 ])
-                ->add('price', 'text', [
-                    'label' => 'SKU',
+                ->add('price', 'number', [
+                    'required' => true,
+                    'label' => 'Price',
                     'disabled' => true,
                 ])
-                ->add('quantity', 'number', ['label' => 'Количество'])
+                ->add('quantity', 'number', [
+                    'label' => 'Количество',
+                    'required' => true,
+                    'attr' => [
+                        'min' => '1',
+                    ]
+                ])
             ->end()
         ;
     }

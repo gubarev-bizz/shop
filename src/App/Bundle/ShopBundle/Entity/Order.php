@@ -67,6 +67,7 @@ class Order
      * @var string
      *
      * @ORM\Column(name="email", type="string", nullable=false)
+     *
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Email()
      */
@@ -75,7 +76,8 @@ class Order
     /**
      * @var float
      *
-     * @ORM\Column(type="float", options={"default" = 0})
+     * @ORM\Column(type="float", options={"default":0})
+     *
      * @SymfonyConstraints\Type(type="numeric")
      */
     private $amount;
@@ -83,23 +85,30 @@ class Order
     /**
      * @var string
      *
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
+     *
+     * @SymfonyConstraints\NotBlank()
+     * @SymfonyConstraints\Length(max="100")
      */
     private $status;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="delivery", type="string", nullable=false)
+     * @ORM\Column(name="delivery", type="string", length=100, nullable=false)
+     *
      * @SymfonyConstraints\NotBlank()
+     * @SymfonyConstraints\Length(max="100")
      */
     private $delivery;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="payment_type", type="string", nullable=false)
+     * @ORM\Column(name="payment_type", type="string", length=100, nullable=false)
+     *
      * @SymfonyConstraints\NotBlank()
+     * @SymfonyConstraints\Length(max="100")
      */
     private $paymentType;
 

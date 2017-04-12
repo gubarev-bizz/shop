@@ -26,6 +26,7 @@ class Category
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     *
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Length(max="255")
      */
@@ -71,14 +72,14 @@ class Category
     /**
      * @var bool
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default"=1})
      */
     private $active;
 
     /**
      * @var bool
      *
-     * @ORM\Column(type="boolean", nullable=false)
+     * @ORM\Column(type="boolean", options={"default"=0})
      */
     private $mainPage;
 

@@ -15,9 +15,12 @@ class ProductCountDTOType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantity', NumberType::class)
+            ->add('quantity', NumberType::class, [
+                'required' => true,
+            ])
             ->add('product', EntityType::class, [
                 'class' => Product::class,
+                'required' => true,
             ])
         ;
     }

@@ -22,7 +22,11 @@ class ProductItem
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", options={"default":1})
+     *
+     * @SymfonyConstraints\NotBlank()
+     * @SymfonyConstraints\NotNull()
+     * @SymfonyConstraints\Type(type="numeric")
      */
     private $quantity;
 
@@ -30,6 +34,7 @@ class ProductItem
      * @var Order
      *
      * @ORM\ManyToOne(targetEntity="Order", inversedBy="productItems")
+     *
      * @SymfonyConstraints\NotBlank()
      */
     protected $order;
@@ -39,8 +44,6 @@ class ProductItem
      *
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="productItems")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="SET NULL")
-     *
-     * @SymfonyConstraints\NotBlank()
      */
     protected $product;
 

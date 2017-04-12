@@ -20,6 +20,7 @@ class Review
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     *
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Length(max="255")
      */
@@ -29,6 +30,7 @@ class Review
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     *
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Email()
      * @SymfonyConstraints\Length(max="255")
@@ -39,6 +41,7 @@ class Review
      * @var string
      *
      * @ORM\Column(type="text", nullable=false)
+     *
      * @SymfonyConstraints\NotBlank()
      */
     private $content;
@@ -46,7 +49,7 @@ class Review
     /**
      * @var bool
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default":0})
      */
     private $approve;
 

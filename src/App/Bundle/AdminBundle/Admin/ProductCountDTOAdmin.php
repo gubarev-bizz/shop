@@ -14,7 +14,9 @@ class ProductCountDTOAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Basic information')
-                ->add('quantity', 'number', ['label' => 'Количество'])
+                ->add('quantity', 'number', [
+                    'label' => 'Количество',
+                    ])
                 ->add('product')
             ->end()
         ;

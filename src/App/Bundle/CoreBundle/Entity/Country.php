@@ -21,6 +21,7 @@ class Country
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     *
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Length(max="255")
      */
