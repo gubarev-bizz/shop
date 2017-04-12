@@ -84,7 +84,7 @@ class OrderAdmin extends AbstractAdmin
                 ->add('email', 'text', ['label' => 'Email'])
                 ->add('productItems', 'sonata_type_collection',
                     [
-                        'required' => true,
+                        'required' => false,
                         'by_reference' => false,
                         'label' => 'Позиции заказа',
                         'btn_add' => false,
@@ -94,6 +94,7 @@ class OrderAdmin extends AbstractAdmin
                     ]
                 )
                 ->add('products', CollectionType::class, [
+                    'required' => false,
                     'label' => 'Add product',
                     'entry_type' => ProductCountDTOType::class,
                     'allow_add' => true,
@@ -261,7 +262,10 @@ class OrderAdmin extends AbstractAdmin
     public function prePersist($object)
     {
         parent::prePersist($object);
-//        $this->processAmountOrder($object);
+
+        if ($object->getAmount() === null) {
+            $object->setAmount(0);
+        }
     }
 
     /**

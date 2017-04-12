@@ -75,7 +75,8 @@ class Order
     /**
      * @var float
      *
-     * @ORM\Column(type="float", nullable=false)
+     * @ORM\Column(type="float", options={"default" = 0})
+     * @SymfonyConstraints\Type(type="numeric")
      */
     private $amount;
 
