@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function productItemAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('AppCoreBundle:Product')->find($id);
+        $product = $em->getRepository('AppShopBundle:Product')->find($id);
 
         if (!$product) {
             throw new NotFoundHttpException('Product is not find.');
@@ -31,7 +31,7 @@ class ProductController extends Controller
             'action' => $this->generateUrl('app_shop_bundle_cart_add_item'),
             'productId' => $product->getId(),
         ]);
-        $similarProducts = $em->getRepository('AppCoreBundle:Product')
+        $similarProducts = $em->getRepository('AppShopBundle:Product')
             ->findSimilarProductsByCategory($product, $product->getCategory())
         ;
         $addProductToCartFormSimilar = [];

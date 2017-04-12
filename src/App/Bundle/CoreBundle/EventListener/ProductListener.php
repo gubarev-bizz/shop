@@ -18,7 +18,7 @@ class ProductListener
         }
 
         $em = $args->getEntityManager();
-        $entity = $em->getRepository('AppCoreBundle:Product')->find($entity->getId());
+        $entity = $em->getRepository('AppShopBundle:Product')->find($entity->getId());
         $items = $em->getRepository('AppShopBundle:ItemOrder')->findByProduct($entity);
         $orderRepository = $em->getRepository('AppShopBundle:Order');
 

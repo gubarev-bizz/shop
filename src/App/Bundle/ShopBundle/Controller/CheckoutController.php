@@ -39,7 +39,7 @@ class CheckoutController extends Controller
             $em->persist($order);
             $em->flush();
             $products = [];
-            $productRepository = $em->getRepository('AppCoreBundle:Product');
+            $productRepository = $em->getRepository('AppShopBundle:Product');
 
             foreach ($shopCart->getCartElements() as $productId => $item) {
                 $products = $productRepository->find($productId);

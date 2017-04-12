@@ -18,7 +18,7 @@ class CategoryController extends Controller
             throw new NotFoundHttpException('Category has not be found');
         }
 
-        $entities = $em->getRepository('AppCoreBundle:Product')->findBy([
+        $entities = $em->getRepository('AppShopBundle:Product')->findBy([
             'category' => $categoryId,
         ], [
             'createdAt' => 'DESC'

@@ -65,7 +65,7 @@ class Product
      * @ORM\Column(type="float")
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Type(type="numeric")
-     * @Serializer\Expose
+     * @Serializer\Exclude()
      */
     private $price;
 
@@ -742,6 +742,7 @@ class Product
             'id' => $this->getId(),
             'code' => $this->getCode(),
             'title' => $this->getTitle(),
+            'price' => $this->getRealPrice(),
         ];
     }
 

@@ -33,7 +33,7 @@ class Cart
 
         if ($cartElements !== null) {
             foreach ($cartElements as $key => $cartElement) {
-                $product = $this->em->getRepository('AppCoreBundle:Product')->find($key);
+                $product = $this->em->getRepository('AppShopBundle:Product')->find($key);
 
                 if ($product) {
                     $cart['total'] += $cartElement['price'];
@@ -66,7 +66,7 @@ class Cart
         $total = 0;
 
         foreach ($elements as $key => $element) {
-            $product = $this->em->getRepository('AppCoreBundle:Product')->find($key);
+            $product = $this->em->getRepository('AppShopBundle:Product')->find($key);
 
             if ($product) {
                 $total += $element['count'] * $product->getPrice();

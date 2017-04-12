@@ -213,7 +213,7 @@ class ParserProcess
     {
         $import->setStatus(Import::STATUS_PRODUCT_PROGRESS);
         $this->em->flush($import);
-        $productRepository = $this->em->getRepository('AppCoreBundle:Product');
+        $productRepository = $this->em->getRepository('AppShopBundle:Product');
 
         foreach ($dataParse as $item) {
             if (count($item) < 9) continue;
@@ -284,7 +284,7 @@ class ParserProcess
     private function getUniqueProductsTitle()
     {
         $result = [];
-        $products = $this->em->getRepository('AppCoreBundle:Product')->findAll();
+        $products = $this->em->getRepository('AppShopBundle:Product')->findAll();
 
         foreach ($products as $product) {
             if (!in_array($product->getTitle(), $result)) {

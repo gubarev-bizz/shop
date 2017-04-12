@@ -47,10 +47,10 @@ class MultiCurrency
 
     public function refreshCurrency()
     {
-        $eurProducts = $this->em->getRepository('AppCoreBundle:Product')->findBy([
+        $eurProducts = $this->em->getRepository('AppShopBundle:Product')->findBy([
             'currency' => 'EUR'
         ]);
-        $usdProducts = $this->em->getRepository('AppCoreBundle:Product')->findBy([
+        $usdProducts = $this->em->getRepository('AppShopBundle:Product')->findBy([
             'currency' => 'USD'
         ]);
 

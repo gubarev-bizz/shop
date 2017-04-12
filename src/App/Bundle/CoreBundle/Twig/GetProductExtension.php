@@ -33,7 +33,7 @@ class GetProductExtension extends \Twig_Extension
      */
     public function getProduct($productId)
     {
-        $product = $this->em->getRepository('AppCoreBundle:Product')->find($productId);
+        $product = $this->em->getRepository('AppShopBundle:Product')->find($productId);
 
         if (!$product) {
             return null;

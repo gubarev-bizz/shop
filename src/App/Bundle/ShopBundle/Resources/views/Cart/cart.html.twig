@@ -1,12 +1,8 @@
 {% extends '@AppCore/Layouts/layout.html.twig' %}
 
-{% block page_title %}
-    Корзина
-{% endblock %}
+{% block page_title %}Корзина{% endblock %}
 
 {% block content %}
-
-    {#{{ knp_menu_render('breadcrumbCart', {'currentAsLink' : false} ) }}#}
 
     {% if cart.elements|length %}
         <form name="cart" id="cart" method="post">

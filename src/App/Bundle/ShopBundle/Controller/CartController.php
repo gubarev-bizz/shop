@@ -13,6 +13,7 @@ class CartController extends Controller
 {
     /**
      * @param Request $request
+     *
      * @return JsonResponse|Response
      */
     public function addProductAction(Request $request)
@@ -23,7 +24,7 @@ class CartController extends Controller
         if ($productCartForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $formData = $productCartForm->getData();
-            $product = $em->getRepository('AppCoreBundle:Product')->find($formData['productId']);
+            $product = $em->getRepository('AppShopBundle:Product')->find($formData['productId']);
             $session = $request->getSession();
 
             if (!$product) {
@@ -96,7 +97,7 @@ class CartController extends Controller
         if ($request->isXmlHttpRequest()) {
             $productId = (int) $request->request->get('productId');
             $em = $this->getDoctrine()->getManager();
-            $product = $em->getRepository('AppCoreBundle:Product')->find($productId);
+            $product = $em->getRepository('AppShopBundle:Product')->find($productId);
 
             if ($product) {
                 $cartElements = $request->getSession()->get('cartElements');
@@ -140,7 +141,7 @@ class CartController extends Controller
             $productsCart = [];
 
             foreach ($elements as $productId => $count) {
-                $product = $em->getRepository('AppCoreBundle:Product')->find($productId);
+                $product = $em->getRepository('AppShopBundle:Product')->find($productId);
 
                 if ($product) {
                     $count = ($count < 1) ? 1 : $count;

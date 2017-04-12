@@ -46,7 +46,7 @@ class SearchController extends Controller
             $resultArticle = $em->getRepository('AppCoreBundle:Article')
                 ->searchByTitle($data['title'])
             ;
-            $resultProducts = $em->getRepository('AppCoreBundle:Product')
+            $resultProducts = $em->getRepository('AppShopBundle:Product')
                 ->searchByTitle($data['title'])
             ;
         }
