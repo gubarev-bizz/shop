@@ -45,6 +45,7 @@ class Product
      * @var Category
      *
      * @ORM\ManyToOne(targetEntity="App\Bundle\CoreBundle\Entity\Category", inversedBy="products")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="SET NULL")
      * @SymfonyConstraints\NotBlank()
      * @Serializer\Expose
      */
@@ -61,11 +62,13 @@ class Product
      * @var Manufacturer
      *
      * @ORM\ManyToOne(targetEntity="App\Bundle\CoreBundle\Entity\Manufacturer", inversedBy="products")
+     * @ORM\JoinColumn(name="manufacturer_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $manufacturer;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Bundle\CoreBundle\Entity\Country", inversedBy="products")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $country;
 
