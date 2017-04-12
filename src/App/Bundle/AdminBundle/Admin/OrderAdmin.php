@@ -244,7 +244,6 @@ class OrderAdmin extends AbstractAdmin
     public function postUpdate($object)
     {
         parent::postUpdate($object);
-//        $this->processAmountOrder($object);
     }
 
     /**
@@ -253,7 +252,7 @@ class OrderAdmin extends AbstractAdmin
     public function postPersist($object)
     {
         parent::postPersist($object);
-//        $this->processAmountOrder($object);
+        $this->processAmountOrder($object);
     }
 
     /**
