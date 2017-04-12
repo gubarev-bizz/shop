@@ -286,6 +286,7 @@ class OrderAdmin extends AbstractAdmin
                 $productItem->setPriceUah($product->getPriceUah());
                 $productItem->setTitle($product->getTitle());
                 $productItem->setQuantity((int) $productCount->getQuantity());
+                $productItem->setProduct($product);
                 $em->persist($productItem);
             }
 

@@ -27,15 +27,22 @@ class ProductItem
     private $quantity;
 
     /**
+     * @var Order
+     *
      * @ORM\ManyToOne(targetEntity="Order", inversedBy="productItems")
      * @SymfonyConstraints\NotBlank()
      */
     protected $order;
 
-    public function __construct()
-    {
-
-    }
+    /**
+     * @var Product
+     *
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="productItems")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="SET NULL")
+     *
+     * @SymfonyConstraints\NotBlank()
+     */
+    protected $product;
 
     /**
      * @return Order
@@ -71,5 +78,21 @@ class ProductItem
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+    }
+
+    /**
+     * @return Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param Product $product
+     */
+    public function setProduct($product)
+    {
+        $this->product = $product;
     }
 }

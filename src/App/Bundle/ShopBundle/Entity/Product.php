@@ -198,10 +198,22 @@ class Product
      */
     private $verticalLoad;
 
+    /**
+     * @var ArrayCollection|ProductItem[]
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="ProductItem",
+     *     mappedBy="product",
+     *     cascade={"persist"}
+     * )
+     */
+    private $productItems;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->productItems = new ArrayCollection();
         $this->top = false;
     }
 
@@ -607,5 +619,46 @@ class Product
     public function setNumberContacts($numberContacts)
     {
         $this->numberContacts = $numberContacts;
+    }
+
+    /**
+     * @return ProductItem[]|ArrayCollection
+     */
+    public function getProductItems()
+    {
+        return $this->productItems;
+    }
+
+    /**
+     * @param ProductItem $productItems
+     */
+    public function setProductItems(ProductItem $productItems)
+    {
+        $this->productItems = $productItems;
+    }
+
+    /**
+     * @param ProductItem $productItem
+     *
+     * @return $this
+     */
+    public function addProductItem(ProductItem $productItem)
+    {
+        $this->productItems[] = $productItem;
+
+        return $this;
+    }
+
+    /**
+     * @param $productItem
+     *
+     * @return $this
+     */
+    public function removeProductItems(ProductItem $productItem)
+    {
+        $this->productItems->remove($productItem);
+        $productItem->setProduct(null);
+
+        return $this;
     }
 }
