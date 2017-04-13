@@ -35,7 +35,10 @@ class ProductCountDTOType extends AbstractType
             ->add('product', EntityType::class, [
                 'required' => true,
                 'class' => 'AppShopBundle:Product',
-//                'choices' => $this->getProducts(),
+                'choice_label' => function ($product) {
+                    /** @var Product $product */
+                    return 'SKU: ' . $product->getCode() . '; Title: ' . $product->getTitle();
+                }
             ])
         ;
     }
@@ -52,20 +55,5 @@ class ProductCountDTOType extends AbstractType
     public function getBlockPrefix()
     {
         return 'app_shop_bundle_product_count_dto';
-    }
-
-    /**
-     * @return array
-     */
-    private function getProducts()
-    {
-        $products = $this->em->getRepository('AppShopBundle:Product')->findAll();
-        $data = [];
-
-        foreach ($products as $product) {
-            $data[$product->getId()] = 'SKU: ' . $product->getCode() . '; Title: ' . $product->getTitle();
-        }
-
-        return $data;
     }
 }
