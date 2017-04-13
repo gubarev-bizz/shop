@@ -22,6 +22,10 @@ class CheckoutType extends AbstractType
                 'label' => 'Фамилия',
                 'required' => true,
             ])
+            ->add('patronymic', TextType::class, [
+                'label' => 'Patronymic',
+                'required' => true,
+            ])
             ->add('phone', TextType::class, [
                 'label' => 'Телефон',
                 'required' => true,

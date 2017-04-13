@@ -9,7 +9,7 @@
     {% elseif entities.items[0].type == 'stock' %}
         {% set type = 'Акции' %}
     {% endif %}
-        {{ type }}
+        {{ type|trans }}
 {% endblock %}
 
 {% block content %}

@@ -57,6 +57,15 @@ class Order
     /**
      * @var string
      *
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @SymfonyConstraints\NotBlank()
+     * @SymfonyConstraints\Length(max="255")
+     */
+    private $patronymic;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="phone", type="string", nullable=false)
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Length(max="255")
@@ -339,5 +348,21 @@ class Order
         $this->products->removeElement($product);
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPatronymic()
+    {
+        return $this->patronymic;
+    }
+
+    /**
+     * @param string $patronymic
+     */
+    public function setPatronymic($patronymic)
+    {
+        $this->patronymic = $patronymic;
     }
 }

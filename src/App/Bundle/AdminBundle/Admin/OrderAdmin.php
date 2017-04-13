@@ -42,13 +42,14 @@ class OrderAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('id', 'text', ['label' => '№ Заказа'])
-            ->add('firstName', 'text', ['label' => 'Имя'])
-            ->add('lastName', 'text', ['label' => 'Фамилия'])
-            ->add('phone', 'text', ['label' => 'Телефон'])
+            ->add('firstName', 'text', ['label' => 'First Name'])
+            ->add('lastName', 'text', ['label' => 'Last Name'])
+            ->add('patronymic', 'text', ['label' => 'Patronymic'])
+            ->add('phone', 'text', ['label' => 'Phone'])
             ->add('email', 'text', ['label' => 'Email'])
-            ->add('amount', 'text', ['label' => 'Сумма'])
+            ->add('amount', 'text', ['label' => 'Amount'])
             ->add('status', 'choice', [
-                'label' => 'Статус',
+                'label' => 'Status',
                 'choices' => [
                     Order::AWAITING_PAYMENT => 'Ожидает оплаты',
                     Order::AWAITING_SHIPMENT => 'Ожидает отправки' ,
@@ -78,9 +79,10 @@ class OrderAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Basic information')
-                ->add('firstName', 'text', ['label' => 'Имя'])
-                ->add('lastName', 'text', ['label' => 'Фамилия'])
-                ->add('phone', 'text', ['label' => 'Телефон'])
+                ->add('firstName', 'text', ['label' => 'First Name'])
+                ->add('lastName', 'text', ['label' => 'Last Name'])
+                ->add('patronymic', 'text', ['label' => 'Patronymic'])
+                ->add('phone', 'text', ['label' => 'Phone'])
                 ->add('email', 'text', ['label' => 'Email'])
                 ->add('productItems', 'sonata_type_collection',
                     [
@@ -150,22 +152,25 @@ class OrderAdmin extends AbstractAdmin
         $show
             ->with('Основная информация')
                 ->add('firstName', null, [
-                    'label' => 'Имя',
+                    'label' => 'First Name',
                 ])
                 ->add('lastName', null, [
-                    'label' => 'Фамилия',
+                    'label' => 'Last Name',
+                ])
+                ->add('patronymic', null, [
+                    'label' => 'Patronymic',
                 ])
                 ->add('phone', null, [
-                    'label' => 'Телефон',
+                    'label' => 'Phone',
                 ])
                 ->add('email', null, [
                     'label' => 'Email',
                 ])
                 ->add('amount', null, [
-                    'label' => 'Сумма',
+                    'label' => 'Amount',
                 ])
                 ->add('status', null, [
-                    'label' => 'Статус',
+                    'label' => 'Status',
                 ])
                 ->add('Позиции заказа', null, [
                     'template' => 'AppAdminBundle:Admin/Field:productOrder.html.twig'
@@ -182,7 +187,7 @@ class OrderAdmin extends AbstractAdmin
         $filter
             ->add('status', null, [
                 'show_filter' => true,
-                'label' => 'Статус',
+                'label' => 'Status',
             ], 'choice', [
                 'choices' => [
                     'Ожидает оплаты' => Order::AWAITING_PAYMENT,
