@@ -87,7 +87,6 @@ class Order
      *
      * @ORM\Column(type="string", length=100, nullable=false)
      *
-     * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Length(max="100")
      */
     private $status;
@@ -116,7 +115,6 @@ class Order
      * @var ArrayCollection|ProductItem[]
      *
      * @ORM\OneToMany(targetEntity="ProductItem", mappedBy="order", cascade={"persist"}, orphanRemoval=true)
-     * @SymfonyConstraints\NotBlank()
      */
     private $productItems;
 
