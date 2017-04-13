@@ -4,18 +4,18 @@ namespace App\Bundle\CoreBundle\Controller;
 
 use App\Bundle\CoreBundle\Entity\Article;
 use App\Bundle\CoreBundle\Form\CallUsType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    public function indexAction(Request $request)
+    /**
+     * @return Response
+     */
+    public function indexAction()
     {
-        // replace this example code with whatever you need
-        return $this->render('AppCoreBundle:Pages:main.html.twig', [
-        ]);
+        return $this->render('AppCoreBundle:Pages:main.html.twig');
     }
 
     public function aboutAction()

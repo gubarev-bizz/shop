@@ -55,6 +55,10 @@ class SearchController extends Controller
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate($result, $request->query->get('page', 1), $this->getParameter('paginator'));
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addRouteItem('Search', "app_core_bundle_article_stock_list");
+        $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
+
         return $this->render('AppCoreBundle:Pages:search.html.twig', [
             'results' => $pagination,
         ]);

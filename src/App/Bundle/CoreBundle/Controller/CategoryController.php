@@ -35,6 +35,12 @@ class CategoryController extends Controller
             ])->createView();
         }
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addRouteItem($category->getTitle(), "app_show_bundle_product_item", [
+            'id' => $category->getId(),
+        ]);
+        $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
+
         return $this->render('AppCoreBundle:Category:item.html.twig', [
             'category' => $category,
             'entities' => $pagination,

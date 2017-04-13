@@ -20,6 +20,10 @@ class ArticleController extends Controller
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate($entities, $request->query->get('page', 1), $this->getParameter('paginator'));
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addRouteItem('News', "app_core_bundle_article_news_list");
+        $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
+
         return $this->render('AppCoreBundle:Article:list.html.twig', [
             'entities' => $pagination
         ]);
@@ -36,6 +40,10 @@ class ArticleController extends Controller
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate($entities, $request->query->get('page', 1), $this->getParameter('paginator'));
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addRouteItem('Promotions', "app_core_bundle_article_stock_list");
+        $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
+
         return $this->render('AppCoreBundle:Article:list.html.twig', [
             'entities' => $pagination
         ]);
@@ -51,6 +59,10 @@ class ArticleController extends Controller
         ]);
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate($entities, $request->query->get('page', 1), $this->getParameter('paginator'));
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addRouteItem('Articles', "app_core_bundle_article_article_list");
+        $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
         return $this->render('AppCoreBundle:Article:list.html.twig', [
             'entities' => $pagination
@@ -69,6 +81,13 @@ class ArticleController extends Controller
             throw new NotFoundHttpException('Article has not be found');
         }
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addRouteItem('News', "app_core_bundle_article_news_list");
+        $breadcrumbs->addRouteItem($entity->getTitle(), "app_core_bundle_article_news_item", [
+            'id' => $entity->getId(),
+        ]);
+        $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
+
         return $this->render('AppCoreBundle:Article:item.html.twig', [
             'entity' => $entity
         ]);
@@ -86,6 +105,13 @@ class ArticleController extends Controller
             throw new NotFoundHttpException('Article has not be found');
         }
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addRouteItem('Promotions', "app_core_bundle_article_stock_list");
+        $breadcrumbs->addRouteItem($entity->getTitle(), "app_core_bundle_article_stock_item", [
+            'id' => $entity->getId(),
+        ]);
+        $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
+
         return $this->render('AppCoreBundle:Article:item.html.twig', [
             'entity' => $entity
         ]);
@@ -102,6 +128,13 @@ class ArticleController extends Controller
         if (!$entity) {
             throw new NotFoundHttpException('Article has not be found');
         }
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addRouteItem('Articles', "app_core_bundle_article_article_list");
+        $breadcrumbs->addRouteItem($entity->getTitle(), "app_core_bundle_article_article_item", [
+            'id' => $entity->getId(),
+        ]);
+        $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
         return $this->render('AppCoreBundle:Article:item.html.twig', [
             'entity' => $entity

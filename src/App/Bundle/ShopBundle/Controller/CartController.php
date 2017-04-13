@@ -168,6 +168,10 @@ class CartController extends Controller
     {
         $cart = $this->get('app_shop_bundle.cart')->getCart();
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addRouteItem('Cart', "app_shop_bundle_cart");
+        $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
+
         return $this->render('AppShopBundle:Cart:cart.html.twig', [
             'cart' => $cart,
         ]);

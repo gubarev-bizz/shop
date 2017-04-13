@@ -66,6 +66,10 @@ class CheckoutController extends Controller
             return $this->redirectToRoute('app_show_bundle_checkout_show', ['id' => $order->getId()]);
         }
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addRouteItem('Checkout', "app_shop_bundle_checkout");
+        $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
+
         return $this->render('AppShopBundle:Checkout:checkout.html.twig', [
             'form' => $form->createView(),
         ]);

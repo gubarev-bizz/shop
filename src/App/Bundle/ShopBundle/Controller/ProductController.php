@@ -57,6 +57,15 @@ class ProductController extends Controller
             $em->flush();
         }
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addRouteItem($product->getCategory()->getTitle(), "app_core_bundle_category_item", [
+            'categoryId' => $product->getCategory()->getId(),
+        ]);
+        $breadcrumbs->addRouteItem($product->getTitle(), "app_show_bundle_product_item", [
+            'id' => $product->getId(),
+        ]);
+        $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
+
         return $this->render('AppShopBundle:Product:productItem.html.twig', [
             'product' => $product,
             'similarProducts' => $similarProducts,
