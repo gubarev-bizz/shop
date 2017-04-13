@@ -40,3 +40,41 @@ Action: Action
 Send: Send
 Contact Us: Contact Us
 No records found: No records found
+
+#Admin part
+Basic information: Basic information
+Order: Order
+Orders: Orders
+Order List: Order List
+Order Create: Order Create
+Add product: Add product
+Shop: Shop
+Countries: Countries
+Country: Country
+Country List: Country List
+Country Create: Country Create
+Import: Import
+Import List: Import List
+List: List
+Import products: Import products
+Upload: Upload
+Link: Link
+Slider: Slider
+Slider List: Slider List
+Slider Create: Slider Create
+Main Page: Main Page
+Article List: Article List
+Article Create: Article Create
+Review: Review
+Reviews: Reviews
+Review List: Review List
+Review Create: Review Create
+Product: Product
+Products: Products
+Product List: Product List
+Product Create: Product Create
+Category: Category
+Manufacturer: Manufacturer
+Price: Price
+Currency: Currency
+User: User

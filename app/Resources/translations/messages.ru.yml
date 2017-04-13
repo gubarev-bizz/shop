@@ -40,3 +40,41 @@ Action: Действие
 Send: Отправить
 Contact Us: Написать нам
 No records found: Записей не найдено
+
+#Admin part
+Basic information: Основная информация
+Order: Заказ
+Orders: Заказы
+Order List: Список заказов
+Order Create: Создание заказа
+Add product: Добавить продукт
+Shop: Магазин
+Countries: Страны
+Country: Страна
+Country List: Список стран
+Country Create: Создание страны
+Import: Импорт
+Import List: Список импортов
+List: Список
+Import products: Импорт продуктов
+Upload: Загрузить
+Link: Ссылка
+Slider: Cлайдер
+Slider List: Список слайдеров
+Slider Create: Создание слайдера
+Main Page: Главная страница
+Article List: Список статей\новостей\акций
+Article Create: Создание статью\новость\акцию
+Review: Отзыв
+Reviews: Отзывы
+Review List: Список отзывов
+Review Create: Создать отзыв
+Product: Продукт
+Products: Продукты
+Product List: Список продуктов
+Product Create: Создание продукта
+Category: Категория
+Manufacturer: Производитель
+Price: Цена
+Currency: Валюта
+User: Пользователь

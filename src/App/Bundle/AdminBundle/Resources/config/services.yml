@@ -27,7 +27,7 @@ services:
         class: App\Bundle\AdminBundle\Admin\OrderAdmin
         arguments: [ ~, App\Bundle\ShopBundle\Entity\Order, ~ ]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Shop, label: Order }
+            - { name: sonata.admin, manager_type: orm, group: Shop, label: Orders }
         calls:
             - [ setMailer, [ '@visual_craft_mailer.mailer' ] ]
 
@@ -47,7 +47,7 @@ services:
         class: App\Bundle\AdminBundle\Admin\CountryAdmin
         arguments: [ ~, App\Bundle\CoreBundle\Entity\Country, ~ ]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Shop, label: Country }
+            - { name: sonata.admin, manager_type: orm, group: Shop, label: Countries }
 
     app_admin.admin.manufacturer:
         class: App\Bundle\AdminBundle\Admin\ManufacturerAdmin
@@ -65,7 +65,7 @@ services:
         class: App\Bundle\AdminBundle\Admin\SliderAdmin
         arguments: [ ~, App\Bundle\CoreBundle\Entity\Slider, ~ ]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Content, label: Sliders }
+            - { name: sonata.admin, manager_type: orm, group: Content, label: Slider }
 
     app_admin.admin.image:
         class: App\Bundle\AdminBundle\Admin\ImageAdmin

@@ -24,30 +24,30 @@ class ProductAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('code', null, [
-                'label' => 'ART',
+                'label' => 'Code',
             ])
             ->add('title', null, [
-                'label' => 'Наименование',
+                'label' => 'Title',
             ])
             ->add('category', null, [
-                'label' => 'Категория',
+                'label' => 'Category',
             ])
             ->add('manufacturer', null, [
-                'label' => 'Производитель',
+                'label' => 'Manufacturer',
             ])
             ->add('country', null, [
-                'label' => 'Страна',
+                'label' => 'Country',
             ])
             ->add('price', null, [
-                'label' => 'Цена',
+                'label' => 'Price',
                 'template' => 'AppAdminBundle:Admin/List:list_price.html.twig',
             ])
             ->add('currency', null, [
-                'label' => 'Валюта',
+                'label' => 'Currency',
             ])
             ->add('priceUah', null, ['label' => 'Цена UAH'])
-            ->add('user', null, ['label' => 'Пользователь'])
-            ->add('top', null, ['label' => 'В топе'])
+            ->add('user', null, ['label' => 'User'])
+            ->add('top', null, ['label' => 'Top'])
             ->add('_action', 'actions', [
                 'actions' => [
                     'edit' => [],
