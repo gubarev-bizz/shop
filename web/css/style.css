@@ -616,3 +616,19 @@ form[name="search"] .form-group button {
     top: 50%;
     margin-top: -60px;
 }
+
+.review-item .review-date{
+
+}
+.review-item .review-title{
+    font-size: 17px;
+    font-weight: 600;
+    margin: 3px 0;
+}
+.review-item .review-content{
+
+}
+
+.review-item {
+    margin-top: 25px;
+}

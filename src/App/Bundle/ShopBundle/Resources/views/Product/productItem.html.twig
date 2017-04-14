@@ -161,7 +161,22 @@
                     </table>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="rewrite">
+                    <h3>{{ 'Add review'|trans }}</h3>
                     {{ form(reviewForm) }}
+                    <h3>{{ 'Reviews'|trans }}</h3>
+                    {% if reviews|length %}
+                        <div>
+                            {% for review in reviews %}
+                                <div class="review-item">
+                                    <div class="review-date">{{ review.createdAt|date('d.m.Y') }}</div>
+                                    <div class="review-title">{{ review.name }}</div>
+                                    <div class="review-content">{{ review.content|raw }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div>{{ 'No records found'|trans }}</div>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -66,8 +66,16 @@ class ProductController extends Controller
         ]);
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
+        $reviews = $em->getRepository('AppCoreBundle:Review')->findBy([
+            'product' => $product,
+            'approve' => true,
+        ], [
+            'createdAt' => 'DESC',
+        ]);
+
         return $this->render('AppShopBundle:Product:productItem.html.twig', [
             'product' => $product,
+            'reviews' => $reviews,
             'similarProducts' => $similarProducts,
             'reviewForm' => $reviewForm->createView(),
             'addProductToCartForm' => $addProductToCartForm->createView(),
