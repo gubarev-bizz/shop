@@ -41,6 +41,10 @@
             }
         });
 
+        $('.event-submit').click(function(){
+            $('form[name=call_us] button[type=submit]').trigger('click');
+        });
+
     });
 
 })(jQuery);

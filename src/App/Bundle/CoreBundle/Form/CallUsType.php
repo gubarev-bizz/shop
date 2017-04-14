@@ -25,7 +25,7 @@ class CallUsType extends AbstractType
             ->add('message', TextareaType::class)
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn-success'
+                    'class' => 'btn-success hidden'
                 ]
             ])
         ;
