@@ -24,7 +24,7 @@ parameters:
     locale: ru
     report_upload_dir: "%kernel.root_dir%/../var/reports"
     upload_dir: '%kernel.root_dir%/../web/uploads'
-    general_email: 'admin@example.com'
+    general_email: info@farkop.pp.ua
     product_image_dir: '%kernel.root_dir%/../web/images/products'
     base_web_dir: '%kernel.root_dir%/../web'
 
