@@ -109,6 +109,9 @@ fos_js_routing:
         - app_shop_bundle_cart_get_items
         - app_shop_bundle_cart_remove_item
         - app_show_bundle_product_item
+        - app_shop_bundle_cart_refresh
+        - app_shop_bundle_cart_remove_item
+        - app_shop_bundle_cart
 
 visual_craft_beanstalk_scheduler:
     connections:

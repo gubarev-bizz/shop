@@ -50,7 +50,7 @@ class CartController extends Controller
                 } else {
                     $productsCart[$product->getId()] = [
                         'count' => $formData['count'],
-                        'price' => $product->getPrice(),
+                        'price' => $product->getPrice() * (int) $formData['count'],
                     ];
                     $session->set('cartElements', $productsCart);
                 }

@@ -5,11 +5,11 @@
         $('.refresh-cart').click(function () {
             $.ajax({
                 type: "POST",
-                url: '/app_dev.php/cart/refresh',
+                url: url = Routing.generate('app_shop_bundle_cart_refresh'),
                 data: $('#cart').serialize(),
                 success: function (data) {
                     if (data.status == 'success') {
-                        window.location = '/app_dev.php/cart';
+                        window.location = Routing.generate('app_shop_bundle_cart');
                     }
                 }
             });
@@ -19,11 +19,11 @@
             var productId = $(this).parent().parent().find('input').data('product');
             $.ajax({
                 type: "POST",
-                url: '/app_dev.php/cart/remove',
+                url: Routing.generate('app_shop_bundle_cart_remove_item'),
                 data: 'productId=' + productId,
                 success: function (data) {
                     if (data.status == 'success') {
-                        window.location = '/app_dev.php/cart';
+                        window.location = Routing.generate('app_shop_bundle_cart');
                     }
                 }
             });
