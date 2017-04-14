@@ -18,16 +18,25 @@ class DefaultController extends Controller
         return $this->render('AppCoreBundle:Pages:main.html.twig');
     }
 
+    /**
+     * @return Response
+     */
     public function aboutAction()
     {
         return $this->render('AppCoreBundle:Pages:about.html.twig');
     }
 
+    /**
+     * @return Response
+     */
     public function contactAction()
     {
         return $this->render('AppCoreBundle:Pages:contact.html.twig');
     }
 
+    /**
+     * @return Response
+     */
     public function getSidebarAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -40,6 +49,11 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function getCallUsAction(Request $request)
     {
         $form = $this->createForm(CallUsType::class, null, [
