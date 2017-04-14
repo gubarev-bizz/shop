@@ -44,6 +44,7 @@ app_core_bundle_page_about:
 
 app_core_bundle_callback_call_us:
     path: /call-us
+    methods: POST
     defaults: { _controller: AppCoreBundle:Default:processCallUs }
 
 app_core_bundle_page_contact:

@@ -5,6 +5,7 @@ namespace App\Bundle\CoreBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -18,7 +19,10 @@ class CallUsType extends AbstractType
                 'required' => true
             ])
             ->add('email', EmailType::class)
-            ->add('message', TextType::class)
+            ->add('phone', TextType::class, [
+                'required' => true,
+            ])
+            ->add('message', TextareaType::class)
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn-success'

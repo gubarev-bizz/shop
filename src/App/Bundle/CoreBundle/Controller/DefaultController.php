@@ -60,7 +60,6 @@ class DefaultController extends Controller
             'action' => $this->generateUrl('app_core_bundle_callback_call_us'),
             'method' => 'POST',
         ]);
-        $form->handleRequest($request);
 
         return $this->render('AppCoreBundle:Block:callUsBlock.html.twig', [
             'form' => $form->createView()
@@ -74,8 +73,11 @@ class DefaultController extends Controller
         $referer = $request->headers->get('referer');
 
         if ($form->isSubmitted() && $form->isValid()) {
-            var_dump($form->getData());
-            exit;
+            $formData = $form->getData();
+            $this->get('visual_craft_mailer.mailer')->send('call_us', [
+                'fullName' => $formData['name'],
+                'phone' => $formData['phone'],
+            ]);
         }
 
         return $this->redirect($referer);

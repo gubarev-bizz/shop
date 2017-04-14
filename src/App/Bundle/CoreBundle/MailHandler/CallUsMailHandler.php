@@ -6,7 +6,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use VisualCraft\Bundle\MailerBundle\MailHandler\TemplatingAwareMailHandlerTrait;
 use VisualCraft\Bundle\MailerBundle\MailHandlerInterface;
 
-class CallbackMailHandler implements MailHandlerInterface
+class CallUsMailHandler implements MailHandlerInterface
 {
     use TemplatingAwareMailHandlerTrait;
 
