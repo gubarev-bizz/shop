@@ -68,9 +68,10 @@ swiftmailer:
     port:      "%mailer_port%"
     encryption: "%mailer_encryption%"
     auth_mode: "%mailer_authmode%"
-    spool:
-        type: file
-        path: "%kernel.root_dir%/../var/spool"
+    spool: { type: memory }
+#    spool:
+#        type: file
+#        path: "%kernel.root_dir%/../var/spool"
 
 stof_doctrine_extensions:
     default_locale: en_US
