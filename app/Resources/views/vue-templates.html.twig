@@ -23,7 +23,7 @@
                     <tr>
                         <th>Кол-во</th>
                         <th>Элементы</th>
-                        <th>Цена</th>
+                        <th>{{ 'Price'|trans }}</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -50,7 +50,7 @@
                         <p>Всего: ${ total } грн.</p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <a href="{{ path('app_shop_bundle_cart') }}" title="Оформление заказа">Оформление заказа</a>
+                        <a href="{{ path('app_shop_bundle_cart') }}" title="{{ 'Checkout'|trans }}">{{ 'Checkout'|trans }}</a>
                     </div>
                 </div>
             </div>
