@@ -5,6 +5,7 @@ namespace App\Bundle\ShopBundle\Form;
 use App\Bundle\ShopBundle\Entity\Order;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,11 +16,11 @@ class CheckoutType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, [
-                'label' => 'Имя',
+                'label' => 'First Name',
                 'required' => true,
             ])
             ->add('lastName', TextType::class, [
-                'label' => 'Фамилия',
+                'label' => 'Last Name',
                 'required' => true,
             ])
             ->add('patronymic', TextType::class, [
@@ -27,30 +28,38 @@ class CheckoutType extends AbstractType
                 'required' => true,
             ])
             ->add('phone', TextType::class, [
-                'label' => 'Телефон',
+                'label' => 'Phone',
                 'required' => true,
             ])
-            ->add('email', TextType::class, [
+            ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'required' => true,
             ])
+            ->add('city', TextType::class, [
+                'label' => 'City',
+                'required' => true,
+            ])
+            ->add('address', TextType::class, [
+                'label' => 'Address',
+                'required' => true,
+            ])
             ->add('delivery', ChoiceType::class, [
-                'label' => 'Выберите тип доставки',
+                'label' => 'Select type of delivery',
                 'required' => true,
                 'choices' => [
-                    'Автолюкс' => Order::DELIVERY_AUTOLUX,
-                    'Деливери' => Order::DELIVERY_DELIVERY,
-                    'Новая Почта' => Order::DELIVERY_NOVA_POSHTA,
-                    'Ночной экспресс' => Order::DELIVERY_NIGHT_EXPRESS,
-                    'Гюнсел' => Order::DELIVERY_GUNSEL,
-                    'Интайм' => Order::DELIVERY_INTIME,
+                    'AutoluxLabel' => Order::DELIVERY_AUTOLUX,
+                    'DeliveryLabel' => Order::DELIVERY_DELIVERY,
+                    'NovaPoshtaLabel' => Order::DELIVERY_NOVA_POSHTA,
+                    'NightExpressLabel' => Order::DELIVERY_NIGHT_EXPRESS,
+                    'GunselLabel' => Order::DELIVERY_GUNSEL,
+                    'IntimeLabel' => Order::DELIVERY_INTIME,
                 ],
             ])
             ->add('paymentType', ChoiceType::class, [
-                'label' => 'Выберите тип оплаты',
+                'label' => 'Select payment type',
                 'choices' => [
-                    'Наложенный платеж' => Order::PAYMENT_TYPE_CASH_DELIVERY,
-                    'Безналичный расчет' => Order::PAYMENT_TYPE_CASHLESS_PAYMENTS,
+                    'CashDeliveryLabel' => Order::PAYMENT_TYPE_CASH_DELIVERY,
+                    'CashlessPaymentsLabel' => Order::PAYMENT_TYPE_CASHLESS_PAYMENTS,
                 ],
             ])
         ;

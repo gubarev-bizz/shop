@@ -40,6 +40,22 @@ Action: Действие
 Send: Отправить
 Contact Us: Написать нам
 No records found: Записей не найдено
+City: Город
+Address: Адрес
+Select type of delivery: Выберите тип доставки
+Select payment type: Выберите тип оплаты
+CheckoutBtn: Оформить
+
+#Choices
+IntimeLabel: Интайм
+NovaPoshtaLabel: Новая Почта
+GunselLabel: Гюнсел
+DeliveryLabel: Деливери
+AutoluxLabel: Автолюкс
+NightExpressLabel: Ночной экспресс
+
+CashDeliveryLabel: Наложенный платеж
+CashlessPaymentsLabel: Безналичный расчет
 
 #Admin part
 Basic information: Основная информация

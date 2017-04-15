@@ -27,10 +27,15 @@ class CheckoutController extends Controller
             return $this->redirectToRoute('app_shop_bundle_cart');
         }
 
+        $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
         $order = new Order();
         $form = $this->createForm(CheckoutType::class, $order);
-        $form->add('Оформить', SubmitType::class);
+        $form->add($translator->trans('CheckoutBtn'), SubmitType::class, [
+            'attr' => [
+                'class' => 'btn btn-success',
+            ]
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

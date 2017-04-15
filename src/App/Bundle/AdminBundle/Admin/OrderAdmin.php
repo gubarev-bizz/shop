@@ -79,7 +79,10 @@ class OrderAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Basic information')
-                ->add('firstName', 'text', ['label' => 'First Name'])
+                ->add('firstName', 'text', [
+                    'label' => 'First Name',
+                    'required' => true,
+                ])
                 ->add('lastName', 'text', ['label' => 'Last Name'])
                 ->add('patronymic', 'text', ['label' => 'Patronymic'])
                 ->add('phone', 'text', ['label' => 'Phone'])
@@ -111,6 +114,8 @@ class OrderAdmin extends AbstractAdmin
                         'Выполнен' => Order::EXECUTED,
                     ],
                 ])
+                ->add('city', 'text', ['label' => 'City'])
+                ->add('address', 'text', ['label' => 'Address'])
                 ->add('delivery', 'choice', [
                     'label' => 'Delivery',
                     'choices' => [
@@ -166,6 +171,8 @@ class OrderAdmin extends AbstractAdmin
                 ->add('email', null, [
                     'label' => 'Email',
                 ])
+                ->add('city', null, ['label' => 'City'])
+                ->add('address', null, ['label' => 'Address'])
                 ->add('amount', null, [
                     'label' => 'Amount',
                 ])

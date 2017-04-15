@@ -40,6 +40,22 @@ Action: Action
 Send: Send
 Contact Us: Contact Us
 No records found: No records found
+City: City
+Address: Address
+Select type of delivery: Select type of delivery
+Select payment type: Select payment type
+CheckoutBtn: Checkout
+
+#Choices
+IntimeLabel: Intime
+NovaPoshtaLabel: NovaPoshta
+GunselLabel: Gunsel
+DeliveryLabel: Delivery
+AutoluxLabel: Autolux
+NightExpressLabel: Night Express
+
+CashDeliveryLabel: Cash Delivery
+CashlessPaymentsLabel: Cashless Payments
 
 #Admin part
 Basic information: Basic information

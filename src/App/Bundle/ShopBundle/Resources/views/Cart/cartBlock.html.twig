@@ -34,7 +34,7 @@
                     <p>Всего: {{ totalAmount }} грн.</p>
                 </div>
                 <div class="col-md-6 text-right">
-                    <a href="{{ path('app_shop_bundle_cart') }}">Оформление заказа</a>
+                    <a href="{{ path('app_shop_bundle_cart') }}">{{ 'Checkout'|trans }}</a>
                 </div>
             </div>
         {% else %}

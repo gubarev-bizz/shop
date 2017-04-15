@@ -21,10 +21,12 @@
                         <tr>
                             <td>{{ element.product.title }}</td>
                             <td>{{ element.product.price }}</td>
-                            <td><input data-product="{{ element.product.id }}" type="number" name="count[{{ element.product.id }}]" class="form-control form-text" value="{{ element.count }}" /></td>
+                            <td>
+                                <input data-product="{{ element.product.id }}" type="number" name="count[{{ element.product.id }}]" class="form-control form-text" value="{{ element.count }}" />
+                            </td>
                             <td>{{ element.amount }}</td>
                             <td>
-                                <button type="button" class="btn btn-danger cart-remove">Delete</button>
+                                <button type="button" class="btn btn-danger cart-remove">{{ 'Delete'|trans }}</button>
                             </td>
                         </tr>
                     {% endfor %}
@@ -39,7 +41,7 @@
 
         <div style="text-align: right;" class="form-actions commerce-line-item-actions form-wrapper form-group" id="edit-actions">
             <button type="submit" id="edit-submit" value="Пересчитать" class="btn btn-default refresh-cart">Пересчитать</button>
-            <a href="{{ path('app_shop_bundle_checkout') }}" class="btn btn-default form-submit">Оформление заказа</a>
+            <a href="{{ path('app_shop_bundle_checkout') }}" title="{{ 'Checkout'|trans }}" class="btn btn-default form-submit">{{ 'Checkout'|trans }}</a>
         </div>
     {% else %}
         Cart is empty

@@ -94,6 +94,26 @@ class Order
     /**
      * @var string
      *
+     * @ORM\Column(type="string", length=200, nullable=false)
+     *
+     * @SymfonyConstraints\NotBlank()
+     * @SymfonyConstraints\Length(max="200")
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=false)
+     *
+     * @SymfonyConstraints\NotBlank()
+     * @SymfonyConstraints\Length(max="255")
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=100, nullable=false)
      *
      * @SymfonyConstraints\Length(max="100")
@@ -364,5 +384,37 @@ class Order
     public function setPatronymic($patronymic)
     {
         $this->patronymic = $patronymic;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
     }
 }
