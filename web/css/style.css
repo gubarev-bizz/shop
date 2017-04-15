@@ -141,7 +141,7 @@
 
 .page-title h2{
     background-color: #eeeeee;
-    height: 70px;
+    min-height: 70px;
     color: #5E5E5E;
     line-height: 70px;
     padding-left: 30px;
