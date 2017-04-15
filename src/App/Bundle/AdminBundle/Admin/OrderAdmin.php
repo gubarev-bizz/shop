@@ -107,42 +107,33 @@ class OrderAdmin extends AbstractAdmin
                 ->add('status', 'choice', [
                     'label' => 'Status',
                     'choices' => [
-                        'Ожидает оплаты' => Order::AWAITING_PAYMENT,
-                        'Ожидает отправки' => Order::AWAITING_SHIPMENT,
-                        'Принят в обработку' => Order::TAKEN_PROCESSING,
-                        'Отменен' => Order::CANCELED,
-                        'Выполнен' => Order::EXECUTED,
+                        'OrderStatusNewLabel' => Order::STATUS_NEW,
+                        'OrderStatusInitialLabel' => Order::STATUS_INITIAL,
+                        'OrderStatusAwaitingPaymentLabel' => Order::AWAITING_PAYMENT,
+                        'OrderStatusAwaitingShipmentLabel' => Order::AWAITING_SHIPMENT,
+                        'OrderStatusTakenProcessingLabel' => Order::TAKEN_PROCESSING,
+                        'OrderStatusCanceledLabel' => Order::CANCELED,
+                        'OrderStatusExecutedLabel' => Order::EXECUTED,
                     ],
                 ])
                 ->add('city', 'text', ['label' => 'City'])
                 ->add('address', 'text', ['label' => 'Address'])
                 ->add('delivery', 'choice', [
-                    'label' => 'Delivery',
+                    'label' => 'Select type of delivery',
                     'choices' => [
-                        'Автолюкс' => Order::DELIVERY_AUTOLUX,
-                        'Деливери' => Order::DELIVERY_DELIVERY,
-                        'Гюнсел' => Order::DELIVERY_GUNSEL,
-                        'Интайм' => Order::DELIVERY_INTIME,
-                        'Ночной экспресс' => Order::DELIVERY_NIGHT_EXPRESS,
-                        'Новая Почта' => Order::DELIVERY_NOVA_POSHTA,
-                    ],
-                ])
-                ->add('delivery', 'choice', [
-                    'label' => 'Delivery',
-                    'choices' => [
-                        'Автолюкс' => Order::DELIVERY_AUTOLUX,
-                        'Деливери' => Order::DELIVERY_DELIVERY,
-                        'Гюнсел' => Order::DELIVERY_GUNSEL,
-                        'Интайм' => Order::DELIVERY_INTIME,
-                        'Ночной экспресс' => Order::DELIVERY_NIGHT_EXPRESS,
-                        'Новая Почта' => Order::DELIVERY_NOVA_POSHTA,
+                        'AutoluxLabel' => Order::DELIVERY_AUTOLUX,
+                        'DeliveryLabel' => Order::DELIVERY_DELIVERY,
+                        'NovaPoshtaLabel' => Order::DELIVERY_NOVA_POSHTA,
+                        'NightExpressLabel' => Order::DELIVERY_NIGHT_EXPRESS,
+                        'GunselLabel' => Order::DELIVERY_GUNSEL,
+                        'IntimeLabel' => Order::DELIVERY_INTIME,
                     ],
                 ])
                 ->add('paymentType', 'choice', [
-                    'label' => 'Payment type',
+                    'label' => 'Select payment type',
                     'choices' => [
-                        'Наложенный платеж' => Order::PAYMENT_TYPE_CASH_DELIVERY,
-                        'Безналичный расчет' => Order::PAYMENT_TYPE_CASHLESS_PAYMENTS,
+                        'CashDeliveryLabel' => Order::PAYMENT_TYPE_CASH_DELIVERY,
+                        'CashlessPaymentsLabel' => Order::PAYMENT_TYPE_CASHLESS_PAYMENTS,
                     ],
                 ])
             ->end()
@@ -197,11 +188,13 @@ class OrderAdmin extends AbstractAdmin
                 'label' => 'Status',
             ], 'choice', [
                 'choices' => [
-                    'Ожидает оплаты' => Order::AWAITING_PAYMENT,
-                    'Ожидает отправки' => Order::AWAITING_SHIPMENT,
-                    'Принят в обработку' => Order::TAKEN_PROCESSING,
-                    'Отменен' => Order::CANCELED,
-                    'Выполнен' => Order::EXECUTED,
+                    'OrderStatusNewLabel' => Order::STATUS_NEW,
+                    'OrderStatusInitialLabel' => Order::STATUS_INITIAL,
+                    'OrderStatusAwaitingPaymentLabel' => Order::AWAITING_PAYMENT,
+                    'OrderStatusAwaitingShipmentLabel' => Order::AWAITING_SHIPMENT,
+                    'OrderStatusTakenProcessingLabel' => Order::TAKEN_PROCESSING,
+                    'OrderStatusCanceledLabel' => Order::CANCELED,
+                    'OrderStatusExecutedLabel' => Order::EXECUTED,
                 ],
             ])
             ->add('email', null, [

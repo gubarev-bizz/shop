@@ -39,7 +39,7 @@ class ProductItemAdmin extends AbstractAdmin
             ->with('Basic information')
                 ->add('code', 'text', [
                     'required' => true,
-                    'label' => 'SKU',
+                    'label' => 'Code',
                     'disabled' => true,
                 ])
                 ->add('title', 'text', [
@@ -53,7 +53,7 @@ class ProductItemAdmin extends AbstractAdmin
                     'disabled' => true,
                 ])
                 ->add('quantity', 'number', [
-                    'label' => 'Количество',
+                    'label' => 'Quantity',
                     'required' => true,
                     'attr' => [
                         'min' => '1',

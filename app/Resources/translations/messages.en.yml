@@ -95,3 +95,11 @@ Price: Price
 Currency: Currency
 User: User
 Add review: Add review
+
+OrderStatusNew: New
+OrderStatusInitial: Initial
+OrderStatusTakenProcessing: Accepted for processing
+OrderStatusAwaitingPayment: Pending payment
+OrderStatusAwaitingShipment: Waiting for sending
+OrderStatusExecuted: Completed
+OrderStatusCanceled: Canceled

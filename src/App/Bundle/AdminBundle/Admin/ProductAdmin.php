@@ -68,43 +68,44 @@ class ProductAdmin extends AbstractAdmin
 
         $formMapper
             ->tab('Основная информация')
-                    ->add('code', 'text', ['label' => 'ART'])
-                    ->add('title', 'text', ['label' => 'Наименование'])
+                    ->add('code', 'text', ['label' => 'Code'])
+                    ->add('title', 'text', ['label' => 'Title'])
                     ->add('images','sonata_type_collection', [
                         'required' => false,
                         'by_reference' => false,
-                        'label' => 'Изображения',
+                        'label' => 'Images',
                     ], [
                             'edit' => 'inline',
                             'inline' => 'table',
                         ]
                     )
                     ->add('content', 'textarea', [
+                        'label' => 'Content',
                         'attr' => [
                             'class' => 'tinymce',
                             'data-theme' => 'advanced',
                         ],
                     ])
                     ->add('category', null, [
-                        'label' => 'Категория',
+                        'label' => 'Category',
                         'required' => true,
                     ])
                     ->add('manufacturer', null, [
                         'required' => true,
-                        'label' => 'Производитель',
+                        'label' => 'Manufacturer',
                     ])
                     ->add('country', null, [
                         'required' => true,
-                        'label' => 'Страна',
+                        'label' => 'Country',
                     ])
                     ->add('price', 'number', [
                         'required' => true,
-                        'label' => 'Цена',
+                        'label' => 'Price',
                         'data' => ($object->getRealPrice()) ? $object->getRealPrice() : 1,
                     ])
                     ->add('currency', 'choice', [
                         'required' => true,
-                        'label' => 'Валюта',
+                        'label' => 'Currency',
                         'choices' => [
                             'UAH' => 'UAH',
                             'USD' => 'USD',

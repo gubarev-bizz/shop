@@ -95,3 +95,11 @@ Price: Цена
 Currency: Валюта
 User: Пользователь
 Add review: Добавить отзыв
+
+OrderStatusNewLabel: Новый
+OrderStatusInitialLabel: Начальный
+OrderStatusTakenProcessingLabel: Принят в обработку
+OrderStatusAwaitingPaymentLabel: Ожидает оплаты
+OrderStatusAwaitingShipmentLabel: Ожидает отправки
+OrderStatusExecutedLabel: Выполнен
+OrderStatusCanceledLabel: Отменен
