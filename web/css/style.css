@@ -548,7 +548,7 @@ p.price{
 }
 
 .product-block > .image {
-    min-height: 170px;
+    min-height: 220px;
 }
 
 .product-block:hover .small-price {
