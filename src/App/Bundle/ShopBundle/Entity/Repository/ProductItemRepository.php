@@ -2,7 +2,7 @@
 
 namespace App\Bundle\ShopBundle\Entity\Repository;
 
-use App\Bundle\CoreBundle\Entity\Product;
+use App\Bundle\ShopBundle\Entity\Product;
 use Doctrine\ORM\EntityRepository;
 
 class ProductItemRepository extends EntityRepository

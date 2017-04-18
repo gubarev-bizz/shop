@@ -2,8 +2,6 @@
 
 namespace App\Bundle\AdminBundle\Admin;
 
-use App\Bundle\CoreBundle\Entity\Product;
-use App\Bundle\CoreBundle\Entity\User;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;

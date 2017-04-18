@@ -4,10 +4,9 @@ namespace App\Bundle\AdminBundle\Parser;
 
 use App\Bundle\CoreBundle\Entity\Category;
 use App\Bundle\CoreBundle\Entity\Country;
-use App\Bundle\CoreBundle\Entity\Image;
 use App\Bundle\CoreBundle\Entity\Manufacturer;
-use App\Bundle\CoreBundle\Entity\Product;
 use App\Bundle\ShopBundle\Entity\Import;
+use App\Bundle\ShopBundle\Entity\Product;
 use Doctrine\ORM\EntityManager;
 use Liuggio\ExcelBundle\Factory;
 
