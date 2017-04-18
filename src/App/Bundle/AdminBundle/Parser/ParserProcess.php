@@ -258,16 +258,41 @@ class ParserProcess
                         $product->setCategory($category);
                     }
 
-                    $product->setBallType($item['ballType']);
-                    $product->setSystemVoltage($item['systemVoltage']);
-                    $product->setPermissibleCurrentValues($item['permissibleCurrentValues']);
-                    $product->setVerticalLoad($item['verticalLoad']);
-                    $product->setTractionLoad($item['tractionLoad']);
-                    $product->setRemovingBumper($item['removingBumper']);
-                    $product->setBumperCropping($item['bumperCropping']);
-                    $product->setNeedHarmonizeModule($item['needHarmonizeModule']);
-                    $product->setWeightTowbar($item['weightTowbar']);
-                    $product->setNumberContacts($item['numberContacts']);
+                    if (isset($item['ballType'])) {
+                        $product->setBallType($item['ballType']);
+                    }
+
+                    if (isset($item['systemVoltage'])) {
+                        $product->setSystemVoltage($item['systemVoltage']);
+                    }
+
+                    if (isset($item['permissibleCurrentValues'])) {
+                        $product->setPermissibleCurrentValues($item['permissibleCurrentValues']);
+                    }
+
+                    if (isset($item['tractionLoad'])) {
+                        $product->setTractionLoad($item['tractionLoad']);
+                    }
+
+                    if (isset($item['removingBumper'])) {
+                        $product->setRemovingBumper($item['removingBumper']);
+                    }
+
+                    if (isset($item['bumperCropping'])) {
+                        $product->setBumperCropping($item['bumperCropping']);
+                    }
+
+                    if (isset($item['needHarmonizeModule'])) {
+                        $product->setNeedHarmonizeModule($item['needHarmonizeModule']);
+                    }
+
+                    if (isset($item['weightTowbar'])) {
+                        $product->setWeightTowbar($item['weightTowbar']);
+                    }
+
+                    if (isset($item['numberContacts'])) {
+                        $product->setNumberContacts($item['numberContacts']);
+                    }
 
                     $product->setUser($import->getUser());
                     $this->em->persist($product);
