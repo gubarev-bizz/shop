@@ -1,0 +1,76 @@
+{% extends '@AppCore/Layouts/layout.html.twig' %}
+
+{% block page_title %}
+    {{ category.title }}
+{% endblock %}
+
+{% block seo %}
+    {{ seo_render(category.seoDescription, category.seoTags, category.title, app.request) }}
+{% endblock %}
+
+{% block content %}
+
+    {% if entities|length %}
+
+        {% set index = 0 %}
+
+        {% for entity in entities %}
+            {% if  index == 0 %}
+                <div class="row" style="margin-bottom: 20px;">
+            {% endif %}
+                <div class="col-md-4">
+                    <div class="product-block">
+                        <div class="image">
+                            <a title="{{ entity.title }}" href="{{ path('app_show_bundle_product_item', {id: entity.id}) }}" class="img">
+                                {% for image in entity.images %}
+                                    {% if loop.index == 1 %}
+                                        <img src="{{ getImage(image.imageName, 'products') }}" alt="" />
+                                    {% endif %}
+                                {% endfor %}
+                            </a>
+                        </div>
+                        <div class="product-meta">
+                            <div class="name">
+                                <a title="{{ entity.title }}" href="{{ path('app_show_bundle_product_item', {id: entity.id}) }}">{{ entity.title }}</a>
+                            </div>
+                            <div class="big-price">
+                                <span class="price-new">{{ entity.price }} грн.</span>
+                            </div>
+                            <div class="big-btns">
+                                <div class="field field-name-field-product field-type-commerce-product-reference field-label-hidden">
+                                    <div class="field-items">
+                                        <div class="field-item even">
+                                            {{ form(addProductToCartForm[entity.id]) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="small-price"> <span class="price-new">{{ entity.price }} грн.</span></div>
+                        </div>
+                        <div class="meta-back"></div>
+                    </div>
+                </div>
+            {% if index == 2 %}
+                </div>
+                {% set index = 0 %}
+            {% else %}
+                {% set index = index + 1 %}
+            {% endif %}
+        {% endfor %}
+
+        {% if index > 0 %}
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="navigation">
+                    {{ knp_pagination_render(entities) }}
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        {{ 'No records found'|trans }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'AppCoreBundle:Layouts:layout.html.twig' %}
+
+{% block page_title %}{{ 'Search'|trans }}{% endblock %}
+
+{% block content %}
+
+    {% if results|length %}
+        {% for result in results %}
+            <div class="row">
+                <div class="col-md-12 search-item">
+                    {% if result.code is defined %}
+                        {% for image in result.images %}
+                            {% if loop.index == 1 %}
+                                <img src="{{ getImage(image.imageName, 'products', 'search_item') }}" />
+                            {% endif %}
+                        {% endfor %}
+                        <div>
+                            <div class="item-title">{{ result.title }}</div>
+                            <div>
+                                {{ result.content|striptags|length > 400 ?
+                                result.content|striptags|slice(0, 400) ~ ' ...' :
+                                result.content|striptags|slice(0, 400)
+                                }}
+                            </div>
+                            <a title="{{ result.title }}" href="{{ path('app_show_bundle_product_item', {id: result.id}) }}">Подробнее...</a>
+                        </div>
+                    {% else %}
+                        {% if result.imageName %}
+                            <div class="item-image">
+                                <img src="{{ getImage(result.imageName, 'article') | imagine_filter('search_item') }}" />
+                            </div>
+                        {% endif %}
+                        <div>
+                            <div class="item-title">{{ result.title }}</div>
+                            <div>
+                                {{ result.content|striptags|length > 400 ?
+                                result.content|striptags|slice(0, 400) ~ ' ...' :
+                                result.content|striptags|slice(0, 400)
+                                }}
+                            </div>
+                            {% if result.type == 'article' %}
+                                <a title="{{ result.title }}" href="{{ path('app_core_bundle_article_article_item', {id: result.id}) }}">Подробнее...</a>
+                            {% elseif result.type == 'news' %}
+                                <a title="{{ result.title }}" href="{{ path('app_core_bundle_article_news_item', {id: result.id}) }}">Подробнее...</a>
+                            {% elseif result.type == 'stock' %}
+                                <a title="{{ result.title }}" href="{{ path('app_core_bundle_article_stock_item', {id: result.id}) }}">Подробнее...</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="navigation">
+                    {{ knp_pagination_render(results) }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

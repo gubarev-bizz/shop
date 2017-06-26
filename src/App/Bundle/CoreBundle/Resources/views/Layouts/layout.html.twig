@@ -2,65 +2,470 @@
 
 {% block body %}
 
-    <header class="header-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 info-phone">
-                    <ul class="list-unstyled">
-                        <li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>
-                        <li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>
-                        <li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6 col-md-offset-2">
-                    <items-cart :elements="elementsCart" :total="totalCart"></items-cart>
-                    {{ render(controller('AppCoreBundle:Search:searchForm', {'request': app.request})) }}
-                </div>
-            </div>
-
-            <nav class="navbar navbar-default ">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
+    <div class="row_1">
+        <div class="container_24">
+            <div class="grid_24">
+                <div id="header">
+                    <div class="box_languages">
+                        <div class="languages">
+                            <label class="fl_left">Языки в хедере: </label>
+                            <a href="https://livedemo00.template-help.com/osc_50671/index.php?language=en&amp;osCsid=ep3m9100695rjk76h4iesojje3">
+                                <img src="{{ asset('includes/languages/english/images/icon.gif') }}" alt="English" title="English" width="16" height="11">
+                            </a>
+                            <img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1" class="languages_img">
+                            <a href="https://livedemo00.template-help.com/osc_50671/index.php?language=ru&amp;osCsid=ep3m9100695rjk76h4iesojje3">
+                                <img src="{{ asset('includes/languages/russian/images/icon.gif') }}" alt="Russian" title="Russian" width="16" height="11">
+                            </a>
+                            <img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1" class="languages_img">
+                            <a href="https://livedemo00.template-help.com/osc_50671/index.php?language=de&amp;osCsid=ep3m9100695rjk76h4iesojje3">
+                                <img src="{{ asset('includes/languages/german/images/icon.gif') }}" alt="German" title="German" width="16" height="11">
+                            </a>
+                            <img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1" class="languages_img">
+                            <a href="https://livedemo00.template-help.com/osc_50671/index.php?language=es&amp;osCsid=ep3m9100695rjk76h4iesojje3">
+                                <img src="{{ asset('includes/languages/espanol/images/icon.gif') }}" alt="Spain" title="Spain" width="16" height="11">
+                            </a>
+                        </div>
                     </div>
+                    <div class="box_currencies">
+                        <div class="currencies custom_select">
+                            <label class="fl_left">Валюты: </label>
+                            <form name="currencies" action="https://livedemo00.template-help.com/osc_50671/index.php" method="get" class="jqtransformdone">
+                                <div class="jqTransformSelectWrapper" style="z-index: 10; width: 82px;">
+                                    <div>
+                                        <span style="width: 48px;">U.S. Dollar</span>
+                                        <a href="#" class="jqTransformSelectOpen"></a>
+                                    </div>
+                                    <ul style="width: 80px; display: none; visibility: visible;">
+                                        <li><a href="#" index="0" class="selected">U.S. Dollar</a></li>
+                                        <li><a href="#" index="1">Euro</a></li>
+                                    </ul>
+                                    <select name="currency" onchange="this.form.submit();" class="select chzn-select jqTransformHidden">
+                                        <option value="USD" selected="selected">U.S. Dollar</option>
+                                        <option value="EUR">Euro</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="osCsid" value="ep3m9100695rjk76h4iesojje3">
+                            </form>
+                        </div>
+                    </div>
+                    <div id="box_search" class="search">
+                        <form name="quick_find" action="https://livedemo00.template-help.com/osc_50671/advanced_search_result.php" method="get">
+                            <div class="input-width ">
+                                <input type="text" name="keywords" value="Поиск по сайту" size="10" maxlength="300" class="go fl_left" onblur="if(this.value=='') this.value='Поиск по сайту'" onfocus="if(this.value =='Поиск по сайту' ) this.value=''">
+                                <input type="hidden" name="osCsid" value="ep3m9100695rjk76h4iesojje3">
+                            </div>
+                            <button id="tdb1" type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-priority-secondary" role="button">
+                                <span class="ui-button-text">Поиск</span>
+                            </button>
+                            <script type="text/javascript">$("#tdb1").button().addClass("ui-priority-secondary").parent().removeClass("tdbLink");</script>
+                            <label class="fl_left">Поиск</label>
+                        </form>
+                    </div>
+                    <div class="box_header_cart destination">
+                        <a class="cart_l" href="https://livedemo00.template-help.com/osc_50671/shopping_cart.php?osCsid=ep3m9100695rjk76h4iesojje3">
+                            <i class="icon-shopping-cart"></i>
 
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav nav-pills">
-                            <li class="{{ 'app_core_bundle_page_main' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_page_main') }}" title="{{ 'Home'|trans }}">{{ 'Home'|trans }}</a>
+                            <label>Корзина:</label><span><span>в корзине </span><strong>0</strong> товаров</span>
+
+                        </a>
+                    </div>
+                    <div class="box_header_user_menu">
+                        <ul class="user_menu">
+                            <li class="first">
+                                <a href="https://livedemo00.template-help.com/osc_50671/shipping.php?osCsid=ep3m9100695rjk76h4iesojje3">
+                                    <div class="button-t"><span>Доставка</span></div>
+                                </a>
                             </li>
-                            <li class="{{ 'app_core_bundle_page_search' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_page_search') }}" title="{{ 'Search'|trans }}">{{ 'Search'|trans }}</a>
+                            <li class="">
+                                <a href="https://livedemo00.template-help.com/osc_50671/advanced_search.php?osCsid=ep3m9100695rjk76h4iesojje3">
+                                    <div class="button-t"><span>Расширенный поиск</span></div>
+                                </a>
                             </li>
-                            <li>
-                                <a href="#">Доставка и оплата</a>
+                            <li class="">
+                                <a href="https://livedemo00.template-help.com/osc_50671/create_account.php?osCsid=ep3m9100695rjk76h4iesojje3">
+                                    <div class="button-t"><span>Регистрация</span></div>
+                                </a>
                             </li>
-                            <li class="{{ 'app_core_bundle_article_news' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_article_news_list') }}" title="{{ 'News'|trans }}">{{ 'News'|trans }}</a>
-                            </li>
-                            <li class="{{ 'app_core_bundle_article_article' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_article_article_list') }}" title="{{ 'Articles'|trans }}">{{ 'Articles'|trans }}</a>
-                            </li>
-                            <li class="{{ 'app_core_bundle_article_stock' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_article_stock_list') }}" title="{{ 'Promotions'|trans }}">{{ 'Promotions'|trans }}</a>
-                            </li>
-                            <li class="{{ 'app_core_bundle_page_contact' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_page_contact') }}" title="{{ 'Contacts'|trans }}">{{ 'Contacts'|trans }}</a>
-                            </li>
-                            <li class="{{ 'app_core_bundle_page_about' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_page_about') }}" title="{{ 'About us'|trans }}">{{ 'About us'|trans }}</a>
+                            <li class="Вход last">
+                                <a href="https://livedemo00.template-help.com/osc_50671/login.php?osCsid=ep3m9100695rjk76h4iesojje3">Вход</a>
                             </li>
                         </ul>
                     </div>
+                    <div class="boxes_menu">
+                        <div class="menu">
+                            <ul>
+                                <li class="act first"><a href="https://livedemo00.template-help.com/osc_50671/index.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-home"></i>
+                                        Главное меню
+                                    </a>
+                                </li>
+                                <li class=""><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-bullhorn"></i>
+                                        Новые
+                                    </a>
+                                </li>
+                                <li class=""><a href="https://livedemo00.template-help.com/osc_50671/featured_products.php?osCsid=ep3m9100695rjk76h4iesojje3">
+                                        Рекомендуемые
+                                    </a>
+                                </li>
+                                <li class=""><a href="https://livedemo00.template-help.com/osc_50671/topsellers_products.php?osCsid=ep3m9100695rjk76h4iesojje3">
+                                        Лидеры продаж
+                                    </a>
+                                </li>
+                                <li class=""><a href="https://livedemo00.template-help.com/osc_50671/specials.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-certificate"></i>
+                                        Со скидкой
+                                    </a>
+                                </li>
+                                <li class=""><a href="https://livedemo00.template-help.com/osc_50671/manufacturers.php?osCsid=ep3m9100695rjk76h4iesojje3">
+                                        Производители
+                                    </a>
+                                </li>
+                                <li class=""><a href="https://livedemo00.template-help.com/osc_50671/reviews.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-edit"></i>
+                                        Отзывы
+                                    </a>
+                                </li>
+                                <li class="last"><a href="https://livedemo00.template-help.com/osc_50671/contact_us.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-map-marker"></i>
+                                        Контакты
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a class="logo" href="https://livedemo00.template-help.com/osc_50671/index.php?osCsid=ep3m9100695rjk76h4iesojje3">
+                        <img src="{{ asset('images/store_logo.png') }}" alt="Auto" title="Auto" width="181" height="77">
+                    </a>
                 </div>
-            </nav>
+            </div>
         </div>
-    </header>
+    </div>
+
+    <div class="row_12">
+        <div class="container_24">
+            <div id="bodyContent" class="grid_18 push_6 ">
+                <script type="text/javascript">
+                    $(window).load(function() {
+                        $('#slider').nivoSlider ({
+                            effect:'fade',
+                            slices:15,
+                            boxCols: 8,
+                            boxRows: 4,
+                            animSpeed:500,
+                            pauseTime:5000,
+                            startSlide:0, //Set starting Slide (0 index)
+                            directionNav:true, //Next & Prev
+                            directionNavHide:true, //Only show on hover
+                            controlNav:true, //1,2,3...
+                            controlNavThumbs:false, //Use thumbnails for Control Nav
+                            controlNavThumbsFromRel:false, //Use image rel for thumbs
+                            controlNavThumbsSearch: '.jpg', //Replace this with...
+                            controlNavThumbsReplace: '_thumb.jpg', //...this in thumb Image src
+                            keyboardNav:true, //Use left & right arrows
+                            pauseOnHover:true, //Stop animation while hovering
+                            manualAdvance:false, //Force manual transitions
+                            captionOpacity:0.8, //Universal caption opacity
+                            beforeChange: function(){},
+                            afterChange: function(){},
+                            slideshowEnd: function(){}, //Triggers after all slides have been shown
+                            prevText: 'Prev',
+                            nextText: 'Next'
+                        });
+                    });
+
+                </script>
+                <div class="nivoSlider_wrapper">
+                    <div id="slider" class="nivoSlider">
+                        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=101&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
+                            <img src="{{ asset('images/slide/slide-1.png') }}" alt="Banner1 for slider" title="Banner1 for slider" width="710" height="240" >
+                        </a>
+                        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=102&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
+                            <img src="{{ asset('images/slide/slide-2.png') }}" alt="Banner2 for slider" title="Banner2 for slider" width="710" height="240" ></a>
+                        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=103&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
+                            <img src="{{ asset('images/slide/slide-3.png') }}g" alt="Banner3 for slider" title="Banner3 for slider" width="710" height="240" >
+                        </a>
+                        {#<div class="nivo-caption" style="opacity: 0.8; display: block;">#}
+                            {#<p>Banner3 for slider</p>#}
+                        {#</div>#}
+                        {#<div class="nivo-directionNav" style="display: none;">#}
+                            {#<a class="nivo-prevNav">Prev</a>#}
+                            {#<a class="nivo-nextNav">Next</a>#}
+                        {#</div>#}
+                        {#<div class="nivo-controlNav">#}
+                            {#<a class="nivo-control" rel="0">1</a>#}
+                            {#<a class="nivo-control" rel="1">2</a>#}
+                            {#<a class="nivo-control active" rel="2">3</a>#}
+                        {#</div>#}
+                        {#<div class="nivo-slice" style="left: 0px; width: 710px; height: 100%; opacity: 1; background: url(&quot;images/slide/slide-3.png&quot;) 0px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 47px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -47px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 94px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -94px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 141px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -141px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 188px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -188px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 235px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -235px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 282px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -282px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 329px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -329px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 376px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -376px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 423px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -423px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 470px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -470px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 517px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -517px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 564px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -564px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 611px; width: 47px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -611px 0% no-repeat;"></div>#}
+                        {#<div class="nivo-slice" style="left: 658px; width: 52px; height: 0px; opacity: 0; background: url(&quot;images/slide/slide-3.png&quot;) -658px 0% no-repeat;"></div>#}
+                    </div>
+                </div>
+                <ul class="banner_set">
+                    <li class="item1"><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=21&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
+                            <img src="images/slide/pro-1.jpg" alt="" width="230" height="104"></a>
+                    </li>
+                    <li class="item2">
+                        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=22&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
+                            <img src="images/slide/pro-2.jpg" alt="" width="230" height="104">
+                        </a>
+                    </li>
+                    <li class="item3">
+                        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=23&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
+                            <img src="images/slide/pro-3.jpg" alt="" width="230" height="104">
+                        </a>
+                    </li>
+                    <li class="item4">
+                        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=24&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
+                            <img src="images/slide/pro-4.jpg" alt="" width="230" height="104">
+                        </a>
+                    </li>
+                    <li class="item4">
+                        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=25&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
+                            <img src="images/slide/pro-5.jpg" alt="" width="230" height="104">
+                        </a>
+                    </li>
+                    <li class="item4">
+                        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=26&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
+                            <img src="images/slide/pro-6.jpg" alt="" width="230" height="104">
+                        </a>
+                    </li>
+                    <li class="item4">
+                        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=27&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
+                            <img src="images/slide/pro-7.jpg" alt="" width="230" height="104">
+                        </a>
+                    </li>
+                    <li class="item4">
+                        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=28&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
+                            <img src="images/slide/pro-8.jpg" alt="" width="230" height="104">
+                        </a>
+                    </li>
+                </ul>
+                <div class="box_wrapper_title22">
+                    <div class="box_wrapper_title">
+                        <span class="title-icon"></span>
+                        <h1 class="cl_both "><i class="icon-thumbs-up-alt"></i>Новинки Июнь</h1>
+                    </div>
+                </div>
+                <div class="contentContainer page_un first last">
+                    <div class="contentPadd">
+                        <div class="prods_content prods_table">
+                            <ul class="row_new_products_name row_new_products_block first" id="row-0">
+                                <li style="width: 230px; min-height: 315px;" class="wrapper_prods equal-height_new_products_block hover item_0 first">
+                                    <div>
+                                        <div class="border_prods">
+                                            <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-18?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/046.png" alt="Eusmod tempor incididunt ut labore" title="Eusmod tempor incididunt ut labore" width="160" height="160" style="width:160px;height:160px;margin:0px 0px 0px 0px;"></a></div>
+                                            <div class="prods_padd">
+                                                <div class="cont7">
+                                                    <div class="price price_padd "><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">$239.96</span></div>
+                                                    <div class="name name_padd equal-height_new_products_name" style="min-height: 36px;">
+                                                        <div><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-18?osCsid=ep3m9100695rjk76h4iesojje3">Eusmod tempor incididunt ut labore</a></span></div>
+                                                    </div>
+                                                    <div class="prods_wrapp">
+                                                        <div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=18&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">в Корзину</span></a></strong></strong></strong> <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=18?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Подробнее</span></a></strong></strong></strong></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="prods_vseparator equal-height_new_products_block" style="min-height: 315px;">
+                                    <div>
+                                        <img src="images/spacer.gif" alt="" width="1" height="1">
+                                        <div class="prods_vseparator_img"></div>
+                                    </div>
+                                </li>
+                                <li style="width: 230px; min-height: 315px;" class="wrapper_prods equal-height_new_products_block hover item_1">
+                                    <div>
+                                        <div class="border_prods">
+                                            <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/lorem-ipsum-dolor-sit-amet-conse-p-17?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/045.png" alt="Lorem ipsum dolor sit amet conse" title="Lorem ipsum dolor sit amet conse" width="160" height="160" style="width:160px;height:160px;margin:0px 0px 0px 0px;"></a></div>
+                                            <div class="prods_padd">
+                                                <div class="cont7">
+                                                    <div class="price price_padd "><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">$3.19</span></div>
+                                                    <div class="name name_padd equal-height_new_products_name" style="min-height: 36px;">
+                                                        <div><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/lorem-ipsum-dolor-sit-amet-conse-p-17?osCsid=ep3m9100695rjk76h4iesojje3">Lorem ipsum dolor sit amet conse</a></span></div>
+                                                    </div>
+                                                    <div class="prods_wrapp">
+                                                        <div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=17&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">в Корзину</span></a></strong></strong></strong> <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=17?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Подробнее</span></a></strong></strong></strong></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="prods_vseparator equal-height_new_products_block" style="min-height: 315px;">
+                                    <div>
+                                        <img src="images/spacer.gif" alt="" width="1" height="1">
+                                        <div class="prods_vseparator_img"></div>
+                                    </div>
+                                </li>
+                                <li style="width: 230px; min-height: 315px;" class="wrapper_prods equal-height_new_products_block hover item_2 last">
+                                    <div>
+                                        <div class="border_prods">
+                                            <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/ctetur-adipisicing-elit-p-16?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/044.png" alt="Ctetur adipisicing elit" title="Ctetur adipisicing elit" width="160" height="160" style="width:160px;height:160px;margin:0px 0px 0px 0px;"></a></div>
+                                            <div class="prods_padd">
+                                                <div class="cont7">
+                                                    <div class="price price_padd "><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">$79.99</span></div>
+                                                    <div class="name name_padd equal-height_new_products_name" style="min-height: 36px;">
+                                                        <div><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/ctetur-adipisicing-elit-p-16?osCsid=ep3m9100695rjk76h4iesojje3">Ctetur adipisicing elit</a></span></div>
+                                                    </div>
+                                                    <div class="prods_wrapp">
+                                                        <div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=16&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">в Корзину</span></a></strong></strong></strong> <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=16?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Подробнее</span></a></strong></strong></strong></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="row_separator">
+                                <li class="prods_hseparator first last"><img src="images/spacer.gif" alt="" width="1" height="1"></li>
+                            </ul>
+                            <ul class="row_new_products_name row_new_products_block last" id="row-1">
+                                <li style="width: 230px; min-height: 315px;" class="wrapper_prods equal-height_new_products_block hover item_0 first">
+                                    <div>
+                                        <div class="border_prods">
+                                            <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-15?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/043.png" alt="Eusmod tempor incididunt ut labore" title="Eusmod tempor incididunt ut labore" width="160" height="160" style="width:160px;height:160px;margin:0px 0px 0px 0px;"></a></div>
+                                            <div class="prods_padd">
+                                                <div class="cont7">
+                                                    <div class="price price_padd "><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">$29.99</span></div>
+                                                    <div class="name name_padd equal-height_new_products_name" style="min-height: 36px;">
+                                                        <div><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-15?osCsid=ep3m9100695rjk76h4iesojje3">Eusmod tempor incididunt ut labore</a></span></div>
+                                                    </div>
+                                                    <div class="prods_wrapp">
+                                                        <div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=15&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">в Корзину</span></a></strong></strong></strong> <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=15?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Подробнее</span></a></strong></strong></strong></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="prods_vseparator equal-height_new_products_block" style="min-height: 315px;">
+                                    <div>
+                                        <img src="images/spacer.gif" alt="" width="1" height="1">
+                                        <div class="prods_vseparator_img"></div>
+                                    </div>
+                                </li>
+                                <li style="width: 230px; min-height: 315px;" class="wrapper_prods equal-height_new_products_block hover item_1">
+                                    <div>
+                                        <div class="border_prods">
+                                            <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-14?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/042.png" alt="Eusmod tempor incididunt ut labore" title="Eusmod tempor incididunt ut labore" width="160" height="160" style="width:160px;height:160px;margin:0px 0px 0px 0px;"></a></div>
+                                            <div class="prods_padd">
+                                                <div class="cont7">
+                                                    <div class="price price_padd "><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">$499.99</span></div>
+                                                    <div class="name name_padd equal-height_new_products_name" style="min-height: 36px;">
+                                                        <div><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-14?osCsid=ep3m9100695rjk76h4iesojje3">Eusmod tempor incididunt ut labore</a></span></div>
+                                                    </div>
+                                                    <div class="prods_wrapp">
+                                                        <div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=14&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">в Корзину</span></a></strong></strong></strong> <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=14?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Подробнее</span></a></strong></strong></strong></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="prods_vseparator equal-height_new_products_block" style="min-height: 315px;">
+                                    <div>
+                                        <img src="images/spacer.gif" alt="" width="1" height="1">
+                                        <div class="prods_vseparator_img"></div>
+                                    </div>
+                                </li>
+                                <li style="width: 230px; min-height: 315px;" class="wrapper_prods equal-height_new_products_block hover item_2 last">
+                                    <div>
+                                        <div class="border_prods">
+                                            <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-13?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/041.png" alt="Eusmod tempor incididunt ut labore" title="Eusmod tempor incididunt ut labore" width="160" height="160" style="width:160px;height:160px;margin:0px 0px 0px 0px;"></a></div>
+                                            <div class="prods_padd">
+                                                <div class="cont7">
+                                                    <div class="price price_padd "><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">$299.99</span></div>
+                                                    <div class="name name_padd equal-height_new_products_name" style="min-height: 36px;">
+                                                        <div><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-13?osCsid=ep3m9100695rjk76h4iesojje3">Eusmod tempor incididunt ut labore</a></span></div>
+                                                    </div>
+                                                    <div class="prods_wrapp">
+                                                        <div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=13&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">в Корзину</span></a></strong></strong></strong> <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=13?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Подробнее</span></a></strong></strong></strong></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="columnLeft" class="grid_6 pull_18">
+                {{ render(controller('AppCoreBundle:Default:getSidebar')) }}
+            </div>
+        </div>
+    </div>
+
+    {#<header class="header-container">#}
+        {#<div class="container">#}
+            {#<div class="row">#}
+                {#<div class="col-md-4 info-phone">#}
+                    {#<ul class="list-unstyled">#}
+                        {#<li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>#}
+                        {#<li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>#}
+                        {#<li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>#}
+                    {#</ul>#}
+                {#</div>#}
+                {#<div class="col-md-6 col-md-offset-2">#}
+                    {#<items-cart :elements="elementsCart" :total="totalCart"></items-cart>#}
+                    {#{{ render(controller('AppCoreBundle:Search:searchForm', {'request': app.request})) }}#}
+                {#</div>#}
+            {#</div>#}
+
+            {#<nav class="navbar navbar-default ">#}
+                {#<div class="container-fluid">#}
+                    {#<div class="navbar-header">#}
+                        {#<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">#}
+                            {#<span class="sr-only">Toggle navigation</span>#}
+                            {#<span class="icon-bar"></span>#}
+                            {#<span class="icon-bar"></span>#}
+                            {#<span class="icon-bar"></span>#}
+                        {#</button>#}
+                    {#</div>#}
+
+                    {#<div class="collapse navbar-collapse">#}
+                        {#<ul class="nav nav-pills">#}
+                            {#<li class="{{ 'app_core_bundle_page_main' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_page_main') }}" title="{{ 'Home'|trans }}">{{ 'Home'|trans }}</a>#}
+                            {#</li>#}
+                            {#<li class="{{ 'app_core_bundle_page_search' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_page_search') }}" title="{{ 'Search'|trans }}">{{ 'Search'|trans }}</a>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a href="#">Доставка и оплата</a>#}
+                            {#</li>#}
+                            {#<li class="{{ 'app_core_bundle_article_news' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_article_news_list') }}" title="{{ 'News'|trans }}">{{ 'News'|trans }}</a>#}
+                            {#</li>#}
+                            {#<li class="{{ 'app_core_bundle_article_article' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_article_article_list') }}" title="{{ 'Articles'|trans }}">{{ 'Articles'|trans }}</a>#}
+                            {#</li>#}
+                            {#<li class="{{ 'app_core_bundle_article_stock' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_article_stock_list') }}" title="{{ 'Promotions'|trans }}">{{ 'Promotions'|trans }}</a>#}
+                            {#</li>#}
+                            {#<li class="{{ 'app_core_bundle_page_contact' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_page_contact') }}" title="{{ 'Contacts'|trans }}">{{ 'Contacts'|trans }}</a>#}
+                            {#</li>#}
+                            {#<li class="{{ 'app_core_bundle_page_about' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_page_about') }}" title="{{ 'About us'|trans }}">{{ 'About us'|trans }}</a>#}
+                            {#</li>#}
+                        {#</ul>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</nav>#}
+        {#</div>#}
+    {#</header>#}
 
     <section class="container">
         <div class="row">
@@ -99,7 +504,7 @@
             </div>
 
             <div class="col-md-3">
-                {{ render(controller('AppCoreBundle:Default:getSidebar')) }}
+                {#{{ render(controller('AppCoreBundle:Default:getSidebar')) }}#}
             </div>
             <div class="col-md-9" style="padding-top: 20px;">
                 {% block content %}{% endblock %}

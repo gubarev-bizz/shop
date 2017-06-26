@@ -3,29 +3,120 @@
 <head>
     <title>{% block page_title %}{% endblock %} | Farkop-UA</title>
     {% block seo %}{% endblock %}
-    <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('lightbox2/css/lightbox.min.css') }}">
+    {#<link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css') }}" />#}
+    {#<link rel="stylesheet" href="{{ asset('css/style.css') }}" />#}
+    {#<link rel="stylesheet" href="{{ asset('lightbox2/css/lightbox.min.css') }}">#}
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+
+    <script type="text/javascript">
+        //<![CDATA[
+        try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"caf708ba3f21b78d93980f89e9436ead",petok:"cd38f1d4a5af0f9cfbaca1c48b87677f2cbfe377-1498505299-1800",zone:"template-help.com",rocket:"0",apps:{"abetterbrowser":{"ie":"7"}}}];!function(a,b){a=document.createElement("script"),b=document.getElementsByTagName("script")[0],a.async=!0,a.src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=85b614c0f6/cloudflare.min.js",b.parentNode.insertBefore(a,b)}()}}catch(e){};
+        //]]>
+    </script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('ext/jquery/ui/redmond/jquery-ui-1.8.6-osc.css') }}" />
+    <script type="text/javascript" src="{{ asset('ext/jquery/jquery-1.7.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('ext/jquery/ui/jquery-ui-1.8.6.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('ext/jquery/ui/i18n/jquery.ui.datepicker-ru.js') }}"></script>
+    <script type="text/javascript">
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+    </script>
+    <script type="text/javascript" src="{{ asset('ext/jquery/bxGallery/jquery.bxGallery.1.1.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('ext/jquery/fancybox/jquery.fancybox-1.3.4.css') }}" />
+    <script type="text/javascript" src="{{ asset('ext/jquery/fancybox/jquery.fancybox-1.3.4.pack.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('ext/js/xeasyTooltipIMG.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('ext/js/hoverIntent.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('ext/js/superfish.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('ext/jquery/jquery.equalheights.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('ext/jquery/jquery.nivo.slider.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('ext/jquery/jqtransformplugin/jquery.jqtransform.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('ext/jquery/jquery.stringball.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('ext/960gs/960_10_24_col.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/constants.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/stylesheet.css') }}" />
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style_boxes.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/css3.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/buttons.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/nivo-slider.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/stringball.css') }}" type="text/css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/superfish.css') }}" />
+    <link rel="stylesheet" media="screen" href="{{ asset('css/superfish-navbar.css') }}" />
+    <link rel="stylesheet" media="screen" href="{{ asset('css/general_stylesheets.css') }}" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,300,800,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="{{ asset('ext/js/js.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.custom_select form').jqTransform();
+            $("ul.sf-menu").superfish();
+            var path = window.location.pathname.split('/');
+            path = path[path.length-1];
+
+            if (path !== undefined) {
+                $("ul.sf-menu")
+                    .find("a[href$='" + path + "']") // gets all links that match the href
+                    .parents('li')  // gets all list items that are ancestors of the link
+                    .children('a')  // walks down one level from all selected li's
+                    .addClass('actief');
+            }
+        });
+    </script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="https://windows.microsoft.com/en-US/int<strong>
+     </strong>ernet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+            <img src="https://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"  alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+        </a>
+    </div>
+    <![endif]-->
+    <style type="text/css">
+
+        .nivoSlider_wrapper										{
+            width: 710px; height: 240px; /* Set the size */
+        }
+        #faded	{height: 240px;}
+        #screenshot img								{ width:SUPERFISH_IMAGE_WIDTHpx;height:SUPERFISH_IMAGE_HEIGHTpx;}
+        #screenshotCategory						{ width:160px;height:160px;}
+        #screenshotCategory img				{ height:160px;}
+    </style>
+    <style type="text/css">
+        .nivo-caption 					{display:none !important;}
+    </style>
+
 </head>
 <body>
-    {% include '::vue-templates.html.twig' %}
+    {#{% include '::vue-templates.html.twig' %}#}
 
-    <div id="app">
-        {% block body %}{% endblock %}
+    <p id="back-top" style="visibility: visible; display: block;">
+        <a href="#top"><span><i class="icon-chevron-sign-up"></i></span></a>
+    </p>
+
+    <div id="bodyWrapper" class="bg_body ru index_page">
+        <div>
+            <div class="wrapper">
+            {% block body %}{% endblock %}
+            </div>
+        </div>
     </div>
 
-    <script type="text/javascript" src="{{ asset('bundles/sonataadmin/vendor/jquery/dist/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-    <script type="text/javascript" src="{{ asset('js/frontend.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('lightbox2/js/lightbox-plus-jquery.min.js') }}"></script>
 
-    <script type="text/javascript" src="{{ asset('assets/vue/dist/vue.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/vue-resource/dist/vue-resource.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/shop.js') }}"></script>
+
+    {#<script type="text/javascript" src="{{ asset('bundles/sonataadmin/vendor/jquery/dist/jquery.min.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>#}
+    {#<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>#}
+    {#<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/frontend.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('lightbox2/js/lightbox-plus-jquery.min.js') }}"></script>#}
+
+    {#<script type="text/javascript" src="{{ asset('assets/vue/dist/vue.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('assets/vue-resource/dist/vue-resource.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/shop.js') }}"></script>#}
 
     {% block javascripts %}{% endblock %}
 </body>

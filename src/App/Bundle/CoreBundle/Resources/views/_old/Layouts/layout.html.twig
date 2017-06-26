@@ -1,0 +1,119 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <header class="header-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 info-phone">
+                    <ul class="list-unstyled">
+                        <li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>
+                        <li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>
+                        <li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-md-offset-2">
+                    <items-cart :elements="elementsCart" :total="totalCart"></items-cart>
+                    {{ render(controller('AppCoreBundle:Search:searchForm', {'request': app.request})) }}
+                </div>
+            </div>
+
+            <nav class="navbar navbar-default ">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav nav-pills">
+                            <li class="{{ 'app_core_bundle_page_main' in app.request.attributes.get('_route') ? 'active' }}">
+                                <a href="{{ path('app_core_bundle_page_main') }}" title="{{ 'Home'|trans }}">{{ 'Home'|trans }}</a>
+                            </li>
+                            <li class="{{ 'app_core_bundle_page_search' in app.request.attributes.get('_route') ? 'active' }}">
+                                <a href="{{ path('app_core_bundle_page_search') }}" title="{{ 'Search'|trans }}">{{ 'Search'|trans }}</a>
+                            </li>
+                            <li>
+                                <a href="#">Доставка и оплата</a>
+                            </li>
+                            <li class="{{ 'app_core_bundle_article_news' in app.request.attributes.get('_route') ? 'active' }}">
+                                <a href="{{ path('app_core_bundle_article_news_list') }}" title="{{ 'News'|trans }}">{{ 'News'|trans }}</a>
+                            </li>
+                            <li class="{{ 'app_core_bundle_article_article' in app.request.attributes.get('_route') ? 'active' }}">
+                                <a href="{{ path('app_core_bundle_article_article_list') }}" title="{{ 'Articles'|trans }}">{{ 'Articles'|trans }}</a>
+                            </li>
+                            <li class="{{ 'app_core_bundle_article_stock' in app.request.attributes.get('_route') ? 'active' }}">
+                                <a href="{{ path('app_core_bundle_article_stock_list') }}" title="{{ 'Promotions'|trans }}">{{ 'Promotions'|trans }}</a>
+                            </li>
+                            <li class="{{ 'app_core_bundle_page_contact' in app.request.attributes.get('_route') ? 'active' }}">
+                                <a href="{{ path('app_core_bundle_page_contact') }}" title="{{ 'Contacts'|trans }}">{{ 'Contacts'|trans }}</a>
+                            </li>
+                            <li class="{{ 'app_core_bundle_page_about' in app.request.attributes.get('_route') ? 'active' }}">
+                                <a href="{{ path('app_core_bundle_page_about') }}" title="{{ 'About us'|trans }}">{{ 'About us'|trans }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+
+                {% block breadcrums %}
+                <div class="breadcrumbs">
+                    {{ wo_render_breadcrumbs() }}
+                </div>
+                {% endblock %}
+
+                <div v-if="message != ''">
+                    <br>
+                    <div v-bind:class="'alert margin-bottom-15 alert-' + messageStatus">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        ${ message }
+                    </div>
+                </div>
+                <div v-else>
+                    {% for flashType in app.session.flashbag.keys %}
+                        {% for flash in app.session.flashbag.get(flashType) %}
+                            <br>
+                            <div class="alert margin-bottom-15 alert-{{ flashType }}">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ flash|trans }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+
+
+                <div class="page-title">
+                    <h2>{% block page_title %}{% endblock %}</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                {{ render(controller('AppCoreBundle:Default:getSidebar')) }}
+            </div>
+            <div class="col-md-9" style="padding-top: 20px;">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </section>
+
+
+    <a class="tel-show btn-success" href="#" data-toggle="modal" data-target="#myModal" >
+        <i class="glyphicon glyphicon-earphone" style="font-size: 32px;line-height: 74px;"></i>
+    </a>
+
+    {{ render(controller('AppCoreBundle:Default:getCallUs', {'request': app.request})) }}
+
+    <process-event :process="process"></process-event>
+
+{% endblock %}
