@@ -130,20 +130,24 @@ visual_craft_beanstalk_scheduler:
 
 vich_uploader:
     db_driver: orm
+    twig: true
     mappings:
         product_image:
             uri_prefix:         /images/products
             upload_destination: "%product_image_dir%"
+            namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
         article_image:
             uri_prefix:         /images/article
             upload_destination: '%kernel.root_dir%/../web/images/article'
+            namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
         category_image:
             uri_prefix:         /images/category
             upload_destination: '%kernel.root_dir%/../web/images/category'
+            namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
 
@@ -158,6 +162,11 @@ liip_imagine:
                    - "%kernel.root_dir%/../web"
     filter_sets:
         cache: ~
+        product_preview:
+            quality: 95
+            filters:
+                thumbnail: { size: [160, 160], mode: outbound }
+                background: { size: [160, 160], position: center, color: '#fff' }
         news_sidebar:
             quality: 100
             filters:

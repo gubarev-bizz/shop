@@ -15,7 +15,15 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AppCoreBundle:Pages:main.html.twig');
+        $em = $this->getDoctrine();
+        $products = $em->getRepository('AppShopBundle:Product')
+            ->findBy([
+                'active' => true,
+            ], [], 5);
+
+        return $this->render('AppCoreBundle:Pages:main.html.twig', [
+            'products' => $products,
+        ]);
     }
 
     /**
