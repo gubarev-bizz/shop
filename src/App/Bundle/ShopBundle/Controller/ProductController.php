@@ -15,13 +15,17 @@ class ProductController extends Controller
 {
     /**
      * @param Request $request
-     * @param int $id
+     * @param string $slug
+     *
      * @return Response
      */
-    public function productItemAction(Request $request, $id)
+    public function productItemAction(Request $request, $slug)
     {
         $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('AppShopBundle:Product')->find($id);
+        $product = $em->getRepository('AppShopBundle:Product')->findOneBy([
+            'slug' => $slug,
+            'active' => true,
+        ]);
 
         if (!$product) {
             throw new NotFoundHttpException('Product is not find.');
@@ -62,7 +66,7 @@ class ProductController extends Controller
             'categoryId' => $product->getCategory()->getId(),
         ]);
         $breadcrumbs->addRouteItem($product->getTitle(), "app_show_bundle_product_item", [
-            'id' => $product->getId(),
+            'slug' => $product->getSlug(),
         ]);
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 

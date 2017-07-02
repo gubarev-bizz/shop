@@ -18,6 +18,7 @@ use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 use JMS\Serializer\Annotation as Serializer;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Bundle\ShopBundle\Entity\Repository\ProductRepository")

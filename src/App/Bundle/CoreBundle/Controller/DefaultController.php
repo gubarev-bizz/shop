@@ -4,6 +4,7 @@ namespace App\Bundle\CoreBundle\Controller;
 
 use App\Bundle\CoreBundle\Entity\Article;
 use App\Bundle\CoreBundle\Form\CallUsType;
+use App\Bundle\ShopBundle\Form\AddProductCartType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,9 +21,19 @@ class DefaultController extends Controller
             ->findBy([
                 'active' => true,
             ], [], 5);
+        $addProductToCartForm = [];
+
+        foreach ($products as $product) {
+            $addProductToCartForm[$product->getId()] = $this->createForm(AddProductCartType::class, null, [
+                'action' => $this->generateUrl('app_shop_bundle_cart_add_item'),
+                'productId' => $product->getId(),
+                'count' => 1,
+            ])->createView();
+        }
 
         return $this->render('AppCoreBundle:Pages:main.html.twig', [
             'products' => $products,
+            'addProductToCartForm' => $addProductToCartForm,
         ]);
     }
 

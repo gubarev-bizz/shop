@@ -78,7 +78,7 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
-            softdeleteable: true
+            sluggable: true
 
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
@@ -167,6 +167,16 @@ liip_imagine:
             filters:
                 thumbnail: { size: [160, 160], mode: outbound }
                 background: { size: [160, 160], position: center, color: '#fff' }
+        product_slider_main:
+            quality: 100
+            filters:
+                thumbnail: { size: [220, 220], mode: outbound }
+                background: { size: [220, 220], position: center, color: '#fff' }
+        product_slider_preview:
+            quality: 100
+            filters:
+                thumbnail: { size: [220, 220], mode: outbound }
+                background: { size: [220, 220], position: center, color: '#fff' }
         news_sidebar:
             quality: 100
             filters:
@@ -181,9 +191,9 @@ liip_imagine:
         slider_main:
             quality: 100
             filters:
-                thumbnail: { size: [900, 500], mode: outbound }
-                background: { size: [900, 500], position: center, color: '#fff' }
-                crop: { size: [900, 500] }
+                thumbnail: { size: [710, 240], mode: outbound }
+                background: { size: [710, 240], position: center, color: '#fff' }
+                crop: { size: [710, 240] }
         category_main:
             quality: 100
             filters:
@@ -236,4 +246,4 @@ white_october_breadcrumbs:
     linkRel:            ''
     locale:             ~ # defaults to null, so the default locale is used
     translation_domain: ~ # defaults to null, so the default domain is used
-    viewTemplate:       'WhiteOctoberBreadcrumbsBundle::breadcrumbs.html.twig'
+    viewTemplate:       '::breadcrumbs.html.twig'

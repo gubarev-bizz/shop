@@ -9,8 +9,6 @@
     {{ render(controller('AppCoreBundle:Slider:getSliderBlock')) }}
     {{ render(controller('AppCoreBundle:Default:getMainCategoryBlock')) }}
 
-
-
     {% if products %}
     <div class="box_wrapper_title22">
         <div class="box_wrapper_title">
@@ -34,7 +32,7 @@
                             <div>
                                 <div class="border_prods">
                                     <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;">
-                                        <a class="prods_pic_bg" href="{{ path('app_show_bundle_product_item', {'id': product.id}) }}" style="width:160px;height:160px;">
+                                        <a class="prods_pic_bg" href="{{ path('app_show_bundle_product_item', {'slug': product.slug}) }}" style="width:160px;height:160px;">
                                             {% if product.imageName is not null %}
                                                 <img src="{{ (getImage(product.imageName, 'products')) | imagine_filter('product_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" >
                                             {% else %}
@@ -48,25 +46,28 @@
                                             <div class="name name_padd equal-height_new_products_name" style="min-height: 36px;">
                                                 <div>
                                                     <span>
-                                                        <a href="{{ path('app_show_bundle_product_item', {'id': product.id}) }}">{{ product.title }}</a>
+                                                        <a href="{{ path('app_show_bundle_product_item', {'slug': product.slug}) }}">{{ product.title }}</a>
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="prods_wrapp">
                                                 <div class="button__padd">
                                                     <strong class="button_content button_content2">
+                                                        {{ form_start(addProductToCartForm[product.id]) }}
                                                         <strong class="button bg_button">
                                                             <strong class="button-t">
-                                                                <a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=18&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
+                                                                <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
                                                                     <span class="ui-button-icon-primary ui-icon ui-icon-cart"></span>
-                                                                    <span class="ui-button-text">в Корзину</span></a>
+                                                                    <span class="ui-button-text">в Корзину</span></button>
                                                             </strong>
                                                         </strong>
+                                                        {{ form_end(addProductToCartForm[product.id]) }}
+
                                                     </strong>
                                                     <strong class="button_content button_content22">
                                                         <strong class="button bg_button">
                                                             <strong class="button-t">
-                                                                <a href="{{ path('app_show_bundle_product_item', {'id': product.id}) }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
+                                                                <a href="{{ path('app_show_bundle_product_item', {'slug': product.slug}) }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
                                                                     <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span>
                                                                     <span class="ui-button-text">Подробнее</span>
                                                                 </a>

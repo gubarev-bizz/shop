@@ -2,6 +2,7 @@
 
 namespace App\Bundle\ShopBundle\Controller;
 
+use App\Bundle\ShopBundle\Controller\Traits\Referer;
 use App\Bundle\ShopBundle\Form\AddProductCartType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,6 +12,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CartController extends Controller
 {
+    use Referer;
+
     /**
      * @param Request $request
      *
@@ -18,6 +21,12 @@ class CartController extends Controller
      */
     public function addProductAction(Request $request)
     {
+        $refererParams = $this->getRefererParams($request);
+        $routeParams = array_filter($refererParams, function ($value) use ($refererParams) {
+            $key = array_search($value, $refererParams);
+
+            return ($key !== '_route' && $key !== '_controller');
+        });
         $productCartForm = $this->createForm(AddProductCartType::class, null);
         $productCartForm->handleRequest($request);
 
@@ -65,14 +74,74 @@ class CartController extends Controller
                 'messageStatus' => 'success',
             ], 'json');
 
-            return new Response($response);
+            return $this->redirectToRoute($refererParams['_route'], $routeParams);
         }
 
-        return new JsonResponse([
-            'code' => 403,
-            'status' => 'Form invalid',
-        ]);
+        return $this->redirectToRoute($refererParams['_route'], $routeParams);
     }
+
+//    /**
+//     * @param Request $request
+//     *
+//     * @return JsonResponse|Response
+//     */
+//    public function addProductAction(Request $request)
+//    {
+//        $productCartForm = $this->createForm(AddProductCartType::class, null);
+//        $productCartForm->handleRequest($request);
+//
+//        if ($productCartForm->isValid()) {
+//            $em = $this->getDoctrine()->getManager();
+//            $formData = $productCartForm->getData();
+//            $product = $em->getRepository('AppShopBundle:Product')->find($formData['productId']);
+//            $session = $request->getSession();
+//
+//            if (!$product) {
+//                throw new NotFoundHttpException('This product has been not found');
+//            }
+//
+//            $formData['count'] = ($formData['count'] < 1) ? 1 : $formData['count'];
+//
+//            if(!$session->has('cartElements')) {
+//                $session->set('cartElements', [
+//                    $product->getId() => [
+//                        'count' => $formData['count'],
+//                        'price' => $product->getPrice(),
+//                    ]
+//                ]);
+//            } else {
+//                $productsCart = $session->get('cartElements');
+//
+//                if (isset($productsCart[$product->getId()])) {
+//                    $productsCart[$product->getId()]['count'] += $formData['count'];
+//                    $productsCart[$product->getId()]['price'] = $productsCart[$product->getId()]['count'] * $product->getPrice();
+//                    $session->set('cartElements', $productsCart);
+//                } else {
+//                    $productsCart[$product->getId()] = [
+//                        'count' => $formData['count'],
+//                        'price' => $product->getPrice() * (int) $formData['count'],
+//                    ];
+//                    $session->set('cartElements', $productsCart);
+//                }
+//            }
+//
+//            $serializer = $this->get('jms_serializer');
+//            $translator = $this->get('translator');
+//            $response = $serializer->serialize([
+//                'code' => 200,
+//                'status' => 'OK',
+//                'message' => $translator->trans('Product added to cart'),
+//                'messageStatus' => 'success',
+//            ], 'json');
+//
+//            return new Response($response);
+//        }
+//
+//        return new JsonResponse([
+//            'code' => 403,
+//            'status' => 'Form invalid',
+//        ]);
+//    }
 
     /**
      * @return JsonResponse

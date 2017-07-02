@@ -9,7 +9,9 @@ class SliderController extends Controller
     public function getSliderBlockAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $slides = $em->getRepository('AppCoreBundle:Slider')->findAll();
+        $slides = $em->getRepository('AppCoreBundle:Slider')->findBy([
+            'mainPage' => true,
+        ]);
 
         return $this->render('AppCoreBundle:Block:sliderBlock.html.twig', [
             'sliders' => $slides

@@ -110,7 +110,6 @@ class Image
     {
 //        $this->product = $product;
 //        $product->addImage($this);
-        $a = 1;
 //
         if ($this->getImageName() !== null) {
             if ($this->product !== null) {

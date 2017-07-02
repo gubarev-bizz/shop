@@ -138,6 +138,15 @@
     </div>
 
     <div class="row_12">
+            {% block breadcrums %}
+                <div class="container_24">
+                    <div class="grid_24">
+                        <div class="breadcrumb">
+                        {{ wo_render_breadcrumbs() }}
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
         <div class="container_24">
             <div id="bodyContent" class="grid_18 push_6 ">
                 {% block content %}{% endblock %}
@@ -213,11 +222,7 @@
 
             <div class="col-md-12">
 
-                {% block breadcrums %}
-                <div class="breadcrumbs">
-                    {{ wo_render_breadcrumbs() }}
-                </div>
-                {% endblock %}
+
 
                 <div v-if="message != ''">
                     <br>

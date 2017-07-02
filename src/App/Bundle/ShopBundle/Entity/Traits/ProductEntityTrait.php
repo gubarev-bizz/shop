@@ -19,6 +19,16 @@ trait ProductEntityTrait
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"title"}, unique=true)
+     * @SymfonyConstraints\Type(type="string")
+     * @SymfonyConstraints\Length(max=255)
+     */
+    private $slug;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
      * @SymfonyConstraints\NotBlank()
      * @SymfonyConstraints\Length(max="255")
      * @Serializer\Expose
@@ -183,6 +193,22 @@ trait ProductEntityTrait
             'title' => $this->getTitle(),
             'price' => $this->getRealPrice(),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
 }

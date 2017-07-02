@@ -79,6 +79,9 @@ class ProductAdmin extends AbstractAdmin
                 )
                     ->add('code', 'text', ['label' => 'Code'])
                     ->add('title', 'text', ['label' => 'Title'])
+                    ->add('slug', 'text', [
+                        'required' => false,
+                    ])
                     ->add('content', 'textarea', [
                         'label' => 'Content',
                         'attr' => [
@@ -276,22 +279,6 @@ class ProductAdmin extends AbstractAdmin
                 $em->persist($image);
                 $em->flush();
             }
-        }
-
-        if ($object->getImageName() !== null) {
-            /** @var ImagineController */
-            $imagine = $this
-                ->getConfigurationPool()
-                ->getContainer()
-                ->get('liip_imagine.controller');
-
-            /** @var Response */
-            $response = $imagine
-                ->filterAction(
-                    new Request(),
-                    'images/products/' . $object->getImageName(),
-                    'my_thumb'
-                );
         }
 
         $em->persist($object);

@@ -32,5 +32,5 @@ app_show_bundle_checkout_show:
     defaults: { _controller: AppShopBundle:Checkout:checkoutShow }
 
 app_show_bundle_product_item:
-    path: /product/{id}
+    path: /product/{slug}
     defaults: { _controller: AppShopBundle:Product:productItem }

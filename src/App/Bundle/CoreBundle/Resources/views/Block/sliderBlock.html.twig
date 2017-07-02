@@ -1,5 +1,4 @@
 {% if sliders %}
-{% endif %}
 <script type="text/javascript">
     $(window).load(function() {
         $('#slider').nivoSlider ({
@@ -33,13 +32,11 @@
 
 <div class="nivoSlider_wrapper">
     <div id="slider" class="nivoSlider">
-        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=101&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
-            <img src="{{ asset('images/slide/slide-1.png') }}" alt="Banner1 for slider" title="Banner1 for slider" width="710" height="240" >
-        </a>
-        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=102&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
-            <img src="{{ asset('images/slide/slide-2.png') }}" alt="Banner2 for slider" title="Banner2 for slider" width="710" height="240" ></a>
-        <a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=103&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">
-            <img src="{{ asset('images/slide/slide-3.png') }}g" alt="Banner3 for slider" title="Banner3 for slider" width="710" height="240" >
-        </a>
+        {% for slider in sliders %}
+            <a href="{{ slider.link }}" target="_self">
+                <img src="{{ getImage(slider.imageName, 'article') | imagine_filter('slider_main') }}" alt="{{ slider.title }}" title="{{ slider.title }}">
+            </a>
+        {% endfor %}
     </div>
 </div>
+{% endif %}
