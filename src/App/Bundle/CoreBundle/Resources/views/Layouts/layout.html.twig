@@ -94,36 +94,46 @@
                     <div class="boxes_menu">
                         <div class="menu">
                             <ul>
-                                <li class="act first"><a href="https://livedemo00.template-help.com/osc_50671/index.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-home"></i>
-                                        Главное меню
+                                <li class="{{ 'app_core_bundle_page_main' in app.request.attributes.get('_route') ? 'act' }} first">
+                                    <a href="{{ path('app_core_bundle_page_main') }}" title="{{ 'Home'|trans }}">
+                                        <i class="icon-home"></i>{{ 'Home'|trans }}
                                     </a>
                                 </li>
-                                <li class=""><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-bullhorn"></i>
-                                        Новые
+                                <li class="{{ 'app_core_bundle_page_search' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_page_search') }}">
+                                        <i class="icon-bullhorn"></i>
+                                        {{ 'Search'|trans }}
                                     </a>
                                 </li>
                                 <li class=""><a href="https://livedemo00.template-help.com/osc_50671/featured_products.php?osCsid=ep3m9100695rjk76h4iesojje3">
-                                        Рекомендуемые
+                                        Доставка и оплата
                                     </a>
                                 </li>
-                                <li class=""><a href="https://livedemo00.template-help.com/osc_50671/topsellers_products.php?osCsid=ep3m9100695rjk76h4iesojje3">
-                                        Лидеры продаж
+                                <li class="{{ 'app_core_bundle_article_news' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_article_news_list') }}">
+                                        {{ 'News'|trans }}
                                     </a>
                                 </li>
-                                <li class=""><a href="https://livedemo00.template-help.com/osc_50671/specials.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-certificate"></i>
-                                        Со скидкой
+                                <li class="{{ 'app_core_bundle_article_article' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_article_article_list') }}"><i class="icon-certificate"></i>
+                                        {{ 'Articles'|trans }}
                                     </a>
                                 </li>
-                                <li class=""><a href="https://livedemo00.template-help.com/osc_50671/manufacturers.php?osCsid=ep3m9100695rjk76h4iesojje3">
-                                        Производители
+                                <li class="{{ 'app_core_bundle_article_stock' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_article_stock_list') }}">
+                                        {{ 'Promotions'|trans }}
                                     </a>
                                 </li>
-                                <li class=""><a href="https://livedemo00.template-help.com/osc_50671/reviews.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-edit"></i>
-                                        Отзывы
+                                <li class="{{ 'app_core_bundle_page_contact' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_page_contact') }}">
+                                        <i class="icon-edit"></i>
+                                        {{ 'Contacts'|trans }}
                                     </a>
                                 </li>
-                                <li class="last"><a href="https://livedemo00.template-help.com/osc_50671/contact_us.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-map-marker"></i>
-                                        Контакты
+                                <li class="{{ 'app_core_bundle_page_about' in app.request.attributes.get('_route') ? 'act' }} last">
+                                    <a href="{{ path('app_core_bundle_page_about') }}">
+                                        <i class="icon-map-marker"></i>
+                                        {{ 'About us'|trans }}
                                     </a>
                                 </li>
                             </ul>

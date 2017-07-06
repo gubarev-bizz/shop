@@ -16,28 +16,28 @@
                         <ol class="masthead">
                             <li class="port_side left_side_pic-1">
 
-                                <div id="piGal" class="hover">
-                                    <ul class="relative" style="width:220px;">
-                                        <li class="wrapper_pic_div">
-                                            <a href="{{ getImage(product.imageName, 'products') }}" target="_blank" rel="fancybox" title="{{ product.title }}" class="prods_pic_bg">
-                                                <img src="{{ getImage(product.imageName, 'products') | imagine_filter('product_slider_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" width="220" height="220">
-                                                <div class="wrapper_pic_zoom" style="width:220px;height:220px;"></div>
-                                            </a>
-                                        </li>
-                                        <li class="wrapper_pic_div">
-                                            <a href="{{ getImage(product.imageName, 'products') }}" target="_blank" rel="fancybox" title="{{ product.title }}" class="prods_pic_bg">
-                                                <img src="{{ getImage(product.imageName, 'products') | imagine_filter('product_slider_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" width="220" height="220">
-                                                <div class="wrapper_pic_zoom" style="width:220px;height:220px;"></div>
-                                            </a>
-                                        </li>
-                                        <li class="wrapper_pic_div">
-                                            <a href="{{ getImage(product.imageName, 'products') }}" target="_blank" rel="fancybox" title="{{ product.title }}" class="prods_pic_bg">
-                                                <img src="{{ getImage(product.imageName, 'products') | imagine_filter('product_slider_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" width="220" height="220">
-                                                <div class="wrapper_pic_zoom" style="width:220px;height:220px;"></div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                {% if product.imageName is not null %}
+                                    <div id="piGal" class="hover">
+                                        <ul class="relative" style="width:220px;">
+                                            <li class="wrapper_pic_div">
+                                                <a href="{{ getImage(product.imageName, 'products') }}" target="_blank" rel="fancybox" title="{{ product.title }}" class="prods_pic_bg">
+                                                    <img src="{{ getImage(product.imageName, 'products') | imagine_filter('product_slider_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" width="220" height="220">
+                                                    <div class="wrapper_pic_zoom" style="width:220px;height:220px;"></div>
+                                                </a>
+                                            </li>
+                                            {% if product.images is defined %}
+                                                {% for image in product.images %}
+                                                    <li class="wrapper_pic_div">
+                                                        <a href="{{ getImage(image.imageName, 'products') }}" target="_blank" rel="fancybox" title="{{ product.title }}" class="prods_pic_bg">
+                                                            <img src="{{ getImage(image.imageName, 'products') | imagine_filter('product_slider_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" width="220" height="220">
+                                                            <div class="wrapper_pic_zoom" style="width:220px;height:220px;"></div>
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
 
                                 <script type="text/javascript">
                                     $(function() {
@@ -64,25 +64,13 @@
 
                                 <div class="info">
                                     <h2>{{ product.title }}</h2>
-
+                                    {{ form_start(addProductToCartForm) }}
                                     <div class="options">
-                                        <p class="options-title">Доступные изменения:</p>
+                                        {#<p class="options-title">Доступные изменения:</p>#}
                                         <ul class="ofh">
                                             <li>
-                                                <label>Ð&nbsp;Ð°Ð·Ð¼ÐµÑ€:</label>
-                                                <select name="id[2]">
-                                                    <option value="3">ÑÑ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð½Ñ‹Ð¹</option>
-                                                    <option value="4">Ð¼Ð°Ð»Ñ‹Ð¸Ð¹ (-$15.00)</option>
-                                                    <option value="8">Ð‘Ð¾Ð»ÑŒÑˆÐ¾Ð¹ (+$15.00)</option>
-                                                </select>
-                                            </li>
-                                            <li>
-                                                <label>Ð¦Ð²ÐµÑ‚:</label>
-                                                <select name="id[1]">
-                                                    <option value="2">Ð¾Ñ€Ð¸Ð³Ð¸Ð½Ð°Ð»ÑŒÐ½Ñ‹Ð¹</option>
-                                                    <option value="1">Ð»Ñ‘Ð³ÐºÐ¸Ð¹ (+$5.00)</option>
-                                                    <option value="7">Ñ‚Ñ‘Ð¼Ð½Ñ‹Ð¹ (+$10.00)</option>
-                                                </select>
+                                                <label>Количество:</label>
+                                                {{ form_widget(addProductToCartForm.count) }}
                                             </li>
                                         </ul>
                                     </div>
@@ -90,21 +78,27 @@
 
                                     <div class="fl_right" align="right">
                                         <strong class="button_content button_content2">
-                                            {{ form_start(addProductToCartForm) }}
                                             <strong class="button bg_button">
                                                 <strong class="button-t">
-                                                    <input type="hidden" name="products_id" value="1">
+                                                    {#<input type="hidden" name="products_id" value="1">#}
                                                     <button id="tdb2" type="submit">в Корзину</button>
                                                     <script type="text/javascript">
                                                         $("#tdb2").button({icons:{primary:"ui-icon-cart"}}).addClass("ui-priority-primary").parent().removeClass("tdbLink");
                                                     </script>
                                                 </strong>
                                             </strong>
-                                            {{ form_end(addProductToCartForm) }}
                                         </strong>
                                     </div>
-
-                                    <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a id="tdb3" href="https://livedemo00.template-help.com/osc_50671/product_reviews.php/ipsum-dolor-sit-amet-conse-ctetur-adipisicing-elit-pr-1">Отзывы</a><script type="text/javascript">$("#tdb3").button({icons:{primary:"ui-icon-comment"}}).addClass("ui-priority-secondary").parent().removeClass("tdbLink");</script></strong></strong>
+                                    {{ form_end(addProductToCartForm) }}
+                                    <strong class="button_content button_content22">
+                                        <strong class="button bg_button">
+                                            <strong class="button-t">
+                                                <a id="tdb3" href="#">Отзывы</a>
+                                                <script type="text/javascript">
+                                                    $("#tdb3").button({icons:{primary:"ui-icon-comment"}}).addClass("ui-priority-secondary").parent().removeClass("tdbLink");
+                                                </script>
+                                            </strong>
+                                        </strong>
                                     </strong>
 
                                 </div>

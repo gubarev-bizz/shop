@@ -5,21 +5,31 @@ namespace App\Bundle\CoreBundle\Controller;
 use App\Bundle\ShopBundle\Form\AddProductCartType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CategoryController extends Controller
 {
-    public function categoryItemAction(Request $request, $categoryId)
+    /**
+     * @param Request $request
+     * @param string $slug
+     *
+     * @return Response
+     */
+    public function categoryItemAction(Request $request, $slug)
     {
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('AppCoreBundle:Category')->find($categoryId);
+        $category = $em->getRepository('AppCoreBundle:Category')->findOneBy([
+            'slug' => $slug,
+            'active' => true,
+        ]);
 
         if (!$category) {
             throw new NotFoundHttpException('Category has not be found');
         }
 
         $entities = $em->getRepository('AppShopBundle:Product')->findBy([
-            'category' => $categoryId,
+            'category' => $category->getId(),
         ], [
             'createdAt' => 'DESC'
         ]);
@@ -36,8 +46,8 @@ class CategoryController extends Controller
         }
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
-        $breadcrumbs->addRouteItem($category->getTitle(), "app_show_bundle_product_item", [
-            'id' => $category->getId(),
+        $breadcrumbs->addRouteItem($category->getTitle(), "app_core_bundle_category_item", [
+            'slug' => $category->getSlug(),
         ]);
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 

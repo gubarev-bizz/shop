@@ -5,6 +5,7 @@ namespace App\Bundle\CoreBundle\Controller;
 use App\Bundle\CoreBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ArticleController extends Controller
@@ -69,11 +70,15 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function newsItemAction($id)
+    /**
+     * @param string $slug
+     * @return Response
+     */
+    public function newsItemAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppCoreBundle:Article')->findOneBy([
-            'id' => $id,
+            'slug' => $slug,
             'type' => Article::TYPE_NEWS,
         ]);
 
@@ -93,11 +98,15 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function stockItemAction($id)
+    /**
+     * @param string $slug
+     * @return Response
+     */
+    public function stockItemAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppCoreBundle:Article')->findOneBy([
-            'id' => $id,
+            'slug' => $slug,
             'type' => Article::TYPE_STOCK,
         ]);
 
@@ -117,11 +126,15 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function articleItemAction($id)
+    /**
+     * @param string $slug
+     * @return Response
+     */
+    public function articleItemAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppCoreBundle:Article')->findOneBy([
-            'id' => $id,
+            'slug' => $slug,
             'type' => Article::TYPE_ARTICLE,
         ]);
 

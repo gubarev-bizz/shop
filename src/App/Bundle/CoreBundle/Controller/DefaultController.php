@@ -60,7 +60,8 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository('AppCoreBundle:Category')->findBy([
-            'parent' => null
+            'parent' => null,
+            'active' => true,
         ]);
 
         return $this->render('AppCoreBundle:Layouts:sidebar.html.twig', [
