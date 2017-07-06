@@ -8,13 +8,13 @@
             />
         {% endif %}
         <div class="caption">
-            <h3><a href="{{ path('app_core_bundle_article_news_item', {id: news.id}) }}">{{ news.title }}</a></h3>
+            <h3><a href="{{ path('app_core_bundle_article_news_item', {slug: news.slug}) }}">{{ news.title }}</a></h3>
             <div>
-                {{ news.content|length > 150 ? news.content|slice(0, 150) ~ ' ...' : news.content }}
+                {{ news.content|raw|length > 150 ? news.content[:150]|striptags ~ ' ...' : news.content|raw }}
             </div>
             <br />
             <p>
-                <a href="{{ path('app_core_bundle_article_news_item', {id: news.id}) }}" class="btn btn-primary" role="button">{{ 'More detailed'|trans }}</a>
+                <a href="{{ path('app_core_bundle_article_news_item', {slug: news.slug}) }}" class="btn btn-primary" role="button">{{ 'More detailed'|trans }}</a>
             </p>
         </div>
     </div>

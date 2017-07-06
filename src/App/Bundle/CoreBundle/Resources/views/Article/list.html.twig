@@ -9,53 +9,111 @@
     {% elseif entities.items[0].type == 'stock' %}
         {% set type = 'Акции' %}
     {% endif %}
-        {{ type|trans }}
+    {{ type|trans }}
 {% endblock %}
 
 {% block content %}
 
-    {% for entity in entities %}
+    <div class="contentContainer page_new_product first last">
+        <div class="contentPadd">
+            <div class="prods_table">
+            {% for entity in entities %}
 
-        {% set urlEntity = '' %}
+                {% set urlEntity = '#' %}
 
-        {% if entities.items[0].type == 'article' %}
-            {% set urlEntity = path('app_core_bundle_article_article_item', {id: entity.id}) %}
-        {% elseif entities.items[0].type == 'news' %}
-            {% set urlEntity = path('app_core_bundle_article_news_item', {id: entity.id}) %}
-        {% elseif entities.items[0].type == 'stock' %}
-            {% set urlEntity = path('app_core_bundle_article_stock_item', {id: entity.id}) %}
-        {% endif %}
+                {% if entity.type == 'article' %}
+                    {% set urlEntity = path('app_core_bundle_article_article_item', {'slug': entity.slug}) %}
+                {% elseif entity.type == 'news' %}
+                    {% set urlEntity = path('app_core_bundle_article_news_item', {'slug': entity.slug}) %}
+                {% elseif entity.type == 'stock' %}
+                    {% set urlEntity = path('app_core_bundle_article_stock_item', {'slug': entity.slug}) %}
+                {% endif %}
 
-        <div class="article-list row">
-            {% if entity.imageName is not null %}
-                <div class="col-md-3">
-                    <a href="{{ urlEntity }}">
-                        {% set image = getImage(entity.imageName, 'article') %}
 
-                        {% if image is not null %}
-                            <img style="width:100%" src="{{ getImage(entity.imageName, 'article') }}" data-holder-rendered="true" />
-                        {% endif %}
-                    </a>
+
+                <div class="contentInfoBlock hover">
+                    <div class="prods_content decks">
+                        <div class="forecastle">
+                            <ol class="masthead">
+                                <li class="port_side left_side4">
+                                    <div class="pic_padd wrapper_pic_div" style="width:220px;height:220px;">
+                                        {% if entity.imageName is not null %}
+                                            {% set image = getImage(entity.imageName, 'article') %}
+
+                                            {% if image is not null %}
+                                            <a class="prods_pic_bg" href="{{ urlEntity }}" style="width:220px;height:220px;">
+                                                <img src="{{ getImage(entity.imageName, 'article') | imagine_filter('article_preview') }}" alt="{{ entity.title }}" title="{{ entity.title }}">
+                                            </a>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </li>
+                                <li class="starboard_side bak4">
+                                    <div class="info">
+                                        <div class="data data_padd">
+								            <span>Добавлено:</span> {{ entity.createdAt|date('d.m.Y') }}
+                                        </div>
+                                        <h2 class="name name2_padd">
+                                            <span class="name">
+                                                <a href="{{ urlEntity }}">{{ entity.title }}</a>
+                                            </span>
+                                        </h2>
+                                        <div class="desc desc2_padd">
+                                            {% set content = entity.content|raw %}
+                                            {{ content|length > 220 ? content[:220]|striptags ~ ' ...' : content|raw }}
+                                        </div>
+                                        <div class="button button2__padd">
+                                            <strong class="button_content button_content22">
+                                                <strong class="button bg_button">
+                                                    <strong class="button-t">
+                                                        <a href="{{ urlEntity }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
+                                                            <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span>
+                                                            <span class="ui-button-text">Подробнее</span>
+                                                        </a>
+                                                    </strong>
+                                                </strong>
+                                            </strong>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-8">
-            {% else %}
-                <div class="col-md-12">
-            {% endif %}
-                <p>{{ entity.createdAt|date('d.m.Y') }}</p>
-                <h3><a href="{{ urlEntity }}">{{ entity.title }}</a></h3>
-                <div>
-                    {{ entity.content|striptags|raw[:220] }}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
 
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <div class="navigation">
-                {{ knp_pagination_render(entities) }}
+                {#<div class="article-list row">#}
+                {#{% if entity.imageName is not null %}#}
+                    {#<div class="col-md-3">#}
+                        {#<a href="{{ urlEntity }}">#}
+                            {#{% set image = getImage(entity.imageName, 'article') %}#}
+
+                            {#{% if image is not null %}#}
+                                {#<img src="{{ getImage(entity.imageName, 'article') | imagine_filter('article_preview') }}" />#}
+                            {#{% endif %}#}
+                        {#</a>#}
+                    {#</div>#}
+                    {#<div class="col-md-8">#}
+                {#{% else %}#}
+                    {#<div class="col-md-12">#}
+                {#{% endif %}#}
+                {#<p>{{ entity.createdAt|date('d.m.Y') }}</p>#}
+                {#<h3><a href="{{ urlEntity }}">{{ entity.title }}</a></h3>#}
+                {#<div>#}
+                    {#{{ entity.content|striptags|raw[:220] }}#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+            {% endfor %}
             </div>
         </div>
     </div>
+
+    {#<div class="row">#}
+        {#<div class="col-md-12 text-center">#}
+            {#<div class="navigation">#}
+                {#{{ knp_pagination_render(entities) }}#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
 
 {% endblock %}

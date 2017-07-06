@@ -10,6 +10,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ArticleController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function newsListAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -30,6 +34,10 @@ class ArticleController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function stockListAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -50,6 +58,10 @@ class ArticleController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function articleListAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -89,7 +101,7 @@ class ArticleController extends Controller
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addRouteItem('News', "app_core_bundle_article_news_list");
         $breadcrumbs->addRouteItem($entity->getTitle(), "app_core_bundle_article_news_item", [
-            'id' => $entity->getId(),
+            'slug' => $entity->getSlug(),
         ]);
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
@@ -117,7 +129,7 @@ class ArticleController extends Controller
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addRouteItem('Promotions', "app_core_bundle_article_stock_list");
         $breadcrumbs->addRouteItem($entity->getTitle(), "app_core_bundle_article_stock_item", [
-            'id' => $entity->getId(),
+            'slug' => $entity->getSlug(),
         ]);
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
@@ -145,7 +157,7 @@ class ArticleController extends Controller
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addRouteItem('Articles', "app_core_bundle_article_article_list");
         $breadcrumbs->addRouteItem($entity->getTitle(), "app_core_bundle_article_article_item", [
-            'id' => $entity->getId(),
+            'slug' => $entity->getSlug(),
         ]);
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 

@@ -194,6 +194,11 @@ liip_imagine:
                 thumbnail: { size: [710, 240], mode: outbound }
                 background: { size: [710, 240], position: center, color: '#fff' }
                 crop: { size: [710, 240] }
+        article_preview:
+            quality: 100
+            filters:
+                thumbnail: { size: [220, 200], mode: outbound }
+                background: { size: [220, 200], position: center, color: '#fff' }
         category_main:
             quality: 100
             filters:
