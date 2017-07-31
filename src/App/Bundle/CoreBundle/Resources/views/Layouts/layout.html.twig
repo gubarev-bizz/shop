@@ -7,17 +7,7 @@
             <div class="grid_24">
                 <div id="header">
                     <div id="box_search" class="search">
-                        <form name="quick_find" action="https://livedemo00.template-help.com/osc_50671/advanced_search_result.php" method="get">
-                            <div class="input-width ">
-                                <input type="text" name="keywords" value="Поиск по сайту" size="10" maxlength="300" class="go fl_left" onblur="if(this.value=='') this.value='Поиск по сайту'" onfocus="if(this.value =='Поиск по сайту' ) this.value=''">
-                                <input type="hidden" name="osCsid" value="ep3m9100695rjk76h4iesojje3">
-                            </div>
-                            <button id="tdb1" type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-priority-secondary" role="button">
-                                <span class="ui-button-text">Поиск</span>
-                            </button>
-                            <script type="text/javascript">$("#tdb1").button().addClass("ui-priority-secondary").parent().removeClass("tdbLink");</script>
-                            <label class="fl_left">Поиск</label>
-                        </form>
+                        {{ render(controller('AppCoreBundle:Search:searchForm', {'request': app.request})) }}
                     </div>
                     {{ render(controller('AppShopBundle:Cart:cartBlock')) }}
                     <div class="boxes_menu">
@@ -34,7 +24,8 @@
                                         {{ 'Search'|trans }}
                                     </a>
                                 </li>
-                                <li class=""><a href="https://livedemo00.template-help.com/osc_50671/featured_products.php?osCsid=ep3m9100695rjk76h4iesojje3">
+                                <li class="">
+                                    <a href="#">
                                         Доставка и оплата
                                     </a>
                                 </li>

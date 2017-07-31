@@ -4,51 +4,156 @@
 
 {% block content %}
 
+    <div class="box_wrapper_title22 infoBoxWrapper">
+        <div class="box_wrapper_title">
+            <span class="title-icon"></span>
+            <h1>{{ 'Search'|trans }}</h1>
+        </div>
+    </div>
+
     {% if results|length %}
-        {% for result in results %}
-            <div class="row">
-                <div class="col-md-12 search-item">
-                    {% if result.code is defined %}
-                        {% for image in result.images %}
-                            {% if loop.index == 1 %}
-                                <img src="{{ getImage(image.imageName, 'products', 'search_item') }}" />
-                            {% endif %}
-                        {% endfor %}
-                        <div>
-                            <div class="item-title">{{ result.title }}</div>
-                            <div>
-                                {{ result.content|striptags|length > 400 ?
-                                result.content|striptags|slice(0, 400) ~ ' ...' :
-                                result.content|striptags|slice(0, 400)
-                                }}
-                            </div>
-                            <a title="{{ result.title }}" href="{{ path('app_show_bundle_product_item', {id: result.id}) }}">Подробнее...</a>
-                        </div>
-                    {% else %}
-                        {% if result.imageName %}
-                            <div class="item-image">
-                                <img src="{{ getImage(result.imageName, 'article') | imagine_filter('search_item') }}" />
-                            </div>
-                        {% endif %}
-                        <div>
-                            <div class="item-title">{{ result.title }}</div>
-                            <div>
-                                {{ result.content|striptags|length > 400 ?
-                                result.content|striptags|slice(0, 400) ~ ' ...' :
-                                result.content|striptags|slice(0, 400)
-                                }}
-                            </div>
-                            {% if result.type == 'article' %}
-                                <a title="{{ result.title }}" href="{{ path('app_core_bundle_article_article_item', {id: result.id}) }}">Подробнее...</a>
-                            {% elseif result.type == 'news' %}
-                                <a title="{{ result.title }}" href="{{ path('app_core_bundle_article_news_item', {id: result.id}) }}">Подробнее...</a>
-                            {% elseif result.type == 'stock' %}
-                                <a title="{{ result.title }}" href="{{ path('app_core_bundle_article_stock_item', {id: result.id}) }}">Подробнее...</a>
-                            {% endif %}
-                        </div>
-                    {% endif %}
+        {% for entity in results %}
+
+            {% if entity.type is defined %}
+                {% if entity.type == 'article' %}
+                    {% set urlEntity = path('app_core_bundle_article_article_item', {'slug': entity.slug}) %}
+                {% elseif entity.type == 'news' %}
+                    {% set urlEntity = path('app_core_bundle_article_news_item', {'slug': entity.slug}) %}
+                {% elseif entity.type == 'stock' %}
+                    {% set urlEntity = path('app_core_bundle_article_stock_item', {'slug': entity.slug}) %}
+                {% endif %}
+            {% else %}
+                {% set urlEntity = path('app_show_bundle_product_item', {'slug': entity.slug}) %}
+            {% endif %}
+
+            <div class="contentInfoBlock hover">
+                <div class="prods_content decks">
+                    <div class="forecastle">
+                        <ol class="masthead">
+                            <li class="port_side left_side4">
+                                <div class="pic_padd wrapper_pic_div" style="width:220px;height:220px;">
+                                    {% if entity.type is defined %}
+                                        {% if entity.imageName is not null %}
+                                            <img src="{{ getImage(entity.imageName, 'article') | imagine_filter('article_preview') }}" alt="{{ entity.title }}" title="{{ entity.title }}" >
+                                        {% else %}
+                                            <img src="{{ asset('images/default-160x160.jpg') }}" alt="{{ entity.title }}" title="{{ entity.title }}" >
+                                        {% endif %}
+                                    {% else %}
+                                        {% if entity.imageName is not null %}
+                                            <img src="{{ (getImage(entity.imageName, 'products')) | imagine_filter('article_preview') }}" alt="{{ entity.title }}" title="{{ entity.title }}" >
+                                        {% else %}
+                                            <img src="{{ asset('images/default-160x160.jpg') }}" alt="{{ entity.title }}" title="{{ entity.title }}" >
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </li>
+                            <li class="starboard_side bak4">
+                                <div class="info">
+                                    <div class="data data_padd">
+                                        <span>Добавлено:</span> {{ entity.createdAt|date('d.m.Y') }}
+                                    </div>
+                                    <h2 class="name name2_padd">
+                                        <span class="name">
+                                            <a href="{{ urlEntity }}">{{ entity.title }}</a>
+                                        </span>
+                                    </h2>
+                                    {% if entity.code is defined %}
+                                    <h2 class="price price2_padd">
+                                        <b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">{{ entity.price }} грн.</span>
+                                    </h2>
+                                    {% endif %}
+                                    <div class="desc desc2_padd">
+                                        {% set content = entity.content|raw %}
+                                        {#{{ content|length > 220 ? content[:220]|striptags ~ ' ...' : content|raw }}#}
+                                        {{ entity.content|striptags|length > 400 ?
+                                        entity.content|striptags|slice(0, 400) ~ ' ...' :
+                                        entity.content|striptags|slice(0, 400)
+                                        }}
+                                    </div>
+                                    <div class="button button2__padd">
+                                        <strong class="button_content button_content22">
+                                            <strong class="button bg_button">
+                                                <strong class="button-t">
+                                                    <a href="{{ urlEntity }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
+                                                        <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span>
+                                                        <span class="ui-button-text">Подробнее</span>
+                                                    </a>
+                                                </strong>
+                                            </strong>
+                                        </strong>
+                                        {% if entity.code is defined %}
+                                        <strong class="button_content button_content2">
+                                            {{ form_start(addProductCartTypeForms[entity.id]) }}
+                                            <strong class="button bg_button">
+                                                <strong class="button-t">
+                                                    <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
+                                                        <span class="ui-button-icon-primary ui-icon ui-icon-cart"></span>
+                                                        <span class="ui-button-text">в Корзину</span>
+                                                    </button>
+                                                    {#<a href="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">#}
+                                                        {#<span class="ui-button-icon-primary ui-icon ui-icon-cart"></span>#}
+                                                        {#<span class="ui-button-text">в Корзину</span>#}
+                                                    {#</a>#}
+                                                </strong>
+                                            </strong>
+                                            {{ form_end(addProductCartTypeForms[entity.id]) }}
+                                        </strong>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
             </div>
+
+            <div class="prods_hseparator">
+                <img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1">
+            </div>
+
+            {#<div class="row">#}
+                {#<div class="col-md-12 search-item">#}
+                    {#{% if result.code is defined %}#}
+                        {#{% for image in result.images %}#}
+                            {#{% if loop.index == 1 %}#}
+                                {#<img src="{{ getImage(image.imageName, 'products', 'search_item') }}" />#}
+                            {#{% endif %}#}
+                        {#{% endfor %}#}
+                        {#<div>#}
+                            {#<div class="item-title">{{ result.title }}</div>#}
+                            {#<div>#}
+                                {#{{ result.content|striptags|length > 400 ?#}
+                                {#result.content|striptags|slice(0, 400) ~ ' ...' :#}
+                                {#result.content|striptags|slice(0, 400)#}
+                                {#}}#}
+                            {#</div>#}
+                            {#<a title="{{ result.title }}" href="{{ path('app_show_bundle_product_item', {'slug': result.slug}) }}">Подробнее...</a>#}
+                        {#</div>#}
+                    {#{% else %}#}
+                        {#{% if result.imageName %}#}
+                            {#<div class="item-image">#}
+                                {#<img src="{{ getImage(result.imageName, 'article') | imagine_filter('search_item') }}" />#}
+                            {#</div>#}
+                        {#{% endif %}#}
+                        {#<div>#}
+                            {#<div class="item-title">{{ result.title }}</div>#}
+                            {#<div>#}
+                                {#{{ result.content|striptags|length > 400 ?#}
+                                {#result.content|striptags|slice(0, 400) ~ ' ...' :#}
+                                {#result.content|striptags|slice(0, 400)#}
+                                {#}}#}
+                            {#</div>#}
+                            {#{% if result.type == 'article' %}#}
+                                {#<a title="{{ result.title }}" href="{{ path('app_core_bundle_article_article_item', {'slug': result.slug}) }}">Подробнее...</a>#}
+                            {#{% elseif result.type == 'news' %}#}
+                                {#<a title="{{ result.title }}" href="{{ path('app_core_bundle_article_news_item', {'slug': result.slug}) }}">Подробнее...</a>#}
+                            {#{% elseif result.type == 'stock' %}#}
+                                {#<a title="{{ result.title }}" href="{{ path('app_core_bundle_article_stock_item', {'slug': result.slug}) }}">Подробнее...</a>#}
+                            {#{% endif %}#}
+                        {#</div>#}
+                    {#{% endif %}#}
+                {#</div>#}
+            {#</div>#}
         {% endfor %}
 
         <div class="row">
@@ -57,6 +162,10 @@
                     {{ knp_pagination_render(results) }}
                 </div>
             </div>
+        </div>
+    {% else %}
+        <div>
+            {{ 'No records found'|trans }}
         </div>
     {% endif %}
 
