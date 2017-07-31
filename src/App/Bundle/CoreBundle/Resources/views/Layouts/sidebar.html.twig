@@ -22,26 +22,93 @@
     {#</li>#}
 {#{% endmacro %}#}
 
-{% macro recursiveCategory(category) %}
-    <li>
-        <div class="div_2">
-            {% if category.children|length %}
+{% macro recursiveCategory(category, activeCategory, isChild) %}
+    {% if category.children|length %}
+        {% if activeCategory.id == category.id %}
+        <li class="htooltip">
+            <div class="div_2">
                 <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
                     <i class="icon-ok"></i>
                     <div class="div_2">
-                        {#{{ dump(app.request.) }}#}
+                        <b>{{ category.title }}</b>
+                        <span class="category_arrow  act"></span>
+                    </div>
+                </a>
+            </div>
+        </li>
+        {% else %}
+        <li>
+            <div class="div_2">
+                <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
+                    <i class="icon-ok"></i>
+                    <div class="div_2">
                         {{ category.title }}
                         <span class="category_arrow"></span>
                     </div>
                 </a>
+            </div>
+        </li>
+        {% endif %}
+
+        {% if activeCategory.id == category.id %}
+            {% for child in category.children %}
+                {{ _self.recursiveCategory(child, activeCategory, true) }}
+            {% endfor %}
+        {% endif %}
+    {% else %}
+
+        {% if isChild %}
+            {% if activeCategory.id == category.id %}
+                <li class="htooltip">
+                    <div class="div_2">
+                        <div class="div">
+                            <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
+                                <i class="icon-ok"></i>
+                                <div class="div_2">
+                                    <b>{{ category.title }}</b>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
             {% else %}
-                <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
-                    <i class="icon-ok"></i>
-                    <div class="div_2">{{ category.title }}</div>
-                </a>
+                <li class="">
+                    <div class="div_2">
+                        <div class="div">
+                            <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
+                                <i class="icon-ok"></i>
+                                <div class="div_2">{{ category.title }}</div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
             {% endif %}
-        </div>
-    </li>
+        {% else %}
+            {% if activeCategory.id == category.id %}
+                <li class="htooltip">
+                    <div class="div_2">
+                        <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
+                            <i class="icon-ok"></i>
+                            <div class="div_2">
+                                <b>{{ category.title }}</b>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            {% else %}
+                <li>
+                    <div class="div_2">
+                        <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
+                            <i class="icon-ok"></i>
+                            <div class="div_2">{{ category.title }}</div>
+                        </a>
+                    </div>
+                </li>
+            {% endif %}
+
+        {% endif %}
+
+    {% endif %}
 {% endmacro %}
 
 <div class="infoBoxWrapper list border_none first">
@@ -57,7 +124,7 @@
             {% if categories %}
             <ul class="categories">
                 {% for category in categories %}
-                    {{ _self.recursiveCategory(category) }}
+                    {{ _self.recursiveCategory(category, activeCategory, false) }}
                 {% endfor %}
             </ul>
             {% endif %}

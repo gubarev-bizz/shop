@@ -60,18 +60,27 @@ class DefaultController extends Controller
 
 
     /**
+     * @param Request $request
      * @return Response
      */
-    public function getSidebarAction()
+    public function getSidebarAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository('AppCoreBundle:Category')->findBy([
             'parent' => null,
             'active' => true,
         ]);
+        $activeCategory = null;
+
+        if ($request->attributes->get('_route') === 'app_core_bundle_category_item') {
+            $activeCategory = $em->getRepository('AppCoreBundle:Category')->findOneBy([
+                'slug' => $request->attributes->get('slug'),
+            ]);
+        }
 
         return $this->render('AppCoreBundle:Layouts:sidebar.html.twig', [
             'categories' => $categories,
+            'activeCategory' => $activeCategory,
         ]);
     }
 

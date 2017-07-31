@@ -96,7 +96,7 @@
                 {% block content %}{% endblock %}
             </div>
             <div id="columnLeft" class="grid_6 pull_18">
-                {{ render(controller('AppCoreBundle:Default:getSidebar')) }}
+                {{ render(controller('AppCoreBundle:Default:getSidebar', {'request': app.request})) }}
             </div>
         </div>
     </div>
