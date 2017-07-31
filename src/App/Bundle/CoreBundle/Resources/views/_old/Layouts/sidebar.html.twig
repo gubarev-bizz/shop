@@ -12,7 +12,7 @@
                  </ul>
              </div>
         {% else %}
-            <a href="{{ path('app_core_bundle_category_item', {categoryId: category.id}) }}" title="">{{ category.title }}</a>
+            <a href="{{ path('app_core_bundle_category_item', {slug: category.slug}) }}" title="">{{ category.title }}</a>
          {% endif %}
     </li>
 {% endmacro %}

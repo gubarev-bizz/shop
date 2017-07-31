@@ -1,13 +1,13 @@
 {% if categories is defined %}
     {% for category in categories %}
         <div class="col-md-6 col-xs-6 stock-block">
-            <a href="{{ path('app_core_bundle_category_item', {categoryId: category.id}) }}" class="">
+            <a href="{{ path('app_core_bundle_category_item', {slug: category.slug}) }}" class="">
                 <img
                     alt="{{ category.title }}"
                     src="{{ getImage(category.imageName, 'category') | imagine_filter('category_main') }}"
                 >
             </a>
-            <a title="{{ category.title }}" href="{{ path('app_core_bundle_category_item', {categoryId: category.id}) }}">
+            <a title="{{ category.title }}" href="{{ path('app_core_bundle_category_item', {slug: category.slug}) }}">
                 {{ category.title }}
             </a>
         </div>

@@ -1,37 +1,68 @@
+{#{% macro recursiveCategory(category) %}#}
+    {#<li>#}
+        {#<div class="div_2">#}
+         {#{% if category.children|length %}#}
+            {#<div class="panel-heading" role="tab" id="collapseListGroupHeading{{ category.id }}">#}
+                {#<a href="#collapseListGroup{{ category.id }}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup{{ category.id }}"><i class="glyphicon glyphicon-plus"></i> {{ category.title }}</a>#}
+            {#</div>#}
+             {#<div class="panel-collapse collapse" role="tabpanel" id="collapseListGroup{{ category.id }}" aria-labelledby="collapseListGroupHeading{{ category.id }}" aria-expanded="false" style="height: 0px;">#}
+                 {#<ul class="list-group">#}
+                     {#{% for child in category.children %}#}
+                        {#{{ _self.recursiveCategory(child) }}#}
+                     {#{% endfor %}#}
+                 {#</ul>#}
+             {#</div>#}
+        {#{% else %}#}
+            {#<a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">#}
+                {#<i class="icon-ok"></i>#}
+                {#<div class="div_2">{{ category.title }}</div>#}
+            {#</a>#}
+         {#{% endif %}#}
+        {#</div>#}
+    {#</li>#}
+{#{% endmacro %}#}
+
 {% macro recursiveCategory(category) %}
-    <li role="presentation" >
-         {% if category.children|length %}
-            <div class="panel-heading" role="tab" id="collapseListGroupHeading{{ category.id }}">
-                <a href="#collapseListGroup{{ category.id }}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup{{ category.id }}"><i class="glyphicon glyphicon-plus"></i> {{ category.title }}</a>
-            </div>
-             <div class="panel-collapse collapse" role="tabpanel" id="collapseListGroup{{ category.id }}" aria-labelledby="collapseListGroupHeading{{ category.id }}" aria-expanded="false" style="height: 0px;">
-                 <ul class="list-group">
-                     {% for child in category.children %}
-                        {{ _self.recursiveCategory(child) }}
-                     {% endfor %}
-                 </ul>
-             </div>
-        {% else %}
-            <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="">{{ category.title }}</a>
-         {% endif %}
+    <li>
+        <div class="div_2">
+            {% if category.children|length %}
+                <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
+                    <i class="icon-ok"></i>
+                    <div class="div_2">
+                        {#{{ dump(app.request.) }}#}
+                        {{ category.title }}
+                        <span class="category_arrow"></span>
+                    </div>
+                </a>
+            {% else %}
+                <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
+                    <i class="icon-ok"></i>
+                    <div class="div_2">{{ category.title }}</div>
+                </a>
+            {% endif %}
+        </div>
     </li>
 {% endmacro %}
 
-<div class="row">
-    <div class="col-md-12 sidebar-category-list">
-        <h2 class="block-title">{{ 'Продукция'|trans }}</h2>
-        {% if categories %}
-        <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-            {% for category in categories %}
-                {{ _self.recursiveCategory(category) }}
-            {% endfor %}
-        </ul>
-        {% endif %}
+<div class="infoBoxWrapper list border_none first">
+    <div class="box_wrapper">
+        <div class="infoBoxHeading">
+            <div class="box_wrapper_title22">
+                <div class="box_wrapper_title">
+                    <h1><span class="title-icon"></span><i class="icon-reorder"></i>{{ 'Продукция'|trans }}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="infoBoxContents">
+            {% if categories %}
+            <ul class="categories">
+                {% for category in categories %}
+                    {{ _self.recursiveCategory(category) }}
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        {{ render(controller('AppCoreBundle:Default:getLastNewsBlock')) }}
-    </div>
-</div>
+{{ render(controller('AppCoreBundle:Default:getLastNewsBlock')) }}

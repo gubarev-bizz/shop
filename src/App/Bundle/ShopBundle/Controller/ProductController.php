@@ -56,14 +56,19 @@ class ProductController extends Controller
         $reviewForm->add('Add', SubmitType::class);
         $reviewForm->handleRequest($request);
 
-        if ($reviewForm->isSubmitted() && $reviewForm->isValid()) {
+        if ($reviewForm->isValid()) {
             $em->persist($review);
             $em->flush();
+            $this->addFlash('success', 'Your review was successfully added.');
+
+            return $this->redirectToRoute('app_show_bundle_product_item', ['slug' => $slug]);
+        } elseif($reviewForm->isSubmitted()) {
+            $this->addFlash('error', 'You entered incorrect data.');
         }
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addRouteItem($product->getCategory()->getTitle(), "app_core_bundle_category_item", [
-            'categoryId' => $product->getCategory()->getId(),
+            'slug' => $product->getCategory()->getSlug(),
         ]);
         $breadcrumbs->addRouteItem($product->getTitle(), "app_show_bundle_product_item", [
             'slug' => $product->getSlug(),
@@ -74,7 +79,7 @@ class ProductController extends Controller
             'product' => $product,
             'approve' => true,
         ], [
-            'createdAt' => 'DESC',
+            'updatedAt' => 'DESC',
         ]);
 
         return $this->render('AppShopBundle:Product:productItem.html.twig', [

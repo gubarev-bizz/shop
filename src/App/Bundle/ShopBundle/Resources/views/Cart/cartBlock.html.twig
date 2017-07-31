@@ -1,44 +1,55 @@
-<div class="panel panel-default">
-    <div class="panel-heading">КОРЗИНА</div>
-    <div class="panel-body">
-        {% if cart.elements|length %}
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Кол-во</th>
-                        <th>Элементы</th>
-                        <th>Цена</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% set totalAmount = 0 %}
-                    {% for element in cart.elements %}
-                        <tr class="ajax-cart-row">
-                            <th scope="row">{{ element.count }}</th>
-                            <td class="name">
-                                <a href="{{ path('app_show_bundle_product_item', {id: element.product.id}) }}" title="{{ element.product.title }}">
-                                    {{ element.product.title }}
-                                </a>
-                            </td>
-                            <td class="price">{{ element.amount }} грн.</td>
-                            <td><a href="/remove-product/nojs/104" class="use-ajax ajax-processed">Удалить </a></td>
-                        </tr>
-                        {% set totalAmount = totalAmount + element.amount %}
-                    {% endfor %}
-                </tbody>
-            </table>
-            <hr>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>Всего: {{ totalAmount }} грн.</p>
-                </div>
-                <div class="col-md-6 text-right">
-                    <a href="{{ path('app_shop_bundle_cart') }}">{{ 'Checkout'|trans }}</a>
-                </div>
-            </div>
-        {% else %}
-            В корзине нет товаров
-        {% endif %}
-    </div>
+{#<div class="panel panel-default">#}
+    {#<div class="panel-heading">КОРЗИНА</div>#}
+    {#<div class="panel-body">#}
+        {#{% if cart.elements|length %}#}
+            {#<table class="table table-striped">#}
+                {#<thead>#}
+                    {#<tr>#}
+                        {#<th>Кол-во</th>#}
+                        {#<th>Элементы</th>#}
+                        {#<th>Цена</th>#}
+                        {#<th></th>#}
+                    {#</tr>#}
+                {#</thead>#}
+                {#<tbody>#}
+                    {#{% set totalAmount = 0 %}#}
+                    {#{% for element in cart.elements %}#}
+                        {#<tr class="ajax-cart-row">#}
+                            {#<th scope="row">{{ element.count }}</th>#}
+                            {#<td class="name">#}
+                                {#<a href="{{ path('app_show_bundle_product_item', {id: element.product.id}) }}" title="{{ element.product.title }}">#}
+                                    {#{{ element.product.title }}#}
+                                {#</a>#}
+                            {#</td>#}
+                            {#<td class="price">{{ element.amount }} грн.</td>#}
+                            {#<td><a href="/remove-product/nojs/104" class="use-ajax ajax-processed">Удалить </a></td>#}
+                        {#</tr>#}
+                        {#{% set totalAmount = totalAmount + element.amount %}#}
+                    {#{% endfor %}#}
+                {#</tbody>#}
+            {#</table>#}
+            {#<hr>#}
+            {#<div class="row">#}
+                {#<div class="col-md-6">#}
+                    {#<p>Всего: {{ totalAmount }} грн.</p>#}
+                {#</div>#}
+                {#<div class="col-md-6 text-right">#}
+                    {#<a href="{{ path('app_shop_bundle_cart') }}">{{ 'Checkout'|trans }}</a>#}
+                {#</div>#}
+            {#</div>#}
+        {#{% else %}#}
+            {#В корзине нет товаров#}
+        {#{% endif %}#}
+    {#</div>#}
+{#</div>#}
+
+<div class="box_header_cart destination">
+    <a class="cart_l" href="{{ path('app_shop_bundle_cart') }}">
+        <i class="icon-shopping-cart"></i>
+        <label>Корзина:</label>
+        <span>
+            <span>в корзине </span>
+            <strong>{{ countItems }}</strong> товаров
+        </span>
+    </a>
 </div>

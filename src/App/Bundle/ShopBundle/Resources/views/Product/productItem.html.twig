@@ -8,264 +8,390 @@
 
 {% block content %}
 
-    {#<form name="cart_quantity" action="" method="post">#}
-        <div class="contentContainer">
-            <div class="contentPadd prods_info_page">
-                <div class="prods_info decks big">
-                    <div class="forecastle">
-                        <ol class="masthead">
-                            <li class="port_side left_side_pic-1">
+    <div class="contentContainer">
+        <div class="contentPadd prods_info_page">
+            <div class="prods_info decks big">
+                <div class="forecastle">
+                    <ol class="masthead">
+                        <li class="port_side left_side_pic-1">
 
-                                {% if product.imageName is not null %}
-                                    <div id="piGal" class="hover">
-                                        <ul class="relative" style="width:220px;">
-                                            <li class="wrapper_pic_div">
-                                                <a href="{{ getImage(product.imageName, 'products') }}" target="_blank" rel="fancybox" title="{{ product.title }}" class="prods_pic_bg">
-                                                    <img src="{{ getImage(product.imageName, 'products') | imagine_filter('product_slider_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" width="220" height="220">
-                                                    <div class="wrapper_pic_zoom" style="width:220px;height:220px;"></div>
-                                                </a>
-                                            </li>
-                                            {% if product.images is defined %}
-                                                {% for image in product.images %}
-                                                    <li class="wrapper_pic_div">
-                                                        <a href="{{ getImage(image.imageName, 'products') }}" target="_blank" rel="fancybox" title="{{ product.title }}" class="prods_pic_bg">
-                                                            <img src="{{ getImage(image.imageName, 'products') | imagine_filter('product_slider_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" width="220" height="220">
-                                                            <div class="wrapper_pic_zoom" style="width:220px;height:220px;"></div>
-                                                        </a>
-                                                    </li>
-                                                {% endfor %}
-                                            {% endif %}
-                                        </ul>
-                                    </div>
-                                {% endif %}
+                            {% if product.imageName is not null %}
+                                <div id="piGal" class="hover">
+                                    <ul class="relative" style="width:220px;">
+                                        <li class="wrapper_pic_div">
+                                            <a href="{{ getImage(product.imageName, 'products') }}" target="_blank" rel="fancybox" title="{{ product.title }}" class="prods_pic_bg">
+                                                <img src="{{ getImage(product.imageName, 'products') | imagine_filter('product_slider_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" width="220" height="220">
+                                                <div class="wrapper_pic_zoom" style="width:220px;height:220px;"></div>
+                                            </a>
+                                        </li>
+                                        {% if product.images is defined %}
+                                            {% for image in product.images %}
+                                                <li class="wrapper_pic_div">
+                                                    <a href="{{ getImage(image.imageName, 'products') }}" target="_blank" rel="fancybox" title="{{ product.title }}" class="prods_pic_bg">
+                                                        <img src="{{ getImage(image.imageName, 'products') | imagine_filter('product_slider_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" width="220" height="220">
+                                                        <div class="wrapper_pic_zoom" style="width:220px;height:220px;"></div>
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            {% endif %}
 
-                                <script type="text/javascript">
-                                    $(function() {
-                                        var myWidth = 66;
-                                        var myHeight = myWidth * 1;
-                                        $('#piGal ul').bxGallery({
-                                            maxwidth: '220',
-                                            maxheight: '220',
-                                            thumbwidth: myWidth,
-                                            thumbheight: myHeight,
-                                            thumbcontainer: 228,
-                                            {#load_image: {{ asset('bundles/sonatacore/vendor/select2/select2-spinner.gif') }}/*'ext/jquery/bxGallery/spinner.gif'*/#}
-                                        })
-                                    });
-                                </script>
-                                <script type="text/javascript">
-                                    $("#piGal a[rel^='fancybox']").fancybox({
-                                        cyclic: true
-                                    });
-                                </script>
+                            <script type="text/javascript">
+                                $(function() {
+                                    var myWidth = 66;
+                                    var myHeight = myWidth * 1;
+                                    $('#piGal ul').bxGallery({
+                                        maxwidth: '220',
+                                        maxheight: '220',
+                                        thumbwidth: myWidth,
+                                        thumbheight: myHeight,
+                                        thumbcontainer: 228,
+                                        {#load_image: {{ asset('bundles/sonatacore/vendor/select2/select2-spinner.gif') }}/*'ext/jquery/bxGallery/spinner.gif'*/#}
+                                    })
+                                });
+                            </script>
+                            <script type="text/javascript">
+                                $("#piGal a[rel^='fancybox']").fancybox({
+                                    cyclic: true
+                                });
+                            </script>
 
-                            </li>
-                            <li class="starboard_side right_side_pic-1">
+                        </li>
+                        <li class="starboard_side right_side_pic-1">
 
-                                <div class="info">
-                                    <h2>{{ product.title }}</h2>
-                                    {{ form_start(addProductToCartForm) }}
-                                    <div class="options">
-                                        {#<p class="options-title">Доступные изменения:</p>#}
-                                        <ul class="ofh">
-                                            <li>
-                                                <label>Количество:</label>
-                                                {{ form_widget(addProductToCartForm.count) }}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h2 class="price"><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">{{ product.price }} грн.</span> </h2>
+                            <div class="info">
+                                <h2>{{ product.title }}</h2>
+                                {{ form_start(addProductToCartForm) }}
+                                <div class="options">
+                                    {#<p class="options-title">Доступные изменения:</p>#}
+                                    <ul class="ofh">
+                                        <li>
+                                            <label>Количество:</label>
+                                            {{ form_widget(addProductToCartForm.count) }}
+                                        </li>
+                                    </ul>
+                                </div>
+                                {#<h2 class="price"><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">{{ product.price }} грн.</span> </h2>#}
 
-                                    <div class="fl_right" align="right">
-                                        <strong class="button_content button_content2">
-                                            <strong class="button bg_button">
-                                                <strong class="button-t">
-                                                    {#<input type="hidden" name="products_id" value="1">#}
-                                                    <button id="tdb2" type="submit">в Корзину</button>
-                                                    <script type="text/javascript">
-                                                        $("#tdb2").button({icons:{primary:"ui-icon-cart"}}).addClass("ui-priority-primary").parent().removeClass("tdbLink");
-                                                    </script>
-                                                </strong>
-                                            </strong>
-                                        </strong>
-                                    </div>
-                                    {{ form_end(addProductToCartForm) }}
-                                    <strong class="button_content button_content22">
+                                <div class="fl_right" align="right">
+                                    <strong class="button_content button_content2">
                                         <strong class="button bg_button">
                                             <strong class="button-t">
-                                                <a id="tdb3" href="#">Отзывы</a>
+                                                {#<input type="hidden" name="products_id" value="1">#}
+                                                <button id="tdb2" type="submit">в Корзину</button>
                                                 <script type="text/javascript">
-                                                    $("#tdb3").button({icons:{primary:"ui-icon-comment"}}).addClass("ui-priority-secondary").parent().removeClass("tdbLink");
+                                                    $("#tdb2").button({icons:{primary:"ui-icon-cart"}}).addClass("ui-priority-primary").parent().removeClass("tdbLink");
                                                 </script>
                                             </strong>
                                         </strong>
                                     </strong>
-
                                 </div>
+                                {{ form_end(addProductToCartForm) }}
+                                <strong>
+                                    <strong class="button bg_button">
+                                        {#<strong class="button-t">#}
+                                        {#</strong>#}
+                                        <span class="price">
+                                            <b>Цена:&nbsp;&nbsp;</b>
+                                            <span style="line-height: 30px;" class="productSpecialPrice">{{ product.price }} грн.</span>
+                                        </span>
+                                    </strong>
+                                </strong>
 
-                                {#<div class="data data_padd small_title">Товар был добавлен в наш каталог Понедельник 14 Июль, 2014.</div>#}
-                                <div class="desc desc_padd">
-                                    {{ product.content|raw }}
+                            </div>
+
+                            {#<div class="data data_padd small_title">Товар был добавлен в наш каталог Понедельник 14 Июль, 2014.</div>#}
+                            <div style="display: inline-block;" class="desc desc_padd">
+                                {{ product.content|raw }}
+                            </div>
+
+                        </li>
+                    </ol>
+                </div>
+                <div class="infoBoxWrapper">
+                    <div class="box_wrapper">
+                        {#<div class="infoBoxHeading prod_page">#}
+                            {#<div class="title-icon"></div>#}
+                            {#<div class="box_wrapper_title22">#}
+                                {#<div class="box_wrapper_title">#}
+                                    {#<h1><span class="title-icon"></span>Теги продукта</h1></div>#}
+                            {#</div>#}
+                        {#</div>#}
+                        <div class="">
+                            <div class="tabBlock">
+                                <div class="tab-header">
+                                    <ul >
+                                        <li class="active box_wrapper_title"><a href="#details">Детальное описание</a></li>
+                                        <li class="box_wrapper_title"><a href="#char">Характеристика</a></li>
+                                        <li class="box_wrapper_title"><a href="#review">Отзывы</a></li>
+                                    </ul>
                                 </div>
-
-                            </li>
-                        </ol>
-                    </div>
-                    <div class="infoBoxWrapper">
-                        <div class="box_wrapper">
-                            <div class="infoBoxHeading prod_page">
-                                <div class="title-icon"></div>
-                                <div class="box_wrapper_title22">
-                                    <div class="box_wrapper_title">
-                                        <h1><span class="title-icon"></span>Теги продукта</h1></div>
+                                <div class="tab-content">
+                                    <div class="tab-itemContent active" id="details">
+                                        {{ product.content|raw }}
+                                    </div>
+                                    <div class="tab-itemContent" id="char">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                            {% if product.ballType is not null and product.ballType != '' %}
+                                            <tr>
+                                            <td>Тип шара</td>
+                                            <td>{{ product.ballType }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.verticalBurdenBall is not null and product.verticalBurdenBall != '' %}
+                                            <tr>
+                                            <td>Вертикальная нагрузка на шар</td>
+                                            <td>{{ product.verticalBurdenBall }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.pullingBurdenBall is not null and product.pullingBurdenBall != '' %}
+                                            <tr>
+                                            <td>Тяговая нагрузка на шар</td>
+                                            <td>{{ product.pullingBurdenBall }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.installationCoordinationModule is not null and product.installationCoordinationModule != '' %}
+                                            <tr>
+                                            <td>Необходимость установки модуля согласования</td>
+                                            <td>{{ product.installationCoordinationModule }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.systemVoltage is not null and product.systemVoltage != '' %}
+                                            <tr>
+                                            <td>Напряжение бортовой сети</td>
+                                            <td>{{ product.systemVoltage }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.permissibleCurrentValues is not null and product.permissibleCurrentValues != '' %}
+                                            <tr>
+                                            <td>Допустимое значения тока</td>
+                                            <td>{{ product.permissibleCurrentValues }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.tractionLoad is not null and product.tractionLoad != '' %}
+                                            <tr>
+                                            <td>Тяговая нагрузка</td>
+                                            <td>{{ product.tractionLoad }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.removingBumper is not null and product.removingBumper != '' %}
+                                            <tr>
+                                            <td>Снятие бампера</td>
+                                            <td>{{ product.removingBumper }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.bumperCropping is not null and product.bumperCropping != '' %}
+                                            <tr>
+                                            <td>Подрезка бампера</td>
+                                            <td>{{ product.bumperCropping }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.needHarmonizeModule is not null and product.needHarmonizeModule != '' %}
+                                            <tr>
+                                            <td>Необходимость модуля согласования</td>
+                                            <td>{{ product.needHarmonizeModule }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.powerSocket is not null and product.powerSocket != '' %}
+                                            <tr>
+                                            <td>Розетка</td>
+                                            <td>{{ product.powerSocket }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.verticalLoad is not null and product.verticalLoad != '' %}
+                                            <tr>
+                                            <td>Вертикальная нагрузка</td>
+                                            <td>{{ product.verticalLoad }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-itemContent block-form" id="review">
+                                    {{ form_start(reviewForm, {'class': 'sasasasa' }) }}
+                                    {{ form_end(reviewForm) }}
+                                        <h3>{{ 'Reviews'|trans }}</h3>
+                                    {% if reviews|length %}
+                                        <div>
+                                    {% for review in reviews %}
+                                        <div class="review-item">
+                                        <div class="review-date">{{ review.createdAt|date('d.m.Y') }}</div>
+                                        <div class="review-title">{{ review.name }}</div>
+                                        <div class="review-content">{{ review.content|raw }}</div>
+                                        </div>
+                                    {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <div>{{ 'No records found'|trans }}</div>
+                                    {% endif %}
+                                    </div>
                                 </div>
                             </div>
-                            <div class="infoBoxContents">
-                                <a href="https://livedemo00.template-help.com/osc_50671/tag_products.php?id_tag=1">accumsan quando</a>, <a href="https://livedemo00.template-help.com/osc_50671/tag_products.php?id_tag=2">accusata ullamcorper</a>, <a href="https://livedemo00.template-help.com/osc_50671/tag_products.php?id_tag=3">adipisci</a>, <a href="https://livedemo00.template-help.com/osc_50671/tag_products.php?id_tag=19">molestie adolescens</a>, <a href="https://livedemo00.template-help.com/osc_50671/tag_products.php?id_tag=23">pertinacia omnium </a>, <a href="https://livedemo00.template-help.com/osc_50671/tag_products.php?id_tag=14">forensibus an</a>, <a href="https://livedemo00.template-help.com/osc_50671/tag_products.php?id_tag=16">inani hours</a>, <a href="https://livedemo00.template-help.com/osc_50671/tag_products.php?id_tag=17">indoctum</a>, <a href="https://livedemo00.template-help.com/osc_50671/tag_products.php?id_tag=24">quaerendum appliances</a>, <a href="https://livedemo00.template-help.com/osc_50671/tag_products.php?id_tag=26">suas vix</a>, <a href="https://livedemo00.template-help.com/osc_50671/tag_products.php?id_tag=27">teipsum</a>, <a href="https://livedemo00.template-help.com/osc_50671/tag_products.php?id_tag=25">soluta ex</a> </div>
                         </div>
                     </div>
-
                 </div>
 
             </div>
+
         </div>
+    </div>
 
-        <div class="box_wrapper_title22">
-            <div class="box_wrapper_title"><span class="title-icon"></span>
-                <h1 class="cl_both ">Связаные товары</h1>
-            </div>
+    <script type="text/javascript">
+        (function ($) {
+            $(document).ready(function () {
+                var tabBlock = $('.tabBlock');
+
+                $(tabBlock).find('.tab-header li a').click(function (e) {
+                    e.preventDefault();
+                    tabBlock.find('.tab-header li').removeClass('active');
+                    var idBlock = $(this).attr('href');
+
+                    tabBlock.find('.tab-content > div').removeClass('active');
+                    tabBlock.find(idBlock).addClass('active');
+                    $(this).parent().addClass('active');
+
+                    return false;
+                });
+            });
+        })(jQuery);
+    </script>
+
+    {% if similarProducts|length %}
+    <div class="box_wrapper_title22">
+        <div class="box_wrapper_title">
+            <span class="title-icon"></span>
+            <h1 class="cl_both ">Похожие товары</h1>
         </div>
-        <div class="contentContainer page_un">
-            <div class="contentPadd">
-                <div class="prods_content prods_table">
-                    <ul class="row_slave_name row_slave_block" id="row_slave-0">
-                        <li style="width:230px;" class="wrapper_prods equal-height_slave_block hover">
-                            <div class="border_prods">
-                                <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;">
-                                    <a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/lorem-ipsum-dolor-sit-amet-conse-ctetur-adipisicing-elit-p-6" style="width:160px;height:160px;"><img src="images/products/p6-1.png" alt="Lorem ipsum dolor sit amet conse ctetur adipisicing elit" title="Lorem ipsum dolor sit amet conse ctetur adipisicing elit" width="160" height="160" style="width:160px;height:160px;margin:0px 0px 0px 0px;"></a>
+    </div>
+    <div class="contentContainer page_un">
+        <div class="contentPadd">
+            <div class="prods_content prods_table">
+                {% set index = 0 %}
+
+                {% for similarProduct in similarProducts  %}
+                {% set index = index + 1 %}
+
+                {% if index == 1 %}
+                <ul class="row_slave_name row_slave_block" id="row_slave-0">
+                {% endif %}
+                    <li style="width:230px;" class="wrapper_prods equal-height_slave_block hover">
+                        <div class="border_prods">
+                            <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;">
+                                <a class="prods_pic_bg" href="{{ path('app_show_bundle_product_item', {'slug': similarProduct.slug}) }}" title="{{ similarProduct.title }}" style="width:160px;height:160px;">
+                                    {% if similarProduct.imageName is not null %}
+                                        <img src="{{ (getImage(similarProduct.imageName, 'products')) | imagine_filter('product_preview') }}" alt="{{ similarProduct.title }}" title="{{ similarProduct.title }}" >
+                                    {% else %}
+                                        <img src="{{ asset('images/default-160x160.jpg') }}" alt="{{ similarProduct.title }}" title="{{ similarProduct.title }}" >
+                                    {% endif %}
+                                </a>
+                            </div>
+
+                            <div class="prods_padd">
+                                <div class="name name_padd equal-height_slave_name">
+                                    <span>
+                                        <a href="{{ path('app_show_bundle_product_item', {'slug': similarProduct.slug}) }}" title="{{ similarProduct.title }}">{{ similarProduct.title }}</a>
+                                    </span>
                                 </div>
 
-                                <div class="prods_padd">
-                                    <div class="name name_padd equal-height_slave_name"><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/lorem-ipsum-dolor-sit-amet-conse-ctetur-adipisicing-elit-p-6">Lorem ipsum dolor sit amet conse ctetur adipisicing elit</a></span></div>
+                                <div class="listing_padd">
+                                    <table class="listing">
+                                        <tbody>
+                                        <tr>
 
-                                    <div class="desc desc_padd">только 10 осталось!</div>
+                                            <td class="first"><b><strong>Артикул&nbsp;:</strong></b>
+                                            </td>
 
-                                    <div class="desc desc_padd">Model 0006</div>
+                                            <td class="last"><strong>{{ similarProduct.code }}</strong>
+                                            </td>
 
-                                    <div class="price price_padd extra"><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">$39.99</span></div>
+                                        </tr>
+                                        <tr>
 
-                                    <div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/ipsum-dolor-sit-amet-conse-ctetur-adipisicing-elit-p-1?action=rp_buy_now&amp;rp_products_id=6" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">Купить</span></a></strong></strong>
+                                            <td class="first"><b><strong>Бренд&nbsp;:</strong></b>
+                                            </td>
+
+                                            <td class="last">
+                                                <strong>{{ similarProduct.manufacturer.title }}</strong>
+                                            </td>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="price price_padd extra">
+                                    <b>Цена:&nbsp;&nbsp;</b>
+                                    <span class="productSpecialPrice">{{ similarProduct.price ~ ' грн.' }}</span>
+                                </div>
+
+                                <div class="prods_wrapp">
+                                    <div class="button__padd">
+                                        <strong class="button_content button_content2">
+                                            {{ form_start(similarAddProductToCartForm[similarProduct.id]) }}
+                                            <strong class="button bg_button">
+                                                <strong class="button-t">
+                                                    <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
+                                                        <span class="ui-button-icon-primary ui-icon ui-icon-cart"></span>
+                                                        <span class="ui-button-text">в Корзину</span></button>
+                                                </strong>
+                                            </strong>
+                                            {{ form_end(similarAddProductToCartForm[similarProduct.id]) }}
+                                        </strong>
+                                        <strong class="button_content button_content22">
+                                            <strong class="button bg_button">
+                                                <strong class="button-t">
+                                                    <a href="{{ path('app_show_bundle_product_item', {'slug': product.slug}) }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
+                                                        <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span>
+                                                        <span class="ui-button-text">Подробнее</span>
+                                                    </a>
+                                                </strong>
+                                            </strong>
                                         </strong>
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                        <li class="prods_vseparator equal-height_slave_block"><img src="images/spacer.gif" alt="" width="1" height="1"></li>
-                        <li style="width:230px;" class="wrapper_prods equal-height_slave_block hover">
-                            <div class="border_prods">
-                                <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;">
-                                    <a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/ullamco-laboris-nisi-aliquip-p-2" style="width:160px;height:160px;"><img src="images/products/p2-1.png" alt="Ullamco laboris nisi ut aliquip ex ea co" title="Ullamco laboris nisi ut aliquip ex ea co" width="160" height="160" style="width:160px;height:160px;margin:0px 0px 0px 0px;"></a>
-                                </div>
+                        </div>
+                    </li>
 
-                                <div class="prods_padd">
-                                    <div class="name name_padd equal-height_slave_name"><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/ullamco-laboris-nisi-aliquip-p-2">Ullamco laboris nisi ut aliquip ex ea co</a></span></div>
+                    {% if index < 3 %}
+                    <li class="prods_vseparator equal-height_slave_block"><img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1"></li>
+                    {% endif %}
 
-                                    <div class="desc desc_padd">только 32 осталось!</div>
-
-                                    <div class="desc desc_padd">Model 0002</div>
-
-                                    <div class="price price_padd extra"><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">$499.99</span></div>
-
-                                    <div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/ipsum-dolor-sit-amet-conse-ctetur-adipisicing-elit-p-1?action=rp_buy_now&amp;rp_products_id=2" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">Купить</span></a></strong></strong>
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="prods_vseparator equal-height_slave_block"><img src="images/spacer.gif" alt="" width="1" height="1"></li>
-                        <li style="width:230px;" class="wrapper_prods equal-height_slave_block hover">
-                            <div class="border_prods">
-                                <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;">
-                                    <a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/excepteur-sint-occaecat-cupidatat-non-proiden-p-5" style="width:160px;height:160px;"><img src="images/products/p5-1.png" alt="Excepteur sint occaecat cupidatat non proiden" title="Excepteur sint occaecat cupidatat non proiden" width="160" height="160" style="width:160px;height:160px;margin:0px 0px 0px 0px;"></a>
-                                </div>
-                                <div class="sale"></div>
-                                <div class="prods_padd">
-                                    <div class="name name_padd equal-height_slave_name"><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/excepteur-sint-occaecat-cupidatat-non-proiden-p-5">Excepteur sint occaecat cupidatat non proiden</a></span></div>
-
-                                    <div class="desc desc_padd">только 17 осталось!</div>
-
-                                    <div class="desc desc_padd">Model 0005</div>
-
-                                    <div class="price price_padd "><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">$29.99</span> <del>$35.99</del></div>
-
-                                    <div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/ipsum-dolor-sit-amet-conse-ctetur-adipisicing-elit-p-1?action=rp_buy_now&amp;rp_products_id=5" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">Купить</span></a></strong></strong>
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
+                {% if index == 3 %}
+                    </ul>
+                    <ul class="row_separator">
+                        <li class="prods_hseparator first last">
+                            <img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1">
                         </li>
                     </ul>
-                </div>
-            </div>
-        </div>
+                    {% set index = 0 %}
+                {% endif %}
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var row_list_slave_name = $('.row_slave_name');
-                row_list_slave_name.each(function() {
-                    new equalHeights_slave_name($('#' + $(this).attr("id")));
-                });
-                var row_list_slave_block = $('.row_slave_block');
-                row_list_slave_block.each(function() {
-                    new equalHeights_slave_block($('#' + $(this).attr("id")));
-                });
-            })
-        </script>
+                {% endfor %}
 
-        <div class="box_wrapper_title22">
-            <div class="box_wrapper_title"><span class="title-icon"></span>
-                <h1>Посетители, которые заказывают данный товар, также выбирают</h1>
-            </div>
-        </div>
-        <div class="contentContainer page_un">
-            <div class="contentPadd">
-                <div class="prods_content">
-                    <ul class="row_also_pur_prods_name row_also_pur_prods_block" id="row_also_pur_prods-0">
-                        <li style="width:230px;" class="wrapper_prods un equal-height_also_pur_prods_block hover">
-                            <div class="border_prods">
-                                <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;">
-                                    <a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-18" style="width:160px;height:160px;"><img src="images/products/046.png" alt="Eusmod tempor incididunt ut labore" title="Eusmod tempor incididunt ut labore" width="160" height="160" style="width:160px;height:160px;margin:0px 0px 0px 0px;"></a>
-                                </div>
-
-                                <div class="prods_padd">
-                                    <div class="name name_padd equal-height_also_pur_prods_name"><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-18">Eusmod tempor incididunt ut labore</a></span></div>
-                                    <div class="desc desc_padd">только 17 осталось!</div>
-
-                                    <div class="price price_padd "><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">$239.96</span></div>
-                                    <div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=18" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">в Корзину</span></a></strong></strong>
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                {% if index > 0 and index < 3 %}
                     </ul>
-                </div>
+                {% endif %}
             </div>
         </div>
+    </div>
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var row_list_also_pur_prods_name = $('.row_also_pur_prods_name');
-                row_list_also_pur_prods_name.each(function() {
-                    new equalHeights_also_pur_prods_name($('#' + $(this).attr("id")));
-                });
-                var row_list_also_pur_prods_block = $('.row_also_pur_prods_block');
-                row_list_also_pur_prods_block.each(function() {
-                    new equalHeights_also_pur_prods_block($('#' + $(this).attr("id")));
-                });
-            })
-        </script>
-    {#</form>#}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var row_list_slave_name = $('.row_slave_name');
+            row_list_slave_name.each(function() {
+                new equalHeights_slave_name($('#' + $(this).attr("id")));
+            });
+            var row_list_slave_block = $('.row_slave_block');
+            row_list_slave_block.each(function() {
+                new equalHeights_slave_block($('#' + $(this).attr("id")));
+            });
+        })
+    </script>
+    {% endif %}
 
     {#<div class="row">#}
         {#<div class="col-md-5">#}

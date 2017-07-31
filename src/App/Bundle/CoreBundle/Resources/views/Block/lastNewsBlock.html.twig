@@ -1,21 +1,49 @@
 {% if news is not null %}
-    <h2 class="block-title">{{ 'News'|trans }}</h2>
-    <div>
-        {% if news.imageName is not null %}
-            <img
-                class="img-responsive"
-                src="{{ getImage(news.imageName, 'article') | imagine_filter('news_sidebar') }}"
-            />
-        {% endif %}
-        <div class="caption">
-            <h3><a href="{{ path('app_core_bundle_article_news_item', {slug: news.slug}) }}">{{ news.title }}</a></h3>
-            <div>
-                {{ news.content|raw|length > 150 ? news.content[:150]|striptags ~ ' ...' : news.content|raw }}
+    <div class="infoBoxWrapper specials box2">
+        <div class="box_wrapper">
+            <div class="infoBoxHeading">
+                <div class="box_wrapper_title22">
+                    <div class="box_wrapper_title">
+                        <h1>
+                            <span class="title-icon"></span>
+                            <a href="#"><i class="icon-certificate"></i>{{ 'News'|trans }}</a>
+                        </h1>
+                    </div>
+                </div>
             </div>
-            <br />
-            <p>
-                <a href="{{ path('app_core_bundle_article_news_item', {slug: news.slug}) }}" class="btn btn-primary" role="button">{{ 'More detailed'|trans }}</a>
-            </p>
+            <div class="infoBoxContents hover">
+                <div class="box-padd">
+                    <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;">
+                        <a class="prods_pic_bg" style="width:160px;height:160px;" href="{{ path('app_core_bundle_article_news_item', {'slug': news.slug}) }}" title="{{ news.title }}">
+                            {% if news.imageName is not null %}
+                                <img class="img-responsive"
+                                    src="{{ getImage(news.imageName, 'article') | imagine_filter('news_sidebar') }}"
+                                />
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="name name_padd">
+                        <span>
+                            <a href="{{ path('app_core_bundle_article_news_item', {'slug': news.slug}) }}" title="{{ news.title }}">{{ news.title }}</a>
+                        </span>
+                    </div>
+                    <div class="name name_padd" style="text-align: left;">
+                        {{ news.content|raw|length > 150 ? news.content[:150]|striptags ~ ' ...' : news.content|raw }}
+                    </div>
+                    <div class="button__padd cl_both" style="text-align: left;">
+                        <strong class="button_content button_content22">
+                            <strong class="button bg_button">
+                                <strong class="button-t">
+                                    <a href="{{ path('app_core_bundle_article_news_item', {'slug': news.slug}) }}" title="{{ 'More detailed'|trans }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
+                                        <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span>
+                                        <span class="ui-button-text">{{ 'More detailed'|trans }}</span>
+                                    </a>
+                                </strong>
+                            </strong>
+                        </strong>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endif %}

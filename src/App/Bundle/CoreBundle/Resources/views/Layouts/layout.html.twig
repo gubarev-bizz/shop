@@ -6,48 +6,6 @@
         <div class="container_24">
             <div class="grid_24">
                 <div id="header">
-                    <div class="box_languages">
-                        <div class="languages">
-                            <label class="fl_left">Языки в хедере: </label>
-                            <a href="https://livedemo00.template-help.com/osc_50671/index.php?language=en&amp;osCsid=ep3m9100695rjk76h4iesojje3">
-                                <img src="{{ asset('includes/languages/english/images/icon.gif') }}" alt="English" title="English" width="16" height="11">
-                            </a>
-                            <img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1" class="languages_img">
-                            <a href="https://livedemo00.template-help.com/osc_50671/index.php?language=ru&amp;osCsid=ep3m9100695rjk76h4iesojje3">
-                                <img src="{{ asset('includes/languages/russian/images/icon.gif') }}" alt="Russian" title="Russian" width="16" height="11">
-                            </a>
-                            <img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1" class="languages_img">
-                            <a href="https://livedemo00.template-help.com/osc_50671/index.php?language=de&amp;osCsid=ep3m9100695rjk76h4iesojje3">
-                                <img src="{{ asset('includes/languages/german/images/icon.gif') }}" alt="German" title="German" width="16" height="11">
-                            </a>
-                            <img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1" class="languages_img">
-                            <a href="https://livedemo00.template-help.com/osc_50671/index.php?language=es&amp;osCsid=ep3m9100695rjk76h4iesojje3">
-                                <img src="{{ asset('includes/languages/espanol/images/icon.gif') }}" alt="Spain" title="Spain" width="16" height="11">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="box_currencies">
-                        <div class="currencies custom_select">
-                            <label class="fl_left">Валюты: </label>
-                            <form name="currencies" action="https://livedemo00.template-help.com/osc_50671/index.php" method="get" class="jqtransformdone">
-                                <div class="jqTransformSelectWrapper" style="z-index: 10; width: 82px;">
-                                    <div>
-                                        <span style="width: 48px;">U.S. Dollar</span>
-                                        <a href="#" class="jqTransformSelectOpen"></a>
-                                    </div>
-                                    <ul style="width: 80px; display: none; visibility: visible;">
-                                        <li><a href="#" index="0" class="selected">U.S. Dollar</a></li>
-                                        <li><a href="#" index="1">Euro</a></li>
-                                    </ul>
-                                    <select name="currency" onchange="this.form.submit();" class="select chzn-select jqTransformHidden">
-                                        <option value="USD" selected="selected">U.S. Dollar</option>
-                                        <option value="EUR">Euro</option>
-                                    </select>
-                                </div>
-                                <input type="hidden" name="osCsid" value="ep3m9100695rjk76h4iesojje3">
-                            </form>
-                        </div>
-                    </div>
                     <div id="box_search" class="search">
                         <form name="quick_find" action="https://livedemo00.template-help.com/osc_50671/advanced_search_result.php" method="get">
                             <div class="input-width ">
@@ -61,36 +19,7 @@
                             <label class="fl_left">Поиск</label>
                         </form>
                     </div>
-                    <div class="box_header_cart destination">
-                        <a class="cart_l" href="https://livedemo00.template-help.com/osc_50671/shopping_cart.php?osCsid=ep3m9100695rjk76h4iesojje3">
-                            <i class="icon-shopping-cart"></i>
-
-                            <label>Корзина:</label><span><span>в корзине </span><strong>0</strong> товаров</span>
-
-                        </a>
-                    </div>
-                    <div class="box_header_user_menu">
-                        <ul class="user_menu">
-                            <li class="first">
-                                <a href="https://livedemo00.template-help.com/osc_50671/shipping.php?osCsid=ep3m9100695rjk76h4iesojje3">
-                                    <div class="button-t"><span>Доставка</span></div>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="https://livedemo00.template-help.com/osc_50671/advanced_search.php?osCsid=ep3m9100695rjk76h4iesojje3">
-                                    <div class="button-t"><span>Расширенный поиск</span></div>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="https://livedemo00.template-help.com/osc_50671/create_account.php?osCsid=ep3m9100695rjk76h4iesojje3">
-                                    <div class="button-t"><span>Регистрация</span></div>
-                                </a>
-                            </li>
-                            <li class="Вход last">
-                                <a href="https://livedemo00.template-help.com/osc_50671/login.php?osCsid=ep3m9100695rjk76h4iesojje3">Вход</a>
-                            </li>
-                        </ul>
-                    </div>
+                    {{ render(controller('AppShopBundle:Cart:cartBlock')) }}
                     <div class="boxes_menu">
                         <div class="menu">
                             <ul>
@@ -157,6 +86,20 @@
                     </div>
                 </div>
             {% endblock %}
+            {% for flashType in app.session.flashbag.keys %}
+                <table border="0" width="100%" cellspacing="0" cellpadding="2" class="class_table">
+                    <tbody>
+                    {% for flash in app.session.flashbag.get(flashType) %}
+                        <tr class="messageStack{{ flashType|capitalize }}">
+                            <td class="messageStack{{ flashType|capitalize }}">
+                                {#<img src="images/icons/error.gif" alt="{{ flashType|capitalize }}" title="{{ flashType|capitalize }}" width="14" height="13">#}
+                                &nbsp;{{ flashType|capitalize }}: {{ flash|trans }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
         <div class="container_24">
             <div id="bodyContent" class="grid_18 push_6 ">
                 {% block content %}{% endblock %}
@@ -234,29 +177,29 @@
 
 
 
-                <div v-if="message != ''">
-                    <br>
-                    <div v-bind:class="'alert margin-bottom-15 alert-' + messageStatus">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        ${ message }
-                    </div>
-                </div>
-                <div v-else>
-                    {% for flashType in app.session.flashbag.keys %}
-                        {% for flash in app.session.flashbag.get(flashType) %}
-                            <br>
-                            <div class="alert margin-bottom-15 alert-{{ flashType }}">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                {{ flash|trans }}
-                            </div>
-                        {% endfor %}
-                    {% endfor %}
-                </div>
+                {#<div v-if="message != ''">#}
+                    {#<br>#}
+                    {#<div v-bind:class="'alert margin-bottom-15 alert-' + messageStatus">#}
+                        {#<button type="button" class="close" data-dismiss="alert">&times;</button>#}
+                        {#${ message }#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div v-else>#}
+                    {#{% for flashType in app.session.flashbag.keys %}#}
+                        {#{% for flash in app.session.flashbag.get(flashType) %}#}
+                            {#<br>#}
+                            {#<div class="alert margin-bottom-15 alert-{{ flashType }}">#}
+                                {#<button type="button" class="close" data-dismiss="alert">&times;</button>#}
+                                {#{{ flash|trans }}#}
+                            {#</div>#}
+                        {#{% endfor %}#}
+                    {#{% endfor %}#}
+                {#</div>#}
 
 
-                <div class="page-title">
-                    <h2>{% block page_title %}{% endblock %}</h2>
-                </div>
+                {#<div class="page-title">#}
+                    {#<h2>{% block page_title %}{% endblock %}</h2>#}
+                {#</div>#}
             </div>
 
             <div class="col-md-3">
@@ -273,8 +216,8 @@
         <i class="glyphicon glyphicon-earphone" style="font-size: 32px;line-height: 74px;"></i>
     </a>
 
-    {{ render(controller('AppCoreBundle:Default:getCallUs', {'request': app.request})) }}
+    {#{{ render(controller('AppCoreBundle:Default:getCallUs', {'request': app.request})) }}#}
 
-    <process-event :process="process"></process-event>
+    {#<process-event :process="process"></process-event>#}
 
 {% endblock %}
