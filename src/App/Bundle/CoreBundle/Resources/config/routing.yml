@@ -50,3 +50,7 @@ app_core_bundle_callback_call_us:
 app_core_bundle_page_contact:
     path: /contact
     defaults: { _controller: AppCoreBundle:Default:contact }
+
+app_core_bundle_page_shipping_payment:
+  path: /shipping-payment
+  defaults: { _controller: AppCoreBundle:Default:shippingAndPayment }

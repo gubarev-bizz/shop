@@ -24,8 +24,8 @@
                                         {{ 'Search'|trans }}
                                     </a>
                                 </li>
-                                <li class="">
-                                    <a href="#">
+                                <li class="{{ 'app_core_bundle_page_shipping_payment' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_page_shipping_payment') }}">
                                         Доставка и оплата
                                     </a>
                                 </li>

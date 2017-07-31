@@ -65,4 +65,38 @@
     </div>
 </div>
 
+<div class="infoBoxWrapper list">
+    <div class="box_wrapper">
+        <div class="infoBoxHeading">
+            <div class="box_wrapper_title22">
+                <div class="box_wrapper_title">
+                    <h1>
+                        <span class="title-icon"></span>
+                        <i class="icon-info-sign"></i>Информация
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="infoBoxContents">
+            <ul class="information">
+                <li class="first">
+                    <div class="div_2">
+                        <a href="{{ path('app_core_bundle_page_shipping_payment') }}"><i class="icon-ok"></i>Доставка и оплата</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="div_2">
+                        <a href="{{ path('app_core_bundle_page_about') }}"><i class="icon-ok"></i>{{ 'About us'|trans }}</a>
+                    </div>
+                </li>
+                <li class="last">
+                    <div class="div_2">
+                        <a href="{{ path('app_core_bundle_page_contact') }}"><i class="icon-ok"></i>{{ 'Contacts'|trans }}</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 {{ render(controller('AppCoreBundle:Default:getLastNewsBlock')) }}

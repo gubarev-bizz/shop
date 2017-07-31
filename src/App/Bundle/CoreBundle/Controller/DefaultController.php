@@ -53,6 +53,12 @@ class DefaultController extends Controller
         return $this->render('AppCoreBundle:Pages:contact.html.twig');
     }
 
+    public function shippingAndPaymentAction()
+    {
+        return $this->render('AppCoreBundle:Pages:shippingPayment.html.twig');
+    }
+
+
     /**
      * @return Response
      */
