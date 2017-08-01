@@ -38,7 +38,7 @@ class CheckoutController extends Controller
         ]);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $order->setAmount($shopCart->getAmountCheckout());
             $order->setStatus(Order::STATUS_NEW);
             $em->persist($order);

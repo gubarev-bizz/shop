@@ -44,12 +44,18 @@
 {#</div>#}
 
 <div class="box_header_cart destination">
-    <a class="cart_l" href="{{ path('app_shop_bundle_cart') }}">
+    {#<a class="cart_l" href="{{ path('app_shop_bundle_cart') }}">#}
+        {#<i class="icon-shopping-cart"></i>#}
+        {#<label>Корзина:</label>#}
+        {#<span>#}
+            {#<span>в корзине </span>#}
+            {#<strong>{{ countItems }}</strong> товаров#}
+        {#</span>#}
+    {#</a>#}
+
+    <a class="cart-block cart_l" href="{{ path('app_shop_bundle_cart') }}">
         <i class="icon-shopping-cart"></i>
-        <label>Корзина:</label>
-        <span>
-            <span>в корзине </span>
-            <strong>{{ countItems }}</strong> товаров
-        </span>
+        <b>Корзина:</b>
+        <span class="cart-total-items"><span class="count">{{ countItems }}</span>товаров</span>
     </a>
 </div>
