@@ -53,11 +53,38 @@ class DefaultController extends Controller
         return $this->render('AppCoreBundle:Pages:contact.html.twig');
     }
 
+    /**
+     * @return Response
+     */
     public function shippingAndPaymentAction()
     {
         return $this->render('AppCoreBundle:Pages:shippingPayment.html.twig');
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function feedbackAction(Request $request)
+    {
+        $form = $this->createForm(CallUsType::class);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $formData = $form->getData();
+            $this->get('visual_craft_mailer.mailer')->send('call_us', [
+                'fullName' => $formData['name'],
+                'phone' => $formData['phone'],
+            ]);
+            $this->addFlash('success', 'Your email was successfully sent.');
+
+            return $this->redirectToRoute('app_core_bundle_page_feedback');
+        }
+
+        return $this->render('AppCoreBundle:Pages:feedback.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 
     /**
      * @param Request $request

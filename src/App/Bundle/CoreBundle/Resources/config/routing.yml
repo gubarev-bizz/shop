@@ -58,3 +58,7 @@ app_core_bundle_page_contact:
 app_core_bundle_page_shipping_payment:
   path: /shipping-payment
   defaults: { _controller: AppCoreBundle:Default:shippingAndPayment }
+
+app_core_bundle_page_feedback:
+  path: /feedback
+  defaults: { _controller: AppCoreBundle:Default:feedback }

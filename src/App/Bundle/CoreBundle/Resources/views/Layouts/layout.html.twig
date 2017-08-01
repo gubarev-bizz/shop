@@ -50,6 +50,12 @@
                                         {{ 'Reviews'|trans }}
                                     </a>
                                 </li>
+                                <li class="{{ 'app_core_bundle_page_feedback' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_page_feedback') }}">
+                                        <i class="icon-edit"></i>
+                                        Обратная связь
+                                    </a>
+                                </li>
                                 <li class="{{ 'app_core_bundle_page_contact' in app.request.attributes.get('_route') ? 'act' }}">
                                     <a href="{{ path('app_core_bundle_page_contact') }}">
                                         <i class="icon-edit"></i>
