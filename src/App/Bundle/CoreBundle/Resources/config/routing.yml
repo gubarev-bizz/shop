@@ -10,6 +10,10 @@ app_core_bundle_page_search:
     path: /search
     defaults: { _controller: AppCoreBundle:Search:search }
 
+app_core_bundle_page_reviews:
+    path: /reviews
+    defaults: { _controller: AppCoreBundle:Review:list }
+
 app_core_bundle_article_news_list:
     path: /news
     defaults: { _controller: AppCoreBundle:Article:newsList }

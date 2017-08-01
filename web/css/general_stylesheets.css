@@ -1712,3 +1712,18 @@ form .has-error {
     width: 30px;
     height: 34px;
 }
+
+.categories li.child {
+    display: none;
+}
+
+.categories li.htooltip span.act {
+    background-position: 0 -16px !important;
+}
+
+.list .categories li .div a {
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #eee;
+    padding: 5px 0px 5px 30px;
+}

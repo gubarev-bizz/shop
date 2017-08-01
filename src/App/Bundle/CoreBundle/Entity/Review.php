@@ -13,6 +13,9 @@ use Symfony\Component\Validator\Constraints as SymfonyConstraints;
  */
 class Review
 {
+    const REVIEW_TYPE_SITE = 'site';
+    const REVIEW_TYPE_PRODUCT = 'product';
+
     use IdentifiableEntityTrait;
     use TimestampableEntityTrait;
 
@@ -55,9 +58,16 @@ class Review
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Bundle\ShopBundle\Entity\Product", inversedBy="reviews")
-     * @SymfonyConstraints\NotBlank()
      */
     protected $product;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @SymfonyConstraints\NotNull()
+     */
+    private $type;
 
     public function __construct()
     {
@@ -146,5 +156,21 @@ class Review
     public function setApprove($approve)
     {
         $this->approve = $approve;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 }

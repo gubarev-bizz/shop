@@ -44,6 +44,12 @@
                                         {{ 'Promotions'|trans }}
                                     </a>
                                 </li>
+                                <li class="{{ 'app_core_bundle_page_reviews' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_page_reviews') }}">
+                                        <i class="icon-edit"></i>
+                                        {{ 'Reviews'|trans }}
+                                    </a>
+                                </li>
                                 <li class="{{ 'app_core_bundle_page_contact' in app.request.attributes.get('_route') ? 'act' }}">
                                     <a href="{{ path('app_core_bundle_page_contact') }}">
                                         <i class="icon-edit"></i>

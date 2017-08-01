@@ -1,0 +1,38 @@
+{% extends '@AppCore/Layouts/layout.html.twig' %}
+
+{% block page_title %}{{ 'Reviews'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="box_wrapper_title22 infoBoxWrapper">
+        <div class="box_wrapper_title">
+            <span class="title-icon"></span>
+            <h1>{{ 'Reviews'|trans }}</h1>
+        </div>
+    </div>
+
+    <div class="contentContainer page_new_product first last">
+        <div class="contentPadd txtPage">
+            <div class="box_cms">
+                <div class="block-form" id="review">
+                    <h3>Добавить отзыв</h3>
+                    {{ form_start(form) }}
+                    {{ form_end(form) }}
+                    <h3>{{ 'Reviews'|trans }}</h3>
+                    {% if reviews|length %}
+                        <div>
+                            {% for review in reviews %}
+                                <div class="review-item">
+                                    <div class="review-date">{{ review.createdAt|date('d.m.Y') }}</div>
+                                    <div class="review-title">{{ review.name }}</div>
+                                    <div class="review-content">{{ review.content|raw }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div>{{ 'No records found'|trans }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -3,7 +3,7 @@
 namespace App\Bundle\ShopBundle\Controller;
 
 use App\Bundle\CoreBundle\Entity\Review;
-use App\Bundle\CoreBundle\Form\ReviewProductType;
+use App\Bundle\CoreBundle\Form\ReviewType;
 use App\Bundle\ShopBundle\Form\AddProductCartType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -52,11 +52,12 @@ class ProductController extends Controller
 
         $review = new Review();
         $review->setProduct($product);
-        $reviewForm = $this->createForm(ReviewProductType::class, $review);
+        $reviewForm = $this->createForm(ReviewType::class, $review);
         $reviewForm->add('Add', SubmitType::class);
         $reviewForm->handleRequest($request);
 
         if ($reviewForm->isValid()) {
+            $review->setType(Review::REVIEW_TYPE_PRODUCT);
             $em->persist($review);
             $em->flush();
             $this->addFlash('success', 'Your review was successfully added.');
@@ -78,6 +79,7 @@ class ProductController extends Controller
         $reviews = $em->getRepository('AppCoreBundle:Review')->findBy([
             'product' => $product,
             'approve' => true,
+            'type' => Review::REVIEW_TYPE_PRODUCT,
         ], [
             'updatedAt' => 'DESC',
         ]);

@@ -24,9 +24,15 @@
 
 {% macro recursiveCategory(category, activeCategory, isChild) %}
     {% if category.children|length %}
-        {% if activeCategory.id == category.id %}
-        <li class="htooltip">
+        {% if category.parent is not null %}
+        <li class="child" data-id="{{ category.id }}" data-parent-id="{{ category.parent.id }}">
+        {% else %}
+        <li data-id="{{ category.id }}">
+        {% endif %}
             <div class="div_2">
+                {% if category.parent is not null %}
+                <div class="div">
+                {% endif %}
                 <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
                     <i class="icon-ok"></i>
                     <div class="div_2">
@@ -34,80 +40,34 @@
                         <span class="category_arrow  act"></span>
                     </div>
                 </a>
+                {% if category.parent is not null %}
+                </div>
+                {% endif %}
             </div>
         </li>
+
+        {% for child in category.children %}
+            {{ _self.recursiveCategory(child, activeCategory, true) }}
+        {% endfor %}
+    {% else %}
+        {% if category.parent is not null %}
+        <li class="child" data-id="{{ category.id }}" data-parent-id="{{ category.parent.id }}">
         {% else %}
-        <li>
+        <li data-id="{{ category.id }}">
+        {% endif %}
             <div class="div_2">
+                {% if category.parent is not null %}
+                <div class="div">
+                {% endif %}
                 <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
                     <i class="icon-ok"></i>
-                    <div class="div_2">
-                        {{ category.title }}
-                        <span class="category_arrow"></span>
-                    </div>
+                    <div class="div_2">{{ category.title }}</div>
                 </a>
+                {% if category.parent is not null %}
+                </div>
+                {% endif %}
             </div>
         </li>
-        {% endif %}
-
-        {% if activeCategory.id == category.id %}
-            {% for child in category.children %}
-                {{ _self.recursiveCategory(child, activeCategory, true) }}
-            {% endfor %}
-        {% endif %}
-    {% else %}
-
-        {% if isChild %}
-            {% if activeCategory.id == category.id %}
-                <li class="htooltip">
-                    <div class="div_2">
-                        <div class="div">
-                            <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
-                                <i class="icon-ok"></i>
-                                <div class="div_2">
-                                    <b>{{ category.title }}</b>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            {% else %}
-                <li class="">
-                    <div class="div_2">
-                        <div class="div">
-                            <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
-                                <i class="icon-ok"></i>
-                                <div class="div_2">{{ category.title }}</div>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            {% endif %}
-        {% else %}
-            {% if activeCategory.id == category.id %}
-                <li class="htooltip">
-                    <div class="div_2">
-                        <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
-                            <i class="icon-ok"></i>
-                            <div class="div_2">
-                                <b>{{ category.title }}</b>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-            {% else %}
-                <li>
-                    <div class="div_2">
-                        <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
-                            <i class="icon-ok"></i>
-                            <div class="div_2">{{ category.title }}</div>
-                        </a>
-                    </div>
-                </li>
-            {% endif %}
-
-        {% endif %}
-
     {% endif %}
 {% endmacro %}
 
@@ -120,7 +80,7 @@
                 </div>
             </div>
         </div>
-        <div class="infoBoxContents">
+        <div class="infoBoxContents list">
             {% if categories %}
             <ul class="categories">
                 {% for category in categories %}
@@ -149,6 +109,11 @@
                 <li class="first">
                     <div class="div_2">
                         <a href="{{ path('app_core_bundle_page_shipping_payment') }}"><i class="icon-ok"></i>Доставка и оплата</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="div_2">
+                        <a href="{{ path('app_core_bundle_page_reviews') }}"><i class="icon-ok"></i>{{ 'Reviews'|trans }}</a>
                     </div>
                 </li>
                 <li>
