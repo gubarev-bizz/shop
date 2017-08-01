@@ -25,7 +25,7 @@ parameters:
     report_upload_dir: "%kernel.root_dir%/../var/reports"
     upload_dir: '%kernel.root_dir%/../web/uploads'
     general_email: info@farkop.pp.ua
-    product_image_dir: '%kernel.root_dir%/../web/images/products'
+    product_image_dir: '%kernel.root_dir%/../web/img/products'
     base_web_dir: '%kernel.root_dir%/../web'
 
     site_name: 'Farkop-UA'

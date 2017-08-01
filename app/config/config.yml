@@ -133,20 +133,20 @@ vich_uploader:
     twig: true
     mappings:
         product_image:
-            uri_prefix:         /images/products
+            uri_prefix:         /img/products
             upload_destination: "%product_image_dir%"
             namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
         article_image:
-            uri_prefix:         /images/article
-            upload_destination: '%kernel.root_dir%/../web/images/article'
+            uri_prefix:         /img/article
+            upload_destination: '%kernel.root_dir%/../web/img/article'
             namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
         category_image:
-            uri_prefix:         /images/category
-            upload_destination: '%kernel.root_dir%/../web/images/category'
+            uri_prefix:         /img/category
+            upload_destination: '%kernel.root_dir%/../web/img/category'
             namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
