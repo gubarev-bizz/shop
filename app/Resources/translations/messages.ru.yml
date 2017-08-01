@@ -103,3 +103,9 @@ OrderStatusAwaitingPaymentLabel: Ожидает оплаты
 OrderStatusAwaitingShipmentLabel: Ожидает отправки
 OrderStatusExecutedLabel: Выполнен
 OrderStatusCanceledLabel: Отменен
+
+submit: отправить
+Submit: Отправить
+
+You entered incorrect data: Вы ввели неверные данные
+Products have been successfully added: Продукты были успешно добавлены

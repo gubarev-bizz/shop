@@ -103,3 +103,9 @@ OrderStatusAwaitingPayment: Pending payment
 OrderStatusAwaitingShipment: Waiting for sending
 OrderStatusExecuted: Completed
 OrderStatusCanceled: Canceled
+
+submit: submit
+Submit: Submit
+
+You entered incorrect data: You entered incorrect data
+Products have been successfully added: Products have been successfully added
