@@ -8,6 +8,7 @@ use App\Bundle\ShopBundle\Entity\Traits\ProductEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 use JMS\Serializer\Annotation as Serializer;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Bundle\ShopBundle\Entity\Repository\ProductItemRepository")

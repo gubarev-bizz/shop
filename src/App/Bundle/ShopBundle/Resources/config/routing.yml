@@ -13,6 +13,11 @@ app_shop_bundle_cart_remove_item:
     methods: POST
     defaults: { _controller: AppShopBundle:Cart:removeProduct }
 
+app_shop_bundle_cart_update_product:
+    path: /cart/update
+    methods: POST
+    defaults: { _controller: AppShopBundle:Cart:updateProductInCart }
+
 app_shop_bundle_cart_refresh:
     path: /cart/refresh
     methods: POST
@@ -32,5 +37,5 @@ app_show_bundle_checkout_show:
     defaults: { _controller: AppShopBundle:Checkout:checkoutShow }
 
 app_show_bundle_product_item:
-    path: /product/{id}
+    path: /product/{slug}
     defaults: { _controller: AppShopBundle:Product:productItem }

@@ -1,48 +1,42 @@
 {% if sliders %}
-    <div class="carousel slide " id="carousel-example-captions" data-ride="carousel">
-        <ol class="carousel-indicators">
-            {% for key, slider in sliders %}
-                {% if loop.index == 1 %}
-                    <li data-target="#carousel-example-captions" data-slide-to="{{ key }}" class="active"></li>
-                {% else %}
-                    <li data-target="#carousel-example-captions" data-slide-to="{{ key }}" class=""></li>
-                {% endif %}
-            {% endfor %}
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            {% for key, slider in sliders %}
-                {% if loop.index == 1 %}
-                    <div class="item active">
-                        <img
-                            alt=""
-                            src="{{ getImage(slider.imageName, 'article') | imagine_filter('slider_main') }}"
-                        >
-                        <div class="carousel-caption">
-                            <h3>
-                                <a href="{{ slider.link }}">
-                                    {{ slider.title }}
-                                </a>
-                            </h3>
-                            {#<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>#}
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="item left">
-                        <img alt="" src="{{ getImage(slider.imageName, 'article') | imagine_filter('slider_main') }}" >
-                        <div class="carousel-caption">
-                            <h3><a href="{{ slider.link }}">{{ slider.title }}</a></h3>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-        <a href="#carousel-example-captions" class="left carousel-control" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a href="#carousel-example-captions" class="right carousel-control" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+<script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider ({
+            effect:'fade',
+            slices:15,
+            boxCols: 8,
+            boxRows: 4,
+            animSpeed:500,
+            pauseTime:5000,
+            startSlide:0, //Set starting Slide (0 index)
+            directionNav:true, //Next & Prev
+            directionNavHide:true, //Only show on hover
+            controlNav:true, //1,2,3...
+            controlNavThumbs:false, //Use thumbnails for Control Nav
+            controlNavThumbsFromRel:false, //Use image rel for thumbs
+            controlNavThumbsSearch: '.jpg', //Replace this with...
+            controlNavThumbsReplace: '_thumb.jpg', //...this in thumb Image src
+            keyboardNav:true, //Use left & right arrows
+            pauseOnHover:true, //Stop animation while hovering
+            manualAdvance:false, //Force manual transitions
+            captionOpacity:0.8, //Universal caption opacity
+            beforeChange: function(){},
+            afterChange: function(){},
+            slideshowEnd: function(){}, //Triggers after all slides have been shown
+            prevText: 'Prev',
+            nextText: 'Next'
+        });
+    });
+
+</script>
+
+<div class="nivoSlider_wrapper">
+    <div id="slider" class="nivoSlider">
+        {% for slider in sliders %}
+            <a href="{{ slider.link }}" target="_self">
+                <img src="{{ getImage(slider.imageName, 'article') | imagine_filter('slider_main') }}" alt="{{ slider.title }}" title="{{ slider.title }}">
+            </a>
+        {% endfor %}
     </div>
+</div>
 {% endif %}

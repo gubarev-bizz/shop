@@ -1,2 +1,10 @@
 {{ form_start(form) }}
+<div class="input-width ">
+    {{ form_widget(form.title, {'attr': {'class': 'go fl_left', 'onblur': "if(this.value=='') this.value='Поиск по сайту'", 'onfocus': "if(this.value =='Поиск по сайту' ) this.value=''"}}) }}
+</div>
+<button id="tdb1" type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-priority-secondary" role="button">
+    <span class="ui-button-text">Поиск</span>
+</button>
+<script type="text/javascript">$("#tdb1").button().addClass("ui-priority-secondary").parent().removeClass("tdbLink");</script>
+<label class="fl_left">Поиск</label>
 {{ form_end(form) }}

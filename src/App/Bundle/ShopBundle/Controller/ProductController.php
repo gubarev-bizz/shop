@@ -3,7 +3,7 @@
 namespace App\Bundle\ShopBundle\Controller;
 
 use App\Bundle\CoreBundle\Entity\Review;
-use App\Bundle\CoreBundle\Form\ReviewProductType;
+use App\Bundle\CoreBundle\Form\ReviewType;
 use App\Bundle\ShopBundle\Form\AddProductCartType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -15,13 +15,17 @@ class ProductController extends Controller
 {
     /**
      * @param Request $request
-     * @param int $id
+     * @param string $slug
+     *
      * @return Response
      */
-    public function productItemAction(Request $request, $id)
+    public function productItemAction(Request $request, $slug)
     {
         $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('AppShopBundle:Product')->find($id);
+        $product = $em->getRepository('AppShopBundle:Product')->findOneBy([
+            'slug' => $slug,
+            'active' => true,
+        ]);
 
         if (!$product) {
             throw new NotFoundHttpException('Product is not find.');
@@ -48,29 +52,36 @@ class ProductController extends Controller
 
         $review = new Review();
         $review->setProduct($product);
-        $reviewForm = $this->createForm(ReviewProductType::class, $review);
+        $reviewForm = $this->createForm(ReviewType::class, $review);
         $reviewForm->add('Add', SubmitType::class);
         $reviewForm->handleRequest($request);
 
-        if ($reviewForm->isSubmitted() && $reviewForm->isValid()) {
+        if ($reviewForm->isValid()) {
+            $review->setType(Review::REVIEW_TYPE_PRODUCT);
             $em->persist($review);
             $em->flush();
+            $this->addFlash('success', 'Your review was successfully added.');
+
+            return $this->redirectToRoute('app_show_bundle_product_item', ['slug' => $slug]);
+        } elseif($reviewForm->isSubmitted()) {
+            $this->addFlash('error', 'You entered incorrect data.');
         }
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addRouteItem($product->getCategory()->getTitle(), "app_core_bundle_category_item", [
-            'categoryId' => $product->getCategory()->getId(),
+            'slug' => $product->getCategory()->getSlug(),
         ]);
         $breadcrumbs->addRouteItem($product->getTitle(), "app_show_bundle_product_item", [
-            'id' => $product->getId(),
+            'slug' => $product->getSlug(),
         ]);
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
         $reviews = $em->getRepository('AppCoreBundle:Review')->findBy([
             'product' => $product,
             'approve' => true,
+            'type' => Review::REVIEW_TYPE_PRODUCT,
         ], [
-            'createdAt' => 'DESC',
+            'updatedAt' => 'DESC',
         ]);
 
         return $this->render('AppShopBundle:Product:productItem.html.twig', [

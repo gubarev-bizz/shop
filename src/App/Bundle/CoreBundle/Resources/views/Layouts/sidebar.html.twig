@@ -1,37 +1,139 @@
-{% macro recursiveCategory(category) %}
-    <li role="presentation" >
-         {% if category.children|length %}
-            <div class="panel-heading" role="tab" id="collapseListGroupHeading{{ category.id }}">
-                <a href="#collapseListGroup{{ category.id }}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup{{ category.id }}"><i class="glyphicon glyphicon-plus"></i> {{ category.title }}</a>
-            </div>
-             <div class="panel-collapse collapse" role="tabpanel" id="collapseListGroup{{ category.id }}" aria-labelledby="collapseListGroupHeading{{ category.id }}" aria-expanded="false" style="height: 0px;">
-                 <ul class="list-group">
-                     {% for child in category.children %}
-                        {{ _self.recursiveCategory(child) }}
-                     {% endfor %}
-                 </ul>
-             </div>
+{#{% macro recursiveCategory(category) %}#}
+    {#<li>#}
+        {#<div class="div_2">#}
+         {#{% if category.children|length %}#}
+            {#<div class="panel-heading" role="tab" id="collapseListGroupHeading{{ category.id }}">#}
+                {#<a href="#collapseListGroup{{ category.id }}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup{{ category.id }}"><i class="glyphicon glyphicon-plus"></i> {{ category.title }}</a>#}
+            {#</div>#}
+             {#<div class="panel-collapse collapse" role="tabpanel" id="collapseListGroup{{ category.id }}" aria-labelledby="collapseListGroupHeading{{ category.id }}" aria-expanded="false" style="height: 0px;">#}
+                 {#<ul class="list-group">#}
+                     {#{% for child in category.children %}#}
+                        {#{{ _self.recursiveCategory(child) }}#}
+                     {#{% endfor %}#}
+                 {#</ul>#}
+             {#</div>#}
+        {#{% else %}#}
+            {#<a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">#}
+                {#<i class="icon-ok"></i>#}
+                {#<div class="div_2">{{ category.title }}</div>#}
+            {#</a>#}
+         {#{% endif %}#}
+        {#</div>#}
+    {#</li>#}
+{#{% endmacro %}#}
+
+{% macro recursiveCategory(category, activeCategory, isChild) %}
+    {% if category.children|length %}
+        {% if category.parent is not null %}
+        <li class="child" data-id="{{ category.id }}" data-parent-id="{{ category.parent.id }}">
         {% else %}
-            <a href="{{ path('app_core_bundle_category_item', {categoryId: category.id}) }}" title="">{{ category.title }}</a>
-         {% endif %}
-    </li>
+        <li data-id="{{ category.id }}">
+        {% endif %}
+            <div class="div_2">
+                {% if category.parent is not null %}
+                <div class="div">
+                {% endif %}
+                <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
+                    <i class="icon-ok"></i>
+                    <div class="div_2">
+                        <b>{{ category.title }}</b>
+                        <span class="category_arrow  act"></span>
+                    </div>
+                </a>
+                {% if category.parent is not null %}
+                </div>
+                {% endif %}
+            </div>
+        </li>
+
+        {% for child in category.children %}
+            {{ _self.recursiveCategory(child, activeCategory, true) }}
+        {% endfor %}
+    {% else %}
+        {% if category.parent is not null %}
+        <li class="child" data-id="{{ category.id }}" data-parent-id="{{ category.parent.id }}">
+        {% else %}
+        <li data-id="{{ category.id }}">
+        {% endif %}
+            <div class="div_2">
+                {% if category.parent is not null %}
+                <div class="div">
+                {% endif %}
+                <a href="{{ path('app_core_bundle_category_item', {'slug': category.slug}) }}" title="{{ category.title }}">
+                    <i class="icon-ok"></i>
+                    <div class="div_2">{{ category.title }}</div>
+                </a>
+                {% if category.parent is not null %}
+                </div>
+                {% endif %}
+            </div>
+        </li>
+    {% endif %}
 {% endmacro %}
 
-<div class="row">
-    <div class="col-md-12 sidebar-category-list">
-        <h2 class="block-title">{{ 'Продукция'|trans }}</h2>
-        {% if categories %}
-        <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-            {% for category in categories %}
-                {{ _self.recursiveCategory(category) }}
-            {% endfor %}
-        </ul>
-        {% endif %}
+<div class="infoBoxWrapper list border_none first">
+    <div class="box_wrapper">
+        <div class="infoBoxHeading">
+            <div class="box_wrapper_title22">
+                <div class="box_wrapper_title">
+                    <h1><span class="title-icon"></span><i class="icon-reorder"></i>{{ 'Продукция'|trans }}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="infoBoxContents list">
+            {% if categories %}
+            <ul class="categories">
+                {% for category in categories %}
+                    {{ _self.recursiveCategory(category, activeCategory, false) }}
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        {{ render(controller('AppCoreBundle:Default:getLastNewsBlock')) }}
+<div class="infoBoxWrapper list">
+    <div class="box_wrapper">
+        <div class="infoBoxHeading">
+            <div class="box_wrapper_title22">
+                <div class="box_wrapper_title">
+                    <h1>
+                        <span class="title-icon"></span>
+                        <i class="icon-info-sign"></i>Информация
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="infoBoxContents">
+            <ul class="information">
+                <li class="first">
+                    <div class="div_2">
+                        <a href="{{ path('app_core_bundle_page_shipping_payment') }}"><i class="icon-ok"></i>Доставка и оплата</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="div_2">
+                        <a href="{{ path('app_core_bundle_page_reviews') }}"><i class="icon-ok"></i>{{ 'Reviews'|trans }}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="div_2">
+                        <a href="{{ path('app_core_bundle_page_feedback') }}"><i class="icon-ok"></i>Обратная связь</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="div_2">
+                        <a href="{{ path('app_core_bundle_page_about') }}"><i class="icon-ok"></i>{{ 'About us'|trans }}</a>
+                    </div>
+                </li>
+                <li class="last">
+                    <div class="div_2">
+                        <a href="{{ path('app_core_bundle_page_contact') }}"><i class="icon-ok"></i>{{ 'Contacts'|trans }}</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
+
+{{ render(controller('AppCoreBundle:Default:getLastNewsBlock')) }}

@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+<html dir="ltr" lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Auto</title>
+<base href="https://livedemo00.template-help.com/osc_50671/" />
+<script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"caf708ba3f21b78d93980f89e9436ead",petok:"01960a4fb587efa3f6b460ba887e149963f2c330-1498505306-1800",zone:"template-help.com",rocket:"0",apps:{"abetterbrowser":{"ie":"7"}}}];!function(a,b){a=document.createElement("script"),b=document.getElementsByTagName("script")[0],a.async=!0,a.src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=85b614c0f6/cloudflare.min.js",b.parentNode.insertBefore(a,b)}()}}catch(e){};
+//]]>
+</script>
+<link rel="shortcut icon" type="image/x-icon" href="https://livedemo00.template-help.com/osc_50671/images/icons/favicon.ico"></link>
+<link rel="stylesheet" type="text/css" href="ext/jquery/ui/redmond/jquery-ui-1.8.6-osc.css" />
+<script type="text/javascript" src="ext/jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="ext/jquery/ui/jquery-ui-1.8.6.min.js"></script>
+<script type="text/javascript" src="ext/jquery/bxGallery/jquery.bxGallery.1.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="ext/jquery/fancybox/jquery.fancybox-1.3.4.css" />
+<script type="text/javascript" src="ext/jquery/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="ext/js/xeasyTooltipIMG.js"></script>
+<script type="text/javascript" src="ext/js/hoverIntent.js"></script>
+<script type="text/javascript" src="ext/js/superfish.js"></script>
+<script type="text/javascript" src="ext/jquery/jquery.equalheights.js"></script>
+<script type="text/javascript" src="ext/jquery/jquery.nivo.slider.js"></script>
+<script type="text/javascript" src="ext/jquery/jqtransformplugin/jquery.jqtransform.js" ></script>
+<script type="text/javascript" src="ext/jquery/jquery.stringball.js"></script>
+<link rel="stylesheet" type="text/css" href="ext/960gs/960_10_24_col.css" />
+<link rel="stylesheet" type="text/css" href="css/constants.css" />
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/style_boxes.css"/>
+<link rel="stylesheet" type="text/css" href="css/css3.css" />
+<link rel="stylesheet" type="text/css" href="css/buttons.css" />
+<link rel="stylesheet" type="text/css" href="css/font.css" />
+<link rel="stylesheet" type="text/css" href="css/nivo-slider.css" />
+<link rel="stylesheet" href="css/stringball.css" type="text/css" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/superfish.css" />
+<link rel="stylesheet" media="screen" href="css/superfish-navbar.css" />
+<link rel="stylesheet" media="screen" href="css/general_stylesheets.css" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,300,800,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'> 
+<script type="text/javascript" src="ext/js/js.js"></script>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('.custom_select form').jqTransform();
+			$("ul.sf-menu").superfish();
+			var path = window.location.pathname.split('/');
+path = path[path.length-1];
+
+if (path !== undefined) {
+    $("ul.sf-menu")
+        .find("a[href$='" + path + "']") // gets all links that match the href
+        .parents('li')  // gets all list items that are ancestors of the link
+        .children('a')  // walks down one level from all selected li's
+        .addClass('actief');
+}
+		});
+</script>
+<!--[if lt IE 9]>
+<style type="text/css">
+.cart_products_options,
+.contentPadd.txtPage,
+.ui-dialog,
+.ui-dialog-titlebar,
+.cart,
+.ui-progressbar,
+.ui-datepicker
+   { behavior:url(/osc_50671/ext/pie/PIE.php)}
+</style>
+ <![endif]-->
+<!--[if lt IE 8]>
+   <div style=' clear: both; text-align:center; position: relative;'>
+     <a href="https://windows.microsoft.com/en-US/int<strong>
+     </strong>ernet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+       <img src="https://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg"  alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+    </a>
+  </div>
+<![endif]-->
+<style type="text/css">
+
+.nivoSlider_wrapper										{
+	width: 710px; height: 240px; /* Set the size */
+}
+#faded	{height: 240px;}
+#screenshot img								{ width:SUPERFISH_IMAGE_WIDTHpx;height:SUPERFISH_IMAGE_HEIGHTpx;}
+#screenshotCategory						{ width:160px;height:160px;}
+#screenshotCategory img				{ height:160px;}
+</style>
+<style type="text/css">
+	.nivo-caption 					{display:none !important;}
+</style>
+</head>
+<body>
+<p id="back-top"><a href="#top"><span><i class="icon-chevron-sign-up"></i></span></a></p>
+<!-- bodyWrapper  -->
+<div id="bodyWrapper" class="bg_body de index_page">
+
+<div>
+<div class="wrapper">
+<div class="row_1">
+      <div class="container_24">
+      <div class="grid_24">
+   
+      <div id="header">
+<div class="box_languages">		<div class="languages">  	<label class="fl_left">Sprachen: </label><a href="https://livedemo00.template-help.com/osc_50671/index.php?language=en&amp;osCsid=ep3m9100695rjk76h4iesojje3"><img src="includes/languages/english/images/icon.gif" alt="English" title="English" width="16" height="11" /></a><img src="images/spacer.gif" alt="" width="1" height="1"  class="languages_img" /><a href="https://livedemo00.template-help.com/osc_50671/index.php?language=ru&amp;osCsid=ep3m9100695rjk76h4iesojje3"><img src="includes/languages/russian/images/icon.gif" alt="Russian" title="Russian" width="16" height="11" /></a><img src="images/spacer.gif" alt="" width="1" height="1"  class="languages_img" /><a href="https://livedemo00.template-help.com/osc_50671/index.php?language=de&amp;osCsid=ep3m9100695rjk76h4iesojje3"><img src="includes/languages/german/images/icon.gif" alt="German" title="German" width="16" height="11" /></a><img src="images/spacer.gif" alt="" width="1" height="1"  class="languages_img" /><a href="https://livedemo00.template-help.com/osc_50671/index.php?language=es&amp;osCsid=ep3m9100695rjk76h4iesojje3"><img src="includes/languages/espanol/images/icon.gif" alt="Spain" title="Spain" width="16" height="11" /></a>		</div></div>
+<div class="box_currencies">
+		<div class="currencies custom_select">
+<label class="fl_left">Währungen: </label>
+			<form name="currencies" action="https://livedemo00.template-help.com/osc_50671/index.php" method="get">
+			<select name="currency" onchange="this.form.submit();" class="select chzn-select"><option value="USD" selected="selected">U.S. Dollar</option><option value="EUR">Euro</option></select><input type="hidden" name="language" value="de" /><input type="hidden" name="osCsid" value="ep3m9100695rjk76h4iesojje3" />
+			</form>
+		</div>
+</div>
+
+<div id="box_search" class="search">
+<form name="quick_find" action="https://livedemo00.template-help.com/osc_50671/advanced_search_result.php" method="get">
+	 	<div class="input-width ">
+<input type="text" name="keywords" value="Seite Suche" size="10" maxlength="300" class="go fl_left" onblur="if(this.value=='') this.value='Seite Suche'" onfocus="if(this.value =='Seite Suche' ) this.value=''" /><input type="hidden" name="osCsid" value="ep3m9100695rjk76h4iesojje3" />
+	 	</div>
+<button id="tdb1" type="submit">Gehen</button><script type="text/javascript">$("#tdb1").button().addClass("ui-priority-secondary").parent().removeClass("tdbLink");</script>
+  	<label class="fl_left">Suche</label>
+</form>
+</div>
+
+	 	<div class="box_header_cart destination">
+	 <a class="cart_l" href="https://livedemo00.template-help.com/osc_50671/shopping_cart.php?osCsid=ep3m9100695rjk76h4iesojje3">
+	  <i class="icon-shopping-cart"></i>
+			
+                            <label>Warenkorb:</label><span><span>in Ihrem Warenkorb </span><strong>0</strong> Artikel</span>
+             
+						</a>
+					</div>
+	<div class="box_header_user_menu">
+				  <ul class="user_menu"><li class=""><a href="https://livedemo00.template-help.com/osc_50671/shipping.php?osCsid=ep3m9100695rjk76h4iesojje3"><div class="button-t"><span>Liefer und Versandkosten</span></div></a></li><li class=""><a href="https://livedemo00.template-help.com/osc_50671/advanced_search.php?osCsid=ep3m9100695rjk76h4iesojje3"><div class="button-t"><span>Erweiterte Suche</span></div></a></li><li class=""><a href="https://livedemo00.template-help.com/osc_50671/create_account.php?osCsid=ep3m9100695rjk76h4iesojje3"><div class="button-t"><span>Schaffen ein Konto</span></div></a></li><li class=" Einloggen"><a href="https://livedemo00.template-help.com/osc_50671/login.php?osCsid=ep3m9100695rjk76h4iesojje3">Einloggen</a></li></ul>
+			  </div>
+  <div class="boxes_menu"><div class="menu">  <ul>    <li class=" act"><a href="https://livedemo00.template-help.com/osc_50671/index.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-home"></i>
+Zuhause
+</a></li>    <li class=""><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-bullhorn"></i>
+Neu
+</a></li>    <li class=""><a href="https://livedemo00.template-help.com/osc_50671/featured_products.php?osCsid=ep3m9100695rjk76h4iesojje3">
+Vorgestellt
+</a></li>    <li class=""><a href="https://livedemo00.template-help.com/osc_50671/topsellers_products.php?osCsid=ep3m9100695rjk76h4iesojje3">
+Top-Seller
+</a></li>    <li class=""><a href="https://livedemo00.template-help.com/osc_50671/specials.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-certificate"></i>
+Specials
+</a></li>    <li class=""><a href="https://livedemo00.template-help.com/osc_50671/manufacturers.php?osCsid=ep3m9100695rjk76h4iesojje3">
+Marken
+</a></li>    <li class=""><a href="https://livedemo00.template-help.com/osc_50671/reviews.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-edit"></i>
+Bewertungen
+</a></li>    <li class=""><a href="https://livedemo00.template-help.com/osc_50671/contact_us.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-map-marker"></i>
+Kontakte
+</a></li>  </ul></div></div>		<a class="logo" href="https://livedemo00.template-help.com/osc_50671/index.php?osCsid=ep3m9100695rjk76h4iesojje3"><img src="images/store_logo.png" alt="Auto" title="Auto" width="181" height="77" /></a>
+</div>
+
+
+
+
+
+  
+        </div>
+      </div>
+</div>
+	
+	
+<div class="row_12">
+
+
+
+<div class="container_24">
+  <div id="bodyContent" class="grid_18 push_6 ">
+
+
+		<script type="text/javascript">
+		$(window).load(function() {
+		  $('#slider').nivoSlider ({
+				effect:'fade', 
+				slices:15,
+				boxCols: 8,
+				boxRows: 4,				
+				animSpeed:500,
+				pauseTime:5000,
+				startSlide:0, //Set starting Slide (0 index)
+				directionNav:true, //Next & Prev
+				directionNavHide:true, //Only show on hover
+				controlNav:true, //1,2,3...
+				controlNavThumbs:false, //Use thumbnails for Control Nav
+				controlNavThumbsFromRel:false, //Use image rel for thumbs
+				controlNavThumbsSearch: '.jpg', //Replace this with...
+				controlNavThumbsReplace: '_thumb.jpg', //...this in thumb Image src
+				keyboardNav:true, //Use left & right arrows
+				pauseOnHover:true, //Stop animation while hovering
+				manualAdvance:false, //Force manual transitions
+				captionOpacity:0.8, //Universal caption opacity
+				beforeChange: function(){},
+				afterChange: function(){},
+				slideshowEnd: function(){}, //Triggers after all slides have been shown
+				prevText: 'Prev',
+				nextText: 'Next'
+			});
+		});
+
+		</script>
+	   	<div class="nivoSlider_wrapper"><div id="slider" class="nivoSlider"><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=101&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/slide-1.png" alt="Banner1 for slider" title="Banner1 for slider" width="710" height="240" /></a><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=102&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/slide-2.png" alt="Banner2 for slider" title="Banner2 for slider" width="710" height="240" /></a><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=103&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/slide-3.png" alt="Banner3 for slider" title="Banner3 for slider" width="710" height="240" /></a></div></div>
+<ul class="banner_set"><li class="item1"><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=21&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/pro-1.jpg" alt="" width="230" height="104" /></a></li><li class="item2"><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=22&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/pro-2.jpg" alt="" width="230" height="104" /></a></li><li class="item3"><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=23&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/pro-3.jpg" alt="" width="230" height="104" /></a></li><li class="item4"><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=24&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/pro-4.jpg" alt="" width="230" height="104" /></a></li><li class="item4"><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=25&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/pro-5.jpg" alt="" width="230" height="104" /></a></li><li class="item4"><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=26&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/pro-6.jpg" alt="" width="230" height="104" /></a></li><li class="item4"><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=27&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/pro-7.jpg" alt="" width="230" height="104" /></a></li><li class="item4"><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=28&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/pro-8.jpg" alt="" width="230" height="104" /></a></li><li class="item4"><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=29&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/pro-9.jpg" alt="" width="230" height="104" /></a></li></ul>
+<div class="infoBoxWrapper list border_none"><div class="box_wrapper">  <div class="infoBoxHeading"><div class="box_wrapper_title22"><div class="box_wrapper_title"><h1><span class="title-icon"></span><i class="icon-tag"></i>Hersteller</h1></div></div>
+</div>  <div class="infoBoxContents">
+
+<a href="https://livedemo00.template-help.com/osc_50671/index.php/visit-manufacturer-website-m-1?osCsid=ep3m9100695rjk76h4iesojje3"><img src="images/manufacturers/example_1.png" alt="manufacturers/example_1.png" title="manufacturers/example_1.png" width="73" height="49" /></a><a href="https://livedemo00.template-help.com/osc_50671/index.php/visit-manufacturer-website-m-10?osCsid=ep3m9100695rjk76h4iesojje3"><img src="images/manufacturers/example_10.png" alt="manufacturers/example_10.png" title="manufacturers/example_10.png" width="71" height="49" /></a><a href="https://livedemo00.template-help.com/osc_50671/index.php/visit-manufacturer-website-m-2?osCsid=ep3m9100695rjk76h4iesojje3"><img src="images/manufacturers/example_2.png" alt="manufacturers/example_2.png" title="manufacturers/example_2.png" width="68" height="49" /></a><a href="https://livedemo00.template-help.com/osc_50671/index.php/visit-manufacturer-website-m-3?osCsid=ep3m9100695rjk76h4iesojje3"><img src="images/manufacturers/example_3.png" alt="manufacturers/example_3.png" title="manufacturers/example_3.png" width="66" height="49" /></a><a href="https://livedemo00.template-help.com/osc_50671/index.php/visit-manufacturer-website-m-4?osCsid=ep3m9100695rjk76h4iesojje3"><img src="images/manufacturers/example_4.png" alt="manufacturers/example_4.png" title="manufacturers/example_4.png" width="68" height="49" /></a><a href="https://livedemo00.template-help.com/osc_50671/index.php/visit-manufacturer-website-m-5?osCsid=ep3m9100695rjk76h4iesojje3"><img src="images/manufacturers/example_5.png" alt="manufacturers/example_5.png" title="manufacturers/example_5.png" width="68" height="49" /></a><a href="https://livedemo00.template-help.com/osc_50671/index.php/visit-manufacturer-website-m-6?osCsid=ep3m9100695rjk76h4iesojje3"><img src="images/manufacturers/example_6.png" alt="manufacturers/example_6.png" title="manufacturers/example_6.png" width="68" height="49" /></a><a href="https://livedemo00.template-help.com/osc_50671/index.php/visit-manufacturer-website-m-7?osCsid=ep3m9100695rjk76h4iesojje3"><img src="images/manufacturers/example_7.png" alt="manufacturers/example_7.png" title="manufacturers/example_7.png" width="68" height="49" /></a><a href="https://livedemo00.template-help.com/osc_50671/index.php/visit-manufacturer-website-m-8?osCsid=ep3m9100695rjk76h4iesojje3"><img src="images/manufacturers/example_8.png" alt="manufacturers/example_8.png" title="manufacturers/example_8.png" width="68" height="49" /></a><a href="https://livedemo00.template-help.com/osc_50671/index.php/visit-manufacturer-website-m-9?osCsid=ep3m9100695rjk76h4iesojje3"><img src="images/manufacturers/example_9.png" alt="manufacturers/example_9.png" title="manufacturers/example_9.png" width="68" height="49" /></a>
+</div></div>
+</div>	
+
+<div class="none">
+<div class="box_wrapper_title22"><div class="box_wrapper_title"><span class="title-icon"></span><h1>Unser Angebot</h1>
+</div></div><br />
+</div>
+
+
+
+
+<div class="un_title">
+<div class="box_wrapper_title22"><div class="box_wrapper_title"><span class="title-icon"></span><h1 class="cl_both "><i class="icon-thumbs-up-alt"></i>Neue Produkte im Juni</h1>
+</div></div></div>
+<div class="contentContainer page_un">
+  <div class="contentPadd">
+    <div class="prods_content prods_table"><ul class="row_new_products_name row_new_products_block" id="row-0"><li style="width:230px;" class="wrapper_prods equal-height_new_products_block hover item_0">
+<div class="border_prods">
+		<div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-18?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/046.png" alt="Eusmod tempor incididunt ut labore" title="Eusmod tempor incididunt ut labore" width="160" height="160"  style="width:160px;height:160px;margin:0px 0px 0px 0px;" /></a></div>
+
+	<div class="prods_padd"><div  class="cont7">	<div class="price price_padd "><b>Preis:&nbsp;&nbsp;</b><span class="productSpecialPrice">$239.96</span></div>
+	<div class="name name_padd equal-height_new_products_name"><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-18?osCsid=ep3m9100695rjk76h4iesojje3">Eusmod tempor incididunt ut labore</a></span></div>
+			  		
+	<div class="prods_wrapp">	<div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=18&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">In den Warenkorb</span></a></strong></strong></strong> <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=18?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Details</span></a></strong></strong></strong></div>
+		</div>
+		</div></div>
+</div>
+</li><li class="prods_vseparator equal-height_new_products_block"><img src="images/spacer.gif" alt="" width="1" height="1" /><li style="width:230px;" class="wrapper_prods equal-height_new_products_block hover item_1">
+<div class="border_prods">
+		<div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/lorem-ipsum-dolor-sit-amet-conse-p-17?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/045.png" alt="Lorem ipsum dolor sit amet conse" title="Lorem ipsum dolor sit amet conse" width="160" height="160"  style="width:160px;height:160px;margin:0px 0px 0px 0px;" /></a></div>
+
+	<div class="prods_padd"><div  class="cont7">	<div class="price price_padd "><b>Preis:&nbsp;&nbsp;</b><span class="productSpecialPrice">$3.19</span></div>
+	<div class="name name_padd equal-height_new_products_name"><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/lorem-ipsum-dolor-sit-amet-conse-p-17?osCsid=ep3m9100695rjk76h4iesojje3">Lorem ipsum dolor sit amet conse</a></span></div>
+			  		
+	<div class="prods_wrapp">	<div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=17&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">In den Warenkorb</span></a></strong></strong></strong> <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=17?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Details</span></a></strong></strong></strong></div>
+		</div>
+		</div></div>
+</div>
+</li><li class="prods_vseparator equal-height_new_products_block"><img src="images/spacer.gif" alt="" width="1" height="1" /><li style="width:230px;" class="wrapper_prods equal-height_new_products_block hover item_2">
+<div class="border_prods">
+		<div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/ctetur-adipisicing-elit-p-16?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/044.png" alt="Ctetur adipisicing elit" title="Ctetur adipisicing elit" width="160" height="160"  style="width:160px;height:160px;margin:0px 0px 0px 0px;" /></a></div>
+
+	<div class="prods_padd"><div  class="cont7">	<div class="price price_padd "><b>Preis:&nbsp;&nbsp;</b><span class="productSpecialPrice">$79.99</span></div>
+	<div class="name name_padd equal-height_new_products_name"><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/ctetur-adipisicing-elit-p-16?osCsid=ep3m9100695rjk76h4iesojje3">Ctetur adipisicing elit</a></span></div>
+			  		
+	<div class="prods_wrapp">	<div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=16&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">In den Warenkorb</span></a></strong></strong></strong> <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=16?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Details</span></a></strong></strong></strong></div>
+		</div>
+		</div></div>
+</div>
+</ul><ul class="row_separator"><li class="prods_hseparator"><img src="images/spacer.gif" alt="" width="1" height="1" /></li></ul><ul class="row_new_products_name row_new_products_block" id="row-1"><li style="width:230px;" class="wrapper_prods equal-height_new_products_block hover item_0">
+<div class="border_prods">
+		<div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-15?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/043.png" alt="Eusmod tempor incididunt ut labore" title="Eusmod tempor incididunt ut labore" width="160" height="160"  style="width:160px;height:160px;margin:0px 0px 0px 0px;" /></a></div>
+
+	<div class="prods_padd"><div  class="cont7">	<div class="price price_padd "><b>Preis:&nbsp;&nbsp;</b><span class="productSpecialPrice">$29.99</span></div>
+	<div class="name name_padd equal-height_new_products_name"><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-15?osCsid=ep3m9100695rjk76h4iesojje3">Eusmod tempor incididunt ut labore</a></span></div>
+			  		
+	<div class="prods_wrapp">	<div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=15&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">In den Warenkorb</span></a></strong></strong></strong> <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=15?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Details</span></a></strong></strong></strong></div>
+		</div>
+		</div></div>
+</div>
+</li><li class="prods_vseparator equal-height_new_products_block"><img src="images/spacer.gif" alt="" width="1" height="1" /><li style="width:230px;" class="wrapper_prods equal-height_new_products_block hover item_1">
+<div class="border_prods">
+		<div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-14?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/042.png" alt="Eusmod tempor incididunt ut labore" title="Eusmod tempor incididunt ut labore" width="160" height="160"  style="width:160px;height:160px;margin:0px 0px 0px 0px;" /></a></div>
+
+	<div class="prods_padd"><div  class="cont7">	<div class="price price_padd "><b>Preis:&nbsp;&nbsp;</b><span class="productSpecialPrice">$499.99</span></div>
+	<div class="name name_padd equal-height_new_products_name"><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-14?osCsid=ep3m9100695rjk76h4iesojje3">Eusmod tempor incididunt ut labore</a></span></div>
+			  		
+	<div class="prods_wrapp">	<div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=14&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">In den Warenkorb</span></a></strong></strong></strong> <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=14?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Details</span></a></strong></strong></strong></div>
+		</div>
+		</div></div>
+</div>
+</li><li class="prods_vseparator equal-height_new_products_block"><img src="images/spacer.gif" alt="" width="1" height="1" /><li style="width:230px;" class="wrapper_prods equal-height_new_products_block hover item_2">
+<div class="border_prods">
+		<div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-13?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/041.png" alt="Eusmod tempor incididunt ut labore" title="Eusmod tempor incididunt ut labore" width="160" height="160"  style="width:160px;height:160px;margin:0px 0px 0px 0px;" /></a></div>
+
+	<div class="prods_padd"><div  class="cont7">	<div class="price price_padd "><b>Preis:&nbsp;&nbsp;</b><span class="productSpecialPrice">$299.99</span></div>
+	<div class="name name_padd equal-height_new_products_name"><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/eusmod-tempor-incididunt-labore-p-13?osCsid=ep3m9100695rjk76h4iesojje3">Eusmod tempor incididunt ut labore</a></span></div>
+			  		
+	<div class="prods_wrapp">	<div class="button__padd"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=13&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">In den Warenkorb</span></a></strong></strong></strong> <strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=13?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Details</span></a></strong></strong></strong></div>
+		</div>
+		</div></div>
+</div>
+</ul></div>  </div>
+</div>
+<script type="text/javascript">
+        $(document).ready(function(){ 				
+			 var row_list_new_products_name = $('.row_new_products_name');
+			 row_list_new_products_name.each(function(){
+				 new equalHeights_new_products_name($('#' + $(this).attr("id")));
+			  });			 			 			  			  			  			  			   
+			 var row_list_new_products_block = $('.row_new_products_block');
+			 row_list_new_products_block.each(function(){
+				 new equalHeights_new_products_block($('#' + $(this).attr("id")));
+			  });			  			 			 			  			  			  			  			   
+        })
+</script>
+  
+
+	
+
+
+                
+
+			</div>
+
+			 <!-- bodyContent //-->
+           
+                <div id="columnLeft" class="grid_6 pull_18">
+                  <div><div class="infoBoxWrapper list border_none"><div class="box_wrapper">  <div class="infoBoxHeading"><div class="box_wrapper_title22"><div class="box_wrapper_title"><h1><span class="title-icon"></span><i class="icon-reorder"></i>Kategorien</h1></div></div>
+</div>  <div class="infoBoxContents">
+<ul class="categories"><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/exhaust-tips-c-1?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Exhaust Tips</div>
+</a></div></li><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/bumpers-components-c-2?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Bumpers & Components<span class="category_arrow "></span></div>
+</a></div></li><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/mirrors-components-c-3?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Mirrors & Components</div>
+</a></div></li><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/grilles-components-c-4?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Grilles & Components</div>
+</a></div></li><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/brake-discs-c-5?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Brake Discs</div>
+</a></div></li><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/calipers-c-6?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Calipers</div>
+</a></div></li><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/shocks-struts-c-7?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Shocks, Struts</div>
+</a></div></li><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/car-covers-c-8?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Car Covers</div>
+</a></div></li><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/seats-seat-covers-c-9?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Seats, Seat Covers</div>
+</a></div></li><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/carpet-kits-c-10?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Carpet Kits</div>
+</a></div></li><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/floor-mats-liners-c-11?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Floor Mats & Liners</div>
+</a></div></li><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/components-c-12?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Components</div>
+</a></div></li><li  class=""><div class="div_2"><a href="https://livedemo00.template-help.com/osc_50671/index.php/hand-brakes-c-13?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-ok"></i><div class="div_2">Hand Brakes</div>
+</a></div></li></ul>
+</div></div>
+</div>
+<div class="infoBoxWrapper specials box2"><div class="box_wrapper">  <div class="infoBoxHeading"><div class="box_wrapper_title22"><div class="box_wrapper_title"><h1><span class="title-icon"></span><a href="https://livedemo00.template-help.com/osc_50671/specials.php?osCsid=ep3m9100695rjk76h4iesojje3"><i class="icon-certificate"></i>Angebote</a></h1></div></div>
+</div>  <div class="infoBoxContents hover">
+   <div class="box-padd">
+		<div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/enim-minim-veniam-quis-nostrud-exercitation-p-3?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/p3-1.png" alt="Ut enim ad minim veniam, quis nostrud exercitation" title="Ut enim ad minim veniam, quis nostrud exercitation" width="160" height="160"  style="width:160px;height:160px;margin:0px 0px 0px 0px;" />
+
+</a></div>
+     <div class="price price_padd"><b>Preis:&nbsp;&nbsp;</b><del>$49.99</del><span class="productSpecialPrice">$19.99</span></div>
+     <div class="name name_padd"><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/enim-minim-veniam-quis-nostrud-exercitation-p-3?osCsid=ep3m9100695rjk76h4iesojje3">Ut enim ad minim veniam, quis nostrud exercitation</a></span></div>
+			<div class="button__padd cl_both"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=3&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">In den Warenkorb</span></a></strong></strong></strong><strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=3?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Details</span></a></strong></strong></strong></div>
+		</div>
+
+</div>
+</div>
+</div>
+<div class="infoBoxWrapper box2"><div class="box_wrapper">  <div class="infoBoxHeading"><div class="box_wrapper_title22"><div class="box_wrapper_title"><h1><span class="title-icon"></span><a href="https://livedemo00.template-help.com/osc_50671/featured.php?osCsid=ep3m9100695rjk76h4iesojje3"></a><i class="icon-circle-arrow-right"></i>Vorgestellt</h1></div></div>
+</div>  <div class="infoBoxContents hover">
+   <div class="box-padd">
+   <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;"><a class="prods_pic_bg" href="https://livedemo00.template-help.com/osc_50671/product_info.php/excepteur-sint-occaecat-cupidatat-non-proiden-p-5?osCsid=ep3m9100695rjk76h4iesojje3" style="width:160px;height:160px;"><img src="images/products/p5-1.png" alt="Excepteur sint occaecat cupidatat non proiden" title="Excepteur sint occaecat cupidatat non proiden" width="160" height="160"  style="width:160px;height:160px;margin:0px 0px 0px 0px;" />
+
+</a></div>
+     <div class="price price_padd"><b>Preis:&nbsp;&nbsp;</b><del>$35.99</del><span class="productSpecialPrice">$29.99</span></div>
+     <div class="name name_padd"><span><a href="https://livedemo00.template-help.com/osc_50671/product_info.php/excepteur-sint-occaecat-cupidatat-non-proiden-p-5?osCsid=ep3m9100695rjk76h4iesojje3">Excepteur sint occaecat cupidatat non proiden</a></span></div>
+     <div class="button__padd cl_both"><strong class="button_content button_content2"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/products_new.php?action=buy_now&amp;products_id=5&amp;osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-cart"></span><span class="ui-button-text">In den Warenkorb</span></a></strong></strong></strong><strong class="button_content button_content22"><strong class="button bg_button"><strong class="button-t"><a href="https://livedemo00.template-help.com/osc_50671/product_info.php?products_id=5?osCsid=ep3m9100695rjk76h4iesojje3" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span><span class="ui-button-text">Details</span></a></strong></strong></strong></div>
+   </div>
+
+</div>
+</div>
+</div>
+<div class="banner_side"><a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=250&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self"><img src="images/slide/pro-50.jpg" alt="" width="230" height="104" /></a></div></div>
+                </div>
+
+    		
+    		
+
+        
+   		
+    </div>
+</div>
+ 
+                
+
+<script type="text/javascript">
+$('.productListTable tr:nth-child(even)').addClass('alt');
+</script>
+
+			
+		<!--	 bodyWrapper //-->
+
+
+ </div>
+
+
+</div>
+<div class="row_5">
+  <div class="foot_inner container_24">
+    <div class="grid_24">
+
+ 
+     
+
+      
+    <div class="boxes_footer"><div class="Footer_BoxWrapper fl_left">  <h4 class="Footer_BoxHeading">Hauptmenü</h4>  <ul>    <li class=" act">
+<a href="https://livedemo00.template-help.com/osc_50671/index.php?osCsid=ep3m9100695rjk76h4iesojje3">Startseite</a>
+</li>    <li class="">
+<a href="https://livedemo00.template-help.com/osc_50671/products_new.php?osCsid=ep3m9100695rjk76h4iesojje3">Was gibt es Neues?</a>
+</li>    <li class="">
+<a href="https://livedemo00.template-help.com/osc_50671/specials.php?osCsid=ep3m9100695rjk76h4iesojje3">Speziell</a>
+</li>    <li class="">
+<a href="https://livedemo00.template-help.com/osc_50671/reviews.php?osCsid=ep3m9100695rjk76h4iesojje3">Bewertungen</a>
+</li>    <li class="">
+<a href="https://livedemo00.template-help.com/osc_50671/advanced_search.php?osCsid=ep3m9100695rjk76h4iesojje3">Erweiterte Suche</a>
+</li>    <li class="">
+<a href="https://livedemo00.template-help.com/osc_50671/login.php?osCsid=ep3m9100695rjk76h4iesojje3">Einloggen</a>
+</li>    <li class="">
+<a href="https://livedemo00.template-help.com/osc_50671/create_account.php?osCsid=ep3m9100695rjk76h4iesojje3">Schaffen ein Konto</a>
+</li>    <li class="">
+<a href="https://livedemo00.template-help.com/osc_50671/shipping.php?osCsid=ep3m9100695rjk76h4iesojje3">Liefer und Versandkosten</a>
+</li>    <li class="">
+<a href="https://livedemo00.template-help.com/osc_50671/contact_us.php?osCsid=ep3m9100695rjk76h4iesojje3">Kontakte</a>
+</li>  </ul></div></div>
+
+ 
+
+            <div class="footer"><p> <a href="https://livedemo00.template-help.com/osc_50671/index.php?osCsid=ep3m9100695rjk76h4iesojje3">Auto</a>&nbsp;&nbsp;  &copy; 2017<b>&nbsp;&nbsp;<a class="first" href="https://livedemo00.template-help.com/osc_50671/privacy.php?osCsid=ep3m9100695rjk76h4iesojje3">Privatsphäre und Datenschutz</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a class="last" href="https://livedemo00.template-help.com/osc_50671/conditions.php?osCsid=ep3m9100695rjk76h4iesojje3">Allgemeine Geschäftsbedingungen</a></b>  <!-- {%FOOTER_LINK} --></p></div>
+      </div>
+    </div>  
+</div>
+
+</div>
+
+ <div class="extra_line"></div>
+	    <!--[if lt IE 9]>
+      <link href="css/ie_style.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+  <script type="text/javascript" src="ext/js/imagepreloader.js"></script>
+  <script type="text/javascript">
+		preloadImages([
+		//	'images/user_menu.gif',
+			'images/bg_list.png',
+			'images/hover_bg.png',
+			'images/nivo-nav.png',								
+			'images/wrapper_pic.png',
+			'images/wrapper_pic-act.png']);
+	</script>
+<script type="text/javascript">
+ var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-7078796-5']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();</script>
+</body><!-- Google Tag Manager --><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-P9FT69"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P9FT69');</script><!-- End Google Tag Manager -->
+</html>

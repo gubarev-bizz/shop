@@ -8,225 +8,610 @@
 
 {% block content %}
 
-    <div class="row">
-        <div class="col-md-5">
-            <div class="row lightbox-gallary-list">
-                {% for image in product.images %}
-                    {% if loop.index == 1 %}
-                        <div class="col-md-12">
-                            <a class="example-image-link" href="{{ getImage(image.imageName, 'products') }}" data-lightbox="example-set" data-title="Text">
-                                <img class="example-image"  src="{{ getImage(image.imageName, 'products') }}" alt="" />
-                            </a>
-                        </div>
-                    {% else %}
-                        <div class="col-md-4">
-                            <a  class="example-image-link" href="{{ getImage(image.imageName, 'products') }}" data-lightbox="example-set" data-title="Text">
-                                <img class="example-image"  src="{{ getImage(image.imageName, 'products') }}" alt="" />
-                            </a>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </div>
+    <div class="contentContainer">
+        <div class="contentPadd prods_info_page">
+            <div class="prods_info decks big">
+                <div class="forecastle">
+                    <ol class="masthead">
+                        <li class="port_side left_side_pic-1">
 
-        <div class="col-md-7">
-            <h2 style="margin-top: 0;">{{ product.title }}</h2>
-
-            <table class="table table-bordered table-striped">
-                <tbody>
-                <tr>
-                    <th>Артикул</th>
-                    <th>{{ product.code }}</th>
-                </tr>
-                {% if product.category.title is defined %}
-                <tr>
-                    <th>Бренд</th>
-                    <th>{{ product.manufacturer }}</th>
-                </tr>
-                {% endif %}
-                <tr>
-                    <th>Страна производитель</th>
-                    <th>{{ product.country.title }}</th>
-                </tr>
-                <tr>
-                    <th>Цена</th>
-                    <th>{{ product.price|currency }}</th>
-                </tr>
-                </tbody>
-            </table>
-
-            <add-to-cart>
-                {{ form_start(addProductToCartForm, { 'attr': {'@submit.prevent': ''} }) }}
-                <div class="form-group">
-                {{ form_widget(addProductToCartForm.count) }}
-                </div>
-                <div class="form-group">
-                    {{ form_rest(addProductToCartForm) }}
-                </div>
-                {{ form_end(addProductToCartForm) }}
-            </add-to-cart>
-
-        </div>
-
-        <div class="col-md-12 tab-detal-product">
-
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Детальное описание</a></li>
-                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Характеристика</a></li>
-                <li role="presentation"><a href="#rewrite" aria-controls="rewrite" role="tab" data-toggle="tab">Отзывы</a></li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="home">
-                    {{ product.content|raw }}
-                </div>
-                <div role="tabpanel" class="tab-pane" id="profile">
-                    <table class="table table-bordered">
-                        <tbody>
-                        {% if product.ballType is not null and product.ballType != '' %}
-                            <tr>
-                                <td>Тип шара</td>
-                                <td>{{ product.ballType }}</td>
-                            </tr>
-                        {% endif %}
-                        {% if product.verticalBurdenBall is not null and product.verticalBurdenBall != '' %}
-                            <tr>
-                                <td>Вертикальная нагрузка на шар</td>
-                                <td>{{ product.verticalBurdenBall }}</td>
-                            </tr>
-                        {% endif %}
-                        {% if product.pullingBurdenBall is not null and product.pullingBurdenBall != '' %}
-                            <tr>
-                                <td>Тяговая нагрузка на шар</td>
-                                <td>{{ product.pullingBurdenBall }}</td>
-                            </tr>
-                        {% endif %}
-                        {% if product.installationCoordinationModule is not null and product.installationCoordinationModule != '' %}
-                            <tr>
-                                <td>Необходимость установки модуля согласования</td>
-                                <td>{{ product.installationCoordinationModule }}</td>
-                            </tr>
-                        {% endif %}
-                        {% if product.systemVoltage is not null and product.systemVoltage != '' %}
-                            <tr>
-                                <td>Напряжение бортовой сети</td>
-                                <td>{{ product.systemVoltage }}</td>
-                            </tr>
-                        {% endif %}
-                        {% if product.permissibleCurrentValues is not null and product.permissibleCurrentValues != '' %}
-                            <tr>
-                                <td>Допустимое значения тока</td>
-                                <td>{{ product.permissibleCurrentValues }}</td>
-                            </tr>
-                        {% endif %}
-                        {% if product.tractionLoad is not null and product.tractionLoad != '' %}
-                            <tr>
-                                <td>Тяговая нагрузка</td>
-                                <td>{{ product.tractionLoad }}</td>
-                            </tr>
-                        {% endif %}
-                        {% if product.removingBumper is not null and product.removingBumper != '' %}
-                            <tr>
-                                <td>Снятие бампера</td>
-                                <td>{{ product.removingBumper }}</td>
-                            </tr>
-                        {% endif %}
-                        {% if product.bumperCropping is not null and product.bumperCropping != '' %}
-                            <tr>
-                                <td>Подрезка бампера</td>
-                                <td>{{ product.bumperCropping }}</td>
-                            </tr>
-                        {% endif %}
-                        {% if product.needHarmonizeModule is not null and product.needHarmonizeModule != '' %}
-                            <tr>
-                                <td>Необходимость модуля согласования</td>
-                                <td>{{ product.needHarmonizeModule }}</td>
-                            </tr>
-                        {% endif %}
-                        {% if product.powerSocket is not null and product.powerSocket != '' %}
-                            <tr>
-                                <td>Розетка</td>
-                                <td>{{ product.powerSocket }}</td>
-                            </tr>
-                        {% endif %}
-                        {% if product.verticalLoad is not null and product.verticalLoad != '' %}
-                            <tr>
-                                <td>Вертикальная нагрузка</td>
-                                <td>{{ product.verticalLoad }}</td>
-                            </tr>
-                        {% endif %}
-                        </tbody>
-                    </table>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="rewrite">
-                    <h3>{{ 'Add review'|trans }}</h3>
-                    {{ form(reviewForm) }}
-                    <h3>{{ 'Reviews'|trans }}</h3>
-                    {% if reviews|length %}
-                        <div>
-                            {% for review in reviews %}
-                                <div class="review-item">
-                                    <div class="review-date">{{ review.createdAt|date('d.m.Y') }}</div>
-                                    <div class="review-title">{{ review.name }}</div>
-                                    <div class="review-content">{{ review.content|raw }}</div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        <div>{{ 'No records found'|trans }}</div>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-
-        {% if similarProducts|length %}
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">ПОХОЖИЕ ТОВАРЫ</div>
-                    <div class="panel-body text-center">
-                        <div class="row">
-                            {% for entity in similarProducts %}
-                                <div class="col-md-4">
-                                    <div class="product-block">
-                                        <div class="image">
-                                            <a title="{{ entity.title }}" href="{{ path('app_show_bundle_product_item', {id: entity.id}) }}" class="img">
-                                                {% for image in entity.images %}
-                                                    {% if loop.index == 1 %}
-                                                        <img src="{{ getImage(image.imageName, 'products') }}" alt="" />
-                                                    {% endif %}
-                                                {% endfor %}
+                            {% if product.imageName is not null %}
+                                <div id="piGal" class="hover">
+                                    <ul class="relative" style="width:220px;">
+                                        <li class="wrapper_pic_div">
+                                            <a href="{{ getImage(product.imageName, 'products') }}" target="_blank" rel="fancybox" title="{{ product.title }}" class="prods_pic_bg">
+                                                <img src="{{ getImage(product.imageName, 'products') | imagine_filter('product_slider_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" width="220" height="220">
+                                                <div class="wrapper_pic_zoom" style="width:220px;height:220px;"></div>
                                             </a>
+                                        </li>
+                                        {% if product.images is defined %}
+                                            {% for image in product.images %}
+                                                <li class="wrapper_pic_div">
+                                                    <a href="{{ getImage(image.imageName, 'products') }}" target="_blank" rel="fancybox" title="{{ product.title }}" class="prods_pic_bg">
+                                                        <img src="{{ getImage(image.imageName, 'products') | imagine_filter('product_slider_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" width="220" height="220">
+                                                        <div class="wrapper_pic_zoom" style="width:220px;height:220px;"></div>
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+
+                            <script type="text/javascript">
+                                $(function() {
+                                    var myWidth = 66;
+                                    var myHeight = myWidth * 1;
+                                    $('#piGal ul').bxGallery({
+                                        maxwidth: '220',
+                                        maxheight: '220',
+                                        thumbwidth: myWidth,
+                                        thumbheight: myHeight,
+                                        thumbcontainer: 228,
+                                        {#load_image: {{ asset('bundles/sonatacore/vendor/select2/select2-spinner.gif') }}/*'ext/jquery/bxGallery/spinner.gif'*/#}
+                                    })
+                                });
+                            </script>
+                            <script type="text/javascript">
+                                $("#piGal a[rel^='fancybox']").fancybox({
+                                    cyclic: true
+                                });
+                            </script>
+
+                        </li>
+                        <li class="starboard_side right_side_pic-1">
+
+                            <div class="info">
+                                <h2>{{ product.title }}</h2>
+                                {{ form_start(addProductToCartForm) }}
+                                <div class="options">
+                                    {#<p class="options-title">Доступные изменения:</p>#}
+                                    <ul class="ofh">
+                                        <li>
+                                            <label>Количество:</label>
+                                            {{ form_widget(addProductToCartForm.count) }}
+                                        </li>
+                                    </ul>
+                                </div>
+                                {#<h2 class="price"><b>Цена:&nbsp;&nbsp;</b><span class="productSpecialPrice">{{ product.price }} грн.</span> </h2>#}
+
+                                <div class="fl_right" align="right">
+                                    <strong class="button_content button_content2">
+                                        <strong class="button bg_button">
+                                            <strong class="button-t">
+                                                {#<input type="hidden" name="products_id" value="1">#}
+                                                <button id="tdb2" type="submit">в Корзину</button>
+                                                <script type="text/javascript">
+                                                    $("#tdb2").button({icons:{primary:"ui-icon-cart"}}).addClass("ui-priority-primary").parent().removeClass("tdbLink");
+                                                </script>
+                                            </strong>
+                                        </strong>
+                                    </strong>
+                                </div>
+                                {{ form_end(addProductToCartForm) }}
+                                <strong>
+                                    <strong class="button bg_button">
+                                        {#<strong class="button-t">#}
+                                        {#</strong>#}
+                                        <span class="price">
+                                            <b>Цена:&nbsp;&nbsp;</b>
+                                            <span style="line-height: 30px;" class="productSpecialPrice">{{ product.price }} грн.</span>
+                                        </span>
+                                    </strong>
+                                </strong>
+
+                            </div>
+
+                            {#<div class="data data_padd small_title">Товар был добавлен в наш каталог Понедельник 14 Июль, 2014.</div>#}
+                            <div style="display: inline-block;" class="desc desc_padd">
+                                {{ product.content|raw }}
+                            </div>
+
+                        </li>
+                    </ol>
+                </div>
+                <div class="infoBoxWrapper">
+                    <div class="box_wrapper">
+                        {#<div class="infoBoxHeading prod_page">#}
+                            {#<div class="title-icon"></div>#}
+                            {#<div class="box_wrapper_title22">#}
+                                {#<div class="box_wrapper_title">#}
+                                    {#<h1><span class="title-icon"></span>Теги продукта</h1></div>#}
+                            {#</div>#}
+                        {#</div>#}
+                        <div class="">
+                            <div class="tabBlock">
+                                <div class="tab-header">
+                                    <ul >
+                                        <li class="active box_wrapper_title"><a href="#details">Детальное описание</a></li>
+                                        <li class="box_wrapper_title"><a href="#char">Характеристика</a></li>
+                                        <li class="box_wrapper_title"><a href="#review">Отзывы</a></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-itemContent active" id="details">
+                                        {{ product.content|raw }}
+                                    </div>
+                                    <div class="tab-itemContent" id="char">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                            {% if product.ballType is not null and product.ballType != '' %}
+                                            <tr>
+                                            <td>Тип шара</td>
+                                            <td>{{ product.ballType }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.verticalBurdenBall is not null and product.verticalBurdenBall != '' %}
+                                            <tr>
+                                            <td>Вертикальная нагрузка на шар</td>
+                                            <td>{{ product.verticalBurdenBall }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.pullingBurdenBall is not null and product.pullingBurdenBall != '' %}
+                                            <tr>
+                                            <td>Тяговая нагрузка на шар</td>
+                                            <td>{{ product.pullingBurdenBall }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.installationCoordinationModule is not null and product.installationCoordinationModule != '' %}
+                                            <tr>
+                                            <td>Необходимость установки модуля согласования</td>
+                                            <td>{{ product.installationCoordinationModule }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.systemVoltage is not null and product.systemVoltage != '' %}
+                                            <tr>
+                                            <td>Напряжение бортовой сети</td>
+                                            <td>{{ product.systemVoltage }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.permissibleCurrentValues is not null and product.permissibleCurrentValues != '' %}
+                                            <tr>
+                                            <td>Допустимое значения тока</td>
+                                            <td>{{ product.permissibleCurrentValues }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.tractionLoad is not null and product.tractionLoad != '' %}
+                                            <tr>
+                                            <td>Тяговая нагрузка</td>
+                                            <td>{{ product.tractionLoad }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.removingBumper is not null and product.removingBumper != '' %}
+                                            <tr>
+                                            <td>Снятие бампера</td>
+                                            <td>{{ product.removingBumper }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.bumperCropping is not null and product.bumperCropping != '' %}
+                                            <tr>
+                                            <td>Подрезка бампера</td>
+                                            <td>{{ product.bumperCropping }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.needHarmonizeModule is not null and product.needHarmonizeModule != '' %}
+                                            <tr>
+                                            <td>Необходимость модуля согласования</td>
+                                            <td>{{ product.needHarmonizeModule }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.powerSocket is not null and product.powerSocket != '' %}
+                                            <tr>
+                                            <td>Розетка</td>
+                                            <td>{{ product.powerSocket }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if product.verticalLoad is not null and product.verticalLoad != '' %}
+                                            <tr>
+                                            <td>Вертикальная нагрузка</td>
+                                            <td>{{ product.verticalLoad }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-itemContent block-form" id="review">
+                                    {{ form_start(reviewForm, {'class': 'sasasasa' }) }}
+                                    {{ form_end(reviewForm) }}
+                                        <h3>{{ 'Reviews'|trans }}</h3>
+                                    {% if reviews|length %}
+                                        <div>
+                                    {% for review in reviews %}
+                                        <div class="review-item">
+                                        <div class="review-date">{{ review.createdAt|date('d.m.Y') }}</div>
+                                        <div class="review-title">{{ review.name }}</div>
+                                        <div class="review-content">{{ review.content|raw }}</div>
                                         </div>
-                                        <div class="product-meta">
-                                            <div class="name">
-                                                <a title="{{ entity.title }}" href="{{ path('app_show_bundle_product_item', {id: entity.id}) }}">{{ entity.title }}</a>
-                                            </div>
-                                            <div class="big-price">
-                                                <span class="price-new">{{ entity.price }} грн.</span>
-                                            </div>
-                                            <div class="big-btns">
-                                                <div class="field field-name-field-product field-type-commerce-product-reference field-label-hidden">
-                                                    <div class="field-items">
-                                                        <div class="field-item even">
-                                                            {{ form(similarAddProductToCartForm[entity.id]) }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="small-price"> <span class="price-new">{{ entity.price }} грн.</span></div>
+                                    {% endfor %}
                                         </div>
-                                        <div class="meta-back"></div>
+                                    {% else %}
+                                        <div>{{ 'No records found'|trans }}</div>
+                                    {% endif %}
                                     </div>
                                 </div>
-                            {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endif %}
 
+            </div>
+
+        </div>
     </div>
+
+    <script type="text/javascript">
+        (function ($) {
+            $(document).ready(function () {
+                var tabBlock = $('.tabBlock');
+
+                $(tabBlock).find('.tab-header li a').click(function (e) {
+                    e.preventDefault();
+                    tabBlock.find('.tab-header li').removeClass('active');
+                    var idBlock = $(this).attr('href');
+
+                    tabBlock.find('.tab-content > div').removeClass('active');
+                    tabBlock.find(idBlock).addClass('active');
+                    $(this).parent().addClass('active');
+
+                    return false;
+                });
+            });
+        })(jQuery);
+    </script>
+
+    {% if similarProducts|length %}
+    <div class="box_wrapper_title22">
+        <div class="box_wrapper_title">
+            <span class="title-icon"></span>
+            <h1 class="cl_both ">Похожие товары</h1>
+        </div>
+    </div>
+    <div class="contentContainer page_un">
+        <div class="contentPadd">
+            <div class="prods_content prods_table">
+                {% set index = 0 %}
+
+                {% for similarProduct in similarProducts  %}
+                {% set index = index + 1 %}
+
+                {% if index == 1 %}
+                <ul class="row_slave_name row_slave_block" id="row_slave-0">
+                {% endif %}
+                    <li style="width:230px;" class="wrapper_prods equal-height_slave_block hover">
+                        <div class="border_prods">
+                            <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;">
+                                <a class="prods_pic_bg" href="{{ path('app_show_bundle_product_item', {'slug': similarProduct.slug}) }}" title="{{ similarProduct.title }}" style="width:160px;height:160px;">
+                                    {% if similarProduct.imageName is not null %}
+                                        <img src="{{ (getImage(similarProduct.imageName, 'products')) | imagine_filter('product_preview') }}" alt="{{ similarProduct.title }}" title="{{ similarProduct.title }}" >
+                                    {% else %}
+                                        <img src="{{ asset('images/default-160x160.jpg') }}" alt="{{ similarProduct.title }}" title="{{ similarProduct.title }}" >
+                                    {% endif %}
+                                </a>
+                            </div>
+
+                            <div class="prods_padd">
+                                <div class="name name_padd equal-height_slave_name">
+                                    <span>
+                                        <a href="{{ path('app_show_bundle_product_item', {'slug': similarProduct.slug}) }}" title="{{ similarProduct.title }}">{{ similarProduct.title }}</a>
+                                    </span>
+                                </div>
+
+                                <div class="listing_padd">
+                                    <table class="listing">
+                                        <tbody>
+                                        <tr>
+
+                                            <td class="first"><b><strong>Артикул&nbsp;:</strong></b>
+                                            </td>
+
+                                            <td class="last"><strong>{{ similarProduct.code }}</strong>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td class="first"><b><strong>Бренд&nbsp;:</strong></b>
+                                            </td>
+
+                                            <td class="last">
+                                                <strong>{{ similarProduct.manufacturer.title }}</strong>
+                                            </td>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="price price_padd extra">
+                                    <b>Цена:&nbsp;&nbsp;</b>
+                                    <span class="productSpecialPrice">{{ similarProduct.price ~ ' грн.' }}</span>
+                                </div>
+
+                                <div class="prods_wrapp">
+                                    <div class="button__padd">
+                                        <strong class="button_content button_content2">
+                                            {{ form_start(similarAddProductToCartForm[similarProduct.id]) }}
+                                            <strong class="button bg_button">
+                                                <strong class="button-t">
+                                                    <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
+                                                        <span class="ui-button-icon-primary ui-icon ui-icon-cart"></span>
+                                                        <span class="ui-button-text">в Корзину</span></button>
+                                                </strong>
+                                            </strong>
+                                            {{ form_end(similarAddProductToCartForm[similarProduct.id]) }}
+                                        </strong>
+                                        <strong class="button_content button_content22">
+                                            <strong class="button bg_button">
+                                                <strong class="button-t">
+                                                    <a href="{{ path('app_show_bundle_product_item', {'slug': product.slug}) }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
+                                                        <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span>
+                                                        <span class="ui-button-text">Подробнее</span>
+                                                    </a>
+                                                </strong>
+                                            </strong>
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    {% if index < 3 %}
+                    <li class="prods_vseparator equal-height_slave_block"><img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1"></li>
+                    {% endif %}
+
+                {% if index == 3 %}
+                    </ul>
+                    <ul class="row_separator">
+                        <li class="prods_hseparator first last">
+                            <img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1">
+                        </li>
+                    </ul>
+                    {% set index = 0 %}
+                {% endif %}
+
+                {% endfor %}
+
+                {% if index > 0 and index < 3 %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var row_list_slave_name = $('.row_slave_name');
+            row_list_slave_name.each(function() {
+                new equalHeights_slave_name($('#' + $(this).attr("id")));
+            });
+            var row_list_slave_block = $('.row_slave_block');
+            row_list_slave_block.each(function() {
+                new equalHeights_slave_block($('#' + $(this).attr("id")));
+            });
+        })
+    </script>
+    {% endif %}
+
+    {#<div class="row">#}
+        {#<div class="col-md-5">#}
+            {#<div class="row lightbox-gallary-list">#}
+                {#{% for image in product.images %}#}
+                    {#{% if loop.index == 1 %}#}
+                        {#<div class="col-md-12">#}
+                            {#<a class="example-image-link" href="{{ getImage(image.imageName, 'products') }}" data-lightbox="example-set" data-title="Text">#}
+                                {#<img class="example-image"  src="{{ getImage(image.imageName, 'products') }}" alt="" />#}
+                            {#</a>#}
+                        {#</div>#}
+                    {#{% else %}#}
+                        {#<div class="col-md-4">#}
+                            {#<a  class="example-image-link" href="{{ getImage(image.imageName, 'products') }}" data-lightbox="example-set" data-title="Text">#}
+                                {#<img class="example-image"  src="{{ getImage(image.imageName, 'products') }}" alt="" />#}
+                            {#</a>#}
+                        {#</div>#}
+                    {#{% endif %}#}
+                {#{% endfor %}#}
+            {#</div>#}
+        {#</div>#}
+
+        {#<div class="col-md-7">#}
+            {#<h2 style="margin-top: 0;">{{ product.title }}</h2>#}
+
+            {#<table class="table table-bordered table-striped">#}
+                {#<tbody>#}
+                {#<tr>#}
+                    {#<th>Артикул</th>#}
+                    {#<th>{{ product.code }}</th>#}
+                {#</tr>#}
+                {#{% if product.category.title is defined %}#}
+                {#<tr>#}
+                    {#<th>Бренд</th>#}
+                    {#<th>{{ product.manufacturer }}</th>#}
+                {#</tr>#}
+                {#{% endif %}#}
+                {#<tr>#}
+                    {#<th>Страна производитель</th>#}
+                    {#<th>{{ product.country.title }}</th>#}
+                {#</tr>#}
+                {#<tr>#}
+                    {#<th>Цена</th>#}
+                    {#<th>{{ product.price|currency }}</th>#}
+                {#</tr>#}
+                {#</tbody>#}
+            {#</table>#}
+
+            {#<add-to-cart>#}
+                {#{{ form_start(addProductToCartForm, { 'attr': {'@submit.prevent': ''} }) }}#}
+                {#<div class="form-group">#}
+                {#{{ form_widget(addProductToCartForm.count) }}#}
+                {#</div>#}
+                {#<div class="form-group">#}
+                    {#{{ form_rest(addProductToCartForm) }}#}
+                {#</div>#}
+                {#{{ form_end(addProductToCartForm) }}#}
+            {#</add-to-cart>#}
+
+        {#</div>#}
+
+        {#<div class="col-md-12 tab-detal-product">#}
+
+            {#<!-- Nav tabs -->#}
+            {#<ul class="nav nav-tabs" role="tablist">#}
+                {#<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Детальное описание</a></li>#}
+                {#<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Характеристика</a></li>#}
+                {#<li role="presentation"><a href="#rewrite" aria-controls="rewrite" role="tab" data-toggle="tab">Отзывы</a></li>#}
+            {#</ul>#}
+
+            {#<!-- Tab panes -->#}
+            {#<div class="tab-content">#}
+                {#<div role="tabpanel" class="tab-pane active" id="home">#}
+                    {#{{ product.content|raw }}#}
+                {#</div>#}
+                {#<div role="tabpanel" class="tab-pane" id="profile">#}
+                    {#<table class="table table-bordered">#}
+                        {#<tbody>#}
+                        {#{% if product.ballType is not null and product.ballType != '' %}#}
+                            {#<tr>#}
+                                {#<td>Тип шара</td>#}
+                                {#<td>{{ product.ballType }}</td>#}
+                            {#</tr>#}
+                        {#{% endif %}#}
+                        {#{% if product.verticalBurdenBall is not null and product.verticalBurdenBall != '' %}#}
+                            {#<tr>#}
+                                {#<td>Вертикальная нагрузка на шар</td>#}
+                                {#<td>{{ product.verticalBurdenBall }}</td>#}
+                            {#</tr>#}
+                        {#{% endif %}#}
+                        {#{% if product.pullingBurdenBall is not null and product.pullingBurdenBall != '' %}#}
+                            {#<tr>#}
+                                {#<td>Тяговая нагрузка на шар</td>#}
+                                {#<td>{{ product.pullingBurdenBall }}</td>#}
+                            {#</tr>#}
+                        {#{% endif %}#}
+                        {#{% if product.installationCoordinationModule is not null and product.installationCoordinationModule != '' %}#}
+                            {#<tr>#}
+                                {#<td>Необходимость установки модуля согласования</td>#}
+                                {#<td>{{ product.installationCoordinationModule }}</td>#}
+                            {#</tr>#}
+                        {#{% endif %}#}
+                        {#{% if product.systemVoltage is not null and product.systemVoltage != '' %}#}
+                            {#<tr>#}
+                                {#<td>Напряжение бортовой сети</td>#}
+                                {#<td>{{ product.systemVoltage }}</td>#}
+                            {#</tr>#}
+                        {#{% endif %}#}
+                        {#{% if product.permissibleCurrentValues is not null and product.permissibleCurrentValues != '' %}#}
+                            {#<tr>#}
+                                {#<td>Допустимое значения тока</td>#}
+                                {#<td>{{ product.permissibleCurrentValues }}</td>#}
+                            {#</tr>#}
+                        {#{% endif %}#}
+                        {#{% if product.tractionLoad is not null and product.tractionLoad != '' %}#}
+                            {#<tr>#}
+                                {#<td>Тяговая нагрузка</td>#}
+                                {#<td>{{ product.tractionLoad }}</td>#}
+                            {#</tr>#}
+                        {#{% endif %}#}
+                        {#{% if product.removingBumper is not null and product.removingBumper != '' %}#}
+                            {#<tr>#}
+                                {#<td>Снятие бампера</td>#}
+                                {#<td>{{ product.removingBumper }}</td>#}
+                            {#</tr>#}
+                        {#{% endif %}#}
+                        {#{% if product.bumperCropping is not null and product.bumperCropping != '' %}#}
+                            {#<tr>#}
+                                {#<td>Подрезка бампера</td>#}
+                                {#<td>{{ product.bumperCropping }}</td>#}
+                            {#</tr>#}
+                        {#{% endif %}#}
+                        {#{% if product.needHarmonizeModule is not null and product.needHarmonizeModule != '' %}#}
+                            {#<tr>#}
+                                {#<td>Необходимость модуля согласования</td>#}
+                                {#<td>{{ product.needHarmonizeModule }}</td>#}
+                            {#</tr>#}
+                        {#{% endif %}#}
+                        {#{% if product.powerSocket is not null and product.powerSocket != '' %}#}
+                            {#<tr>#}
+                                {#<td>Розетка</td>#}
+                                {#<td>{{ product.powerSocket }}</td>#}
+                            {#</tr>#}
+                        {#{% endif %}#}
+                        {#{% if product.verticalLoad is not null and product.verticalLoad != '' %}#}
+                            {#<tr>#}
+                                {#<td>Вертикальная нагрузка</td>#}
+                                {#<td>{{ product.verticalLoad }}</td>#}
+                            {#</tr>#}
+                        {#{% endif %}#}
+                        {#</tbody>#}
+                    {#</table>#}
+                {#</div>#}
+                {#<div role="tabpanel" class="tab-pane" id="rewrite">#}
+                    {#<h3>{{ 'Add review'|trans }}</h3>#}
+                    {#{{ form(reviewForm) }}#}
+                    {#<h3>{{ 'Reviews'|trans }}</h3>#}
+                    {#{% if reviews|length %}#}
+                        {#<div>#}
+                            {#{% for review in reviews %}#}
+                                {#<div class="review-item">#}
+                                    {#<div class="review-date">{{ review.createdAt|date('d.m.Y') }}</div>#}
+                                    {#<div class="review-title">{{ review.name }}</div>#}
+                                    {#<div class="review-content">{{ review.content|raw }}</div>#}
+                                {#</div>#}
+                            {#{% endfor %}#}
+                        {#</div>#}
+                    {#{% else %}#}
+                        {#<div>{{ 'No records found'|trans }}</div>#}
+                    {#{% endif %}#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+
+        {#{% if similarProducts|length %}#}
+            {#<div class="col-md-12">#}
+                {#<div class="panel panel-default">#}
+                    {#<div class="panel-heading">ПОХОЖИЕ ТОВАРЫ</div>#}
+                    {#<div class="panel-body text-center">#}
+                        {#<div class="row">#}
+                            {#{% for entity in similarProducts %}#}
+                                {#<div class="col-md-4">#}
+                                    {#<div class="product-block">#}
+                                        {#<div class="image">#}
+                                            {#<a title="{{ entity.title }}" href="{{ path('app_show_bundle_product_item', {id: entity.id}) }}" class="img">#}
+                                                {#{% for image in entity.images %}#}
+                                                    {#{% if loop.index == 1 %}#}
+                                                        {#<img src="{{ getImage(image.imageName, 'products') }}" alt="" />#}
+                                                    {#{% endif %}#}
+                                                {#{% endfor %}#}
+                                            {#</a>#}
+                                        {#</div>#}
+                                        {#<div class="product-meta">#}
+                                            {#<div class="name">#}
+                                                {#<a title="{{ entity.title }}" href="{{ path('app_show_bundle_product_item', {id: entity.id}) }}">{{ entity.title }}</a>#}
+                                            {#</div>#}
+                                            {#<div class="big-price">#}
+                                                {#<span class="price-new">{{ entity.price }} грн.</span>#}
+                                            {#</div>#}
+                                            {#<div class="big-btns">#}
+                                                {#<div class="field field-name-field-product field-type-commerce-product-reference field-label-hidden">#}
+                                                    {#<div class="field-items">#}
+                                                        {#<div class="field-item even">#}
+                                                            {#{{ form(similarAddProductToCartForm[entity.id]) }}#}
+                                                        {#</div>#}
+                                                    {#</div>#}
+                                                {#</div>#}
+                                            {#</div>#}
+                                            {#<div class="small-price"> <span class="price-new">{{ entity.price }} грн.</span></div>#}
+                                        {#</div>#}
+                                        {#<div class="meta-back"></div>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#{% endfor %}#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#{% endif %}#}
+
+    {#</div>#}
 
 {% endblock %}

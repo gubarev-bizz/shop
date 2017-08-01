@@ -45,6 +45,32 @@
             $('form[name=call_us] button[type=submit]').trigger('click');
         });
 
+        $('.categories > li span.category_arrow').click(function () {
+            var li = $(this).closest('li');
+            var parentId = $(li).attr('data-id');
+
+            if (!$(li).hasClass('htooltip')) {
+                $('.categories > li').removeClass('htooltip');
+                $(li).addClass('htooltip');
+
+                $('.categories > li').each(function () {
+                    if ($(this).attr('data-parent-id') == parentId) {
+                        $(this).show();
+                    }
+                });
+            } else {
+                $('.categories > li').removeClass('htooltip');
+
+                $('.categories > li').each(function () {
+                    if ($(this).attr('data-parent-id') != undefined) {
+                        $(this).hide();
+                    }
+                });
+            }
+
+            return false;
+        });
+
     });
 
 })(jQuery);

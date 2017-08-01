@@ -1,0 +1,17 @@
+{% if wo_breadcrumbs()|length %}
+    {%- spaceless -%}
+        <div id="{{ listId }}" class="{{ listClass }}" itemscope itemtype="http://schema.org/BreadcrumbList">
+            {% for b in breadcrumbs %}
+                <a href="{{ b.url }}" class="headerNavigation" itemprop="item"{% if linkRel is defined and linkRel|length %} rel="{{ linkRel }}"{% endif %}>
+                    <span itemprop="name">{{- b.text | trans(b.translationParameters, translation_domain, locale) -}}</span>
+                </a>
+
+                <meta itemprop="position" content="{{ loop.index }}" />
+
+                {% if separator is not null and not loop.last %}
+                    <i class="icon-double-angle-right"></i>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {%- endspaceless -%}
+{% endif %}

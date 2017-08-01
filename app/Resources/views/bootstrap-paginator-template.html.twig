@@ -24,39 +24,40 @@
         {% set prev_label = prev_label|default('&laquo;') %}
         {% set next_label = next_label|default('&raquo;') %}
 
-        <ul class="pagination{% if class is not empty %} {{ class }}{% endif %}">
+        <div class="fl_right result_right{% if class is not empty %} {{ class }}{% endif %}">
+            Страницы:&nbsp;&nbsp;
             {% if first_label is defined and first is defined and current != first %}
-                <li><a href="{{ path(route, query|merge({(pageParameterName): first})) }}">{{ first_label|raw }}</a></li>
+                <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">{{ first_label|raw }}</a>&nbsp;&nbsp;
             {% elseif last_label is defined %}
-                <li class="disabled"><span>{{ first_label|raw }}</span></li>
+                <span>{{ first_label|raw }}</span>&nbsp;&nbsp;
             {% endif %}
 
             {% if previous is defined %}
-                <li><a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">{{ prev_label|raw }}</a></li>
+                <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">{{ prev_label|raw }}</a>&nbsp;&nbsp;
             {% else %}
-                <li class="disabled"><span>{{ prev_label|raw }}</span></li>
+                <span>{{ prev_label|raw }}</span>&nbsp;&nbsp;
             {% endif %}
 
             {% for page in pagesInRange %}
                 {% if page != current %}
-                    <li><a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a></li>
+                    <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>&nbsp;&nbsp;
                 {% else %}
-                    <li class="active"><span>{{ page }}</span></li>
+                    <b>{{ page }}</b>&nbsp;&nbsp;
                 {% endif %}
 
             {% endfor %}
 
             {% if next is defined %}
-                <li><a href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ next_label|raw }}</a></li>
+                <a href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ next_label|raw }}</a>&nbsp;&nbsp;
             {% else %}
-                <li class="disabled"><span>{{ next_label|raw }}</span></li>
+                <span>{{ next_label|raw }}</span>&nbsp;&nbsp;
             {% endif %}
 
             {% if last_label is defined and last is defined and current != last %}
-                <li><a href="{{ path(route, query|merge({(pageParameterName): last})) }}">{{ last_label|raw }}</a></li>
+                <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">{{ last_label|raw }}</a>&nbsp;&nbsp;
             {% elseif last_label is defined %}
-                <li class="disabled"><span>{{ last_label|raw }}</span></li>
+                <span>{{ last_label|raw }}</span>&nbsp;&nbsp;
             {% endif %}
-        </ul>
+        </div>
     {% endif %}
 {% endif %}

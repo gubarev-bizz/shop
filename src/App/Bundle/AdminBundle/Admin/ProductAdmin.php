@@ -5,10 +5,14 @@ namespace App\Bundle\AdminBundle\Admin;
 use App\Bundle\CoreBundle\Entity\Image;
 use App\Bundle\CoreBundle\Entity\User;
 use App\Bundle\ShopBundle\Entity\Product;
+use Liip\ImagineBundle\Controller\ImagineController;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProductAdmin extends AbstractAdmin
 {
@@ -68,17 +72,16 @@ class ProductAdmin extends AbstractAdmin
 
         $formMapper
             ->tab('Основная информация')
+                ->with('Основная информация', [
+                        'class' => 'col-md-6',
+                        'box_class' => 'box box-success',
+                    ]
+                )
                     ->add('code', 'text', ['label' => 'Code'])
                     ->add('title', 'text', ['label' => 'Title'])
-                    ->add('images','sonata_type_collection', [
+                    ->add('slug', 'text', [
                         'required' => false,
-                        'by_reference' => false,
-                        'label' => 'Images',
-                    ], [
-                            'edit' => 'inline',
-                            'inline' => 'table',
-                        ]
-                    )
+                    ])
                     ->add('content', 'textarea', [
                         'label' => 'Content',
                         'attr' => [
@@ -115,6 +118,30 @@ class ProductAdmin extends AbstractAdmin
                     ->add('top', null, [
                         'label' => 'В топе',
                     ])
+                    ->add('active', null, [
+                        'required' => false,
+                        'label' => 'Активный',
+                    ])
+                ->end()
+                ->with('Изображения', [
+                        'class' => 'col-md-6',
+                        'box_class' => 'box box-success',
+                    ]
+                )
+                    ->add('imageFile', VichImageType::class, array(
+                        'required'      => false,
+                        'allow_delete'  => true,
+                        'download_link' => false,
+                    ))
+                    ->add('images','sonata_type_collection', [
+                        'required' => false,
+                        'by_reference' => false,
+                        'label' => 'Images',
+                    ], [
+                            'edit' => 'inline',
+                            'inline' => 'table',
+                        ]
+                    )
                 ->end()
             ->end()
             ->tab('Атрибуты')
@@ -236,8 +263,12 @@ class ProductAdmin extends AbstractAdmin
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function postUpdate($object)
     {
+        /** @var Product $object */
         parent::postUpdate($object);
 
         $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.default_entity_manager');

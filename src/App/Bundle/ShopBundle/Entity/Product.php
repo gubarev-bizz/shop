@@ -16,9 +16,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 use JMS\Serializer\Annotation as Serializer;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Bundle\ShopBundle\Entity\Repository\ProductRepository")
+ * @Vich\Uploadable
  * @Serializer\ExclusionPolicy("all")
  */
 class Product
@@ -76,11 +80,25 @@ class Product
      * @ORM\OneToMany(
      *     targetEntity="App\Bundle\CoreBundle\Entity\Image",
      *     mappedBy="product",
-     *     cascade={"persist"},
+     *     cascade={"persist", "remove"},
      *     orphanRemoval=true
      * )
      */
     protected $images;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     */
+    private $imageName;
 
     /**
      * @var bool
@@ -212,12 +230,65 @@ class Product
      */
     private $productItems;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", nullable=false)
+     * @SymfonyConstraints\NotNull()
+     */
+    private $active;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->productItems = new ArrayCollection();
         $this->top = false;
+        $this->active = true;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Product
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return Product
+     */
+    public function setImageName($imageName)
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImageName()
+    {
+        return $this->imageName;
     }
 
     /**
@@ -365,9 +436,11 @@ class Product
      * @param Image $image
      * @return $this
      */
-    public function addImage($image)
+    public function addImage(Image $image)
     {
-        $this->images[] = $image;
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+        }
 
         return $this;
     }
@@ -376,10 +449,12 @@ class Product
      * @param Image $image
      * @return $this
      */
-    public function removeImages($image)
+    public function removeImage(Image $image)
     {
-        $this->images->remove($image);
-        $image->setProduct(null);
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            $image->setProduct(null);
+        }
 
         return $this;
     }
@@ -663,5 +738,21 @@ class Product
         $productItem->setProduct(null);
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param bool $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
     }
 }

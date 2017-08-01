@@ -1,15 +1,60 @@
+
 {% if categories is defined %}
+    <ul class="banner_set">
     {% for category in categories %}
-        <div class="col-md-6 col-xs-6 stock-block">
-            <a href="{{ path('app_core_bundle_category_item', {categoryId: category.id}) }}" class="">
-                <img
-                    alt="{{ category.title }}"
-                    src="{{ getImage(category.imageName, 'category') | imagine_filter('category_main') }}"
-                >
-            </a>
-            <a title="{{ category.title }}" href="{{ path('app_core_bundle_category_item', {categoryId: category.id}) }}">
-                {{ category.title }}
-            </a>
-        </div>
+        {#<div class="col-md-6 col-xs-6 stock-block">#}
+            {#<a href="{{ path('app_core_bundle_category_item', {categoryId: category.id}) }}" class="">#}
+                {#<img#}
+                    {#alt="{{ category.title }}"#}
+                    {#src="{{ getImage(category.imageName, 'category') | imagine_filter('category_main') }}"#}
+                {#>#}
+            {#</a>#}
+            {#<a title="{{ category.title }}" href="{{ path('app_core_bundle_category_item', {categoryId: category.id}) }}">#}
+                {#{{ category.title }}#}
+            {#</a>#}
+        {#</div>#}
+
+            <li class="item1">
+                <a href="{{ path('app_core_bundle_category_item', {slug: category.slug}) }}" target="_self">
+                    <img src="{{ getImage(category.imageName, 'category') | imagine_filter('category_main') }}" alt="" width="230" height="104">
+                </a>
+            </li>
+            {#<li class="item2">#}
+                {#<a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=22&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">#}
+                    {#<img src="images/slide/pro-2.jpg" alt="" width="230" height="104">#}
+                {#</a>#}
+            {#</li>#}
+            {#<li class="item3">#}
+                {#<a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=23&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">#}
+                    {#<img src="images/slide/pro-3.jpg" alt="" width="230" height="104">#}
+                {#</a>#}
+            {#</li>#}
+            {#<li class="item4">#}
+                {#<a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=24&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">#}
+                    {#<img src="images/slide/pro-4.jpg" alt="" width="230" height="104">#}
+                {#</a>#}
+            {#</li>#}
+            {#<li class="item4">#}
+                {#<a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=25&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">#}
+                    {#<img src="images/slide/pro-5.jpg" alt="" width="230" height="104">#}
+                {#</a>#}
+            {#</li>#}
+            {#<li class="item4">#}
+                {#<a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=26&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">#}
+                    {#<img src="images/slide/pro-6.jpg" alt="" width="230" height="104">#}
+                {#</a>#}
+            {#</li>#}
+            {#<li class="item4">#}
+                {#<a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=27&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">#}
+                    {#<img src="images/slide/pro-7.jpg" alt="" width="230" height="104">#}
+                {#</a>#}
+            {#</li>#}
+            {#<li class="item4">#}
+                {#<a href="https://livedemo00.template-help.com/osc_50671/redirect.php?action=banner&amp;goto=28&amp;osCsid=ep3m9100695rjk76h4iesojje3" target="_self">#}
+                    {#<img src="images/slide/pro-8.jpg" alt="" width="230" height="104">#}
+                {#</a>#}
+            {#</li>#}
+
     {% endfor %}
+    </ul>
 {% endif %}

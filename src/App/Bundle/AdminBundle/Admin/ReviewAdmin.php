@@ -2,6 +2,7 @@
 
 namespace App\Bundle\AdminBundle\Admin;
 
+use App\Bundle\CoreBundle\Entity\Review;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -23,6 +24,7 @@ class ReviewAdmin extends AbstractAdmin
             ->add('name')
             ->add('email')
             ->add('approve')
+            ->add('type')
             ->add('createdAt')
             ->add('_action', 'actions', [
                 'actions' => [
@@ -48,6 +50,13 @@ class ReviewAdmin extends AbstractAdmin
                         'class' => 'tinymce',
                         'data-theme' => 'advanced',
                     ],
+                ])
+                ->add('type', 'choice', [
+                    'choices' => array_combine([
+                        Review::REVIEW_TYPE_PRODUCT, Review::REVIEW_TYPE_SITE
+                    ], [
+                        Review::REVIEW_TYPE_PRODUCT, Review::REVIEW_TYPE_SITE
+                    ]),
                 ])
                 ->add('product')
                 ->add('approve')

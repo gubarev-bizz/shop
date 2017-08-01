@@ -1,0 +1,29 @@
+<meta http-equiv="content-type" content="text/htmll; charset=UTF-8">
+<meta content="width=1024" name="viewport">
+
+{% if options['description'] is defined and options['description'] is not null %}
+    <meta name="description" content="{{ options['description'] }}" >
+{% endif %}
+
+{% if options['tags'] is defined and options['tags'] is not null %}
+    <meta name="keywords" content="{{ options['tags'] }}" >
+{% endif %}
+
+{% if options['request'].locale is defined and options['request'].locale is not null %}
+    <meta http-equiv="content-language" content="{{ options['request'].locale }}">
+{% endif %}
+
+{% if options['siteName'] is defined and options['siteName'] is not null %}
+    <meta content="{{ options['siteName'] }}" property="og:site_name">
+{% endif %}
+
+{% if options['title'] is defined and options['title'] is not null %}
+    <meta content="{{ options['title'] }}" property="og:title">
+{% endif %}
+
+{% if options['request'].uri is defined and options['request'].uri is not null %}
+    <meta content="{{ options['request'].uri }}" property="og:url">
+{% endif %}
+
+<meta name="Robots" content="NOINDEX,FOLLOW">
+<meta http-equiv="pragma" content="no-cache">

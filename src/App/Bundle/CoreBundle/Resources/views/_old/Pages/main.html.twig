@@ -1,0 +1,15 @@
+{% extends 'AppCoreBundle:Layouts:layout.html.twig' %}
+
+{% block page_title %}Главная{% endblock %}
+
+{% block breadcrums %}{{ wo_render_breadcrumbs() }}{% endblock %}
+
+{% block content %}
+
+    {{ render(controller('AppCoreBundle:Slider:getSliderBlock')) }}
+
+    <div class="row text-center">
+        {{ render(controller('AppCoreBundle:Default:getMainCategoryBlock')) }}
+    </div>
+
+{% endblock %}

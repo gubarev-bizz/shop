@@ -9,5 +9,6 @@ App\Bundle\ShopBundle\Entity\Product:
         category: '@CategoryTest*'
         manufacturer: '@ManufacturerTest*'
         country: '@CountryTest*'
+        active: 1
     ProductTest{1..20} (extends ProductTest):
         title: <sentence($nbWords = 3, $variableNbWords = true)>

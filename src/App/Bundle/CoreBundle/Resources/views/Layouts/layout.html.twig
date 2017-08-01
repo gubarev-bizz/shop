@@ -2,107 +2,214 @@
 
 {% block body %}
 
-    <header class="header-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 info-phone">
-                    <ul class="list-unstyled">
-                        <li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>
-                        <li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>
-                        <li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6 col-md-offset-2">
-                    <items-cart :elements="elementsCart" :total="totalCart"></items-cart>
-                    {{ render(controller('AppCoreBundle:Search:searchForm', {'request': app.request})) }}
+    <div class="row_1">
+        <div class="container_24">
+            <div class="grid_24">
+                <div id="header">
+                    <div id="box_search" class="search">
+                        {{ render(controller('AppCoreBundle:Search:searchForm', {'request': app.request})) }}
+                    </div>
+                    {{ render(controller('AppShopBundle:Cart:cartBlock')) }}
+                    <div class="boxes_menu">
+                        <div class="menu">
+                            <ul>
+                                <li class="{{ 'app_core_bundle_page_main' in app.request.attributes.get('_route') ? 'act' }} first">
+                                    <a href="{{ path('app_core_bundle_page_main') }}" title="{{ 'Home'|trans }}">
+                                        <i class="icon-home"></i>{{ 'Home'|trans }}
+                                    </a>
+                                </li>
+                                <li class="{{ 'app_core_bundle_page_search' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_page_search') }}">
+                                        <i class="icon-bullhorn"></i>
+                                        {{ 'Search'|trans }}
+                                    </a>
+                                </li>
+                                <li class="{{ 'app_core_bundle_page_shipping_payment' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_page_shipping_payment') }}">
+                                        Доставка и оплата
+                                    </a>
+                                </li>
+                                <li class="{{ 'app_core_bundle_article_news' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_article_news_list') }}">
+                                        {{ 'News'|trans }}
+                                    </a>
+                                </li>
+                                <li class="{{ 'app_core_bundle_article_article' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_article_article_list') }}"><i class="icon-certificate"></i>
+                                        {{ 'Articles'|trans }}
+                                    </a>
+                                </li>
+                                <li class="{{ 'app_core_bundle_article_stock' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_article_stock_list') }}">
+                                        {{ 'Promotions'|trans }}
+                                    </a>
+                                </li>
+                                <li class="{{ 'app_core_bundle_page_reviews' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_page_reviews') }}">
+                                        <i class="icon-edit"></i>
+                                        {{ 'Reviews'|trans }}
+                                    </a>
+                                </li>
+                                <li class="{{ 'app_core_bundle_page_feedback' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_page_feedback') }}">
+                                        <i class="icon-edit"></i>
+                                        Обратная связь
+                                    </a>
+                                </li>
+                                <li class="{{ 'app_core_bundle_page_contact' in app.request.attributes.get('_route') ? 'act' }}">
+                                    <a href="{{ path('app_core_bundle_page_contact') }}">
+                                        <i class="icon-edit"></i>
+                                        {{ 'Contacts'|trans }}
+                                    </a>
+                                </li>
+                                <li class="{{ 'app_core_bundle_page_about' in app.request.attributes.get('_route') ? 'act' }} last">
+                                    <a href="{{ path('app_core_bundle_page_about') }}">
+                                        <i class="icon-map-marker"></i>
+                                        {{ 'About us'|trans }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a class="logo" href="{{ path('app_core_bundle_page_main') }}">
+                        <img src="{{ asset('images/store_logo.png') }}" alt="Auto" title="Auto" width="181" height="77">
+                    </a>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <nav class="navbar navbar-default ">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav nav-pills">
-                            <li class="{{ 'app_core_bundle_page_main' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_page_main') }}" title="{{ 'Home'|trans }}">{{ 'Home'|trans }}</a>
-                            </li>
-                            <li class="{{ 'app_core_bundle_page_search' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_page_search') }}" title="{{ 'Search'|trans }}">{{ 'Search'|trans }}</a>
-                            </li>
-                            <li>
-                                <a href="#">Доставка и оплата</a>
-                            </li>
-                            <li class="{{ 'app_core_bundle_article_news' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_article_news_list') }}" title="{{ 'News'|trans }}">{{ 'News'|trans }}</a>
-                            </li>
-                            <li class="{{ 'app_core_bundle_article_article' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_article_article_list') }}" title="{{ 'Articles'|trans }}">{{ 'Articles'|trans }}</a>
-                            </li>
-                            <li class="{{ 'app_core_bundle_article_stock' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_article_stock_list') }}" title="{{ 'Promotions'|trans }}">{{ 'Promotions'|trans }}</a>
-                            </li>
-                            <li class="{{ 'app_core_bundle_page_contact' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_page_contact') }}" title="{{ 'Contacts'|trans }}">{{ 'Contacts'|trans }}</a>
-                            </li>
-                            <li class="{{ 'app_core_bundle_page_about' in app.request.attributes.get('_route') ? 'active' }}">
-                                <a href="{{ path('app_core_bundle_page_about') }}" title="{{ 'About us'|trans }}">{{ 'About us'|trans }}</a>
-                            </li>
-                        </ul>
+    <div class="row_12">
+            {% block breadcrums %}
+                <div class="container_24">
+                    <div class="grid_24">
+                        <div class="breadcrumb">
+                        {{ wo_render_breadcrumbs() }}
+                        </div>
                     </div>
                 </div>
-            </nav>
+            {% endblock %}
+            {% for flashType in app.session.flashbag.keys %}
+                <table border="0" width="100%" cellspacing="0" cellpadding="2" class="class_table">
+                    <tbody>
+                    {% for flash in app.session.flashbag.get(flashType) %}
+                        <tr class="messageStack{{ flashType|capitalize }}">
+                            <td class="messageStack{{ flashType|capitalize }}">
+                                {#<img src="images/icons/error.gif" alt="{{ flashType|capitalize }}" title="{{ flashType|capitalize }}" width="14" height="13">#}
+                                &nbsp;{{ flashType|capitalize }}: {{ flash|trans }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+        <div class="container_24">
+            <div id="bodyContent" class="grid_18 push_6 ">
+                {% block content %}{% endblock %}
+            </div>
+            <div id="columnLeft" class="grid_6 pull_18">
+                {{ render(controller('AppCoreBundle:Default:getSidebar', {'request': app.request})) }}
+            </div>
         </div>
-    </header>
+    </div>
+
+    {#<header class="header-container">#}
+        {#<div class="container">#}
+            {#<div class="row">#}
+                {#<div class="col-md-4 info-phone">#}
+                    {#<ul class="list-unstyled">#}
+                        {#<li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>#}
+                        {#<li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>#}
+                        {#<li><a href="tel:+380731016841">+38 (073) 101-68-41</a></li>#}
+                    {#</ul>#}
+                {#</div>#}
+                {#<div class="col-md-6 col-md-offset-2">#}
+                    {#<items-cart :elements="elementsCart" :total="totalCart"></items-cart>#}
+                    {#{{ render(controller('AppCoreBundle:Search:searchForm', {'request': app.request})) }}#}
+                {#</div>#}
+            {#</div>#}
+
+            {#<nav class="navbar navbar-default ">#}
+                {#<div class="container-fluid">#}
+                    {#<div class="navbar-header">#}
+                        {#<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">#}
+                            {#<span class="sr-only">Toggle navigation</span>#}
+                            {#<span class="icon-bar"></span>#}
+                            {#<span class="icon-bar"></span>#}
+                            {#<span class="icon-bar"></span>#}
+                        {#</button>#}
+                    {#</div>#}
+
+                    {#<div class="collapse navbar-collapse">#}
+                        {#<ul class="nav nav-pills">#}
+                            {#<li class="{{ 'app_core_bundle_page_main' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_page_main') }}" title="{{ 'Home'|trans }}">{{ 'Home'|trans }}</a>#}
+                            {#</li>#}
+                            {#<li class="{{ 'app_core_bundle_page_search' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_page_search') }}" title="{{ 'Search'|trans }}">{{ 'Search'|trans }}</a>#}
+                            {#</li>#}
+                            {#<li>#}
+                                {#<a href="#">Доставка и оплата</a>#}
+                            {#</li>#}
+                            {#<li class="{{ 'app_core_bundle_article_news' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_article_news_list') }}" title="{{ 'News'|trans }}">{{ 'News'|trans }}</a>#}
+                            {#</li>#}
+                            {#<li class="{{ 'app_core_bundle_article_article' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_article_article_list') }}" title="{{ 'Articles'|trans }}">{{ 'Articles'|trans }}</a>#}
+                            {#</li>#}
+                            {#<li class="{{ 'app_core_bundle_article_stock' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_article_stock_list') }}" title="{{ 'Promotions'|trans }}">{{ 'Promotions'|trans }}</a>#}
+                            {#</li>#}
+                            {#<li class="{{ 'app_core_bundle_page_contact' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_page_contact') }}" title="{{ 'Contacts'|trans }}">{{ 'Contacts'|trans }}</a>#}
+                            {#</li>#}
+                            {#<li class="{{ 'app_core_bundle_page_about' in app.request.attributes.get('_route') ? 'active' }}">#}
+                                {#<a href="{{ path('app_core_bundle_page_about') }}" title="{{ 'About us'|trans }}">{{ 'About us'|trans }}</a>#}
+                            {#</li>#}
+                        {#</ul>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</nav>#}
+        {#</div>#}
+    {#</header>#}
 
     <section class="container">
         <div class="row">
 
             <div class="col-md-12">
 
-                {% block breadcrums %}
-                <div class="breadcrumbs">
-                    {{ wo_render_breadcrumbs() }}
-                </div>
-                {% endblock %}
-
-                <div v-if="message != ''">
-                    <br>
-                    <div v-bind:class="'alert margin-bottom-15 alert-' + messageStatus">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        ${ message }
-                    </div>
-                </div>
-                <div v-else>
-                    {% for flashType in app.session.flashbag.keys %}
-                        {% for flash in app.session.flashbag.get(flashType) %}
-                            <br>
-                            <div class="alert margin-bottom-15 alert-{{ flashType }}">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                {{ flash|trans }}
-                            </div>
-                        {% endfor %}
-                    {% endfor %}
-                </div>
 
 
-                <div class="page-title">
-                    <h2>{% block page_title %}{% endblock %}</h2>
-                </div>
+                {#<div v-if="message != ''">#}
+                    {#<br>#}
+                    {#<div v-bind:class="'alert margin-bottom-15 alert-' + messageStatus">#}
+                        {#<button type="button" class="close" data-dismiss="alert">&times;</button>#}
+                        {#${ message }#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div v-else>#}
+                    {#{% for flashType in app.session.flashbag.keys %}#}
+                        {#{% for flash in app.session.flashbag.get(flashType) %}#}
+                            {#<br>#}
+                            {#<div class="alert margin-bottom-15 alert-{{ flashType }}">#}
+                                {#<button type="button" class="close" data-dismiss="alert">&times;</button>#}
+                                {#{{ flash|trans }}#}
+                            {#</div>#}
+                        {#{% endfor %}#}
+                    {#{% endfor %}#}
+                {#</div>#}
+
+
+                {#<div class="page-title">#}
+                    {#<h2>{% block page_title %}{% endblock %}</h2>#}
+                {#</div>#}
             </div>
 
             <div class="col-md-3">
-                {{ render(controller('AppCoreBundle:Default:getSidebar')) }}
+                {#{{ render(controller('AppCoreBundle:Default:getSidebar')) }}#}
             </div>
             <div class="col-md-9" style="padding-top: 20px;">
-                {% block content %}{% endblock %}
+
             </div>
         </div>
     </section>
@@ -112,8 +219,8 @@
         <i class="glyphicon glyphicon-earphone" style="font-size: 32px;line-height: 74px;"></i>
     </a>
 
-    {{ render(controller('AppCoreBundle:Default:getCallUs', {'request': app.request})) }}
+    {#{{ render(controller('AppCoreBundle:Default:getCallUs', {'request': app.request})) }}#}
 
-    <process-event :process="process"></process-event>
+    {#<process-event :process="process"></process-event>#}
 
 {% endblock %}

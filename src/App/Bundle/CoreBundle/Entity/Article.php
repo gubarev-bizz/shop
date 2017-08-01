@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Bundle\CoreBundle\Entity\Repository\ArticleRepository")
@@ -33,6 +34,16 @@ class Article
      * @SymfonyConstraints\Length(max="255")
      */
     private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"title"}, unique=true)
+     * @SymfonyConstraints\Type(type="string")
+     * @SymfonyConstraints\Length(max=255)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -165,6 +176,22 @@ class Article
     public function getImageName()
     {
         return $this->imageName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
 }

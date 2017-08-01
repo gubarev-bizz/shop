@@ -5,10 +5,15 @@ namespace App\Bundle\CoreBundle\Controller;
 use App\Bundle\CoreBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ArticleController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function newsListAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -25,10 +30,15 @@ class ArticleController extends Controller
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
         return $this->render('AppCoreBundle:Article:list.html.twig', [
-            'entities' => $pagination
+            'entities' => $pagination,
+            'paginateParameter' => $this->getParameter('paginator'),
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function stockListAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -45,10 +55,15 @@ class ArticleController extends Controller
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
         return $this->render('AppCoreBundle:Article:list.html.twig', [
-            'entities' => $pagination
+            'entities' => $pagination,
+            'paginateParameter' => $this->getParameter('paginator'),
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function articleListAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -65,15 +80,20 @@ class ArticleController extends Controller
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
         return $this->render('AppCoreBundle:Article:list.html.twig', [
-            'entities' => $pagination
+            'entities' => $pagination,
+            'paginateParameter' => $this->getParameter('paginator'),
         ]);
     }
 
-    public function newsItemAction($id)
+    /**
+     * @param string $slug
+     * @return Response
+     */
+    public function newsItemAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppCoreBundle:Article')->findOneBy([
-            'id' => $id,
+            'slug' => $slug,
             'type' => Article::TYPE_NEWS,
         ]);
 
@@ -84,7 +104,7 @@ class ArticleController extends Controller
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addRouteItem('News', "app_core_bundle_article_news_list");
         $breadcrumbs->addRouteItem($entity->getTitle(), "app_core_bundle_article_news_item", [
-            'id' => $entity->getId(),
+            'slug' => $entity->getSlug(),
         ]);
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
@@ -93,11 +113,15 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function stockItemAction($id)
+    /**
+     * @param string $slug
+     * @return Response
+     */
+    public function stockItemAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppCoreBundle:Article')->findOneBy([
-            'id' => $id,
+            'slug' => $slug,
             'type' => Article::TYPE_STOCK,
         ]);
 
@@ -108,7 +132,7 @@ class ArticleController extends Controller
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addRouteItem('Promotions', "app_core_bundle_article_stock_list");
         $breadcrumbs->addRouteItem($entity->getTitle(), "app_core_bundle_article_stock_item", [
-            'id' => $entity->getId(),
+            'slug' => $entity->getSlug(),
         ]);
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
@@ -117,11 +141,15 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function articleItemAction($id)
+    /**
+     * @param string $slug
+     * @return Response
+     */
+    public function articleItemAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppCoreBundle:Article')->findOneBy([
-            'id' => $id,
+            'slug' => $slug,
             'type' => Article::TYPE_ARTICLE,
         ]);
 
@@ -132,7 +160,7 @@ class ArticleController extends Controller
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addRouteItem('Articles', "app_core_bundle_article_article_list");
         $breadcrumbs->addRouteItem($entity->getTitle(), "app_core_bundle_article_article_item", [
-            'id' => $entity->getId(),
+            'slug' => $entity->getSlug(),
         ]);
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 

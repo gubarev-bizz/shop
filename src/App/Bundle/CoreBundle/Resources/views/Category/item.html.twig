@@ -10,67 +10,157 @@
 
 {% block content %}
 
-    {% if entities|length %}
+    <div class="box_wrapper_title22 infoBoxWrapper">
+        <div class="box_wrapper_title">
+            <span class="title-icon"></span>
+            <h1>{{ category.title }}</h1>
+        </div>
+    </div>
 
-        {% set index = 0 %}
-
-        {% for entity in entities %}
-            {% if  index == 0 %}
-                <div class="row" style="margin-bottom: 20px;">
-            {% endif %}
-                <div class="col-md-4">
-                    <div class="product-block">
-                        <div class="image">
-                            <a title="{{ entity.title }}" href="{{ path('app_show_bundle_product_item', {id: entity.id}) }}" class="img">
-                                {% for image in entity.images %}
-                                    {% if loop.index == 1 %}
-                                        <img src="{{ getImage(image.imageName, 'products') }}" alt="" />
-                                    {% endif %}
-                                {% endfor %}
-                            </a>
-                        </div>
-                        <div class="product-meta">
-                            <div class="name">
-                                <a title="{{ entity.title }}" href="{{ path('app_show_bundle_product_item', {id: entity.id}) }}">{{ entity.title }}</a>
-                            </div>
-                            <div class="big-price">
-                                <span class="price-new">{{ entity.price }} грн.</span>
-                            </div>
-                            <div class="big-btns">
-                                <div class="field field-name-field-product field-type-commerce-product-reference field-label-hidden">
-                                    <div class="field-items">
-                                        <div class="field-item even">
-                                            {{ form(addProductToCartForm[entity.id]) }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="small-price"> <span class="price-new">{{ entity.price }} грн.</span></div>
-                        </div>
-                        <div class="meta-back"></div>
-                    </div>
-                </div>
-            {% if index == 2 %}
-                </div>
-                {% set index = 0 %}
-            {% else %}
-                {% set index = index + 1 %}
-            {% endif %}
-        {% endfor %}
-
-        {% if index > 0 %}
-            </div>
-        {% endif %}
-
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <div class="navigation">
+    {% if entities|length > paginateParameter %}
+        <div class="result result1_top">
+            <div class="result1_bottom">
+                <div class="cl_both result_top_padd ofh">
                     {{ knp_pagination_render(entities) }}
                 </div>
             </div>
         </div>
+    {% endif %}
+
+    {% if entities|length %}
+        <div class="contentContainer page_listing first last">
+            <div class="contentPadd">
+                <div class="prods_content prods_table">
+                    {% set index = 0 %}
+
+                    {% for product in entities  %}
+                        {% set index = index + 1 %}
+
+                        {% if index == 1 %}
+                            <ul class="row_new_products_name row_new_products_block first" id="row-0">
+                        {% endif %}
+                        <li style="width: 230px; min-height: 315px;" class="wrapper_prods equal-height_new_products_block hover item_0 first">
+                            <div>
+                                <div class="border_prods">
+                                    <div class="pic_padd wrapper_pic_div" style="width:160px;height:160px;">
+                                        <a class="prods_pic_bg" href="{{ path('app_show_bundle_product_item', {'slug': product.slug}) }}" style="width:160px;height:160px;">
+                                            {% if product.imageName is not null %}
+                                                <img src="{{ (getImage(product.imageName, 'products')) | imagine_filter('product_preview') }}" alt="{{ product.title }}" title="{{ product.title }}" >
+                                            {% else %}
+                                                <img src="{{ asset('images/default-160x160.jpg') }}" alt="{{ product.title }}" title="{{ product.title }}" >
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="prods_padd">
+                                        <div class="name name_padd equal-height_listing_name" style="min-height: 18px;">
+                                            <div>
+                                                <span>
+                                                    <a href="{{ path('app_show_bundle_product_item', {'slug': product.slug}) }}">{{ product.title }}</a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="listing_padd">
+                                            <table class="listing">
+                                                <tbody>
+                                                    <tr>
+
+                                                        <td class="first"><b><strong>Артикул&nbsp;:</strong></b>
+                                                        </td>
+
+                                                        <td class="last"><strong>{{ product.code }}</strong>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+
+                                                        <td class="first"><b><strong>Бренд&nbsp;:</strong></b>
+                                                        </td>
+
+                                                        <td class="last">
+                                                            <strong>{{ product.manufacturer.title }}</strong>
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="price price_padd ">
+                                            <b>Цена:&nbsp;&nbsp;</b>
+                                            <span class="productSpecialPrice">{{ product.price ~ ' грн.' }}</span>
+                                        </div>
+
+                                        <div class="prods_wrapp">
+                                            <div class="button__padd">
+                                                <strong class="button_content button_content2">
+                                                    {{ form_start(addProductToCartForm[product.id]) }}
+                                                    <strong class="button bg_button">
+                                                        <strong class="button-t">
+                                                            <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
+                                                                <span class="ui-button-icon-primary ui-icon ui-icon-cart"></span>
+                                                                <span class="ui-button-text">в Корзину</span></button>
+                                                        </strong>
+                                                    </strong>
+                                                    {{ form_end(addProductToCartForm[product.id]) }}
+
+                                                </strong>
+                                                <strong class="button_content button_content22">
+                                                    <strong class="button bg_button">
+                                                        <strong class="button-t">
+                                                            <a href="{{ path('app_show_bundle_product_item', {'slug': product.slug}) }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary" role="button">
+                                                                <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-e"></span>
+                                                                <span class="ui-button-text">Подробнее</span>
+                                                            </a>
+                                                        </strong>
+                                                    </strong>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        {% if index < 3 %}
+                            <li class="prods_vseparator equal-height_new_products_block" style="min-height: 315px;">
+                                <div>
+                                    <img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1">
+                                    <div class="prods_vseparator_img"></div>
+                                </div>
+                            </li>
+                        {% endif %}
+
+                        {% if index == 3 %}
+                            </ul>
+                            <ul class="row_separator">
+                                <li class="prods_hseparator first last">
+                                    <img src="{{ asset('images/spacer.gif') }}" alt="" width="1" height="1">
+                                </li>
+                            </ul>
+                            {% set index = 0 %}
+                        {% endif %}
+
+                    {% endfor %}
+
+                    {% if index > 0 and index < 3 %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if entities|length > paginateParameter %}
+            <div class="result result2_top">
+                <div class="result2_bottom">
+                    <div class="cl_both result_bottom_padd ofh">
+                        {{ knp_pagination_render(entities) }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
 
     {% else %}
         {{ 'No records found'|trans }}
     {% endif %}
+
+
 {% endblock %}

@@ -10,6 +10,10 @@ app_core_bundle_page_search:
     path: /search
     defaults: { _controller: AppCoreBundle:Search:search }
 
+app_core_bundle_page_reviews:
+    path: /reviews
+    defaults: { _controller: AppCoreBundle:Review:list }
+
 app_core_bundle_article_news_list:
     path: /news
     defaults: { _controller: AppCoreBundle:Article:newsList }
@@ -23,19 +27,19 @@ app_core_bundle_article_article_list:
     defaults: { _controller: AppCoreBundle:Article:articleList }
 
 app_core_bundle_article_news_item:
-    path: /news/{id}
+    path: /news/{slug}
     defaults: { _controller: AppCoreBundle:Article:newsItem }
 
 app_core_bundle_category_item:
-    path: /category/{categoryId}
+    path: /category/{slug}
     defaults: { _controller: AppCoreBundle:Category:categoryItem }
 
 app_core_bundle_article_stock_item:
-    path: /stock/{id}
+    path: /stock/{slug}
     defaults: { _controller: AppCoreBundle:Article:stockItem }
 
 app_core_bundle_article_article_item:
-    path: /article/{id}
+    path: /article/{slug}
     defaults: { _controller: AppCoreBundle:Article:articleItem }
 
 app_core_bundle_page_about:
@@ -50,3 +54,11 @@ app_core_bundle_callback_call_us:
 app_core_bundle_page_contact:
     path: /contact
     defaults: { _controller: AppCoreBundle:Default:contact }
+
+app_core_bundle_page_shipping_payment:
+  path: /shipping-payment
+  defaults: { _controller: AppCoreBundle:Default:shippingAndPayment }
+
+app_core_bundle_page_feedback:
+  path: /feedback
+  defaults: { _controller: AppCoreBundle:Default:feedback }

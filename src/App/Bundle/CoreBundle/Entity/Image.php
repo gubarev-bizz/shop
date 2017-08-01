@@ -36,6 +36,8 @@ class Image
     private $imageName;
 
     /**
+     * @var Product
+     *
      * @ORM\ManyToOne(targetEntity="App\Bundle\ShopBundle\Entity\Product", inversedBy="images")
      */
     protected $product;
@@ -104,10 +106,22 @@ class Image
      * @param Product $product
      * @return $this
      */
-    public function setProduct(Product $product)
+    public function setProduct(Product $product = null)
     {
-        $this->product = $product;
-        $product->addImage($this);
+//        $this->product = $product;
+//        $product->addImage($this);
+//
+        if ($this->getImageName() !== null) {
+            if ($this->product !== null) {
+                $this->product->removeImage($this);
+            }
+
+            if ($product !== null) {
+                $product->addImage($this);
+            }
+
+            $this->product = $product;
+        }
 
         return $this;
     }

@@ -78,7 +78,7 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
-            softdeleteable: true
+            sluggable: true
 
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
@@ -130,20 +130,24 @@ visual_craft_beanstalk_scheduler:
 
 vich_uploader:
     db_driver: orm
+    twig: true
     mappings:
         product_image:
             uri_prefix:         /images/products
             upload_destination: "%product_image_dir%"
+            namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
         article_image:
             uri_prefix:         /images/article
             upload_destination: '%kernel.root_dir%/../web/images/article'
+            namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
         category_image:
             uri_prefix:         /images/category
             upload_destination: '%kernel.root_dir%/../web/images/category'
+            namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
 
@@ -158,6 +162,21 @@ liip_imagine:
                    - "%kernel.root_dir%/../web"
     filter_sets:
         cache: ~
+        product_preview:
+            quality: 95
+            filters:
+                thumbnail: { size: [160, 160], mode: outbound }
+                background: { size: [160, 160], position: center, color: '#fff' }
+        product_slider_main:
+            quality: 100
+            filters:
+                thumbnail: { size: [220, 220], mode: outbound }
+                background: { size: [220, 220], position: center, color: '#fff' }
+        product_slider_preview:
+            quality: 100
+            filters:
+                thumbnail: { size: [220, 220], mode: outbound }
+                background: { size: [220, 220], position: center, color: '#fff' }
         news_sidebar:
             quality: 100
             filters:
@@ -172,9 +191,14 @@ liip_imagine:
         slider_main:
             quality: 100
             filters:
-                thumbnail: { size: [900, 500], mode: outbound }
-                background: { size: [900, 500], position: center, color: '#fff' }
-                crop: { size: [900, 500] }
+                thumbnail: { size: [710, 240], mode: outbound }
+                background: { size: [710, 240], position: center, color: '#fff' }
+                crop: { size: [710, 240] }
+        article_preview:
+            quality: 100
+            filters:
+                thumbnail: { size: [220, 200], mode: outbound }
+                background: { size: [220, 200], position: center, color: '#fff' }
         category_main:
             quality: 100
             filters:
@@ -227,4 +251,4 @@ white_october_breadcrumbs:
     linkRel:            ''
     locale:             ~ # defaults to null, so the default locale is used
     translation_domain: ~ # defaults to null, so the default domain is used
-    viewTemplate:       'WhiteOctoberBreadcrumbsBundle::breadcrumbs.html.twig'
+    viewTemplate:       '::breadcrumbs.html.twig'
