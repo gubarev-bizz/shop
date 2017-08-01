@@ -43,10 +43,13 @@ class ReviewController extends Controller
                 'updatedAt' => 'DESC',
             ])
         ;
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($reviews, $request->query->get('page', 1), $this->getParameter('paginator'));
 
         return $this->render('AppCoreBundle:Review:list.html.twig', [
-            'reviews' => $reviews,
+            'results' => $pagination,
             'form' => $form->createView(),
+            'paginateParameter' => $this->getParameter('paginator'),
         ]);
     }
 }

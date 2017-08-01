@@ -55,6 +55,7 @@ class CategoryController extends Controller
             'category' => $category,
             'entities' => $pagination,
             'addProductToCartForm' => $addProductToCartForm,
+            'paginateParameter' => $this->getParameter('paginator'),
         ]);
     }
 }

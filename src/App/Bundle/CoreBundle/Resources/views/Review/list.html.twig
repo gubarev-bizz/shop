@@ -18,9 +18,9 @@
                     {{ form_start(form) }}
                     {{ form_end(form) }}
                     <h3>{{ 'Reviews'|trans }}</h3>
-                    {% if reviews|length %}
+                    {% if results|length %}
                         <div>
-                            {% for review in reviews %}
+                            {% for review in results %}
                                 <div class="review-item">
                                     <div class="review-date">{{ review.createdAt|date('d.m.Y') }}</div>
                                     <div class="review-title">{{ review.name }}</div>
@@ -35,4 +35,14 @@
             </div>
         </div>
     </div>
+
+    {% if results|length > paginateParameter %}
+    <div class="result result2_top">
+        <div class="result2_bottom">
+            <div class="cl_both result_bottom_padd ofh">
+                {{ knp_pagination_render(results) }}
+            </div>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}

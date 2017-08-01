@@ -30,7 +30,8 @@ class ArticleController extends Controller
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
         return $this->render('AppCoreBundle:Article:list.html.twig', [
-            'entities' => $pagination
+            'entities' => $pagination,
+            'paginateParameter' => $this->getParameter('paginator'),
         ]);
     }
 
@@ -54,7 +55,8 @@ class ArticleController extends Controller
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
         return $this->render('AppCoreBundle:Article:list.html.twig', [
-            'entities' => $pagination
+            'entities' => $pagination,
+            'paginateParameter' => $this->getParameter('paginator'),
         ]);
     }
 
@@ -78,7 +80,8 @@ class ArticleController extends Controller
         $breadcrumbs->prependRouteItem("Home", "app_core_bundle_page_main");
 
         return $this->render('AppCoreBundle:Article:list.html.twig', [
-            'entities' => $pagination
+            'entities' => $pagination,
+            'paginateParameter' => $this->getParameter('paginator'),
         ]);
     }
 

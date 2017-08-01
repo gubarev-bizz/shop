@@ -1732,7 +1732,7 @@ a.cart-block {
     width: 170px;
     height: 56px;
     display: block;
-    background: #ed170e;
+    background: #eb2929;
     color: #fff;
 }
 
@@ -1779,4 +1779,21 @@ a.cart-block .count {
     padding: 0px 0px 0px 0px;
     font-family: "Roboto", sans-serif;
     line-height: 14px;
+}
+
+.navigation {
+
+}
+
+.navigation ul {
+
+}
+
+.navigation ul li {
+    display: inline-block;
+    background-color: #eb2929;
+}
+
+.navigation ul li a {
+    color: #fff;
 }

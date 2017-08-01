@@ -17,6 +17,16 @@
         </div>
     </div>
 
+    {% if entities|length > paginateParameter %}
+        <div class="result result1_top">
+            <div class="result1_bottom">
+                <div class="cl_both result_top_padd ofh">
+                    {{ knp_pagination_render(entities) }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
     {% if entities|length %}
         <div class="contentContainer page_listing first last">
             <div class="contentPadd">
@@ -138,7 +148,19 @@
             </div>
         </div>
 
+        {% if entities|length > paginateParameter %}
+            <div class="result result2_top">
+                <div class="result2_bottom">
+                    <div class="cl_both result_bottom_padd ofh">
+                        {{ knp_pagination_render(entities) }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     {% else %}
         {{ 'No records found'|trans }}
     {% endif %}
+
+
 {% endblock %}

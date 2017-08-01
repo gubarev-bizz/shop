@@ -66,6 +66,7 @@ class SearchController extends Controller
         return $this->render('AppCoreBundle:Pages:search.html.twig', [
             'results' => $pagination,
             'addProductCartTypeForms' => $addProductCartTypeForms,
+            'paginateParameter' => $this->getParameter('paginator'),
         ]);
     }
 }
