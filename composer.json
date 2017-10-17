@@ -36,7 +36,10 @@
         "jms/serializer-bundle": "^1.2",
         "visual-craft/beanstalk-scheduler-bundle": "dev-master",
         "stfalcon/tinymce-bundle": "^2.1",
-        "whiteoctober/breadcrumbs-bundle": "^1.2"
+        "whiteoctober/breadcrumbs-bundle": "^1.2",
+        "dizda/cloud-backup-bundle": "^3.5",
+        "oneup/flysystem-bundle": "^1.14",
+        "knplabs/knp-gaufrette-bundle": "^0.4.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

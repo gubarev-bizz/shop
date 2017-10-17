@@ -24,6 +24,9 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(),
+            new Dizda\CloudBackupBundle\DizdaCloudBackupBundle(),
+            new Oneup\FlysystemBundle\OneupFlysystemBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
 
             new VisualCraft\Bundle\UploadFileBundle\VisualCraftUploadFileBundle(),
             new VisualCraft\Bundle\MailerBundle\VisualCraftMailerBundle(),

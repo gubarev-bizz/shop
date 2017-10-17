@@ -252,3 +252,42 @@ white_october_breadcrumbs:
     locale:             ~ # defaults to null, so the default locale is used
     translation_domain: ~ # defaults to null, so the default domain is used
     viewTemplate:       '::breadcrumbs.html.twig'
+
+dizda_cloud_backup:
+    output_file_prefix: hostname
+    timeout: 300
+    restore: false
+    processor:
+        type: tar
+        options:
+            compression_ratio: 6
+            password: qwerty
+            split:
+                enable: false
+                split_size: 1000
+                storages: [ Gaufrette ]
+    folders: [ web/assets, web/css, web/ext, web/font, web/images, web/img, web/includes, web/js, web/lightbox2, web/media, web/zohoverify ]
+    cloud_storages:
+        local:
+            path: "%kernel.root_dir%/.."
+        gaufrette:
+            service_name:
+                - foo_filesystem
+    databases:
+        mysql:
+            all_databases: false
+            database: '%database_name%'
+            db_host: '%database_host%'
+            db_port: '%database_port%'
+            db_user: '%database_user%'
+            db_password: '%database_password%'
+
+knp_gaufrette:
+    adapters:
+        foo:
+            local:
+                directory: "%kernel.root_dir%/../"
+    filesystems:
+        bar:
+            adapter: foo
+            alias: foo_filesystem
