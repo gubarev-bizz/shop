@@ -24,6 +24,13 @@ class MenuBuilderListener
                     'labelAttributes' => ['icon' => 'fa fa-bar-chart'],
                 ]);
             }
+
+            if ($child->getName() === 'Shop') {
+                $child->addChild('DB dumps', [
+                    'route' => 'app_admin_bundle_dump_list',
+                    'labelAttributes' => ['icon' => 'fa fa-bar-chart'],
+                ]);
+            }
         }
     }
 }

@@ -21,3 +21,4 @@
 web/assets
 var/cache/
 web/config.php
+!var/db_dump/.gitkeep

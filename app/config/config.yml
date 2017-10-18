@@ -256,7 +256,7 @@ white_october_breadcrumbs:
 dizda_cloud_backup:
     output_file_prefix: hostname
     timeout: 300
-    restore: false
+    restore: true
     processor:
         type: tar
         options:
@@ -269,7 +269,7 @@ dizda_cloud_backup:
     folders: [ web/assets, web/css, web/ext, web/font, web/images, web/img, web/includes, web/js, web/lightbox2, web/media, web/zohoverify ]
     cloud_storages:
         local:
-            path: "%kernel.root_dir%/.."
+            path: "%kernel.root_dir%/../var/db_dump/"
         gaufrette:
             service_name:
                 - foo_filesystem
@@ -286,7 +286,7 @@ knp_gaufrette:
     adapters:
         foo:
             local:
-                directory: "%kernel.root_dir%/../"
+                directory: "%kernel.root_dir%/../var/db_dump/"
     filesystems:
         bar:
             adapter: foo

@@ -5,3 +5,19 @@ app_admin_bundle_parser:
 app_admin_bundle_multicurrency:
     path: /multi-currency
     defaults: { _controller: AppAdminBundle:MultiCurrency:multiCurrency }
+
+app_admin_bundle_dump_list:
+    path: /db-dumps
+    defaults: { _controller: AppAdminBundle:Dump:list }
+
+app_admin_bundle_dump_create:
+    path: /db-dumps/create
+    defaults: { _controller: AppAdminBundle:Dump:create }
+
+app_admin_bundle_dump_import:
+    path: /db-dumps/import/{fileName}
+    defaults: { _controller: AppAdminBundle:Dump:import }
+
+app_admin_bundle_dump_download:
+    path: /db-dumps/download/{fileName}
+    defaults: { _controller: AppAdminBundle:Dump:download }
