@@ -10,7 +10,6 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -107,10 +106,29 @@ class DumpController extends Controller
 
     /**
      * @param string $fileName
+     * @return RedirectResponse
      */
     public function importAction($fileName)
     {
         $filePath = $this->getBasePath() . $fileName;
+
+        $application = new Application($this->get('kernel'));
+        $application->setAutoExit(false);
+        $input = new ArrayInput([
+            "command" => "app:backup:restore",
+            "--path" => $filePath,
+        ]);
+        $output = new ConsoleOutput();
+
+        $retval = $application->run($input, $output);
+
+        if(!$retval) {
+            $this->addFlash('success', 'Command executed successfully!');
+        } else {
+            $this->addFlash('success', 'Command was not successful.');
+        }
+
+        return $this->redirectToRoute('app_admin_bundle_dump_list');
 
     }
 }

@@ -8,6 +8,8 @@ use Dizda\CloudBackupBundle\Manager\ProcessorManager;
 use SplFileInfo;
 use Symfony\Component\Console\Command\Command;
 use Dizda\CloudBackupBundle\Manager\RestoreManager;
+use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputArgument;
@@ -89,10 +91,10 @@ class RestoreBackupCommand extends Command
         $this
             ->setName('app:backup:restore')
             ->setDescription('Restore backup')
-            ->addArgument(
-                'path',
-                InputArgument::REQUIRED,
-                'Backup path'
+            ->setDefinition(
+                new InputDefinition(array(
+                    new InputOption('path', 'p', InputOption::VALUE_REQUIRED, "Backup path"),
+                ))
             )
         ;
     }
@@ -103,7 +105,7 @@ class RestoreBackupCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // /home/anton/projects/shop/var/db_dump/hostname_2017-10-19_23-23-35.zip
-        $filePath = $input->getArgument('path');
+        $filePath = $input->getOption('path');
 
         if (file_exists($filePath)) {
             $this->filesystem->mkdir($this->restoreFolder);
