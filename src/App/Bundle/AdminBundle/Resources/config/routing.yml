@@ -18,6 +18,10 @@ app_admin_bundle_dump_import:
     path: /db-dumps/import/{fileName}
     defaults: { _controller: AppAdminBundle:Dump:import }
 
+app_admin_bundle_dump_delete:
+    path: /db-dumps/delete/{fileName}
+    defaults: { _controller: AppAdminBundle:Dump:delete }
+
 app_admin_bundle_dump_download:
     path: /db-dumps/download/{fileName}
     defaults: { _controller: AppAdminBundle:Dump:download }

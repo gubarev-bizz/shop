@@ -258,15 +258,15 @@ dizda_cloud_backup:
     timeout: 300
     restore: true
     processor:
-        type: tar
-        options:
-            compression_ratio: 6
-            password: qwerty
-            split:
-                enable: false
-                split_size: 1000
-                storages: [ Gaufrette ]
-    folders: [ web/assets, web/css, web/ext, web/font, web/images, web/img, web/includes, web/js, web/lightbox2, web/media, web/zohoverify ]
+        type: zip
+#        options:
+#            compression_ratio: 6
+#            password: qwerty
+#            split:
+#                enable: false
+#                split_size: 1000
+#                storages: [ Gaufrette ]
+    folders: [ web/images, web/img, web/media ]
     cloud_storages:
         local:
             path: "%kernel.root_dir%/../var/db_dump/"

@@ -74,3 +74,15 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 
+    app_core_bundle.command.backup_restore:
+        class: App\Bundle\CoreBundle\Command\RestoreBackupCommand
+        arguments:
+            - '@dizda.cloudbackup.manager.restore'
+            - '@dizda.cloudbackup.manager.processor'
+            - '@dizda.cloudbackup.manager.database'
+            - '%dizda_cloud_backup.restore_folder%'
+            - '@dizda.cloudbackup.filesystem'
+            - '%kernel.root_dir%'
+            - '@event_dispatcher'
+        tags:
+            - { name: console.command }

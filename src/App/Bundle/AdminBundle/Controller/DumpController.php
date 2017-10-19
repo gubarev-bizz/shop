@@ -17,13 +17,20 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class DumpController extends Controller
 {
     /**
+     * @return string
+     */
+    private function getBasePath()
+    {
+        return $this->getParameter('kernel.root_dir') . '/../var/db_dump/';
+    }
+
+    /**
      * @return Response
      */
     public function listAction()
     {
-        $baseUrl = $this->getParameter('kernel.root_dir') . '/../var/db_dump/';
         $finder = new Finder();
-        $finder->files()->in($baseUrl);
+        $finder->files()->in($this->getBasePath());
         $dumpFiles = new ArrayCollection();
 
         foreach ($finder as $file) {
@@ -44,16 +51,34 @@ class DumpController extends Controller
      */
     public function downloadAction($fileName)
     {
-        $basePath = $this->getParameter('kernel.root_dir') . '/../var/db_dump/';
+        $basePath = $this->getBasePath() . $fileName;
 
-        if (file_exists($basePath . $fileName)) {
-            $content = file_get_contents($basePath . $fileName);
+        if (file_exists($basePath)) {
+            $content = file_get_contents($basePath);
             $response = new Response();
             $response->headers->set('Content-Type', 'mime/type');
             $response->headers->set('Content-Disposition', 'attachment;filename="' . $fileName);
             $response->setContent($content);
 
             return $response;
+        }
+
+        throw new NotFoundHttpException('File not found');
+    }
+
+    /**
+     * @param string $fileName
+     * @return RedirectResponse
+     */
+    public function deleteAction($fileName)
+    {
+        $filePath = $this->getBasePath() . $fileName;
+
+        if (file_exists($filePath)) {
+            unlink($filePath);
+            $this->addFlash('success', 'The file was successfully deleted.');
+
+            return $this->redirectToRoute('app_admin_bundle_dump_list');
         }
 
         throw new NotFoundHttpException('File not found');
@@ -80,8 +105,12 @@ class DumpController extends Controller
         return $this->redirectToRoute('app_admin_bundle_dump_list');
     }
 
+    /**
+     * @param string $fileName
+     */
     public function importAction($fileName)
     {
+        $filePath = $this->getBasePath() . $fileName;
 
     }
 }
