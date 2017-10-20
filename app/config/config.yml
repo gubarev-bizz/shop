@@ -266,7 +266,7 @@ dizda_cloud_backup:
 #                enable: false
 #                split_size: 1000
 #                storages: [ Gaufrette ]
-    folders: [ web/images, web/img, web/media ]
+    folders: [ web/img, web/media ]
     cloud_storages:
         local:
             path: "%kernel.root_dir%/../var/db_dump/"
